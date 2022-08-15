@@ -1,4 +1,4 @@
-package com.tmdb_test.data.api.impl_retrofit
+package com.tmdb_test.data.api.util
 
 import kotlinx.serialization.Serializable
 

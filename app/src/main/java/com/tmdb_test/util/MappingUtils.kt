@@ -1,8 +1,6 @@
 package com.tmdb_test.util
 
-import androidx.constraintlayout.compose.DesignElements.map
-import com.tmdb_test.R
-import com.tmdb_test.data.api.impl_retrofit.NetworkErrorModel
+import com.tmdb_test.data.api.util.NetworkErrorModel
 import com.tmdb_test.data.api.model.data.DataPage
 import com.tmdb_test.data.api.model.movie.Movie
 import com.tmdb_test.data.api.util.ApiResponse

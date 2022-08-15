@@ -1,6 +1,6 @@
 package com.tmdb_test.data.source.remote.discover
 
-import com.tmdb_test.data.api.impl_retrofit.NetworkErrorModel
+import com.tmdb_test.data.api.util.NetworkErrorModel
 import com.tmdb_test.data.api.impl_retrofit.discover.DiscoverApi
 import com.tmdb_test.data.api.model.data.DataPage
 import com.tmdb_test.data.api.model.movie.Movie
