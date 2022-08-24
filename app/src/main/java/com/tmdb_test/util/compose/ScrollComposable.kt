@@ -1,4 +1,4 @@
-package com.tmdb_test.ui.util.compose
+package com.tmdb_test.util.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

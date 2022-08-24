@@ -20,7 +20,7 @@ import com.tmdb_test.ui.util.UiState.Error
 import com.tmdb_test.ui.util.UiState.Loading
 import com.tmdb_test.ui.util.UiState.NetworkError
 import com.tmdb_test.ui.util.UiState.Success
-import com.tmdb_test.ui.util.compose.ScrollableColumn
+import com.tmdb_test.util.compose.ScrollableColumn
 
 
 @Preview(showBackground = false, showSystemUi = false)
@@ -211,7 +211,7 @@ fun HomeContent(
             MovieSection(
                 title = section.sectionUiName,
                 sectionState = sectionState,
-                onReloadSection = { onReloadSection(HomeMovieSection.NOW_PLAYING) },
+                onReloadSection = { onReloadSection(NOW_PLAYING) },
                 onMovieClick = onMovieClick
             )
 

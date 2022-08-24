@@ -7,14 +7,10 @@ buildscript {
     }
 
     dependencies {
-//        // https://developer.android.com/studio/releases/gradle-plugin
-//        classpath("com.android.tools.build:gradle:7.2.2")
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-//        classpath("org.jetbrains.kotlin:kotlin-serialization:1.7.10")
-
         classpath(libs.gradle)
         classpath(libs.kotlin.gradle)
         classpath(libs.kotlin.serialization)
+        classpath(libs.hilt.plugin)
     }
 }
 
