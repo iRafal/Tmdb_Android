@@ -10,7 +10,7 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.kotlin.mock
@@ -36,13 +36,14 @@ class HomeViewModelTest {
     @Test
     fun state() {
         whenever(appStore.state).thenReturn(AppState.INITIAL)
-        Assert.assertEquals(viewModel.uiState, HomeUiData.INITIAL)
+        assertEquals(viewModel.uiState, HomeUiData.INITIAL)
     }
 
     @Test
     fun onReloadMovieSection() {
         whenever(appStore.state).thenReturn(AppState.INITIAL)
         viewModel.onReloadMovieSection
+        //TODO
         /*
          whenever(appStore.state).thenReturn(AppState.Initial)
         val name = "Name"
@@ -51,7 +52,5 @@ class HomeViewModelTest {
 
         verify(appStore).dispatch(QuizNameChangedAction(name))
          */
-
-
     }
 }

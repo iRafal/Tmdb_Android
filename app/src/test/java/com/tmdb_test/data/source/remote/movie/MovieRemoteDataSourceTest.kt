@@ -1,17 +1,20 @@
 package com.tmdb_test.data.source.remote.movie
 
-import com.tmdb_test.data.api.ModelUtil
 import com.tmdb_test.data.api.impl_retrofit.movie.MovieApi
 import com.tmdb_test.data.api.model.data.DataPage
 import com.tmdb_test.data.api.util.ApiResponse
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import com.tmdb_test.util.model.ModelUtil
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertSame
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.times
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieRemoteDataSourceTest {
     private val movieApi = mock<MovieApi>()
     private val movieSource: MovieRemoteDataSource = MovieRemoteDataSourceImpl(movieApi)
@@ -19,74 +22,58 @@ class MovieRemoteDataSourceTest {
     private val movieId = 550
 
     @Test
-    fun `movie success`() = runBlocking<Unit> {
+    fun `movie success`() = runTest {
         val response = ApiResponse.Success(ModelUtil.movieModel)
-        `when`(movieApi.movie(movieId)).thenReturn(response)
-        movieSource.movie(movieId).also { result ->
-            Assert.assertSame(result, response)
-        }
+        whenever(movieApi.movie(movieId)).thenReturn(response)
+        movieSource.movie(movieId).run { assertSame(this, response) }
         verify(movieApi, times(1)).movie(movieId)
     }
 
     @Test
-    fun `movie network error`() = runBlocking<Unit> {
-        `when`(movieApi.movie(movieId)).thenReturn(ApiResponse.NetworkError())
-        movieSource.movie(movieId).also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `movie network error`() = runTest {
+        whenever(movieApi.movie(movieId)).thenReturn(ApiResponse.NetworkError())
+        movieSource.movie(movieId).run { assertTrue(this.isNetworkError) }
         verify(movieApi, times(1)).movie(movieId)
     }
 
     @Test
-    fun `movie api error`() = runBlocking<Unit> {
-        `when`(movieApi.movie(movieId)).thenReturn(ApiResponse.ApiError())
-        movieSource.movie(movieId).also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `movie api error`() = runTest {
+        whenever(movieApi.movie(movieId)).thenReturn(ApiResponse.ApiError())
+        movieSource.movie(movieId).run { assertTrue(this.isApiError) }
         verify(movieApi, times(1)).movie(movieId)
     }
 
     @Test
-    fun `movie unknown error`() = runBlocking<Unit> {
-        `when`(movieApi.movie(movieId)).thenReturn(ApiResponse.UnknownError())
-        movieSource.movie(movieId).also { result ->
-            Assert.assertTrue(result.isUnknownError)
-        }
+    fun `movie unknown error`() = runTest {
+        whenever(movieApi.movie(movieId)).thenReturn(ApiResponse.UnknownError())
+        movieSource.movie(movieId).run { assertTrue(this.isUnknownError) }
         verify(movieApi, times(1)).movie(movieId)
     }
 
     @Test
-    fun `latest movie success`() = runBlocking<Unit> {
-        val response = ApiResponse.Success(
-            ModelUtil.movieModel
-        )
-        `when`(movieApi.latestMovie()).thenReturn(response)
-        movieSource.latestMovie().also { result ->
-            Assert.assertSame(result, response)
-        }
+    fun `latest movie success`() = runTest {
+        val response = ApiResponse.Success(ModelUtil.movieModel)
+        whenever(movieApi.latestMovie()).thenReturn(response)
+        movieSource.latestMovie().run { assertSame(this, response) }
         verify(movieApi, times(1)).latestMovie()
     }
 
     @Test
-    fun `latest movie network error`() = runBlocking<Unit> {
-        `when`(movieApi.latestMovie()).thenReturn(ApiResponse.NetworkError())
-        movieSource.latestMovie().also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `latest movie network error`() = runTest {
+        whenever(movieApi.latestMovie()).thenReturn(ApiResponse.NetworkError())
+        movieSource.latestMovie().run { assertTrue(this.isNetworkError) }
         verify(movieApi, times(1)).latestMovie()
     }
 
     @Test
-    fun `latest movie api error`() = runBlocking<Unit> {
-        `when`(movieApi.latestMovie()).thenReturn(ApiResponse.ApiError())
-        movieSource.latestMovie().also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `latest movie api error`() = runTest {
+        whenever(movieApi.latestMovie()).thenReturn(ApiResponse.ApiError())
+        movieSource.latestMovie().run { assertTrue(this.isApiError) }
         verify(movieApi, times(1)).latestMovie()
     }
 
     @Test
-    fun `now playing movies success`() = runBlocking<Unit> {
+    fun `now playing movies success`() = runTest {
         val response = ApiResponse.Success(
             DataPage(
                 page = 1,
@@ -95,42 +82,34 @@ class MovieRemoteDataSourceTest {
                 totalResults = 1
             )
         )
-        `when`(movieApi.nowPlayingMovies()).thenReturn(response)
-        movieSource.nowPlayingMovies().also { result ->
-            Assert.assertSame(result, response)
-        }
+        whenever(movieApi.nowPlayingMovies()).thenReturn(response)
+        movieSource.nowPlayingMovies().run { assertSame(this, response) }
         verify(movieApi, times(1)).nowPlayingMovies()
     }
 
     @Test
-    fun `now playing movies network error`() = runBlocking<Unit> {
-        `when`(movieApi.nowPlayingMovies()).thenReturn(ApiResponse.NetworkError())
-        movieSource.nowPlayingMovies().also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `now playing movies network error`() = runTest {
+        whenever(movieApi.nowPlayingMovies()).thenReturn(ApiResponse.NetworkError())
+        movieSource.nowPlayingMovies().run { assertTrue(this.isNetworkError) }
         verify(movieApi, times(1)).nowPlayingMovies()
     }
 
     @Test
-    fun `now playing movies api error`() = runBlocking<Unit> {
-        `when`(movieApi.nowPlayingMovies()).thenReturn(ApiResponse.ApiError())
-        movieSource.nowPlayingMovies().also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `now playing movies api error`() = runTest {
+        whenever(movieApi.nowPlayingMovies()).thenReturn(ApiResponse.ApiError())
+        movieSource.nowPlayingMovies().run { assertTrue(this.isApiError) }
         verify(movieApi, times(1)).nowPlayingMovies()
     }
 
     @Test
-    fun `now playing movies unknown error`() = runBlocking<Unit> {
-        `when`(movieApi.nowPlayingMovies()).thenReturn(ApiResponse.UnknownError())
-        movieSource.nowPlayingMovies().also { result ->
-            Assert.assertTrue(result.isUnknownError)
-        }
+    fun `now playing movies unknown error`() = runTest {
+        whenever(movieApi.nowPlayingMovies()).thenReturn(ApiResponse.UnknownError())
+        movieSource.nowPlayingMovies().run { assertTrue(this.isUnknownError) }
         verify(movieApi, times(1)).nowPlayingMovies()
     }
 
     @Test
-    fun `now popular movies success`() = runBlocking<Unit> {
+    fun `now popular movies success`() = runTest {
         val response = ApiResponse.Success(
             DataPage(
                 page = 1,
@@ -139,42 +118,34 @@ class MovieRemoteDataSourceTest {
                 totalResults = 1
             )
         )
-        `when`(movieApi.nowPopularMovies()).thenReturn(response)
-        movieSource.nowPopularMovies().also { result ->
-            Assert.assertSame(result, response)
-        }
+        whenever(movieApi.nowPopularMovies()).thenReturn(response)
+        movieSource.nowPopularMovies().run { assertSame(this, response) }
         verify(movieApi, times(1)).nowPopularMovies()
     }
 
     @Test
-    fun `now popular movies network error`() = runBlocking<Unit> {
-        `when`(movieApi.nowPopularMovies()).thenReturn(ApiResponse.NetworkError())
-        movieSource.nowPopularMovies().also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `now popular movies network error`() = runTest {
+        whenever(movieApi.nowPopularMovies()).thenReturn(ApiResponse.NetworkError())
+        movieSource.nowPopularMovies().run { assertTrue(this.isNetworkError) }
         verify(movieApi, times(1)).nowPopularMovies()
     }
 
     @Test
-    fun `now popular movies api error`() = runBlocking<Unit> {
-        `when`(movieApi.nowPopularMovies()).thenReturn(ApiResponse.ApiError())
-        movieSource.nowPopularMovies().also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `now popular movies api error`() = runTest {
+        whenever(movieApi.nowPopularMovies()).thenReturn(ApiResponse.ApiError())
+        movieSource.nowPopularMovies().run { assertTrue(this.isApiError) }
         verify(movieApi, times(1)).nowPopularMovies()
     }
 
     @Test
-    fun `now popular movies unknown error`() = runBlocking<Unit> {
-        `when`(movieApi.nowPopularMovies()).thenReturn(ApiResponse.UnknownError())
-        movieSource.nowPopularMovies().also { result ->
-            Assert.assertTrue(result.isUnknownError)
-        }
+    fun `now popular movies unknown error`() = runTest {
+        whenever(movieApi.nowPopularMovies()).thenReturn(ApiResponse.UnknownError())
+        movieSource.nowPopularMovies().run { assertTrue(this.isUnknownError) }
         verify(movieApi, times(1)).nowPopularMovies()
     }
 
     @Test
-    fun `top rated movies success`() = runBlocking<Unit> {
+    fun `top rated movies success`() = runTest {
         val response = ApiResponse.Success(
             DataPage(
                 page = 1,
@@ -183,42 +154,34 @@ class MovieRemoteDataSourceTest {
                 totalResults = 1
             )
         )
-        `when`(movieApi.topRatedMovies()).thenReturn(response)
-        movieSource.topRatedMovies().also { result ->
-            Assert.assertSame(result, response)
-        }
+        whenever(movieApi.topRatedMovies()).thenReturn(response)
+        movieSource.topRatedMovies().run { assertSame(this, response) }
         verify(movieApi, times(1)).topRatedMovies()
     }
 
     @Test
-    fun `top rated movies network error`() = runBlocking<Unit> {
-        `when`(movieApi.topRatedMovies()).thenReturn(ApiResponse.NetworkError())
-        movieSource.topRatedMovies().also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `top rated movies network error`() = runTest {
+        whenever(movieApi.topRatedMovies()).thenReturn(ApiResponse.NetworkError())
+        movieSource.topRatedMovies().run { assertTrue(this.isNetworkError) }
         verify(movieApi, times(1)).topRatedMovies()
     }
 
     @Test
-    fun `top rated movies api error`() = runBlocking<Unit> {
-        `when`(movieApi.topRatedMovies()).thenReturn(ApiResponse.ApiError())
-        movieSource.topRatedMovies().also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `top rated movies api error`() = runTest {
+        whenever(movieApi.topRatedMovies()).thenReturn(ApiResponse.ApiError())
+        movieSource.topRatedMovies().run { assertTrue(this.isApiError) }
         verify(movieApi, times(1)).topRatedMovies()
     }
 
     @Test
-    fun `top rated movies unknown error`() = runBlocking<Unit> {
-        `when`(movieApi.topRatedMovies()).thenReturn(ApiResponse.UnknownError())
-        movieSource.topRatedMovies().also { result ->
-            Assert.assertTrue(result.isUnknownError)
-        }
+    fun `top rated movies unknown error`() = runTest {
+        whenever(movieApi.topRatedMovies()).thenReturn(ApiResponse.UnknownError())
+        movieSource.topRatedMovies().run { assertTrue(this.isUnknownError) }
         verify(movieApi, times(1)).topRatedMovies()
     }
 
     @Test
-    fun `upcoming movies success`() = runBlocking<Unit> {
+    fun `upcoming movies success`() = runTest {
         val response = ApiResponse.Success(
             DataPage(
                 page = 1,
@@ -227,37 +190,29 @@ class MovieRemoteDataSourceTest {
                 totalResults = 1
             )
         )
-        `when`(movieApi.upcomingMovies()).thenReturn(response)
-        movieSource.upcomingMovies().also { result ->
-            Assert.assertSame(result, response)
-        }
+        whenever(movieApi.upcomingMovies()).thenReturn(response)
+        movieSource.upcomingMovies().run { assertSame(this, response) }
         verify(movieApi, times(1)).upcomingMovies()
     }
 
     @Test
-    fun `upcoming movies network error`() = runBlocking<Unit> {
-        `when`(movieApi.upcomingMovies()).thenReturn(ApiResponse.NetworkError())
-        movieSource.upcomingMovies().also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `upcoming movies network error`() = runTest {
+        whenever(movieApi.upcomingMovies()).thenReturn(ApiResponse.NetworkError())
+        movieSource.upcomingMovies().run { assertTrue(this.isNetworkError) }
         verify(movieApi, times(1)).upcomingMovies()
     }
 
     @Test
-    fun `upcoming movies api error`() = runBlocking<Unit> {
-        `when`(movieApi.upcomingMovies()).thenReturn(ApiResponse.ApiError())
-        movieSource.upcomingMovies().also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `upcoming movies api error`() = runTest {
+        whenever(movieApi.upcomingMovies()).thenReturn(ApiResponse.ApiError())
+        movieSource.upcomingMovies().run { assertTrue(this.isApiError) }
         verify(movieApi, times(1)).upcomingMovies()
     }
 
     @Test
-    fun `upcoming movies unknown error`() = runBlocking<Unit> {
-        `when`(movieApi.upcomingMovies()).thenReturn(ApiResponse.UnknownError())
-        movieSource.upcomingMovies().also { result ->
-            Assert.assertTrue(result.isUnknownError)
-        }
+    fun `upcoming movies unknown error`() = runTest {
+        whenever(movieApi.upcomingMovies()).thenReturn(ApiResponse.UnknownError())
+        movieSource.upcomingMovies().run { assertTrue(this.isUnknownError) }
         verify(movieApi, times(1)).upcomingMovies()
     }
 }

@@ -1,23 +1,32 @@
 package com.tmdb_test.feature.home.store.reducer
 
-import com.tmdb_test.data.api.ModelUtil
 import com.tmdb_test.data.api.model.movie.Movie
 import com.tmdb_test.data.api.util.ApiException
+import com.tmdb_test.data.api.util.ApiException.BadRequest
+import com.tmdb_test.data.api.util.ApiException.UnknownError
 import com.tmdb_test.data.util.DataState
 import com.tmdb_test.feature.home.store.HomeAction
 import com.tmdb_test.feature.home.store.HomeFeatureSlice
 import com.tmdb_test.store.FeatureState
+import com.tmdb_test.store.FeatureState.Error
+import com.tmdb_test.store.FeatureState.NetworkError
+import com.tmdb_test.store.FeatureState.Success
 import com.tmdb_test.store.app.AppState
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import com.tmdb_test.util.model.ModelUtil
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertSame
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieSectionsLoadedReducerTest {
 
     @Test
-    fun `reduce movie sections loaded success`() = runBlocking {
+    fun `reduce movie sections loaded success`() = runTest {
         val movies = listOf(ModelUtil.movieModel)
         val dataSuccessMovies = DataState.Success(movies)
 
@@ -51,33 +60,33 @@ class MovieSectionsLoadedReducerTest {
             action
         )
 
-        Assert.assertSame(effect, Effects.empty<AppEnv>())
+        assertSame(effect, Effects.empty<AppEnv>())
 
-        Assert.assertTrue(homeFeatureState.nowPlayingMoviesState.isSuccess)
-        Assert.assertTrue(homeFeatureState.nowPopularMoviesState.isSuccess)
-        Assert.assertTrue(homeFeatureState.topRatedMoviesState.isSuccess)
-        Assert.assertTrue(homeFeatureState.upcomingMoviesState.isSuccess)
+        assertTrue(homeFeatureState.nowPlayingMoviesState.isSuccess)
+        assertTrue(homeFeatureState.nowPopularMoviesState.isSuccess)
+        assertTrue(homeFeatureState.topRatedMoviesState.isSuccess)
+        assertTrue(homeFeatureState.upcomingMoviesState.isSuccess)
 
-        Assert.assertEquals(
+        assertEquals(
             movies,
-            (homeFeatureState.nowPlayingMoviesState as FeatureState.Success).data
+            (homeFeatureState.nowPlayingMoviesState as Success).data
         )
-        Assert.assertEquals(
+        assertEquals(
             movies,
-            (homeFeatureState.nowPopularMoviesState as FeatureState.Success).data
+            (homeFeatureState.nowPopularMoviesState as Success).data
         )
-        Assert.assertEquals(
+        assertEquals(
             movies,
-            (homeFeatureState.topRatedMoviesState as FeatureState.Success).data
+            (homeFeatureState.topRatedMoviesState as Success).data
         )
-        Assert.assertEquals(
+        assertEquals(
             movies,
-            (homeFeatureState.upcomingMoviesState as FeatureState.Success).data
+            (homeFeatureState.upcomingMoviesState as Success).data
         )
     }
 
     @Test
-    fun `reduce movie sections loaded network error`() = runBlocking {
+    fun `reduce movie sections loaded network error`() = runTest {
         val dataNetworkErrorMovies = DataState.NetworkError<List<Movie>>()
 
         val appState = AppState.INITIAL.copy(
@@ -97,9 +106,7 @@ class MovieSectionsLoadedReducerTest {
         )
 
         val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = {
-                dataNetworkErrorMovies
-            },
+            moviesApiResponseToDataStateMapper = { dataNetworkErrorMovies },
             moviesDataStateToFeatureStateMapper = {
                 FeatureState.NetworkError(ApiException.NetworkError())
             },
@@ -110,29 +117,29 @@ class MovieSectionsLoadedReducerTest {
             action
         )
 
-        Assert.assertSame(effect, Effects.empty<AppEnv>())
+        assertSame(effect, Effects.empty<AppEnv>())
 
-        Assert.assertTrue(homeFeatureState.nowPlayingMoviesState.isNetworkError)
-        Assert.assertTrue(homeFeatureState.nowPopularMoviesState.isNetworkError)
-        Assert.assertTrue(homeFeatureState.topRatedMoviesState.isNetworkError)
-        Assert.assertTrue(homeFeatureState.upcomingMoviesState.isNetworkError)
+        assertTrue(homeFeatureState.nowPlayingMoviesState.isNetworkError)
+        assertTrue(homeFeatureState.nowPopularMoviesState.isNetworkError)
+        assertTrue(homeFeatureState.topRatedMoviesState.isNetworkError)
+        assertTrue(homeFeatureState.upcomingMoviesState.isNetworkError)
 
-        Assert.assertTrue(
-            (homeFeatureState.nowPlayingMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
+        assertTrue(
+            (homeFeatureState.nowPlayingMoviesState as NetworkError).cause is ApiException.NetworkError
         )
-        Assert.assertTrue(
-            (homeFeatureState.nowPopularMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
+        assertTrue(
+            (homeFeatureState.nowPopularMoviesState as NetworkError).cause is ApiException.NetworkError
         )
-        Assert.assertTrue(
-            (homeFeatureState.topRatedMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
+        assertTrue(
+            (homeFeatureState.topRatedMoviesState as NetworkError).cause is ApiException.NetworkError
         )
-        Assert.assertTrue(
-            (homeFeatureState.upcomingMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
+        assertTrue(
+            (homeFeatureState.upcomingMoviesState as NetworkError).cause is ApiException.NetworkError
         )
     }
 
     @Test
-    fun `reduce movie sections loaded api error`() = runBlocking {
+    fun `reduce movie sections loaded api error`() = runTest {
         val dataApiErrorMovies = DataState.Error<List<Movie>>(ApiException.BadRequest())
 
         val appState = AppState.INITIAL.copy(
@@ -165,29 +172,21 @@ class MovieSectionsLoadedReducerTest {
             action
         )
 
-        Assert.assertSame(effect, Effects.empty<AppEnv>())
+        assertSame(effect, Effects.empty<AppEnv>())
 
-        Assert.assertTrue(homeFeatureState.nowPlayingMoviesState.isError)
-        Assert.assertTrue(homeFeatureState.nowPopularMoviesState.isError)
-        Assert.assertTrue(homeFeatureState.topRatedMoviesState.isError)
-        Assert.assertTrue(homeFeatureState.upcomingMoviesState.isError)
+        assertTrue(homeFeatureState.nowPlayingMoviesState.isError)
+        assertTrue(homeFeatureState.nowPopularMoviesState.isError)
+        assertTrue(homeFeatureState.topRatedMoviesState.isError)
+        assertTrue(homeFeatureState.upcomingMoviesState.isError)
 
-        Assert.assertTrue(
-            (homeFeatureState.nowPlayingMoviesState as FeatureState.Error).cause is ApiException.BadRequest
-        )
-        Assert.assertTrue(
-            (homeFeatureState.nowPopularMoviesState as FeatureState.Error).cause is ApiException.BadRequest
-        )
-        Assert.assertTrue(
-            (homeFeatureState.topRatedMoviesState as FeatureState.Error).cause is ApiException.BadRequest
-        )
-        Assert.assertTrue(
-            (homeFeatureState.upcomingMoviesState as FeatureState.Error).cause is ApiException.BadRequest
-        )
+        assertTrue((homeFeatureState.nowPlayingMoviesState as Error).cause is BadRequest)
+        assertTrue((homeFeatureState.nowPopularMoviesState as Error).cause is BadRequest)
+        assertTrue((homeFeatureState.topRatedMoviesState as Error).cause is BadRequest)
+        assertTrue((homeFeatureState.upcomingMoviesState as Error).cause is BadRequest)
     }
 
     @Test
-    fun `reduce movie sections loaded unknown error`() = runBlocking {
+    fun `reduce movie sections loaded unknown error`() = runTest {
         val dataUnknownErrorMovies = DataState.Error<List<Movie>>(ApiException.UnknownError())
 
         val appState = AppState.INITIAL.copy(
@@ -220,24 +219,16 @@ class MovieSectionsLoadedReducerTest {
             action
         )
 
-        Assert.assertSame(effect, Effects.empty<AppEnv>())
+        assertSame(effect, Effects.empty<AppEnv>())
 
-        Assert.assertTrue(homeFeatureState.nowPlayingMoviesState.isError)
-        Assert.assertTrue(homeFeatureState.nowPopularMoviesState.isError)
-        Assert.assertTrue(homeFeatureState.topRatedMoviesState.isError)
-        Assert.assertTrue(homeFeatureState.upcomingMoviesState.isError)
+        assertTrue(homeFeatureState.nowPlayingMoviesState.isError)
+        assertTrue(homeFeatureState.nowPopularMoviesState.isError)
+        assertTrue(homeFeatureState.topRatedMoviesState.isError)
+        assertTrue(homeFeatureState.upcomingMoviesState.isError)
 
-        Assert.assertTrue(
-            (homeFeatureState.nowPlayingMoviesState as FeatureState.Error).cause is ApiException.UnknownError
-        )
-        Assert.assertTrue(
-            (homeFeatureState.nowPopularMoviesState as FeatureState.Error).cause is ApiException.UnknownError
-        )
-        Assert.assertTrue(
-            (homeFeatureState.topRatedMoviesState as FeatureState.Error).cause is ApiException.UnknownError
-        )
-        Assert.assertTrue(
-            (homeFeatureState.upcomingMoviesState as FeatureState.Error).cause is ApiException.UnknownError
-        )
+        assertTrue((homeFeatureState.nowPlayingMoviesState as Error).cause is UnknownError)
+        assertTrue((homeFeatureState.nowPopularMoviesState as Error).cause is UnknownError)
+        assertTrue((homeFeatureState.topRatedMoviesState as Error).cause is UnknownError)
+        assertTrue((homeFeatureState.upcomingMoviesState as Error).cause is UnknownError)
     }
 }

@@ -1,10 +1,8 @@
 package com.tmdb_test.data.api.model.movie
 
-import com.tmdb_test.data.api.ModelUtil
+import com.tmdb_test.util.model.ModelUtil
 import com.tmdb_test.data.api.model.data.DataPage
 import com.tmdb_test.data.api.model.data.DataPage.Dates
-import com.tmdb_test.data.api.model.genre.Genre
-import com.tmdb_test.data.api.model.movie.MovieStatus.Released
 import com.tmdb_test.di.ServiceLocator
 import java.time.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi

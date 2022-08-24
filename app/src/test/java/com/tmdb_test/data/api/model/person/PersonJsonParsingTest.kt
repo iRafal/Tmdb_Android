@@ -1,7 +1,6 @@
 package com.tmdb_test.data.api.model.person
 
-import com.tmdb_test.data.api.ModelUtil
-import com.tmdb_test.data.api.model.person.PersonGender.Gender2
+import com.tmdb_test.util.model.ModelUtil
 import com.tmdb_test.di.ServiceLocator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString

@@ -1,16 +1,19 @@
 package com.tmdb_test.data.source.remote.person
 
-import com.tmdb_test.data.api.ModelUtil
 import com.tmdb_test.data.api.impl_retrofit.person.PersonApi
 import com.tmdb_test.data.api.util.ApiResponse
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import com.tmdb_test.util.model.ModelUtil
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertSame
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.mockito.Mockito.`when`
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class PersonRemoteDataSourceTest {
     private val personApi = mock<PersonApi>()
     private val personSource: PersonRemoteDataSource = PersonRemoteDataSourceImpl(personApi)
@@ -18,39 +21,31 @@ class PersonRemoteDataSourceTest {
     private val personId = 287
 
     @Test
-    fun `person details success`() = runBlocking<Unit> {
+    fun `person details success`() = runTest {
         val response = ApiResponse.Success(ModelUtil.personModel)
-        `when`(personApi.personDetails(personId)).thenReturn(response)
-        personSource.personDetails(personId).also { result ->
-            Assert.assertSame(result, response)
-        }
+        whenever(personApi.personDetails(personId)).thenReturn(response)
+        personSource.personDetails(personId).run { -> assertSame(this, response) }
         verify(personApi, times(1)).personDetails(personId)
     }
 
     @Test
-    fun `person details network error`() = runBlocking<Unit> {
-        `when`(personApi.personDetails(personId)).thenReturn(ApiResponse.NetworkError())
-        personSource.personDetails(personId).also { result ->
-            Assert.assertTrue(result.isNetworkError)
-        }
+    fun `person details network error`() = runTest {
+        whenever(personApi.personDetails(personId)).thenReturn(ApiResponse.NetworkError())
+        personSource.personDetails(personId).run { -> assertTrue(this.isNetworkError) }
         verify(personApi, times(1)).personDetails(personId)
     }
 
     @Test
-    fun `person details api error`() = runBlocking<Unit> {
-        `when`(personApi.personDetails(personId)).thenReturn(ApiResponse.ApiError())
-        personSource.personDetails(personId).also { result ->
-            Assert.assertTrue(result.isApiError)
-        }
+    fun `person details api error`() = runTest {
+        whenever(personApi.personDetails(personId)).thenReturn(ApiResponse.ApiError())
+        personSource.personDetails(personId).run { -> assertTrue(this.isApiError) }
         verify(personApi, times(1)).personDetails(personId)
     }
 
     @Test
-    fun `person details unknown error`() = runBlocking<Unit> {
-        `when`(personApi.personDetails(personId)).thenReturn(ApiResponse.UnknownError())
-        personSource.personDetails(personId).also { result ->
-            Assert.assertTrue(result.isUnknownError)
-        }
+    fun `person details unknown error`() = runTest {
+        whenever(personApi.personDetails(personId)).thenReturn(ApiResponse.UnknownError())
+        personSource.personDetails(personId).run { -> assertTrue(this.isUnknownError) }
         verify(personApi, times(1)).personDetails(personId)
     }
 }

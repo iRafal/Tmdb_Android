@@ -1,4 +1,4 @@
-package com.tmdb_test.data.api
+package com.tmdb_test.util.model
 
 import com.tmdb_test.data.api.model.genre.Genre
 import com.tmdb_test.data.api.model.movie.Movie
