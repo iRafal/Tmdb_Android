@@ -1,9 +1,9 @@
 package com.tmdb_test.data.api.model.movie
 
-import com.tmdb_test.util.model.ModelUtil
 import com.tmdb_test.data.api.model.data.DataPage
 import com.tmdb_test.data.api.model.data.DataPage.Dates
-import com.tmdb_test.di.ServiceLocator
+import com.tmdb_test.di.UnitTestServiceLocator
+import com.tmdb_test.util.model.ModelUtil
 import java.time.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
@@ -14,7 +14,7 @@ import org.junit.Test
 class MovieJsonParsingTest {
 
     @ExperimentalSerializationApi
-    private val json = ServiceLocator.json
+    private val json = UnitTestServiceLocator.json
 
     private val movieModel = ModelUtil.movieModel
 

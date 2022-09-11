@@ -1,5 +1,6 @@
 package com.tmdb_test.feature.home.store
 
+import com.tmdb_test.data.mapping.movie.MoviesApiToDataStateMapper
 import com.tmdb_test.feature.home.store.HomeAction.LoadMovieSections
 import com.tmdb_test.feature.home.store.HomeAction.MovieSectionsLoaded
 import com.tmdb_test.feature.home.store.HomeAction.ReloadNowPlayingMovies
@@ -12,6 +13,7 @@ import com.tmdb_test.feature.home.store.reducer.reduceReloadNowPlayingMovies
 import com.tmdb_test.feature.home.store.reducer.reduceReloadNowPopularMovies
 import com.tmdb_test.feature.home.store.reducer.reduceReloadTopRatedMovies
 import com.tmdb_test.feature.home.store.reducer.reduceReloadUpcomingMovies
+import com.tmdb_test.feature.mapping.MoviesDataToFeatureStateMapper
 import com.tmdb_test.store.app.AppState
 import com.tmdb_test.store.base.Action
 import com.tmdb_test.store.base.Effect
@@ -19,13 +21,14 @@ import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.base.feature.FeatureReducer
 import com.tmdb_test.store.base.feature.FeatureSlice
 import com.tmdb_test.store.env.AppEnv
-import com.tmdb_test.util.MoviesApiResponseToDataStateMapper
-import com.tmdb_test.util.MoviesDataStateToFeatureStateMapper
 
-class HomeFeatureSlice(
-    moviesApiResponseToDataStateMapper: MoviesApiResponseToDataStateMapper,
-    moviesDataStateToFeatureStateMapper: MoviesDataStateToFeatureStateMapper,
-) : FeatureSlice<AppState, AppEnv, HomeFeatureState> {
+interface HomeFeatureSlice : FeatureSlice<AppState, AppEnv, HomeFeatureState>
+
+class HomeFeatureSliceImpl(
+    moviesApiToDataStateMapper: MoviesApiToDataStateMapper,
+    moviesDataToFeatureStateMapper: MoviesDataToFeatureStateMapper,
+) : HomeFeatureSlice {
+
     override val reducer: FeatureReducer<AppState, AppEnv, HomeFeatureState> =
         { globalState: AppState,
           action: Action ->
@@ -33,8 +36,8 @@ class HomeFeatureSlice(
                 is HomeAction -> {
                     globalState.reduce(
                         action,
-                        moviesApiResponseToDataStateMapper,
-                        moviesDataStateToFeatureStateMapper
+                        moviesApiToDataStateMapper,
+                        moviesDataToFeatureStateMapper
                     )
                 }
                 else -> globalState.homeState to Effects.empty()
@@ -44,8 +47,8 @@ class HomeFeatureSlice(
 
 private fun AppState.reduce(
     action: HomeAction,
-    moviesApiResponseToDataStateMapper: MoviesApiResponseToDataStateMapper,
-    moviesDataStateToFeatureStateMapper: MoviesDataStateToFeatureStateMapper
+    moviesApiToDataStateMapper: MoviesApiToDataStateMapper,
+    moviesDataToFeatureStateMapper: MoviesDataToFeatureStateMapper
 ): Pair<HomeFeatureState, Effect<AppEnv>?> {
     return when (action) {
         is ReloadNowPlayingMovies -> this.homeState.reduceReloadNowPlayingMovies(action)
@@ -53,10 +56,10 @@ private fun AppState.reduce(
         is ReloadTopRatedMovies -> this.homeState.reduceReloadTopRatedMovies(action)
         is ReloadUpcomingMovies -> this.homeState.reduceReloadUpcomingMovies(action)
         is LoadMovieSections -> {
-            this.homeState.reduceLoadMovieSections(action, moviesApiResponseToDataStateMapper)
+            this.homeState.reduceLoadMovieSections(action, moviesApiToDataStateMapper)
         }
         is MovieSectionsLoaded -> {
-            this.homeState.reduceMovieSectionsLoaded(action, moviesDataStateToFeatureStateMapper)
+            this.homeState.reduceMovieSectionsLoaded(action, moviesDataToFeatureStateMapper)
         }
     }
 }

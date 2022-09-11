@@ -1,4 +1,4 @@
-package com.tmdb_test.util.compose
+package com.tmdb_test.ui.util.compose
 
 import androidx.annotation.PluralsRes
 import androidx.compose.runtime.Composable

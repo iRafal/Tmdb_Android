@@ -1,6 +1,6 @@
 package com.tmdb_test.data.api.model.genre
 
-import com.tmdb_test.di.ServiceLocator
+import com.tmdb_test.di.UnitTestServiceLocator
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
 import org.junit.Assert.assertEquals
@@ -11,7 +11,7 @@ import org.junit.Test
 class GenreJsonParsingTest {
 
     @ExperimentalSerializationApi
-    private val json = ServiceLocator.json
+    private val json = UnitTestServiceLocator.json
 
     @Test
     fun `parse genres response json`() {

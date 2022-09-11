@@ -1,4 +1,4 @@
-package com.tmdb_test.util.compose.test
+package com.tmdb_test.ui.util.compose.test
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -9,12 +9,12 @@ import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
-import com.tmdb_test.util.compose.test.ComposeTestSemantics.backgroundColor
-import com.tmdb_test.util.compose.test.ComposeTestSemantics.iconResId
-import com.tmdb_test.util.compose.test.ComposeTestSemantics.imageVector
-import com.tmdb_test.util.compose.test.ComposeTestSemantics.paddingAll
-import com.tmdb_test.util.compose.test.ComposeTestSemantics.tintColor
-import com.tmdb_test.util.compose.test.ComposeTestSemantics.tintResId
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics.backgroundColor
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics.iconResId
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics.imageVector
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics.paddingAll
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics.tintColor
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics.tintResId
 
 object ComposeTestSemantics {
     val tintResId = SemanticsPropertyKey<Int>("tintResId")

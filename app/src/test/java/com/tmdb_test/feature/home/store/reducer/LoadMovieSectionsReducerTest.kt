@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package com.tmdb_test.feature.home.store.reducer
 
 import com.tmdb_test.data.api.model.data.DataPage
@@ -7,15 +5,18 @@ import com.tmdb_test.data.api.model.movie.Movie
 import com.tmdb_test.data.api.util.ApiException
 import com.tmdb_test.data.api.util.ApiResponse
 import com.tmdb_test.data.api.util.NetworkErrorModel
+import com.tmdb_test.data.model.DataState
+import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.data.source.remote.discover.DiscoverRemoteDataSource
 import com.tmdb_test.data.source.remote.genre.GenreRemoteDataSource
 import com.tmdb_test.data.source.remote.movie.MovieRemoteDataSource
 import com.tmdb_test.data.source.remote.person.PersonRemoteDataSource
-import com.tmdb_test.data.util.DataState
 import com.tmdb_test.feature.home.store.HomeAction
 import com.tmdb_test.feature.home.store.HomeFeatureSlice
+import com.tmdb_test.feature.home.store.HomeFeatureSliceImpl
 import com.tmdb_test.feature.home.store.effect.createMockEffectExecutor
 import com.tmdb_test.store.FeatureState
+import com.tmdb_test.store.FeatureState.Success
 import com.tmdb_test.store.app.AppState
 import com.tmdb_test.util.model.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,6 +28,7 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class LoadMovieSectionsReducerTest {
 
     private val discoverSource = mock<DiscoverRemoteDataSource>()
@@ -36,11 +38,11 @@ class LoadMovieSectionsReducerTest {
 
     @Test
     fun `reduce load movie sections success`() = runTest {
-        val movies = listOf(ModelUtil.movieModel)
+        val movies = listOf(ModelUtil.movieDataModel)
         val successResult = ApiResponse.Success(
             DataPage(
                 page = 1,
-                results = movies,
+                results = listOf(ModelUtil.movieModel),
                 totalPages = 1,
                 totalResults = 1,
             )
@@ -48,9 +50,9 @@ class LoadMovieSectionsReducerTest {
 
         val appState = AppState.INITIAL
         val dataSuccessMovies = DataState.Success(movies)
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = { dataSuccessMovies },
-            moviesDataStateToFeatureStateMapper = { FeatureState.Success(movies) },
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper =  { dataSuccessMovies },
+            moviesDataToFeatureStateMapper = { Success(movies) }
         )
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
             appState,
@@ -95,10 +97,10 @@ class LoadMovieSectionsReducerTest {
         val apiErrorResult: ApiResponse<DataPage<Movie>, NetworkErrorModel> = ApiResponse.ApiError()
 
         val appState = AppState.INITIAL
-        val dataErrorMovies = DataState.Error<List<Movie>>(ApiException.BadRequest())
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = { dataErrorMovies },
-            moviesDataStateToFeatureStateMapper = { FeatureState.Error() },
+        val dataErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.BadRequest())
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataErrorMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.Error() },
         )
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
             appState,
@@ -140,13 +142,15 @@ class LoadMovieSectionsReducerTest {
 
     @Test
     fun `reduce load movie sections network error`() = runTest {
-        val networkErrorResult: ApiResponse<DataPage<Movie>, NetworkErrorModel> = ApiResponse.NetworkError()
+        val networkErrorResult: ApiResponse<DataPage<Movie>, NetworkErrorModel> =
+            ApiResponse.NetworkError()
 
         val appState = AppState.INITIAL
-        val dataErrorMovies = DataState.NetworkError<List<Movie>>(ApiException.NetworkError())
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = { dataErrorMovies },
-            moviesDataStateToFeatureStateMapper = { FeatureState.NetworkError() },
+        val dataErrorMovies =
+            DataState.NetworkError<List<MovieDataModel>>(ApiException.NetworkError())
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataErrorMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.NetworkError() }
         )
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
             appState,
@@ -191,14 +195,10 @@ class LoadMovieSectionsReducerTest {
         val unknownErrorResult: ApiResponse<DataPage<Movie>, NetworkErrorModel> = ApiResponse.UnknownError()
 
         val appState = AppState.INITIAL
-        val dataErrorMovies = DataState.Error<List<Movie>>(ApiException.UnknownError())
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = {
-                dataErrorMovies
-            },
-            moviesDataStateToFeatureStateMapper = {
-                FeatureState.NetworkError()
-            },
+        val dataErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.UnknownError())
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataErrorMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.NetworkError() },
         )
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
             appState,

@@ -7,7 +7,6 @@ import com.tmdb_test.data.source.remote.person.PersonRemoteDataSource
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.feature.Feature
 import com.tmdb_test.store.env.AppEnv
-import com.tmdb_test.store.env.AppEnv.Network
 import kotlinx.coroutines.runBlocking
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
@@ -25,7 +24,7 @@ fun createMockEffectExecutor(
 
     val database: AppEnv.Database = mock()
 
-    val network: AppEnv.Network = mock<Network>().apply {
+    val network: AppEnv.Network = mock<AppEnv.Network>().apply {
         whenever(this.discoverSource).thenReturn(discoverSource)
         whenever(this.genreSource).thenReturn(genreSource)
         whenever(this.movieSource).thenReturn(movieSource)

@@ -4,7 +4,6 @@ import com.tmdb_test.data.api.model.JsonKeys
 import com.tmdb_test.data.api.model.movie.MovieStatus
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveKind.INT
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder

@@ -1,16 +1,12 @@
 package com.tmdb_test.feature.home.store.reducer
 
-import com.tmdb_test.data.api.model.movie.Movie
 import com.tmdb_test.data.api.util.ApiException
-import com.tmdb_test.data.api.util.ApiException.BadRequest
-import com.tmdb_test.data.api.util.ApiException.UnknownError
-import com.tmdb_test.data.util.DataState
+import com.tmdb_test.data.model.DataState
+import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.feature.home.store.HomeAction
 import com.tmdb_test.feature.home.store.HomeFeatureSlice
+import com.tmdb_test.feature.home.store.HomeFeatureSliceImpl
 import com.tmdb_test.store.FeatureState
-import com.tmdb_test.store.FeatureState.Error
-import com.tmdb_test.store.FeatureState.NetworkError
-import com.tmdb_test.store.FeatureState.Success
 import com.tmdb_test.store.app.AppState
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
@@ -27,8 +23,9 @@ class MovieSectionsLoadedReducerTest {
 
     @Test
     fun `reduce movie sections loaded success`() = runTest {
-        val movies = listOf(ModelUtil.movieModel)
-        val dataSuccessMovies = DataState.Success(movies)
+        val dataMovies = listOf(ModelUtil.movieDataModel)
+
+        val dataSuccessMovies = DataState.Success(dataMovies)
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -46,19 +43,12 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataSuccessMovies,
         )
 
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = {
-                dataSuccessMovies
-            },
-            moviesDataStateToFeatureStateMapper = {
-                FeatureState.Success(movies)
-            },
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataSuccessMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.Success(dataMovies) },
         )
 
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer(
-            appState,
-            action
-        )
+        val (homeFeatureState, effect) = homeFeatureSlice.reducer(appState, action)
 
         assertSame(effect, Effects.empty<AppEnv>())
 
@@ -68,26 +58,26 @@ class MovieSectionsLoadedReducerTest {
         assertTrue(homeFeatureState.upcomingMoviesState.isSuccess)
 
         assertEquals(
-            movies,
-            (homeFeatureState.nowPlayingMoviesState as Success).data
+            dataMovies,
+            (homeFeatureState.nowPlayingMoviesState as FeatureState.Success).data
         )
         assertEquals(
-            movies,
-            (homeFeatureState.nowPopularMoviesState as Success).data
+            dataMovies,
+            (homeFeatureState.nowPopularMoviesState as FeatureState.Success).data
         )
         assertEquals(
-            movies,
-            (homeFeatureState.topRatedMoviesState as Success).data
+            dataMovies,
+            (homeFeatureState.topRatedMoviesState as FeatureState.Success).data
         )
         assertEquals(
-            movies,
-            (homeFeatureState.upcomingMoviesState as Success).data
+            dataMovies,
+            (homeFeatureState.upcomingMoviesState as FeatureState.Success).data
         )
     }
 
     @Test
     fun `reduce movie sections loaded network error`() = runTest {
-        val dataNetworkErrorMovies = DataState.NetworkError<List<Movie>>()
+        val dataNetworkErrorMovies = DataState.NetworkError<List<MovieDataModel>>()
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -105,9 +95,9 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataNetworkErrorMovies,
         )
 
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = { dataNetworkErrorMovies },
-            moviesDataStateToFeatureStateMapper = {
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataNetworkErrorMovies },
+            moviesDataToFeatureStateMapper = {
                 FeatureState.NetworkError(ApiException.NetworkError())
             },
         )
@@ -125,22 +115,22 @@ class MovieSectionsLoadedReducerTest {
         assertTrue(homeFeatureState.upcomingMoviesState.isNetworkError)
 
         assertTrue(
-            (homeFeatureState.nowPlayingMoviesState as NetworkError).cause is ApiException.NetworkError
+            (homeFeatureState.nowPlayingMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
         )
         assertTrue(
-            (homeFeatureState.nowPopularMoviesState as NetworkError).cause is ApiException.NetworkError
+            (homeFeatureState.nowPopularMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
         )
         assertTrue(
-            (homeFeatureState.topRatedMoviesState as NetworkError).cause is ApiException.NetworkError
+            (homeFeatureState.topRatedMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
         )
         assertTrue(
-            (homeFeatureState.upcomingMoviesState as NetworkError).cause is ApiException.NetworkError
+            (homeFeatureState.upcomingMoviesState as FeatureState.NetworkError).cause is ApiException.NetworkError
         )
     }
 
     @Test
     fun `reduce movie sections loaded api error`() = runTest {
-        val dataApiErrorMovies = DataState.Error<List<Movie>>(ApiException.BadRequest())
+        val dataApiErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.BadRequest())
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -158,13 +148,9 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataApiErrorMovies,
         )
 
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = {
-                dataApiErrorMovies
-            },
-            moviesDataStateToFeatureStateMapper = {
-                FeatureState.Error(ApiException.BadRequest())
-            },
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataApiErrorMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.Error(ApiException.BadRequest()) },
         )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
@@ -179,15 +165,15 @@ class MovieSectionsLoadedReducerTest {
         assertTrue(homeFeatureState.topRatedMoviesState.isError)
         assertTrue(homeFeatureState.upcomingMoviesState.isError)
 
-        assertTrue((homeFeatureState.nowPlayingMoviesState as Error).cause is BadRequest)
-        assertTrue((homeFeatureState.nowPopularMoviesState as Error).cause is BadRequest)
-        assertTrue((homeFeatureState.topRatedMoviesState as Error).cause is BadRequest)
-        assertTrue((homeFeatureState.upcomingMoviesState as Error).cause is BadRequest)
+        assertTrue((homeFeatureState.nowPlayingMoviesState as FeatureState.Error).cause is ApiException.BadRequest)
+        assertTrue((homeFeatureState.nowPopularMoviesState as FeatureState.Error).cause is ApiException.BadRequest)
+        assertTrue((homeFeatureState.topRatedMoviesState as FeatureState.Error).cause is ApiException.BadRequest)
+        assertTrue((homeFeatureState.upcomingMoviesState as FeatureState.Error).cause is ApiException.BadRequest)
     }
 
     @Test
     fun `reduce movie sections loaded unknown error`() = runTest {
-        val dataUnknownErrorMovies = DataState.Error<List<Movie>>(ApiException.UnknownError())
+        val dataUnknownErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.UnknownError())
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -205,13 +191,9 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataUnknownErrorMovies,
         )
 
-        val homeFeatureSlice = HomeFeatureSlice(
-            moviesApiResponseToDataStateMapper = {
-                dataUnknownErrorMovies
-            },
-            moviesDataStateToFeatureStateMapper = {
-                FeatureState.Error(ApiException.UnknownError())
-            },
+        val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
+            moviesApiToDataStateMapper = { dataUnknownErrorMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.Error(ApiException.UnknownError()) },
         )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
@@ -226,9 +208,9 @@ class MovieSectionsLoadedReducerTest {
         assertTrue(homeFeatureState.topRatedMoviesState.isError)
         assertTrue(homeFeatureState.upcomingMoviesState.isError)
 
-        assertTrue((homeFeatureState.nowPlayingMoviesState as Error).cause is UnknownError)
-        assertTrue((homeFeatureState.nowPopularMoviesState as Error).cause is UnknownError)
-        assertTrue((homeFeatureState.topRatedMoviesState as Error).cause is UnknownError)
-        assertTrue((homeFeatureState.upcomingMoviesState as Error).cause is UnknownError)
+        assertTrue((homeFeatureState.nowPlayingMoviesState as FeatureState.Error).cause is ApiException.UnknownError)
+        assertTrue((homeFeatureState.nowPopularMoviesState as FeatureState.Error).cause is ApiException.UnknownError)
+        assertTrue((homeFeatureState.topRatedMoviesState as FeatureState.Error).cause is ApiException.UnknownError)
+        assertTrue((homeFeatureState.upcomingMoviesState as FeatureState.Error).cause is ApiException.UnknownError)
     }
 }

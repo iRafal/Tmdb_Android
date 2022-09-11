@@ -24,28 +24,28 @@ class PersonRemoteDataSourceTest {
     fun `person details success`() = runTest {
         val response = ApiResponse.Success(ModelUtil.personModel)
         whenever(personApi.personDetails(personId)).thenReturn(response)
-        personSource.personDetails(personId).run { -> assertSame(this, response) }
+        personSource.personDetails(personId).run { assertSame(this, response) }
         verify(personApi, times(1)).personDetails(personId)
     }
 
     @Test
     fun `person details network error`() = runTest {
         whenever(personApi.personDetails(personId)).thenReturn(ApiResponse.NetworkError())
-        personSource.personDetails(personId).run { -> assertTrue(this.isNetworkError) }
+        personSource.personDetails(personId).run { assertTrue(this.isNetworkError) }
         verify(personApi, times(1)).personDetails(personId)
     }
 
     @Test
     fun `person details api error`() = runTest {
         whenever(personApi.personDetails(personId)).thenReturn(ApiResponse.ApiError())
-        personSource.personDetails(personId).run { -> assertTrue(this.isApiError) }
+        personSource.personDetails(personId).run { assertTrue(this.isApiError) }
         verify(personApi, times(1)).personDetails(personId)
     }
 
     @Test
     fun `person details unknown error`() = runTest {
         whenever(personApi.personDetails(personId)).thenReturn(ApiResponse.UnknownError())
-        personSource.personDetails(personId).run { -> assertTrue(this.isUnknownError) }
+        personSource.personDetails(personId).run { assertTrue(this.isUnknownError) }
         verify(personApi, times(1)).personDetails(personId)
     }
 }

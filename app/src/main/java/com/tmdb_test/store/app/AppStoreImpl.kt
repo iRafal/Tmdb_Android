@@ -2,8 +2,6 @@ package com.tmdb_test.store.app
 
 import com.tmdb_test.store.base.Action
 import com.tmdb_test.store.base.Effect
-import com.tmdb_test.store.base.Reducer
-import com.tmdb_test.store.base.Store
 import com.tmdb_test.store.base.feature.Feature
 import com.tmdb_test.store.env.AppEnv
 import kotlin.coroutines.CoroutineContext

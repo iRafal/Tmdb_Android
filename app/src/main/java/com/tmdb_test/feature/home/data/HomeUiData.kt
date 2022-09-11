@@ -8,9 +8,7 @@ import com.tmdb_test.feature.home.content.HomeMovieSection.UPCOMING
 import com.tmdb_test.ui.util.UiState
 import com.tmdb_test.ui.util.UiState.Loading
 
-data class HomeUiData(
-    val movieSections: Map<HomeMovieSection, UiState<List<Movie>>>
-) {
+data class HomeUiData(val movieSections: Map<HomeMovieSection, UiState<List<Movie>>>) {
     data class Movie(
         val id: Int,
         val title: String,

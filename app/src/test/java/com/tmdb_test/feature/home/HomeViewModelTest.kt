@@ -1,7 +1,9 @@
 package com.tmdb_test.feature.home
 
 import com.tmdb_test.feature.home.content.HomeViewModel
+import com.tmdb_test.feature.home.content.mapping.HomeFeatureToUiStateMapper
 import com.tmdb_test.feature.home.data.HomeUiData
+import com.tmdb_test.feature.home.data.mapping.HomeMovieSectionToActionMapper
 import com.tmdb_test.store.app.AppState
 import com.tmdb_test.store.app.AppStore
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +23,10 @@ class HomeViewModelTest {
     private val dispatcher = StandardTestDispatcher()
 
     private val appStore = mock<AppStore>()
-    private val viewModel = HomeViewModel(appStore)
+    private val homeFeatureToUiStateMapper = mock<HomeFeatureToUiStateMapper>()
+    private val homeMovieSectionToActionMapper = mock<HomeMovieSectionToActionMapper>()
+    private val viewModel =
+        HomeViewModel(appStore, homeFeatureToUiStateMapper, homeMovieSectionToActionMapper)
 
     @Before
     fun setup() {

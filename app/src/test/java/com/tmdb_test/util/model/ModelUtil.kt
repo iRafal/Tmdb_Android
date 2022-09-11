@@ -8,6 +8,7 @@ import com.tmdb_test.data.api.model.movie.ProductionCountry
 import com.tmdb_test.data.api.model.movie.SpokenLanguage
 import com.tmdb_test.data.api.model.person.Person
 import com.tmdb_test.data.api.model.person.PersonGender.Gender2
+import com.tmdb_test.data.model.MovieDataModel
 
 object ModelUtil {
     val movieModel = Movie(
@@ -54,6 +55,14 @@ object ModelUtil {
         isVideo = false,
         voteAverage = 7.8,
         voteCount = 3439
+    )
+
+    val movieDataModel = MovieDataModel(
+        id = 550,
+        title = "Fight Club",
+        voteAverage = 7.8,
+        releaseDate = "1999-10-12",
+        posterPath = null,
     )
 
     val personModel = Person(

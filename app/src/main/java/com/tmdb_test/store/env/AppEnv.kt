@@ -17,6 +17,5 @@ interface AppEnv {
         val personSource: PersonRemoteDataSource
     }
 
-    interface Database {
-    }
+    interface Database
 }

@@ -1,8 +1,8 @@
-package com.tmdb_test.util.compose
+package com.tmdb_test.ui.util.compose
 
 import androidx.annotation.DrawableRes
 import androidx.compose.ui.test.SemanticsMatcher
-import com.tmdb_test.util.compose.test.ComposeTestSemantics
+import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics
 
 
 fun hasIconResId(@DrawableRes iconRes: Int): SemanticsMatcher =
