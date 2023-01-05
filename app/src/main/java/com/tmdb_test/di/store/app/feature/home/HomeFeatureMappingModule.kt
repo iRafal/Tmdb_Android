@@ -29,7 +29,7 @@ class HomeFeatureMappingModule {
     @Provides
     fun homeFeatureToUiStateMapper(
         homeFeatureStateToUiSectionStateMapper: @JvmSuppressWildcards HomeFeatureStateToUiSectionStateMapper,
-    ): HomeFeatureToUiStateMapper =
+    ): @JvmSuppressWildcards HomeFeatureToUiStateMapper =
         homeFeatureToUiStateMapperImpl(homeFeatureStateToUiSectionStateMapper)
 
     @Provides
@@ -46,9 +46,9 @@ class HomeFeatureMappingModule {
     @Provides
     fun movieDataToHomeModelMapper(
         imageUrlProvider: ImageUrlProvider
-    ): MovieDataToHomeModelMapper = movieDataToHomeModelMapperImpl(imageUrlProvider)
+    ):  @JvmSuppressWildcards MovieDataToHomeModelMapper = movieDataToHomeModelMapperImpl(imageUrlProvider)
 
     @Provides
     fun homeMovieSectionToActionMapper(
-    ): HomeMovieSectionToActionMapper = ::homeMovieSectionToActionMapperImpl
+    ):  @JvmSuppressWildcards HomeMovieSectionToActionMapper = ::homeMovieSectionToActionMapperImpl
 }
