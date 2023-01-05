@@ -1,8 +1,8 @@
 package com.tmdb_test.data.source.remote.genre
 
+import com.tmdb_test.api.model.genre.Genre
+import com.tmdb_test.api.model.genre.GenresList
 import com.tmdb_test.data.api.impl_retrofit.genre.GenreApi
-import com.tmdb_test.data.api.model.genre.Genre
-import com.tmdb_test.data.api.model.genre.GenresList
 import com.tmdb_test.data.api.util.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

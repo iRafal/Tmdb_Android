@@ -1,13 +1,13 @@
 package com.tmdb_test.util.model
 
-import com.tmdb_test.data.api.model.genre.Genre
-import com.tmdb_test.data.api.model.movie.Movie
-import com.tmdb_test.data.api.model.movie.MovieStatus.Released
-import com.tmdb_test.data.api.model.movie.ProductionCompany
-import com.tmdb_test.data.api.model.movie.ProductionCountry
-import com.tmdb_test.data.api.model.movie.SpokenLanguage
-import com.tmdb_test.data.api.model.person.Person
-import com.tmdb_test.data.api.model.person.PersonGender.Gender2
+import com.tmdb_test.api.model.genre.Genre
+import com.tmdb_test.api.model.movie.Movie
+import com.tmdb_test.api.model.movie.MovieStatus.Released
+import com.tmdb_test.api.model.movie.ProductionCompany
+import com.tmdb_test.api.model.movie.ProductionCountry
+import com.tmdb_test.api.model.movie.SpokenLanguage
+import com.tmdb_test.api.model.person.Person
+import com.tmdb_test.api.model.person.PersonGender.Gender2
 import com.tmdb_test.data.model.MovieDataModel
 
 object ModelUtil {

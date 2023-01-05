@@ -1,8 +1,8 @@
 package com.tmdb_test.data.source.remote.movie
 
 import com.tmdb_test.data.api.util.NetworkErrorModel
-import com.tmdb_test.data.api.model.data.DataPage
-import com.tmdb_test.data.api.model.movie.Movie
+import com.tmdb_test.api.model.data.DataPage
+import com.tmdb_test.api.model.movie.Movie
 import com.tmdb_test.data.api.util.ApiResponse
 
 interface MovieRemoteDataSource {

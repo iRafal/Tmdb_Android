@@ -1,7 +1,7 @@
 package com.tmdb_test.data.source.remote.person
 
 import com.tmdb_test.data.api.util.NetworkErrorModel
-import com.tmdb_test.data.api.model.person.Person
+import com.tmdb_test.api.model.person.Person
 import com.tmdb_test.data.api.util.ApiResponse
 
 

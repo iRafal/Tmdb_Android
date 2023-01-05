@@ -1,7 +1,7 @@
 package com.tmdb_test.data.source.remote.genre
 
 import com.tmdb_test.data.api.util.NetworkErrorModel
-import com.tmdb_test.data.api.model.genre.GenresList
+import com.tmdb_test.api.model.genre.GenresList
 import com.tmdb_test.data.api.util.ApiResponse
 
 interface GenreRemoteDataSource {

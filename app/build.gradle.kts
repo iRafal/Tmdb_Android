@@ -92,6 +92,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":api:model"))
     implementation(libs.bundles.app.impl)
     debugImplementation(libs.bundles.app.impl.debug)
     kapt(libs.bundles.app.kapt)

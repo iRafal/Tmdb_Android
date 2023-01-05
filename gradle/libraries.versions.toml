@@ -212,3 +212,10 @@ app-impl-test-android = [
     "compose-ui-test-manifest-debug",
     "compose-ui-test-junit"
 ]
+
+#BUNDLES-API-MODEL
+api-model-impl = [
+    "kotlin-stdLib",
+    "kotlin-serialization-json",
+]
+api-model-impl-test = [ "junit" ]

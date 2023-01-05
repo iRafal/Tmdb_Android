@@ -1,6 +1,6 @@
 //package com.tmdb_test.data.api.impl.person
 //
-//import com.tmdb_test.data.api.model.person.Person
+//import com.tmdb_test.api.model.Person
 //import com.tmdb_test.data.api.util.ApiResponse
 //import com.tmdb_test.data.api.util.runApiCall
 //import io.ktor.client.HttpClient

@@ -1,8 +1,8 @@
 //package com.tmdb_test.data.api.impl.movie
 //
 //import com.tmdb_test.BuildConfig
-//import com.tmdb_test.data.api.model.data.DataPage
-//import com.tmdb_test.data.api.model.movie.Movie
+//import com.tmdb_test.api.model.DataPage
+//import com.tmdb_test.api.model.Movie
 //import com.tmdb_test.data.api.util.ApiResponse
 //import com.tmdb_test.data.api.util.runApiCall
 //import io.ktor.client.HttpClient

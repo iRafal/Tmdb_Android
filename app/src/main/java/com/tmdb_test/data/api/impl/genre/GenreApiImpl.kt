@@ -1,7 +1,7 @@
 //package com.tmdb_test.data.api.impl.genre
 //
-//import com.tmdb_test.data.api.model.genre.Genre
-//import com.tmdb_test.data.api.model.genre.GenresList
+//import com.tmdb_test.api.model.Genre
+//import com.tmdb_test.api.model.GenresList
 //import com.tmdb_test.data.api.util.ApiResponse
 //import com.tmdb_test.data.api.util.runApiCall
 //import io.ktor.client.HttpClient
