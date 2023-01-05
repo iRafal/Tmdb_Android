@@ -1,4 +1,4 @@
-package com.tmdb_test.data.api.util
+package com.tmdb_test.api.impl_retrofit.util
 
 sealed interface ApiResponse<out T : Any, out U : Any> {
     class Success<T : Any>(val data: T) : ApiResponse<T, Nothing>
@@ -6,7 +6,8 @@ sealed interface ApiResponse<out T : Any, out U : Any> {
         val body: U? = null,
         val code: Int? = null
     ) : ApiResponse<Nothing, U>
-    class NetworkError(val cause: ApiException.NetworkError? = null) : ApiResponse<Nothing, Nothing>
+    class NetworkError(val cause: ApiException.NetworkError? = null) :
+        ApiResponse<Nothing, Nothing>
     class UnknownError(val cause: Throwable? = null) : ApiResponse<Nothing, Nothing>
 
     val isUnknownError: Boolean

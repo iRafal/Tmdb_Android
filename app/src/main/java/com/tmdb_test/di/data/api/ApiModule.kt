@@ -1,9 +1,9 @@
 package com.tmdb_test.di.data.api
 
-import com.tmdb_test.data.api.impl_retrofit.discover.DiscoverApi
-import com.tmdb_test.data.api.impl_retrofit.genre.GenreApi
-import com.tmdb_test.data.api.impl_retrofit.movie.MovieApi
-import com.tmdb_test.data.api.impl_retrofit.person.PersonApi
+import com.tmdb_test.api.impl_retrofit.discover.DiscoverApi
+import com.tmdb_test.api.impl_retrofit.genre.GenreApi
+import com.tmdb_test.api.impl_retrofit.movie.MovieApi
+import com.tmdb_test.api.impl_retrofit.person.PersonApi
 import com.tmdb_test.data.api.url.provider.BaseUrlProvider
 import com.tmdb_test.di.data.api.util.ApiFactoriesModule.ConverterFactoryJson
 import com.tmdb_test.di.data.api.util.ApiFactoriesModule.ConverterFactoryScalars

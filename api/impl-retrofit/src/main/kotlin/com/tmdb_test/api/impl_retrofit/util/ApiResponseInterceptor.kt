@@ -1,4 +1,4 @@
-package com.tmdb_test.data.api.impl_retrofit.util
+package com.tmdb_test.api.impl_retrofit.util
 
 import okhttp3.Interceptor
 import okhttp3.Interceptor.Chain

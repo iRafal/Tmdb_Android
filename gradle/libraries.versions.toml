@@ -219,3 +219,16 @@ api-model-impl = [
     "kotlin-serialization-json",
 ]
 api-model-impl-test = [ "junit" ]
+
+#BUNDLES-API-IMPL
+api-impl-impl = [
+    "retrofit2",
+    "retrofit2-scalars",
+    "retrofit2-serializationConverter",
+    "okHttp3-loggingInterceptor",
+
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-serialization-json",
+]
+api-impl-impl-test = [ "junit" ]

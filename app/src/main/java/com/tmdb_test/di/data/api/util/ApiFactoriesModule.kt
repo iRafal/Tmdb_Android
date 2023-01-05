@@ -1,7 +1,7 @@
 package com.tmdb_test.di.data.api.util
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.tmdb_test.data.api.impl_retrofit.util.NetworkResponseAdapterFactory
+import com.tmdb_test.api.impl_retrofit.util.NetworkResponseAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,8 @@
 package com.tmdb_test.data.source.remote.movie
 
+import com.tmdb_test.api.impl_retrofit.movie.MovieApi
+import com.tmdb_test.api.impl_retrofit.util.ApiResponse
 import com.tmdb_test.api.model.data.DataPage
-import com.tmdb_test.data.api.impl_retrofit.movie.MovieApi
-import com.tmdb_test.data.api.util.ApiResponse
 import com.tmdb_test.util.model.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

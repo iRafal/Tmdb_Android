@@ -1,8 +1,8 @@
-package com.tmdb_test.data.api.impl_retrofit.genre
+package com.tmdb_test.api.impl_retrofit.genre
 
-import com.tmdb_test.data.api.util.NetworkErrorModel
+import com.tmdb_test.api.impl_retrofit.util.ApiResponse
+import com.tmdb_test.api.impl_retrofit.util.NetworkErrorModel
 import com.tmdb_test.api.model.genre.GenresList
-import com.tmdb_test.data.api.util.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,7 +1,5 @@
-package com.tmdb_test.data.api.impl_retrofit.util
+package com.tmdb_test.api.impl_retrofit.util
 
-import com.tmdb_test.data.api.util.ApiException
-import com.tmdb_test.data.api.util.ApiResponse
 import java.io.IOException
 import okhttp3.Request
 import okhttp3.ResponseBody

@@ -1,6 +1,6 @@
 package com.tmdb_test.feature.home.store.reducer
 
-import com.tmdb_test.data.api.util.ApiException
+import com.tmdb_test.api.impl_retrofit.util.ApiException
 import com.tmdb_test.data.model.DataState
 import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.feature.home.store.HomeAction

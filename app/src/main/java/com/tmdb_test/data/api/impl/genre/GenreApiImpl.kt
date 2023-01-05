@@ -2,7 +2,7 @@
 //
 //import com.tmdb_test.api.model.Genre
 //import com.tmdb_test.api.model.GenresList
-//import com.tmdb_test.data.api.util.ApiResponse
+//import com.tmdb_test.api.impl_retrofit.util.ApiResponse
 //import com.tmdb_test.data.api.util.runApiCall
 //import io.ktor.client.HttpClient
 //import io.ktor.client.call.body

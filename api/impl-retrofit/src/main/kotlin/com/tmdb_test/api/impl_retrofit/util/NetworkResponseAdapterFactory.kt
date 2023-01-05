@@ -1,7 +1,5 @@
-package com.tmdb_test.data.api.impl_retrofit.util
+package com.tmdb_test.api.impl_retrofit.util
 
-import com.tmdb_test.data.api.util.ApiResponse
-import com.tmdb_test.data.api.util.NetworkErrorModel
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import retrofit2.Call

@@ -1,7 +1,7 @@
 package com.tmdb_test.di.data.api.util
 
 import com.tmdb_test.BuildConfig
-import com.tmdb_test.data.api.impl_retrofit.util.ApiResponseInterceptor
+import com.tmdb_test.api.impl_retrofit.util.ApiResponseInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,9 +41,7 @@ class ApiHttpClientModule {
 
     private fun loggingInterceptor(
         loggingLevel: Level,
-    ): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().apply { level = loggingLevel }
-    }
+    ): HttpLoggingInterceptor = HttpLoggingInterceptor().apply { level = loggingLevel }
 
     @Provides
     @InterceptorRequest
