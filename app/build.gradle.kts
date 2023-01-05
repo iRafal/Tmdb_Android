@@ -13,13 +13,15 @@ val apiKey = if (hasProperty("api.key")) {
     throw IllegalStateException("""[api.key] property is missed""")
 }
 
+val androidSdkVersion = 33
+
 android {
-    compileSdk = 32
+    compileSdk = androidSdkVersion
 
     defaultConfig {
         applicationId = "com.tmdb_test"
         minSdk = 26
-        targetSdk = 32
+        targetSdk = androidSdkVersion
         versionCode = 1
         versionName = "0.1"
 
@@ -86,6 +88,7 @@ android {
     sourceSets {
         getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
+    namespace = "com.tmdb_test"
 }
 
 dependencies {
