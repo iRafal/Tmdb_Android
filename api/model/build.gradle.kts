@@ -4,9 +4,14 @@ plugins {
     id("kotlinx-serialization")
 }
 
+sourceSets {
+    this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
+    this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
+}
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
+    targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
 }
 
 dependencies {

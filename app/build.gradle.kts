@@ -13,17 +13,16 @@ val apiKey = if (hasProperty("api.key")) {
     throw IllegalStateException("""[api.key] property is missed""")
 }
 
-val androidSdkVersion = 33
-
 android {
-    compileSdk = androidSdkVersion
+    compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.tmdb_test"
-        minSdk = 26
-        targetSdk = androidSdkVersion
+        applicationId = Libs.BuildConfig.applicationId
+        minSdk = Libs.BuildConfig.minSdk
+        targetSdk = Libs.BuildConfig.targetSdk
+
         versionCode = 1
-        versionName = "0.1"
+        versionName = Version(major = 1, minor = 0, patch = 0).name
 
         testInstrumentationRunner = "com.tmdb_test.runner.HiltTestRunner"
         vectorDrawables {
@@ -67,11 +66,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
+        targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
     }
     buildFeatures {
         compose = true
@@ -86,6 +85,10 @@ android {
         }
     }
     sourceSets {
+        this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
+        this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
+        this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
+
         getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
     namespace = "com.tmdb_test"
