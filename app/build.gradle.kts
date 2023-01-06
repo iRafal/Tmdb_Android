@@ -7,11 +7,7 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-val apiKey = if (hasProperty("api.key")) {
-    property("api.key").toString()
-} else {
-    throw IllegalStateException("""[api.key] property is missed""")
-}
+
 
 android {
     compileSdk = Libs.BuildConfig.compileSdk
@@ -33,18 +29,6 @@ android {
                 arguments += "room.schemaLocation" to "$projectDir/schemas"
             }
         }
-
-        buildConfigField("String", "API_KEY", """"$apiKey"""")
-        buildConfigField(
-            "String",
-            "API_BASE_URL",
-            "\"https://api.themoviedb.org/3/\""
-        )
-        buildConfigField(
-            "String",
-            "API_IMAGE_URL",
-            "\"https://image.tmdb.org/t/p/\""
-        )
     }
 
     buildTypes {
@@ -95,8 +79,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":api:model"))
-    implementation(project(":api:impl-retrofit"))
+    implementation(project(":data:api:model"))
+    implementation(project(":data:api:impl-retrofit"))
+    implementation(project(":data:source:remote:contract"))
+    implementation(project(":data:source:remote:impl"))
     implementation(libs.bundles.app.impl)
     debugImplementation(libs.bundles.app.impl.debug)
     kapt(libs.bundles.app.kapt)

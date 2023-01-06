@@ -1,16 +1,16 @@
 package com.tmdb_test.feature.home.store.reducer
 
-import com.tmdb_test.api.impl_retrofit.util.ApiException
-import com.tmdb_test.api.impl_retrofit.util.ApiResponse
-import com.tmdb_test.api.impl_retrofit.util.NetworkErrorModel
 import com.tmdb_test.api.model.data.DataPage
 import com.tmdb_test.api.model.movie.Movie
+import com.tmdb_test.api.model.util.serializer.ApiException
+import com.tmdb_test.api.model.util.serializer.ApiResponse
+import com.tmdb_test.api.model.util.serializer.NetworkErrorModel
 import com.tmdb_test.data.model.DataState
 import com.tmdb_test.data.model.MovieDataModel
-import com.tmdb_test.data.source.remote.discover.DiscoverRemoteDataSource
-import com.tmdb_test.data.source.remote.genre.GenreRemoteDataSource
-import com.tmdb_test.data.source.remote.movie.MovieRemoteDataSource
-import com.tmdb_test.data.source.remote.person.PersonRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb_test.feature.home.store.HomeAction
 import com.tmdb_test.feature.home.store.HomeFeatureSlice
 import com.tmdb_test.feature.home.store.HomeFeatureSliceImpl
@@ -18,7 +18,7 @@ import com.tmdb_test.feature.home.store.effect.createMockEffectExecutor
 import com.tmdb_test.store.FeatureState
 import com.tmdb_test.store.FeatureState.Success
 import com.tmdb_test.store.app.AppState
-import com.tmdb_test.util.model.ModelUtil
+import com.tmdb_test.data.source.remote.impl.model.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
@@ -38,11 +38,11 @@ class LoadMovieSectionsReducerTest {
 
     @Test
     fun `reduce load movie sections success`() = runTest {
-        val movies = listOf(ModelUtil.movieDataModel)
+        val movies = listOf(com.tmdb_test.data.source.remote.impl.model.ModelUtil.movieDataModel)
         val successResult = ApiResponse.Success(
             DataPage(
                 page = 1,
-                results = listOf(ModelUtil.movieModel),
+                results = listOf(com.tmdb_test.data.source.remote.impl.model.ModelUtil.movieModel),
                 totalPages = 1,
                 totalResults = 1,
             )

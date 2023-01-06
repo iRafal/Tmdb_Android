@@ -1,7 +1,7 @@
 //package com.tmdb_test.data.api.impl.person
 //
 //import com.tmdb_test.api.model.Person
-//import com.tmdb_test.api.impl_retrofit.util.ApiResponse
+//import ApiResponse
 //
 //
 //interface PersonApi {

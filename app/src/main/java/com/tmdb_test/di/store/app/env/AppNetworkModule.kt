@@ -1,9 +1,9 @@
 package com.tmdb_test.di.store.app.env
 
-import com.tmdb_test.data.source.remote.discover.DiscoverRemoteDataSource
-import com.tmdb_test.data.source.remote.genre.GenreRemoteDataSource
-import com.tmdb_test.data.source.remote.movie.MovieRemoteDataSource
-import com.tmdb_test.data.source.remote.person.PersonRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb_test.store.env.AppEnv
 import dagger.Module
 import dagger.Provides

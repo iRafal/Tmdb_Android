@@ -1,13 +1,12 @@
 package com.tmdb_test.feature.home.content.mapping
 
-import com.tmdb_test.data.api.url.provider.image.ImageUrlProvider
 import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.feature.home.data.HomeUiData
 
 typealias MovieDataToHomeModelMapper = (input: MovieDataModel) -> HomeUiData.Movie
 
 fun movieDataToHomeModelMapperImpl(
-    imageUrlProvider: ImageUrlProvider
+    imageUrlProvider: com.tmdb_test.api.config.url.image.ImageUrlProvider
 ): MovieDataToHomeModelMapper = { input ->
     HomeUiData.Movie(
         id = checkNotNull(input.id),

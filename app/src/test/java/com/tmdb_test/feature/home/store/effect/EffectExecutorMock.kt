@@ -1,9 +1,9 @@
 package com.tmdb_test.feature.home.store.effect
 
-import com.tmdb_test.data.source.remote.discover.DiscoverRemoteDataSource
-import com.tmdb_test.data.source.remote.genre.GenreRemoteDataSource
-import com.tmdb_test.data.source.remote.movie.MovieRemoteDataSource
-import com.tmdb_test.data.source.remote.person.PersonRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
+import com.tmdb_test.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.feature.Feature
 import com.tmdb_test.store.env.AppEnv

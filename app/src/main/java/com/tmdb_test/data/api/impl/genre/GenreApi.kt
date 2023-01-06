@@ -1,7 +1,7 @@
 //package com.tmdb_test.data.api.impl.genre
 //
 //import com.tmdb_test.api.model.Genre
-//import com.tmdb_test.api.impl_retrofit.util.ApiResponse
+//import ApiResponse
 //
 //interface GenreApi {
 //

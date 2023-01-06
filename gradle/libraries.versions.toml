@@ -213,22 +213,61 @@ app-impl-test-android = [
     "compose-ui-test-junit"
 ]
 
-#BUNDLES-API-MODEL
-api-model-impl = [
+#BUNDLES-DATA-API-MODEL
+data-api-model-impl = [
     "kotlin-stdLib",
     "kotlin-serialization-json",
 ]
-api-model-impl-test = [ "junit" ]
+data-api-model-impl-test = [ "junit" ]
 
-#BUNDLES-API-IMPL
-api-impl-impl = [
+#BUNDLES-DATA-API-IMPL
+data-api-impl = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    "kotlin-serialization-json",
+
     "retrofit2",
     "retrofit2-scalars",
     "retrofit2-serializationConverter",
     "okHttp3-loggingInterceptor",
 
+    "hilt-android",
+]
+data-api-impl-kapt = [
+    "hilt-kapt",
+]
+data-api-impl-test = [ "junit" ]
+
+#BUNDLES-DATA-SOURCE-REMOTE-CONTRACT
+data-source-remote-contract = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
-    "kotlin-serialization-json",
 ]
-api-impl-impl-test = [ "junit" ]
+
+#BUNDLES-DATA-SOURCE-REMOTE-CONTRACT
+data-source-remote-impl = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+
+    "hilt-android",
+]
+data-source-remote-impl-kapt = [
+    "hilt-kapt",
+]
+data-source-remote-impl-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    "kotlin-coroutines-test",
+]
+
+#BUNDLES-DATA-API-CONFIG
+data-api-config = [
+    "kotlin-stdLib",
+    "hilt-android",
+]
+data-api-config-kapt = [
+    "hilt-kapt",
+]

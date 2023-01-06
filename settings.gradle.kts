@@ -11,5 +11,8 @@ dependencyResolutionManagement {
 rootProject.name = "Tmdb_Test"
 rootProject.buildFileName = "build.gradle.kts"
 include(":app")
-include(":api:model")
-include(":api:impl-retrofit")
+include(":data:api:model")
+include(":data:api:impl-retrofit")
+include(":data:source:remote:contract")
+include(":data:source:remote:impl")
+include(":data:api:config")
