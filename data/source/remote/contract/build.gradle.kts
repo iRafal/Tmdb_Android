@@ -15,6 +15,6 @@ java {
 }
 
 dependencies {
-    implementation(project(":data:api:model"))
+    api(project(":data:api:model"))
     implementation(libs.bundles.data.source.remote.contract)
 }

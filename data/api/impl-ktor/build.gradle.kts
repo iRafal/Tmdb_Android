@@ -45,7 +45,7 @@ android {
 
 dependencies {
     api(project(":data:api:model"))
-    api(project(":data:api:config"))
+    implementation(project(":data:api:config"))
 
     implementation(libs.bundles.data.api.impl.ktor)
     kapt(libs.bundles.data.api.impl.ktor.kapt)

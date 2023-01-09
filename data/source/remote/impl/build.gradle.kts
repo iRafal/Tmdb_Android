@@ -44,8 +44,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":data:source:remote:contract"))
-    implementation(project(":data:api:model"))
+    api(project(":data:source:remote:contract"))
     implementation(project(":data:api:impl-retrofit"))
 
     implementation(libs.bundles.data.source.remote.impl)

@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
 }
 
@@ -72,7 +71,6 @@ android {
 dependencies {
     implementation(project(":store"))
     implementation(project(":data:api:config"))
-    implementation(project(":data:source:remote:contract"))
     implementation(project(":data:source:remote:impl"))
     implementation(project(":data:model"))
     implementation(libs.bundles.app.impl)
