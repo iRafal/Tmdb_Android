@@ -1,11 +1,10 @@
 package com.tmdb_test.store.reducer.home
 
 import com.tmdb_test.data.model.mapping.movie.MoviesApiToDataStateMapper
-import com.tmdb_test.store.base.Action
+import com.tmdb_test.store.action.home.HomeAction.MovieSectionsLoaded
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
-import com.tmdb_test.store.action.home.HomeAction.MovieSectionsLoaded
 import com.tmdb_test.store.feature.home.HomeFeature
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -32,6 +31,6 @@ object HomeFeatureEffects {
     }
 
     private fun mainEffect(
-        effectExecutorScope: suspend Effect.Executor.Scope<AppEnv>.() -> Action
+        effectExecutorScope: suspend Effect.Executor.Scope<AppEnv>.() -> com.tmdb_test.store.base.Action
     ): Effect<AppEnv> = Effects.effect(effectExecutorScope, HomeFeature)
 }

@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    api(project(":store:base"))
     implementation(project(":util"))
     implementation(project(":data:model"))
     implementation(project(":data:source:remote:contract"))

@@ -4,13 +4,13 @@ import com.tmdb_test.api.model.util.ApiException
 import com.tmdb_test.data.model.DataState
 import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.store.action.home.HomeAction
-import com.tmdb_test.store.state.FeatureState
-import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.reducer.home.HomeFeatureSliceImpl
 import com.tmdb_test.store.reducer.util.ModelUtil
+import com.tmdb_test.store.state.AppState
+import com.tmdb_test.store.state.FeatureState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals

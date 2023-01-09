@@ -9,7 +9,6 @@ import com.tmdb_test.store.action.home.HomeAction.ReloadNowPopularMovies
 import com.tmdb_test.store.action.home.HomeAction.ReloadTopRatedMovies
 import com.tmdb_test.store.action.home.HomeAction.ReloadUpcomingMovies
 import com.tmdb_test.store.base.Action
-import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.base.feature.FeatureReducer
 import com.tmdb_test.store.base.feature.FeatureSlice
@@ -45,7 +44,7 @@ private fun AppState.reduce(
     action: HomeAction,
     moviesApiToDataStateMapper: MoviesApiToDataStateMapper,
     moviesDataToFeatureStateMapper: MoviesDataToFeatureStateMapper
-): Pair<HomeFeatureState, Effect<AppEnv>?> {
+): Pair<HomeFeatureState, com.tmdb_test.store.base.Effect<AppEnv>?> {
     return when (action) {
         is ReloadNowPlayingMovies -> this.homeState.reduceReloadNowPlayingMovies(action)
         is ReloadNowPopularMovies -> this.homeState.reduceReloadNowPopularMovies(action)

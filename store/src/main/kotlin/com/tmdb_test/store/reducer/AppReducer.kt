@@ -1,4 +1,4 @@
-package com.tmdb_test.store.app
+package com.tmdb_test.store.reducer
 
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.base.Reducer

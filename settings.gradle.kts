@@ -13,6 +13,7 @@ rootProject.buildFileName = "build.gradle.kts"
 include(":app")
 
 include(":store")
+include(":store:base")
 
 include(":data:model")
 
