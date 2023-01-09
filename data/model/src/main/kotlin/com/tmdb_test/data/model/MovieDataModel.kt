@@ -1,4 +1,4 @@
-package com.tmdb_test.data.source.model
+package com.tmdb_test.data.model
 
 data class MovieDataModel(
     val id: Int? = null,

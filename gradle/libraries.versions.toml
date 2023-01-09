@@ -271,10 +271,15 @@ data-source-remote-impl-test = [
     "kotlin-coroutines-test",
 ]
 
-#DATA-SOURCE-MODEL
-data-source-model = [
+#DATA-MODEL
+data-model = [
     "kotlin-stdLib",
-    "kotlin-serialization-json",
+#    "kotlin-serialization-json",
+
+    "hilt-android",
+]
+data-model-kapt = [
+    "hilt-kapt",
 ]
 
 #BUNDLES-DATA-API-CONFIG

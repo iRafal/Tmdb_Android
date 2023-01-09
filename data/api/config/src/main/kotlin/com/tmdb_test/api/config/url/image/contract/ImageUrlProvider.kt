@@ -1,6 +1,6 @@
-package com.tmdb_test.api.config.url.image
+package com.tmdb_test.api.config.url.image.contract
 
-import com.tmdb_test.api.config.url.image.PosterImageSize.W_500
+import com.tmdb_test.api.config.url.image.contract.PosterImageSize.W_500
 
 /*
   https://www.themoviedb.org/talk/5aeaaf56c3a3682ddf0010de

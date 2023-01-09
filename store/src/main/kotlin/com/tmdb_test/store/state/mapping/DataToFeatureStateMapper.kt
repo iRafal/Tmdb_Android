@@ -1,6 +1,6 @@
 package com.tmdb_test.store.state.mapping
 
-import com.tmdb_test.data.source.model.DataState
+import com.tmdb_test.data.model.DataState
 import com.tmdb_test.store.state.FeatureState
 
 typealias DataToFeatureStateMapper<T> = (input: DataState<T>) -> FeatureState<T>

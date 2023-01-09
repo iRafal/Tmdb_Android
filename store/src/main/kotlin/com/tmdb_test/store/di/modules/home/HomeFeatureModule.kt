@@ -1,6 +1,6 @@
 package com.tmdb_test.store.di.modules.home
 
-import com.tmdb_test.data.source.model.mapping.movie.MoviesApiToDataStateMapper
+import com.tmdb_test.data.model.mapping.movie.MoviesApiToDataStateMapper
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.reducer.home.HomeFeatureSliceImpl
 import com.tmdb_test.store.state.home.MoviesDataToFeatureStateMapper

@@ -1,10 +1,10 @@
 package com.tmdb_test.ui.home.data.mapping
 
-import com.tmdb_test.api.config.url.image.ImageUrlProvider
-import com.tmdb_test.data.source.model.MovieDataModel
+import com.tmdb_test.api.config.url.image.contract.ImageUrlProvider
+import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.ui.home.data.HomeUiData
 
-typealias MovieDataToHomeModelMapper = (input: com.tmdb_test.data.source.model.MovieDataModel) -> HomeUiData.Movie
+typealias MovieDataToHomeModelMapper = (input: MovieDataModel) -> HomeUiData.Movie
 
 fun movieDataToHomeModelMapperImpl(
     imageUrlProvider: ImageUrlProvider
@@ -18,7 +18,7 @@ fun movieDataToHomeModelMapperImpl(
     )
 }
 
-typealias MovieDataItemsToHomeModelMapper = (input: List<com.tmdb_test.data.source.model.MovieDataModel>) -> List<HomeUiData.Movie>
+typealias MovieDataItemsToHomeModelMapper = (input: List<MovieDataModel>) -> List<HomeUiData.Movie>
 
 fun movieDataItemsToHomeModelMapperImpl(
     movieDataToHomeModelMapper: MovieDataToHomeModelMapper

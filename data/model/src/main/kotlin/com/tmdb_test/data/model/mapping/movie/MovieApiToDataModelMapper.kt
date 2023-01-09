@@ -1,7 +1,7 @@
-package com.tmdb_test.data.source.model.mapping.movie
+package com.tmdb_test.data.model.mapping.movie
 
 import com.tmdb_test.api.model.movie.Movie
-import com.tmdb_test.data.source.model.MovieDataModel
+import com.tmdb_test.data.model.MovieDataModel
 
 typealias MovieApiToDataModelMapper = (input: Movie) -> MovieDataModel
 

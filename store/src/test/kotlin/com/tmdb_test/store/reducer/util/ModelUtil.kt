@@ -6,10 +6,10 @@ import com.tmdb_test.api.model.movie.MovieStatus.Released
 import com.tmdb_test.api.model.movie.ProductionCompany
 import com.tmdb_test.api.model.movie.ProductionCountry
 import com.tmdb_test.api.model.movie.SpokenLanguage
-import com.tmdb_test.data.source.model.MovieDataModel
+import com.tmdb_test.data.model.MovieDataModel
 
 object ModelUtil {
-    val movieDataModel = com.tmdb_test.data.source.model.MovieDataModel(
+    val movieDataModel = MovieDataModel(
         id = 550,
         title = "Fight Club",
         voteAverage = 7.8,

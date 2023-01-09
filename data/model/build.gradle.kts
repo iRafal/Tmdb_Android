@@ -7,20 +7,14 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.source.local.impl"
+    namespace = "com.tmdb_test.data.model"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
         targetSdk = Libs.BuildConfig.targetSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += "room.schemaLocation" to "$projectDir/schemas"
-            }
-        }
     }
 
     buildTypes {
@@ -46,20 +40,12 @@ android {
     sourceSets {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
-
-        getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
 }
+
 
 dependencies {
-    implementation(libs.bundles.data.source.local.impl)
-    kapt(libs.bundles.data.source.local.impl.kapt)
-    testImplementation(libs.bundles.data.source.local.impl.test)
-    androidTestImplementation(libs.bundles.data.source.local.impl.test.android)
-}
-
-kapt{
-    arguments {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
+    implementation(project(":data:api:model"))
+    implementation(libs.bundles.data.model)
+    kapt(libs.bundles.data.model.kapt)
 }

@@ -5,8 +5,8 @@ import com.tmdb_test.api.model.movie.Movie
 import com.tmdb_test.api.model.util.ApiException
 import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.api.model.util.NetworkErrorModel
-import com.tmdb_test.data.source.model.DataState
-import com.tmdb_test.data.source.model.MovieDataModel
+import com.tmdb_test.data.model.DataState
+import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
@@ -49,7 +49,7 @@ class LoadMovieSectionsReducerTest {
         )
 
         val appState = AppState.INITIAL
-        val dataSuccessMovies = com.tmdb_test.data.source.model.DataState.Success(movies)
+        val dataSuccessMovies = DataState.Success(movies)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper =  { dataSuccessMovies },
             moviesDataToFeatureStateMapper = { Success(movies) }
@@ -97,7 +97,7 @@ class LoadMovieSectionsReducerTest {
         val apiErrorResult: ApiResponse<DataPage<Movie>, NetworkErrorModel> = ApiResponse.ApiError()
 
         val appState = AppState.INITIAL
-        val dataErrorMovies = com.tmdb_test.data.source.model.DataState.Error<List<com.tmdb_test.data.source.model.MovieDataModel>>(ApiException.BadRequest())
+        val dataErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.BadRequest())
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataErrorMovies },
             moviesDataToFeatureStateMapper = { FeatureState.Error() },
@@ -147,7 +147,7 @@ class LoadMovieSectionsReducerTest {
 
         val appState = AppState.INITIAL
         val dataErrorMovies =
-            com.tmdb_test.data.source.model.DataState.NetworkError<List<com.tmdb_test.data.source.model.MovieDataModel>>(ApiException.NetworkError())
+            DataState.NetworkError<List<MovieDataModel>>(ApiException.NetworkError())
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataErrorMovies },
             moviesDataToFeatureStateMapper = { FeatureState.NetworkError() }
@@ -195,7 +195,7 @@ class LoadMovieSectionsReducerTest {
         val unknownErrorResult: ApiResponse<DataPage<Movie>, NetworkErrorModel> = ApiResponse.UnknownError()
 
         val appState = AppState.INITIAL
-        val dataErrorMovies = com.tmdb_test.data.source.model.DataState.Error<List<com.tmdb_test.data.source.model.MovieDataModel>>(ApiException.UnknownError())
+        val dataErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.UnknownError())
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataErrorMovies },
             moviesDataToFeatureStateMapper = { FeatureState.NetworkError() },

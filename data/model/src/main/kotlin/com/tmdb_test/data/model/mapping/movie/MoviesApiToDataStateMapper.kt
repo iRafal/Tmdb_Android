@@ -1,12 +1,12 @@
-package com.tmdb_test.data.source.model.mapping.movie
+package com.tmdb_test.data.model.mapping.movie
 
 import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.api.model.util.NetworkErrorModel
 import com.tmdb_test.api.model.data.DataPage
 import com.tmdb_test.api.model.movie.Movie
-import com.tmdb_test.data.source.model.DataState
-import com.tmdb_test.data.source.model.MovieDataModel
-import com.tmdb_test.data.source.model.mapping.mapApiToDataState
+import com.tmdb_test.data.model.DataState
+import com.tmdb_test.data.model.MovieDataModel
+import com.tmdb_test.data.model.mapping.mapApiToDataState
 
 typealias MoviesApiToDataStateMapper = (
     input: ApiResponse<DataPage<Movie>, NetworkErrorModel>

@@ -71,11 +71,10 @@ android {
 
 dependencies {
     implementation(project(":store"))
-    implementation(project(":data:api:model"))
-    implementation(project(":data:api:impl-retrofit"))
+    implementation(project(":data:api:config"))
     implementation(project(":data:source:remote:contract"))
     implementation(project(":data:source:remote:impl"))
-    implementation(project(":data:source:model"))
+    implementation(project(":data:model"))
     implementation(libs.bundles.app.impl)
     debugImplementation(libs.bundles.app.impl.debug)
     kapt(libs.bundles.app.kapt)

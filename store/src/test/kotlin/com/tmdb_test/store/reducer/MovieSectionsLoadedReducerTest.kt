@@ -1,8 +1,8 @@
 package com.tmdb_test.store.reducer
 
 import com.tmdb_test.api.model.util.ApiException
-import com.tmdb_test.data.source.model.DataState
-import com.tmdb_test.data.source.model.MovieDataModel
+import com.tmdb_test.data.model.DataState
+import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.store.action.home.HomeAction
 import com.tmdb_test.store.state.FeatureState
 import com.tmdb_test.store.app.AppState
@@ -25,7 +25,7 @@ class MovieSectionsLoadedReducerTest {
     fun `reduce movie sections loaded success`() = runTest {
         val dataMovies = listOf(ModelUtil.movieDataModel)
 
-        val dataSuccessMovies = com.tmdb_test.data.source.model.DataState.Success(dataMovies)
+        val dataSuccessMovies = DataState.Success(dataMovies)
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -77,7 +77,7 @@ class MovieSectionsLoadedReducerTest {
 
     @Test
     fun `reduce movie sections loaded network error`() = runTest {
-        val dataNetworkErrorMovies = com.tmdb_test.data.source.model.DataState.NetworkError<List<com.tmdb_test.data.source.model.MovieDataModel>>()
+        val dataNetworkErrorMovies = DataState.NetworkError<List<MovieDataModel>>()
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -130,7 +130,7 @@ class MovieSectionsLoadedReducerTest {
 
     @Test
     fun `reduce movie sections loaded api error`() = runTest {
-        val dataApiErrorMovies = com.tmdb_test.data.source.model.DataState.Error<List<com.tmdb_test.data.source.model.MovieDataModel>>(ApiException.BadRequest())
+        val dataApiErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.BadRequest())
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(
@@ -173,7 +173,7 @@ class MovieSectionsLoadedReducerTest {
 
     @Test
     fun `reduce movie sections loaded unknown error`() = runTest {
-        val dataUnknownErrorMovies = com.tmdb_test.data.source.model.DataState.Error<List<com.tmdb_test.data.source.model.MovieDataModel>>(ApiException.UnknownError())
+        val dataUnknownErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.UnknownError())
 
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copy(

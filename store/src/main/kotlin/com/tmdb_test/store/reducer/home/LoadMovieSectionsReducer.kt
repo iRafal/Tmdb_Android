@@ -1,6 +1,6 @@
 package com.tmdb_test.store.reducer.home
 
-import com.tmdb_test.data.source.model.mapping.movie.MoviesApiToDataStateMapper
+import com.tmdb_test.data.model.mapping.movie.MoviesApiToDataStateMapper
 import com.tmdb_test.store.state.FeatureState
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.env.AppEnv

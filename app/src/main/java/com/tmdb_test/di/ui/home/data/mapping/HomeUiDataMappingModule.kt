@@ -1,6 +1,6 @@
 package com.tmdb_test.di.ui.home.data.mapping
 
-import com.tmdb_test.api.config.url.image.ImageUrlProvider
+import com.tmdb_test.api.config.url.image.contract.ImageUrlProvider
 import com.tmdb_test.ui.home.data.mapping.HomeFeatureStateToUiSectionStateMapper
 import com.tmdb_test.ui.home.data.mapping.HomeFeatureToUiStateMapper
 import com.tmdb_test.ui.home.data.mapping.HomeMovieSectionToActionMapper

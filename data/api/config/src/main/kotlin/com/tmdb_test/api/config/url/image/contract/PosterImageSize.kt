@@ -1,4 +1,4 @@
-package com.tmdb_test.api.config.url.image
+package com.tmdb_test.api.config.url.image.contract
 
 enum class PosterImageSize(val sizeName: String) {
     W_92("w92"),

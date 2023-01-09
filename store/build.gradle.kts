@@ -44,8 +44,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:model"))
     implementation(project(":data:api:model"))
-    implementation(project(":data:source:model"))
     implementation(project(":data:source:remote:contract"))
     implementation(libs.bundles.store)
     kapt(libs.bundles.store.kapt)
