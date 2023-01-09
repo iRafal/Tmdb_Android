@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-kapt")
@@ -7,38 +7,31 @@ plugins {
 }
 
 android {
+    namespace = "com.tmdb_test.ui"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
-        applicationId = Libs.BuildConfig.applicationId
         minSdk = Libs.BuildConfig.minSdk
         targetSdk = Libs.BuildConfig.targetSdk
 
-        versionCode = 1
-        versionName = Version(major = 1, minor = 0, patch = 0).name
-
-        testInstrumentationRunner = "com.tmdb_test.runner.HiltTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
-        getByName("debug") {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "-debug"
-
-            isShrinkResources = false
+        debug {
             isMinifyEnabled = false
         }
-        getByName("release") {
-            isShrinkResources = true
+        release {
             isMinifyEnabled = true
-
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            consumerProguardFiles("consumer-rules.pro")
         }
     }
     compileOptions {
@@ -54,27 +47,24 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
     }
-    packagingOptions {
-        resources {
-            this.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-            this.excludes.add("/META-INF/gradle/incremental.annotation.processors")
-        }
-    }
     sourceSets {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
         this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
     }
-    namespace = "com.tmdb_test"
 }
 
 dependencies {
-    implementation(project(":ui"))
-    implementation(libs.bundles.app)
-    debugImplementation(libs.bundles.app.impl.debug)
-    kapt(libs.bundles.app.kapt)
-    kaptTest(libs.bundles.app.kapt.test)
-    kaptAndroidTest(libs.bundles.app.kapt.test.android)
-    testImplementation(libs.bundles.app.test)
-    androidTestImplementation(libs.bundles.app.test.android)
+    implementation(project(":store"))
+    implementation(project(":data:api:config"))
+    implementation(project(":data:source:remote:impl"))
+    implementation(project(":data:model"))
+
+    implementation(libs.bundles.ui)
+    debugImplementation(libs.bundles.ui.impl.debug)
+    kapt(libs.bundles.ui.kapt)
+    kaptTest(libs.bundles.ui.kapt.test)
+    kaptAndroidTest(libs.bundles.ui.kapt.test.android)
+    testImplementation(libs.bundles.ui.test)
+    androidTestImplementation(libs.bundles.ui.test.android)
 }

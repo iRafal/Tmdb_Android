@@ -25,7 +25,7 @@ class App: Application(), Configuration.Provider {
         super.onCreate()
         initLogging()
         initCoil()
-        //initIoStrictPolicy()
+        initIoStrictPolicy()
     }
 
     private fun initLogging() {

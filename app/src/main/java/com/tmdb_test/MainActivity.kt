@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.tmdb_test.store.app.AppState
-import com.tmdb_test.ui.navigation.AppNavigation
-import com.tmdb_test.ui.app.navigation.mainNavigationGraph
+import com.tmdb_test.ui.details.MovieDetailsViewModel
 import com.tmdb_test.ui.home.HomeViewModel
-import com.tmdb_test.ui.movie.details.MovieDetailsViewModel
+import com.tmdb_test.ui.main.MainViewModel
+import com.tmdb_test.ui.navigation.AppNavigation
+import com.tmdb_test.ui.navigation.mainNavigationGraph
 import com.tmdb_test.ui.theme.Tmdb_TestTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +47,6 @@ class MainActivity : ComponentActivity() {
                 navController,
                 homeViewModel,
                 movieDetailsViewModel,
-                mainViewModel,
                 onClose = { finish() }
             )
         }

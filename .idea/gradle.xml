@@ -7,6 +7,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="Embedded JDK" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -18,15 +19,16 @@
             <option value="$PROJECT_DIR$/data/api/impl-ktor" />
             <option value="$PROJECT_DIR$/data/api/impl-retrofit" />
             <option value="$PROJECT_DIR$/data/api/model" />
+            <option value="$PROJECT_DIR$/data/model" />
             <option value="$PROJECT_DIR$/data/source" />
             <option value="$PROJECT_DIR$/data/source/local" />
             <option value="$PROJECT_DIR$/data/source/local/contract" />
             <option value="$PROJECT_DIR$/data/source/local/impl" />
-            <option value="$PROJECT_DIR$/data/model" />
             <option value="$PROJECT_DIR$/data/source/remote" />
             <option value="$PROJECT_DIR$/data/source/remote/contract" />
             <option value="$PROJECT_DIR$/data/source/remote/impl" />
             <option value="$PROJECT_DIR$/store" />
+            <option value="$PROJECT_DIR$/ui" />
           </set>
         </option>
       </GradleProjectSettings>
