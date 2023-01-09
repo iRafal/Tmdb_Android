@@ -21,7 +21,6 @@ class App: Application(), Configuration.Provider {
     @Inject
     lateinit var coilImageLoader: ImageLoader
 
-
     override fun onCreate() {
         super.onCreate()
         initLogging()

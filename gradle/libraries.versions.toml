@@ -271,6 +271,12 @@ data-source-remote-impl-test = [
     "kotlin-coroutines-test",
 ]
 
+#DATA-SOURCE-MODEL
+data-source-model = [
+    "kotlin-stdLib",
+    "kotlin-serialization-json",
+]
+
 #BUNDLES-DATA-API-CONFIG
 data-api-config = [
     "kotlin-stdLib",
@@ -319,4 +325,25 @@ data-source-local-impl-test-android = [
     "kotlin-coroutines-test",
     "hilt-test",
     "hilt-kapt",
+]
+
+#BUNDLES-STORE
+store = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+store-kapt = [
+    "hilt-kapt",
+]
+store-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    #
+    "kotlin-coroutines-test",
+    #
+    "hilt-test",
 ]
