@@ -1,6 +1,6 @@
 package com.tmdb_test.store.reducer.movie.details
 
-import com.tmdb_test.store.action.movie.details.MovieDetailsAction
+import com.tmdb_test.store.action.details.MovieDetailsAction
 import com.tmdb_test.store.base.Action
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.Effects

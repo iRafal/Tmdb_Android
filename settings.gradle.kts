@@ -14,6 +14,8 @@ include(":app")
 
 include(":store")
 include(":store:base")
+include(":store:feature")
+include(":store:action")
 
 include(":data:model")
 
@@ -31,3 +33,4 @@ include(":data:api:config")
 include(":ui")
 
 include(":util")
+include(":store:env")

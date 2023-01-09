@@ -3,7 +3,7 @@ package com.tmdb_test.ui.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tmdb_test.store.app.AppStore
-import com.tmdb_test.store.feature.movie.details.MovieDetailsFeature
+import com.tmdb_test.store.feature.details.MovieDetailsFeature
 import com.tmdb_test.store.state.movie.details.MovieDetailsFeatureState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -421,6 +421,31 @@ store-base = [
     "kotlin-coroutines-core",
 ]
 
+#BUNDLES-STORE-ACTION
+store-action = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+]
+
+#BUNDLES-STORE-FEATURE
+store-feature = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+]
+
+#BUNDLES-STORE-ENV
+store-env = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+
+store-env-kapt = [
+    "hilt-kapt",
+]
+
 #BUNDLES-UTIL
 util = [
     "kotlin-stdLib",

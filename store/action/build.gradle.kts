@@ -3,11 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.tmdb_test.store"
+    namespace = "com.tmdb_test.store.action"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
@@ -16,6 +15,7 @@ android {
 
         consumerProguardFiles("consumer-rules.pro")
     }
+
     buildTypes {
         debug {
             isMinifyEnabled = false
@@ -41,16 +41,8 @@ android {
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
     }
 }
-
 dependencies {
-    api(project(":store:base"))
-    api(project(":store:action"))
-    api(project(":store:feature"))
-    api(project(":store:env"))
-    implementation(project(":util"))
+    implementation(project(":store:base"))
     implementation(project(":data:model"))
-    implementation(project(":data:source:remote:contract"))
-    implementation(libs.bundles.store)
-    kapt(libs.bundles.store.kapt)
-    testImplementation(libs.bundles.store.test)
+    implementation(libs.bundles.store.action)
 }

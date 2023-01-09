@@ -1,4 +1,4 @@
-package com.tmdb_test.store.di.modules.env
+package com.tmdb_test.store.env.di.modules
 
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.env.createAppDbEnvImpl
