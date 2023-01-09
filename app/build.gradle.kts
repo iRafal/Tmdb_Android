@@ -22,11 +22,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += "room.schemaLocation" to "$projectDir/schemas"
-            }
-        }
     }
 
     buildTypes {
@@ -70,8 +65,6 @@ android {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
         this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
-
-        getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
     namespace = "com.tmdb_test"
 }
@@ -88,10 +81,4 @@ dependencies {
     kaptAndroidTest(libs.bundles.app.kapt.test.android)
     testImplementation(libs.bundles.app.impl.test)
     androidTestImplementation(libs.bundles.app.impl.test.android)
-}
-
-kapt {
-    arguments {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
 }

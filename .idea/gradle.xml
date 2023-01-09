@@ -19,6 +19,9 @@
             <option value="$PROJECT_DIR$/data/api/impl-retrofit" />
             <option value="$PROJECT_DIR$/data/api/model" />
             <option value="$PROJECT_DIR$/data/source" />
+            <option value="$PROJECT_DIR$/data/source/local" />
+            <option value="$PROJECT_DIR$/data/source/local/contract" />
+            <option value="$PROJECT_DIR$/data/source/local/impl" />
             <option value="$PROJECT_DIR$/data/source/remote" />
             <option value="$PROJECT_DIR$/data/source/remote/contract" />
             <option value="$PROJECT_DIR$/data/source/remote/impl" />

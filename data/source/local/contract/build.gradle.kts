@@ -2,7 +2,6 @@ plugins {
     id("java-library")
     id("kotlin")
     id("org.jetbrains.kotlin.jvm")
-    id("kotlinx-serialization")
 }
 
 sourceSets {
@@ -16,6 +15,5 @@ java {
 }
 
 dependencies {
-    implementation(libs.bundles.data.api.model.impl)
-    testImplementation(libs.bundles.data.api.model.impl.test)
+    implementation(libs.bundles.data.source.local.contract)
 }

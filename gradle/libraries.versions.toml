@@ -161,15 +161,11 @@ app-impl = [
     #
     "okHttp3-loggingInterceptor",
     #
-    "room-runtime",
-    "room-ktx",
-    #
     "hilt-android",
     "hilt-work",
     "hilt-navigation-compose"
 ]
 app-kapt = [
-    "room-compiler",
     "hilt-kapt",
     "hilt-work-kapt"
 ]
@@ -195,7 +191,6 @@ app-impl-test = [
 app-impl-test-android = [
     "junit-android-ext",
     "espresso",
-    "room-test",
     "kotlin-coroutines-test",
     "hilt-test",
     "hilt-kapt",
@@ -282,5 +277,46 @@ data-api-config = [
     "hilt-android",
 ]
 data-api-config-kapt = [
+    "hilt-kapt",
+]
+
+#BUNDLES-DATA-SOURCE-LOCAL-CONTRACT
+data-source-local-contract = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+]
+
+#BUNDLES-DATA-SOURCE-LOCAL-IMPL
+data-source-local-impl = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+    #
+    "room-runtime",
+    "room-ktx",
+]
+
+data-source-local-impl-kapt = [
+    "hilt-kapt",
+    "room-compiler",
+]
+
+data-source-local-impl-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    #
+    "kotlin-coroutines-test",
+    #
+    "hilt-test",
+]
+data-source-local-impl-test-android = [
+    "junit-android-ext",
+    "espresso",
+    "room-test",
+    "kotlin-coroutines-test",
+    "hilt-test",
     "hilt-kapt",
 ]
