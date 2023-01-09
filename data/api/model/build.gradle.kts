@@ -16,6 +16,6 @@ java {
 }
 
 dependencies {
-    implementation(libs.bundles.data.api.model.impl)
-    testImplementation(libs.bundles.data.api.model.impl.test)
+    implementation(libs.bundles.data.api.model)
+    testImplementation(libs.bundles.data.api.model.test)
 }

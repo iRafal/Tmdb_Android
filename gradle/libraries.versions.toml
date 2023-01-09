@@ -136,7 +136,8 @@ hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", ve
 
 [bundles]
 
-app-impl = [
+#BUNDLES-APP
+app = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
     "kotlin-coroutines-android",
@@ -181,14 +182,14 @@ app-impl-debug = [
     "compose-ui-tooling-debug",
     "compose-ui-test-manifest-debug"
 ]
-app-impl-test = [
+app-test = [
     "junit",
     "mockito",
     "mockito-kotlin",
     "kotlin-coroutines-test",
     "hilt-test",
 ]
-app-impl-test-android = [
+app-test-android = [
     "junit-android-ext",
     "espresso",
     "kotlin-coroutines-test",
@@ -199,11 +200,11 @@ app-impl-test-android = [
 ]
 
 #BUNDLES-DATA-API-MODEL
-data-api-model-impl = [
+data-api-model = [
     "kotlin-stdLib",
     "kotlin-serialization-json",
 ]
-data-api-model-impl-test = [ "junit" ]
+data-api-model-test = [ "junit" ]
 
 #BUNDLES-DATA-API-IMPL-RETROFIT
 data-api-impl-retrofit = [
@@ -211,12 +212,12 @@ data-api-impl-retrofit = [
     "kotlin-coroutines-core",
     "kotlin-coroutines-android",
     "kotlin-serialization-json",
-
+    #
     "retrofit2",
     "retrofit2-scalars",
     "retrofit2-serializationConverter",
     "okHttp3-loggingInterceptor",
-
+    #
     "hilt-android",
 ]
 data-api-impl-retrofit-kapt = [
@@ -230,13 +231,13 @@ data-api-impl-ktor = [
     "kotlin-coroutines-core",
     "kotlin-coroutines-android",
     "kotlin-serialization-json",
-
+    #
     "ktor-client-core",
     "ktor-client-serialization",
     "ktor-client-android",
     "ktor-client-content-negotiation",
     "ktor-client-logging",
-
+    #
     "hilt-android",
 ]
 data-api-impl-ktor-kapt = [
@@ -244,6 +245,7 @@ data-api-impl-ktor-kapt = [
 ]
 data-api-impl-ktor-test = [
     "junit",
+    #
     #    "ktor-client-mock-test",
 ]
 
@@ -258,7 +260,7 @@ data-source-remote-impl = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
     "kotlin-coroutines-android",
-
+    #
     "hilt-android",
 ]
 data-source-remote-impl-kapt = [
@@ -274,8 +276,7 @@ data-source-remote-impl-test = [
 #DATA-MODEL
 data-model = [
     "kotlin-stdLib",
-#    "kotlin-serialization-json",
-
+    #
     "hilt-android",
 ]
 data-model-kapt = [
