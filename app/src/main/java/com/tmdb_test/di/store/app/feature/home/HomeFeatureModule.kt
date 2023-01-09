@@ -1,9 +1,9 @@
 package com.tmdb_test.di.store.app.feature.home
 
 import com.tmdb_test.data.mapping.movie.MoviesApiToDataStateMapper
-import com.tmdb_test.feature.home.store.HomeFeatureSlice
-import com.tmdb_test.feature.home.store.HomeFeatureSliceImpl
-import com.tmdb_test.feature.mapping.MoviesDataToFeatureStateMapper
+import com.tmdb_test.store.reducer.home.HomeFeatureSlice
+import com.tmdb_test.store.reducer.home.HomeFeatureSliceImpl
+import com.tmdb_test.store.state.home.MoviesDataToFeatureStateMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,13 +1,24 @@
 package com.tmdb_test.store.app
 
-import com.tmdb_test.feature.home.store.HomeFeatureState
-import com.tmdb_test.feature.movie.details.store.MovieDetailsFeatureState
+import androidx.annotation.VisibleForTesting
+import com.tmdb_test.store.state.home.HomeFeatureState
+import com.tmdb_test.store.state.movie.details.MovieDetailsFeatureState
+
 
 data class AppState(
     val homeState: HomeFeatureState,
     val movieDetailsState: MovieDetailsFeatureState
 ) {
     companion object {
+        fun createInitialState(
+            homeState: HomeFeatureState,
+            movieDetailsState: MovieDetailsFeatureState
+        ) = AppState(
+            homeState,
+            movieDetailsState
+        )
+
+        @VisibleForTesting
         val INITIAL = AppState(
             homeState = HomeFeatureState.INITIAL,
             movieDetailsState = MovieDetailsFeatureState.INITIAL

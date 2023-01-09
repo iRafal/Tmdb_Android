@@ -1,6 +1,7 @@
 package com.tmdb_test.di.store.app.env
 
 import com.tmdb_test.store.env.AppEnv
+import com.tmdb_test.store.env.createAppDbEnvImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,9 +13,5 @@ import dagger.hilt.components.SingletonComponent
 class AppDbModule {
 
     @Provides
-    fun appDatabase(): AppEnv.Database {
-        return object : AppEnv.Database {
-            //TODO
-        }
-    }
+    fun appDatabase(): AppEnv.Database = createAppDbEnvImpl()
 }
