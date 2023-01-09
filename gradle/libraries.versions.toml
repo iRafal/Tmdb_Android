@@ -414,3 +414,16 @@ store-test = [
     #
     "hilt-test",
 ]
+
+#BUNDLES-UTIL
+util = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+
+util-kapt = [
+    "hilt-kapt",
+]

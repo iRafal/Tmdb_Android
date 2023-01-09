@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/data/source/remote/impl" />
             <option value="$PROJECT_DIR$/store" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
       </GradleProjectSettings>

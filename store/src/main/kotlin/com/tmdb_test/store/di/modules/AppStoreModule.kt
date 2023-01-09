@@ -6,7 +6,7 @@ import com.tmdb_test.store.app.AppState
 import com.tmdb_test.store.app.AppStore
 import com.tmdb_test.store.app.AppStoreImpl
 import com.tmdb_test.store.app.createAppReducer
-import com.tmdb_test.store.di.modules.util.DispatchersModule.DispatcherIo
+import com.tmdb_test.utill.di.modules.DispatchersModule.DispatcherIo
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import dagger.Module

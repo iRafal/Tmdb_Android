@@ -1,4 +1,4 @@
-package com.tmdb_test.store.di.modules.util
+package com.tmdb_test.utill.di.modules
 
 import dagger.Module
 import dagger.Provides
@@ -9,7 +9,6 @@ import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-//TODO move to proper module
 @Module
 @InstallIn(SingletonComponent::class)
 class DispatchersModule {

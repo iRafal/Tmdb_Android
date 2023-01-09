@@ -26,4 +26,7 @@ include(":data:api:impl-ktor")
 include(":data:api:impl-retrofit")
 include(":data:api:model")
 include(":data:api:config")
+
 include(":ui")
+
+include(":util")

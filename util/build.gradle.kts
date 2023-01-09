@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.store"
+    namespace = "com.tmdb_test.util"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
@@ -44,10 +44,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":util"))
-    implementation(project(":data:model"))
-    implementation(project(":data:source:remote:contract"))
-    implementation(libs.bundles.store)
-    kapt(libs.bundles.store.kapt)
-    testImplementation(libs.bundles.store.test)
+    implementation(libs.bundles.util)
+    kapt(libs.bundles.util.kapt)
 }
