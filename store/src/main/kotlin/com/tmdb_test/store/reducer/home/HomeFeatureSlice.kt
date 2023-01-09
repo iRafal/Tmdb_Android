@@ -2,19 +2,19 @@ package com.tmdb_test.store.reducer.home
 
 import com.tmdb_test.data.model.mapping.movie.MoviesApiToDataStateMapper
 import com.tmdb_test.store.action.home.HomeAction
-import com.tmdb_test.store.app.AppState
-import com.tmdb_test.store.base.Action
-import com.tmdb_test.store.base.Effect
-import com.tmdb_test.store.base.Effects
-import com.tmdb_test.store.base.feature.FeatureReducer
-import com.tmdb_test.store.base.feature.FeatureSlice
-import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.action.home.HomeAction.LoadMovieSections
 import com.tmdb_test.store.action.home.HomeAction.MovieSectionsLoaded
 import com.tmdb_test.store.action.home.HomeAction.ReloadNowPlayingMovies
 import com.tmdb_test.store.action.home.HomeAction.ReloadNowPopularMovies
 import com.tmdb_test.store.action.home.HomeAction.ReloadTopRatedMovies
 import com.tmdb_test.store.action.home.HomeAction.ReloadUpcomingMovies
+import com.tmdb_test.store.base.Action
+import com.tmdb_test.store.base.Effect
+import com.tmdb_test.store.base.Effects
+import com.tmdb_test.store.base.feature.FeatureReducer
+import com.tmdb_test.store.base.feature.FeatureSlice
+import com.tmdb_test.store.env.AppEnv
+import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.state.home.HomeFeatureState
 import com.tmdb_test.store.state.home.MoviesDataToFeatureStateMapper
 

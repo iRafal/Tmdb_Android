@@ -2,7 +2,7 @@ package com.tmdb_test.store.di.modules
 
 import com.tmdb_test.store.di.modules.state.StoreStateModule.InitialAppState
 import com.tmdb_test.store.app.AppReducer
-import com.tmdb_test.store.app.AppState
+import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.app.AppStore
 import com.tmdb_test.store.app.AppStoreImpl
 import com.tmdb_test.store.app.createAppReducer

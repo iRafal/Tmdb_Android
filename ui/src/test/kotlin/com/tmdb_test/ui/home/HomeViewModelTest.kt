@@ -1,6 +1,6 @@
 package com.tmdb_test.ui.home
 
-import com.tmdb_test.store.app.AppState
+import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.app.AppStore
 import com.tmdb_test.ui.home.data.HomeUiData
 import com.tmdb_test.ui.home.data.mapping.HomeFeatureToUiStateMapper

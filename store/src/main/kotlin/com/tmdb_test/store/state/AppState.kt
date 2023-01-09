@@ -1,4 +1,4 @@
-package com.tmdb_test.store.app
+package com.tmdb_test.store.state
 
 import androidx.annotation.VisibleForTesting
 import com.tmdb_test.store.state.home.HomeFeatureState

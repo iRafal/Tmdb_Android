@@ -5,7 +5,7 @@ import com.tmdb_test.data.model.DataState
 import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.store.action.home.HomeAction
 import com.tmdb_test.store.state.FeatureState
-import com.tmdb_test.store.app.AppState
+import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice

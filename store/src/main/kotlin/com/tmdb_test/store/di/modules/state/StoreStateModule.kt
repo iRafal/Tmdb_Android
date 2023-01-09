@@ -1,6 +1,6 @@
 package com.tmdb_test.store.di.modules.state
 
-import com.tmdb_test.store.app.AppState
+import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.state.home.HomeFeatureState
 import com.tmdb_test.store.state.movie.details.MovieDetailsFeatureState
 import dagger.Module

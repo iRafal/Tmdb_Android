@@ -5,6 +5,7 @@ import com.tmdb_test.store.base.Reducer
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.reducer.movie.details.MovieDetailsFeatureSlice
+import com.tmdb_test.store.state.AppState
 
 typealias AppReducer = Reducer<AppState, AppEnv>
 

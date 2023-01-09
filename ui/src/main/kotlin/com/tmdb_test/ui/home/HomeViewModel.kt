@@ -3,7 +3,7 @@ package com.tmdb_test.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tmdb_test.store.action.home.HomeAction
-import com.tmdb_test.store.app.AppState
+import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.app.AppStore
 import com.tmdb_test.store.feature.home.HomeFeature
 import com.tmdb_test.ui.home.data.HomeMovieSection
