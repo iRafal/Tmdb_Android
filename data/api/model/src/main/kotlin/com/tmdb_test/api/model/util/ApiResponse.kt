@@ -1,13 +1,17 @@
-package com.tmdb_test.api.model.util.serializer
+package com.tmdb_test.api.model.util
 
 sealed interface ApiResponse<out T : Any, out U : Any> {
     class Success<T : Any>(val data: T) : ApiResponse<T, Nothing>
+
     data class ApiError<U : Any>(
         val body: U? = null,
         val code: Int? = null
     ) : ApiResponse<Nothing, U>
-    class NetworkError(val cause: ApiException.NetworkError? = null) :
-        ApiResponse<Nothing, Nothing>
+
+    class NetworkError(
+        val cause: ApiException.NetworkError? = null
+    ) : ApiResponse<Nothing, Nothing>
+
     class UnknownError(val cause: Throwable? = null) : ApiResponse<Nothing, Nothing>
 
     val isUnknownError: Boolean

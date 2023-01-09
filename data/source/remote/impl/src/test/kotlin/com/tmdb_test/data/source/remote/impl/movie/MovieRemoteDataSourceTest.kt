@@ -2,7 +2,7 @@ package com.tmdb_test.data.source.remote.impl.movie
 
 import com.tmdb_test.api.impl_retrofit.movie.MovieApi
 import com.tmdb_test.api.model.data.DataPage
-import com.tmdb_test.api.model.util.serializer.ApiResponse
+import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
 import com.tmdb_test.data.source.remote.impl.util.model.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi

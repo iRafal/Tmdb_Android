@@ -1,6 +1,6 @@
 package com.tmdb_test.feature.home.store.reducer
 
-import com.tmdb_test.api.model.util.serializer.ApiException
+import com.tmdb_test.api.model.util.ApiException
 import com.tmdb_test.data.model.DataState
 import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.feature.home.store.HomeAction
@@ -10,7 +10,7 @@ import com.tmdb_test.store.FeatureState
 import com.tmdb_test.store.app.AppState
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
-import com.tmdb_test.data.source.remote.impl.model.ModelUtil
+import com.tmdb_test.feature.home.store.reducer.util.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -23,7 +23,7 @@ class MovieSectionsLoadedReducerTest {
 
     @Test
     fun `reduce movie sections loaded success`() = runTest {
-        val dataMovies = listOf(com.tmdb_test.data.source.remote.impl.model.ModelUtil.movieDataModel)
+        val dataMovies = listOf(ModelUtil.movieDataModel)
 
         val dataSuccessMovies = DataState.Success(dataMovies)
 

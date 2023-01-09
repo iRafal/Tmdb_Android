@@ -1,7 +1,7 @@
 package com.tmdb_test.data.source.remote.impl.person
 
 import com.tmdb_test.api.impl_retrofit.person.PersonApi
-import com.tmdb_test.api.model.util.serializer.ApiResponse
+import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb_test.data.source.remote.impl.util.model.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi

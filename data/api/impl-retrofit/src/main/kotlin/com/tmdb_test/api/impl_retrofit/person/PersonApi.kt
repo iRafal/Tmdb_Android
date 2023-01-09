@@ -1,7 +1,7 @@
 package com.tmdb_test.api.impl_retrofit.person
 
-import com.tmdb_test.api.model.util.serializer.ApiResponse
-import com.tmdb_test.api.model.util.serializer.NetworkErrorModel
+import com.tmdb_test.api.model.util.ApiResponse
+import com.tmdb_test.api.model.util.NetworkErrorModel
 import com.tmdb_test.api.model.person.Person
 import retrofit2.http.GET
 import retrofit2.http.Path

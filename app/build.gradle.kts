@@ -7,8 +7,6 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-
-
 android {
     compileSdk = Libs.BuildConfig.compileSdk
 

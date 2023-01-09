@@ -40,7 +40,7 @@ compose-constraintLayout = "1.0.1"
 room = "2.5.0-rc01" # https://developer.android.com/jetpack/androidx/releases/room
 
 #NETWORK
-#ktor = "2.0.3" # https://github.com/ktorio/ktor
+ktor = "2.2.2" # https://github.com/ktorio/ktor
 retrofit2 = "2.9.0" # https://github.com/square/retrofit
 retrofit2-serializationConverter = "0.8.0" # https://github.com/jakewharton/retrofit2-kotlinx-serialization-converter
 okhttp3-loggingInterceptor = "4.10.0" # https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
@@ -104,11 +104,11 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-test = { module = "androidx.room:room-testing", version.ref = "room" }
 
 #NETWORK
-#ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-#ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-#ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
-#ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-#ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 
 retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
 retrofit2-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit2" }
@@ -159,15 +159,6 @@ app-impl = [
     #
     "logging",
     #
-#    "ktor-client-core",
-#    "ktor-client-serialization",
-#    "ktor-client-android",
-#    "ktor-client-content-negotiation",
-#    "ktor-client-logging",
-    #
-    "retrofit2",
-    "retrofit2-scalars",
-    "retrofit2-serializationConverter",
     "okHttp3-loggingInterceptor",
     #
     "room-runtime",
@@ -199,7 +190,6 @@ app-impl-test = [
     "mockito",
     "mockito-kotlin",
     "kotlin-coroutines-test",
-#    "ktor-client-mock-test",
     "hilt-test",
 ]
 app-impl-test-android = [
@@ -220,8 +210,8 @@ data-api-model-impl = [
 ]
 data-api-model-impl-test = [ "junit" ]
 
-#BUNDLES-DATA-API-IMPL
-data-api-impl = [
+#BUNDLES-DATA-API-IMPL-RETROFIT
+data-api-impl-retrofit = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
     "kotlin-coroutines-android",
@@ -234,10 +224,33 @@ data-api-impl = [
 
     "hilt-android",
 ]
-data-api-impl-kapt = [
+data-api-impl-retrofit-kapt = [
     "hilt-kapt",
 ]
-data-api-impl-test = [ "junit" ]
+data-api-impl-retrofit-test = [ "junit" ]
+
+#BUNDLES-DATA-API-IMPL-KOTR
+data-api-impl-ktor = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    "kotlin-serialization-json",
+
+    "ktor-client-core",
+    "ktor-client-serialization",
+    "ktor-client-android",
+    "ktor-client-content-negotiation",
+    "ktor-client-logging",
+
+    "hilt-android",
+]
+data-api-impl-ktor-kapt = [
+    "hilt-kapt",
+]
+data-api-impl-ktor-test = [
+    "junit",
+    #    "ktor-client-mock-test",
+]
 
 #BUNDLES-DATA-SOURCE-REMOTE-CONTRACT
 data-source-remote-contract = [

@@ -2,8 +2,8 @@ package com.tmdb_test.api.impl_retrofit.discover
 
 import com.tmdb_test.api.model.data.DataPage
 import com.tmdb_test.api.model.movie.Movie
-import com.tmdb_test.api.model.util.serializer.ApiResponse
-import com.tmdb_test.api.model.util.serializer.NetworkErrorModel
+import com.tmdb_test.api.model.util.ApiResponse
+import com.tmdb_test.api.model.util.NetworkErrorModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

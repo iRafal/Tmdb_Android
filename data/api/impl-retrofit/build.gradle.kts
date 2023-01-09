@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
+    id("kotlin-android")
     id("kotlin-kapt")
     id("kotlinx-serialization")
 }
@@ -16,7 +17,6 @@ android {
 
         consumerProguardFiles("consumer-rules.pro")
     }
-
     buildTypes {
         debug {
             isMinifyEnabled = false
@@ -30,7 +30,6 @@ android {
             consumerProguardFiles("consumer-rules.pro")
         }
     }
-
     compileOptions {
         sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
         targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
@@ -43,14 +42,13 @@ android {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
     }
-
 }
 
 dependencies {
     api(project(":data:api:model"))
     api(project(":data:api:config"))
 
-    implementation(libs.bundles.data.api.impl)
-    kapt(libs.bundles.data.api.impl.kapt)
-    testImplementation(libs.bundles.data.api.impl.test)
+    implementation(libs.bundles.data.api.impl.retrofit)
+    kapt(libs.bundles.data.api.impl.retrofit.kapt)
+    testImplementation(libs.bundles.data.api.impl.retrofit.test)
 }

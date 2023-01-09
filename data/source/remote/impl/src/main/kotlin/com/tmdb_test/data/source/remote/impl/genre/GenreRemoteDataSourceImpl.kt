@@ -2,8 +2,8 @@ package com.tmdb_test.data.source.remote.impl.genre
 
 import com.tmdb_test.api.impl_retrofit.genre.GenreApi
 import com.tmdb_test.api.model.genre.GenresList
-import com.tmdb_test.api.model.util.serializer.ApiResponse
-import com.tmdb_test.api.model.util.serializer.NetworkErrorModel
+import com.tmdb_test.api.model.util.ApiResponse
+import com.tmdb_test.api.model.util.NetworkErrorModel
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import javax.inject.Inject
 

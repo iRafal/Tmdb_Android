@@ -1,6 +1,6 @@
 package com.tmdb_test.api.impl_retrofit.util
 
-import com.tmdb_test.api.model.util.serializer.ApiResponse
+import com.tmdb_test.api.model.util.ApiResponse
 import java.lang.reflect.Type
 import okhttp3.ResponseBody
 import retrofit2.Call

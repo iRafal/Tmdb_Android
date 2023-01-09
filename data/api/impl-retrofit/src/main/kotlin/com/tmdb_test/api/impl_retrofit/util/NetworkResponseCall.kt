@@ -1,7 +1,7 @@
 package com.tmdb_test.api.impl_retrofit.util
 
-import com.tmdb_test.api.model.util.serializer.ApiException
-import com.tmdb_test.api.model.util.serializer.ApiResponse
+import com.tmdb_test.api.model.util.ApiException
+import com.tmdb_test.api.model.util.ApiResponse
 import java.io.IOException
 import okhttp3.Request
 import okhttp3.ResponseBody

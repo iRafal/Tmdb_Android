@@ -1,4 +1,4 @@
-package com.tmdb_test.api.model.util.serializer
+package com.tmdb_test.api.model.util
 
 sealed class ApiException(
     override val cause: Throwable?,

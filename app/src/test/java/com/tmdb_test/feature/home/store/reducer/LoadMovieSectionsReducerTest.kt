@@ -2,9 +2,9 @@ package com.tmdb_test.feature.home.store.reducer
 
 import com.tmdb_test.api.model.data.DataPage
 import com.tmdb_test.api.model.movie.Movie
-import com.tmdb_test.api.model.util.serializer.ApiException
-import com.tmdb_test.api.model.util.serializer.ApiResponse
-import com.tmdb_test.api.model.util.serializer.NetworkErrorModel
+import com.tmdb_test.api.model.util.ApiException
+import com.tmdb_test.api.model.util.ApiResponse
+import com.tmdb_test.api.model.util.NetworkErrorModel
 import com.tmdb_test.data.model.DataState
 import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
@@ -18,7 +18,7 @@ import com.tmdb_test.feature.home.store.effect.createMockEffectExecutor
 import com.tmdb_test.store.FeatureState
 import com.tmdb_test.store.FeatureState.Success
 import com.tmdb_test.store.app.AppState
-import com.tmdb_test.data.source.remote.impl.model.ModelUtil
+import com.tmdb_test.feature.home.store.reducer.util.ModelUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
@@ -38,11 +38,11 @@ class LoadMovieSectionsReducerTest {
 
     @Test
     fun `reduce load movie sections success`() = runTest {
-        val movies = listOf(com.tmdb_test.data.source.remote.impl.model.ModelUtil.movieDataModel)
+        val movies = listOf(ModelUtil.movieDataModel)
         val successResult = ApiResponse.Success(
             DataPage(
                 page = 1,
-                results = listOf(com.tmdb_test.data.source.remote.impl.model.ModelUtil.movieModel),
+                results = listOf(ModelUtil.movieModel),
                 totalPages = 1,
                 totalResults = 1,
             )
