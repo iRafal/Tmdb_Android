@@ -20,18 +20,15 @@ interface Effect<Env> {
     }
 }
 
-
 object Effects {
     fun <Env> empty(): Effect<Env>? = null
 
     fun <E> create(
         feature: Feature,
         effect: suspend Effect.Executor.Scope<E>.() -> Unit
-    ): Effect<E> {
-        return object : Effect<E> {
-            override fun invoke(executor: Effect.Executor<E>) {
-                executor.execute(feature, effect)
-            }
+    ): Effect<E> = object : Effect<E> {
+        override fun invoke(executor: Effect.Executor<E>) {
+            executor.execute(feature, effect)
         }
     }
 
