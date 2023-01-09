@@ -21,17 +21,17 @@ object Libs {
 
     object SourceSet {
         object Main {
-            val name = "main"
+            const val name = "main"
             val sourceSets = arrayOf("src/main/java", "src/main/kotlin")
         }
 
         object Test {
-            val name = "test"
+            const val name = "test"
             val sourceSets = arrayOf("src/test/java", "src/test/kotlin")
         }
 
         object AndroidTest {
-            val name = "androidTest"
+            const val name = "androidTest"
             val sourceSets = arrayOf("src/androidTest/java", "src/androidTest/kotlin")
         }
     }

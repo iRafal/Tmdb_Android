@@ -21,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.tmdb_test.ui.home.data.HomeUiData
-import com.tmdb_test.ui.home.data.HomeUiData.Movie
 import com.tmdb_test.ui.util.data.UiState
 import com.tmdb_test.ui.util.data.UiState.Error
 import com.tmdb_test.ui.util.data.UiState.Loading
@@ -188,7 +187,7 @@ fun MovieSectionSuccessStatePreview() {
 @Composable
 fun MovieSection(
     title: String,
-    sectionState: UiState<List<Movie>>,
+    sectionState: UiState<List<HomeUiData.Movie>>,
     onReloadSection: () -> Unit,
     onMovieClick: (movieId: Int) -> Unit
 ) {
