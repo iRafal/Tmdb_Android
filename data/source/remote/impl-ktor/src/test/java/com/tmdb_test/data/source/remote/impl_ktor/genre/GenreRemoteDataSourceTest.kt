@@ -1,14 +1,11 @@
-package com.tmdb_test.data.source.remote.impl.genre
+package com.tmdb_test.data.source.remote.impl_ktor.genre
 
-import com.tmdb_test.api.impl_retrofit.genre.GenreApi
 import com.tmdb_test.api.model.genre.Genre
-import com.tmdb_test.api.model.genre.GenresList
 import com.tmdb_test.api.model.util.ApiResponse
+import com.tmdb_test.data.api.impl_ktor.genre.GenreApi
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -23,13 +20,12 @@ class GenreRemoteDataSourceTest {
     private val genreSource: GenreRemoteDataSource = GenreRemoteDataSourceImpl(genreApi)
 
     private val genreList = listOf(Genre(id = 28, name = "Action"))
-    private val genreListApiResponse = ApiResponse.Success(GenresList(genreList))
-    private val genreListDataSourceResponse = ApiResponse.Success(genreList)
+    private val response = ApiResponse.Success(genreList)
 
     @Test
     fun `genre tv list success`() = runTest {
-        whenever(genreApi.genreTvList()).thenReturn(genreListApiResponse)
-        genreSource.genreTvList().run { assertEquals(this, genreListDataSourceResponse) }
+        whenever(genreApi.genreTvList()).thenReturn(response)
+        genreSource.genreTvList().run { assertSame(this, response) }
         verify(genreApi, times(1)).genreTvList()
     }
 
@@ -56,8 +52,8 @@ class GenreRemoteDataSourceTest {
 
     @Test
     fun `genre movie list success`() = runTest {
-        whenever(genreApi.genreMovieList()).thenReturn(genreListApiResponse)
-        genreSource.genreMovieList().run { assertEquals(this, genreListDataSourceResponse) }
+        whenever(genreApi.genreMovieList()).thenReturn(response)
+        genreSource.genreMovieList().run { assertSame(this, response) }
         verify(genreApi, times(1)).genreMovieList()
     }
 

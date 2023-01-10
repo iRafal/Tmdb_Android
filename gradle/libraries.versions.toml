@@ -316,7 +316,7 @@ data-source-remote-contract = [
     "kotlin-coroutines-core",
 ]
 
-#BUNDLES-DATA-SOURCE-REMOTE-CONTRACT
+#BUNDLES-DATA-SOURCE-REMOTE-IMPL
 data-source-remote-impl = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
@@ -328,6 +328,24 @@ data-source-remote-impl-kapt = [
     "hilt-kapt",
 ]
 data-source-remote-impl-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    "kotlin-coroutines-test",
+]
+
+#BUNDLES-DATA-SOURCE-REMOTE-IMPL-KTOR
+data-source-remote-impl-ktor = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+data-source-remote-impl-ktor-kapt = [
+    "hilt-kapt",
+]
+data-source-remote-impl-ktor-test = [
     "junit",
     "mockito",
     "mockito-kotlin",

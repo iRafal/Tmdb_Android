@@ -65,7 +65,7 @@ class KtorApiModule {
     )
 
     @Provides
-    fun getKtorHttpClient(json: Json, apiErrorMapper: ApiErrorMapper): HttpClient =
+    fun getKtorHttpClient(json: Json, apiErrorMapper: @JvmSuppressWildcards ApiErrorMapper): HttpClient =
         createKtorHttpClient(
             apiKey = BuildConfig.API_KEY,
             logLevel = LogLevel.BODY,
@@ -75,7 +75,7 @@ class KtorApiModule {
         )
 
     @Provides
-    fun apiErrorMapper(): ApiErrorMapper = apiErrorMapper
+    fun apiErrorMapper(): @JvmSuppressWildcards ApiErrorMapper = apiErrorMapper
 
     @Provides
     fun json() = Json {

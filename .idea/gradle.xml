@@ -27,6 +27,7 @@
             <option value="$PROJECT_DIR$/data/source/remote" />
             <option value="$PROJECT_DIR$/data/source/remote/contract" />
             <option value="$PROJECT_DIR$/data/source/remote/impl" />
+            <option value="$PROJECT_DIR$/data/source/remote/impl-ktor" />
             <option value="$PROJECT_DIR$/store" />
             <option value="$PROJECT_DIR$/store/action" />
             <option value="$PROJECT_DIR$/store/app" />

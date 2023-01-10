@@ -1,4 +1,4 @@
-package com.tmdb_test.data.source.remote.impl.util.model
+package com.tmdb_test.data.source.remote.impl_ktor.util.model
 
 import com.tmdb_test.api.model.genre.Genre
 import com.tmdb_test.api.model.movie.Movie
