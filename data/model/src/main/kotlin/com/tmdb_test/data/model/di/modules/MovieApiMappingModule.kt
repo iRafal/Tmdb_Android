@@ -1,5 +1,6 @@
 package com.tmdb_test.data.model.di.modules
 
+import com.tmdb_test.api.config.url.image.contract.ImageUrlProvider
 import com.tmdb_test.data.model.mapping.movie.MovieApiToDataModelMapper
 import com.tmdb_test.data.model.mapping.movie.MoviesApiToDataStateMapper
 import com.tmdb_test.data.model.mapping.movie.movieApiToDataModelMapperImpl
@@ -14,7 +15,9 @@ import dagger.hilt.components.SingletonComponent
 class MovieApiMappingModule {
 
     @Provides
-    fun movieApiToDataModelMapper(): MovieApiToDataModelMapper = ::movieApiToDataModelMapperImpl
+    fun movieApiToDataModelMapper(
+        imageUrlProvider: ImageUrlProvider
+    ): MovieApiToDataModelMapper = movieApiToDataModelMapperImpl(imageUrlProvider)
 
     @Provides
     fun moviesApiToDataStateMapper(

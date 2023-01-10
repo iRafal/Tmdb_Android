@@ -62,7 +62,6 @@ dependencies {
     implementation(project(":store:state"))
     implementation(project(":store:app"))
 
-    implementation(project(":data:api:config"))
     implementation(project(":data:source:remote:impl"))
     implementation(project(":data:model"))
 

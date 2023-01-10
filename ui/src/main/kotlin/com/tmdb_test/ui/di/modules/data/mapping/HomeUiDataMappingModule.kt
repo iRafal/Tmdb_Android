@@ -1,6 +1,5 @@
 package com.tmdb_test.ui.di.modules.data.mapping
 
-import com.tmdb_test.api.config.url.image.contract.ImageUrlProvider
 import com.tmdb_test.ui.home.data.mapping.HomeFeatureStateToUiSectionStateMapper
 import com.tmdb_test.ui.home.data.mapping.HomeFeatureToUiStateMapper
 import com.tmdb_test.ui.home.data.mapping.HomeMovieSectionToActionMapper
@@ -39,9 +38,7 @@ class HomeUiDataMappingModule {
 
     @Provides
     fun movieDataToHomeModelMapper(
-        imageUrlProvider: ImageUrlProvider
-    ): @JvmSuppressWildcards MovieDataToHomeModelMapper =
-        movieDataToHomeModelMapperImpl(imageUrlProvider)
+    ): @JvmSuppressWildcards MovieDataToHomeModelMapper = movieDataToHomeModelMapperImpl()
 
     @Provides
     fun homeMovieSectionToActionMapper(

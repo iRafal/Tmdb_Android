@@ -14,7 +14,7 @@ object ModelUtil {
         title = "Fight Club",
         voteAverage = 7.8,
         releaseDate = "1999-10-12",
-        posterPath = null,
+        posterUrl = null,
     )
 
     val movieModel = Movie(

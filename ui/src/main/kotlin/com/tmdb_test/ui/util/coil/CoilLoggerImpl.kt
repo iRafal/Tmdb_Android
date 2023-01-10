@@ -2,7 +2,7 @@ package com.tmdb_test.ui.util.coil
 
 import android.util.Log
 import coil.util.Logger
-import com.tmdb_test.api.config.BuildConfig
+import com.tmdb_test.ui.BuildConfig
 import logcat.LogPriority.DEBUG
 import logcat.asLog
 import logcat.logcat
