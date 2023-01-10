@@ -446,6 +446,55 @@ store-env-kapt = [
     "hilt-kapt",
 ]
 
+#BUNDLES-STORE-REDUCER
+store-reducer = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+
+store-reducer-kapt = [
+    "hilt-kapt",
+]
+
+store-reducer-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    #
+    "kotlin-coroutines-test",
+    #
+    "hilt-test",
+]
+
+#BUNDLES-STORE-STATE
+store-state = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+
+store-state-kapt = [
+    "hilt-kapt",
+]
+
+#BUNDLES-STORE-APP
+store-app = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+]
+
+store-app-kapt = [
+    "hilt-kapt",
+]
+
 #BUNDLES-UTIL
 util = [
     "kotlin-stdLib",
