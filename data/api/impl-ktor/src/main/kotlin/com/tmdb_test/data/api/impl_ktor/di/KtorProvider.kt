@@ -6,12 +6,12 @@ import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.plugin
 import io.ktor.client.request.header
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType.Application
@@ -20,48 +20,49 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.errors.IOException
 import kotlinx.serialization.json.Json
+import logcat.LogPriority.DEBUG
+import logcat.logcat
+
+
+private const val TIMEOUT_DEFAULT = 10_000
+private const val PARAMETER_API_KEY = "api_key"
 
 fun createKtorHttpClient(
     apiKey: String,
     logLevel: LogLevel,
     apiErrorMapper: ApiErrorMapper,
-    logger: Logger = Logger.DEFAULT,
+    logger: Logger,
     json: Json,
-    connectTimeout: Int = 10_000
-): HttpClient {
-    return HttpClient(Android) {
-        install(ContentNegotiation) {
-            json(json)
-        }
+    connectTimeout: Int = TIMEOUT_DEFAULT
+): HttpClient = HttpClient(Android) {
+    install(ContentNegotiation) {
+        json(json)
+    }
 
-        engine {
-            this.connectTimeout = connectTimeout
-        }
+    engine {
+        this.connectTimeout = connectTimeout
+    }
 
-        install(DefaultRequest) {
-            header(HttpHeaders.ContentType, Application.Json)
-        }
+    install(DefaultRequest) {
+        header(HttpHeaders.ContentType, Application.Json)
+    }
 
-        defaultRequest {
-            url {
-                parameters.append(PARAMETER_API_KEY, apiKey)
-            }
-        }
+    install(Logging) {
+        this.logger = logger
+        level = logLevel
+    }
 
-        install(Logging) {
-            this.logger = logger
-            level = logLevel
-        }
-
-        HttpResponseValidator {
-            handleResponseExceptionWithRequest { cause, request ->
-                throw apiErrorMapper(cause)
-            }
+    HttpResponseValidator {
+        handleResponseExceptionWithRequest { cause, request ->
+            throw apiErrorMapper(cause)
         }
     }
+}.also {
+    it.plugin(HttpSend).intercept { request ->
+        request.url.parameters.append(PARAMETER_API_KEY, apiKey)
+        execute(request)
+    }
 }
-
-private const val PARAMETER_API_KEY = "api_key"
 
 typealias ApiErrorMapper = suspend (cause: Throwable) -> ApiException
 
@@ -86,5 +87,11 @@ val apiErrorMapper: ApiErrorMapper = { cause ->
             }
         }
         else -> ApiException.UnknownError(cause)
+    }
+}
+
+fun ktorLogger(): Logger = object : Logger {
+    override fun log(message: String) {
+        logcat(DEBUG) { "Ktor Api Log: $message" }
     }
 }

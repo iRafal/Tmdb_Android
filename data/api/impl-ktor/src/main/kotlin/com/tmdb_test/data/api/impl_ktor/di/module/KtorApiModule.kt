@@ -5,6 +5,7 @@ import com.tmdb_test.api.config.url.provider.BaseUrlProvider
 import com.tmdb_test.data.api.impl_ktor.di.ApiErrorMapper
 import com.tmdb_test.data.api.impl_ktor.di.apiErrorMapper
 import com.tmdb_test.data.api.impl_ktor.di.createKtorHttpClient
+import com.tmdb_test.data.api.impl_ktor.di.ktorLogger
 import com.tmdb_test.data.api.impl_ktor.discover.DiscoverApi
 import com.tmdb_test.data.api.impl_ktor.discover.DiscoverApiImpl
 import com.tmdb_test.data.api.impl_ktor.genre.GenreApi
@@ -18,7 +19,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
-import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import kotlinx.serialization.json.Json
@@ -65,14 +65,20 @@ class KtorApiModule {
     )
 
     @Provides
-    fun getKtorHttpClient(json: Json, apiErrorMapper: @JvmSuppressWildcards ApiErrorMapper): HttpClient =
-        createKtorHttpClient(
-            apiKey = BuildConfig.API_KEY,
-            logLevel = LogLevel.BODY,
-            apiErrorMapper = apiErrorMapper,
-            logger = Logger.DEFAULT,
-            json = json,
-        )
+    fun getKtorHttpClient(
+        json: Json,
+        logger: Logger,
+        apiErrorMapper: @JvmSuppressWildcards ApiErrorMapper
+    ): HttpClient = createKtorHttpClient(
+        apiKey = BuildConfig.API_KEY,
+        logLevel = LogLevel.BODY,
+        apiErrorMapper = apiErrorMapper,
+        logger = logger,
+        json = json,
+    )
+
+    @Provides
+    fun ktorApiLogger(): Logger = ktorLogger()
 
     @Provides
     fun apiErrorMapper(): @JvmSuppressWildcards ApiErrorMapper = apiErrorMapper

@@ -300,6 +300,8 @@ data-api-impl-ktor = [
     "ktor-client-logging",
     #
     "hilt-android",
+    #
+    "logging",
 ]
 data-api-impl-ktor-kapt = [
     "hilt-kapt",

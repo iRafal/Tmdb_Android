@@ -24,7 +24,6 @@ class DiscoverApiImpl(private val client: HttpClient, private val baseUrl: Strin
         }.body()
     }
 
-
     override suspend fun discoverTv(
         language: String?,
         page: Int?,
@@ -36,5 +35,4 @@ class DiscoverApiImpl(private val client: HttpClient, private val baseUrl: Strin
             parameter("region", region)
         }.body()
     }
-
 }
