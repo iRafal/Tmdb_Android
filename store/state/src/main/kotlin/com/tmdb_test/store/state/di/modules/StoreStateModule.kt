@@ -12,14 +12,15 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class StoreStateModule {
+object StoreStateModule {
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class InitialAppState
 
-    @Singleton
     @Provides
+    @Singleton
+    @JvmStatic
     @InitialAppState
     fun initialAppState(
         @InitialHomeFeatureState homeState: HomeFeatureState,
@@ -30,8 +31,9 @@ class StoreStateModule {
     @Retention(AnnotationRetention.BINARY)
     annotation class InitialHomeFeatureState
 
-    @Singleton
     @Provides
+    @Singleton
+    @JvmStatic
     @InitialHomeFeatureState
     fun initialHomeFeatureState(): HomeFeatureState = HomeFeatureState.INITIAL
 
@@ -39,8 +41,9 @@ class StoreStateModule {
     @Retention(AnnotationRetention.BINARY)
     annotation class InitialMovieDetailsFeatureState
 
-    @Singleton
     @Provides
+    @Singleton
+    @JvmStatic
     @InitialMovieDetailsFeatureState
     fun initialMovieDetailsFeatureState(): MovieDetailsFeatureState = MovieDetailsFeatureState.INITIAL
 }

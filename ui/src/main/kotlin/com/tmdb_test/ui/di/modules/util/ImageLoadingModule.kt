@@ -11,6 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
+import javax.inject.Singleton
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +19,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ImageLoadingModule {
+object ImageLoadingModule {
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -26,6 +27,8 @@ class ImageLoadingModule {
 
     @Provides
     @InterceptorCoil
+    @Singleton
+    @JvmStatic
     fun coilLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply { level = BODY }
 
     @Qualifier
@@ -34,15 +37,21 @@ class ImageLoadingModule {
 
     @OkHttpClientCoil
     @Provides
+    @Singleton
+    @JvmStatic
     fun coilOkkHttpClient(@InterceptorCoil coilLoggingInterceptor: Interceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(coilLoggingInterceptor)
             .build()
 
     @Provides
+    @Singleton
+    @JvmStatic
     fun coilLogger(): Logger = createCoilLogger()
 
     @Provides
+    @Singleton
+    @JvmStatic
     fun coilImageLoader(
         @ApplicationContext context: Context,
         @OkHttpClientCoil coilOkkHttpClient: OkHttpClient,

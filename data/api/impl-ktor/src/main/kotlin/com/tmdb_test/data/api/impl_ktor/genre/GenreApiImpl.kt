@@ -1,5 +1,6 @@
 package com.tmdb_test.data.api.impl_ktor.genre
 
+import com.tmdb_test.api.config.url.provider.genre.GenreUrlProvider
 import com.tmdb_test.api.model.genre.Genre
 import com.tmdb_test.api.model.genre.GenresList
 import com.tmdb_test.api.model.util.ApiResponse
@@ -9,13 +10,16 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
+import javax.inject.Inject
 
-class GenreApiImpl(private val client: HttpClient, private val baseUrl: String) : GenreApi {
-
+class GenreApiImpl @Inject constructor(
+    private val client: HttpClient,
+    private val urlProvider: GenreUrlProvider
+) : GenreApi {
     override suspend fun genreMovieList(
         language: String?,
     ): ApiResponse<List<Genre>, NetworkErrorModel> = runApiCall {
-        client.get("${baseUrl}genre/movie/list") {
+        client.get(urlProvider.genreMovieListUrl) {
             parameter("language", language)
         }.body<GenresList>().genres
     }
@@ -23,7 +27,7 @@ class GenreApiImpl(private val client: HttpClient, private val baseUrl: String) 
     override suspend fun genreTvList(
         language: String?,
     ): ApiResponse<List<Genre>, NetworkErrorModel> = runApiCall {
-        client.get("${baseUrl}genre/tv/list") {
+        client.get(urlProvider.genreTvListUrl) {
             parameter("language", language)
         }.body<GenresList>().genres
     }

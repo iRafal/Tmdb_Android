@@ -1,11 +1,5 @@
 package com.tmdb_test.data.api.impl_ktor.di.module
 
-import com.tmdb_test.api.config.BuildConfig
-import com.tmdb_test.api.config.url.provider.BaseUrlProvider
-import com.tmdb_test.data.api.impl_ktor.di.ApiErrorMapper
-import com.tmdb_test.data.api.impl_ktor.di.apiErrorMapper
-import com.tmdb_test.data.api.impl_ktor.di.createKtorHttpClient
-import com.tmdb_test.data.api.impl_ktor.di.ktorLogger
 import com.tmdb_test.data.api.impl_ktor.discover.DiscoverApi
 import com.tmdb_test.data.api.impl_ktor.discover.DiscoverApiImpl
 import com.tmdb_test.data.api.impl_ktor.genre.GenreApi
@@ -14,78 +8,30 @@ import com.tmdb_test.data.api.impl_ktor.movie.MovieApi
 import com.tmdb_test.data.api.impl_ktor.movie.MovieApiImpl
 import com.tmdb_test.data.api.impl_ktor.person.PersonApi
 import com.tmdb_test.data.api.impl_ktor.person.PersonApiImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import kotlinx.serialization.json.Json
+import javax.inject.Singleton
 
 
 @Module
 @InstallIn(SingletonComponent::class)
-class KtorApiModule {
+interface KtorApiModule {
 
-    @Provides
-    fun discoverApi(
-        ktorHttpClient: HttpClient,
-        baseUrlProvider: BaseUrlProvider,
-    ): DiscoverApi = DiscoverApiImpl(
-        client = ktorHttpClient,
-        baseUrl = baseUrlProvider.discoverApiUrl,
-    )
+    @Binds
+    @Singleton
+    fun discoverApi(impl: DiscoverApiImpl): DiscoverApi
 
-    @Provides
-    fun genreApi(
-        ktorHttpClient: HttpClient,
-        baseUrlProvider: BaseUrlProvider,
-    ): GenreApi = GenreApiImpl(
-        client = ktorHttpClient,
-        baseUrl = baseUrlProvider.genreApiUrl,
-    )
+    @Binds
+    @Singleton
+    fun genreApi(impl: GenreApiImpl): GenreApi
 
-    @Provides
-    fun movieApi(
-        ktorHttpClient: HttpClient,
-        baseUrlProvider: BaseUrlProvider,
-    ): MovieApi = MovieApiImpl(
-        client = ktorHttpClient,
-        baseUrl = baseUrlProvider.movieApiUrl,
-    )
+    @Binds
+    @Singleton
+    fun movieApi(impl: MovieApiImpl): MovieApi
 
-    @Provides
-    fun personApi(
-        ktorHttpClient: HttpClient,
-        baseUrlProvider: BaseUrlProvider,
-    ): PersonApi = PersonApiImpl(
-        client = ktorHttpClient,
-        baseUrl = baseUrlProvider.personApiUrl,
-    )
-
-    @Provides
-    fun getKtorHttpClient(
-        json: Json,
-        logger: Logger,
-        apiErrorMapper: @JvmSuppressWildcards ApiErrorMapper
-    ): HttpClient = createKtorHttpClient(
-        apiKey = BuildConfig.API_KEY,
-        logLevel = LogLevel.BODY,
-        apiErrorMapper = apiErrorMapper,
-        logger = logger,
-        json = json,
-    )
-
-    @Provides
-    fun ktorApiLogger(): Logger = ktorLogger()
-
-    @Provides
-    fun apiErrorMapper(): @JvmSuppressWildcards ApiErrorMapper = apiErrorMapper
-
-    @Provides
-    fun json() = Json {
-        ignoreUnknownKeys = true
-        prettyPrint = true
-    }
+    @Binds
+    @Singleton
+    fun personApi(impl: PersonApiImpl): PersonApi
 }

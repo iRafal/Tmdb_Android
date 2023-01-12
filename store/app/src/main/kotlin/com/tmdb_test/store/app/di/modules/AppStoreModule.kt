@@ -19,9 +19,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppStoreModule {
-    @Singleton
+object AppStoreModule {
     @Provides
+    @Singleton
+    @JvmStatic
     fun appStore(
         appEnv: AppEnv,
         appReducer: @JvmSuppressWildcards AppReducer,
@@ -36,6 +37,7 @@ class AppStoreModule {
 
 
     @Provides
+    @JvmStatic
     fun appReducer(homeFeatureSlice: HomeFeatureSlice): AppReducer =
         createAppReducer(homeFeatureSlice)
 }

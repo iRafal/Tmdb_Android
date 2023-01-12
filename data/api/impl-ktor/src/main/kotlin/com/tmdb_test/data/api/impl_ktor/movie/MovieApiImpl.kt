@@ -1,5 +1,6 @@
 package com.tmdb_test.data.api.impl_ktor.movie
 
+import com.tmdb_test.api.config.url.provider.movie.MovieUrlProvider
 import com.tmdb_test.api.model.data.DataPage
 import com.tmdb_test.api.model.movie.Movie
 import com.tmdb_test.api.model.util.ApiResponse
@@ -9,16 +10,19 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
+import javax.inject.Inject
 
-class MovieApiImpl(private val client: HttpClient, private val baseUrl: String) : MovieApi {
-
+class MovieApiImpl @Inject constructor(
+    private val client: HttpClient,
+    private val urlProvider: MovieUrlProvider
+) : MovieApi {
     override suspend fun movie(
         movieId: Int,
         language: String?,
         appendToResponse: String?,
     ): ApiResponse<Movie, NetworkErrorModel> {
         return runApiCall {
-            client.get("${baseUrl}movie/$movieId") {
+            client.get(urlProvider.movieUrl(movieId)) {
                 parameter("language", language)
                 parameter("append_to_response", appendToResponse)
             }.body()
@@ -29,7 +33,7 @@ class MovieApiImpl(private val client: HttpClient, private val baseUrl: String) 
         language: String?,
     ): ApiResponse<Movie, NetworkErrorModel> {
         return runApiCall {
-            client.get("${baseUrl}movie/latest") {
+            client.get(urlProvider.latestMovieUrl) {
                 parameter("language", language)
             }.body()
         }
@@ -40,7 +44,7 @@ class MovieApiImpl(private val client: HttpClient, private val baseUrl: String) 
         page: Int?,
         region: String?,
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
-        client.get("${baseUrl}movie/now_playing") {
+        client.get(urlProvider.nowPlayingMoviesUrl) {
             parameter("language", language)
             parameter("page", page)
             parameter("region", region)
@@ -52,7 +56,7 @@ class MovieApiImpl(private val client: HttpClient, private val baseUrl: String) 
         page: Int?,
         region: String?,
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
-        client.get("${baseUrl}movie/popular") {
+        client.get(urlProvider.nowPopularMoviesUrl) {
             parameter("language", language)
             parameter("page", page)
             parameter("region", region)
@@ -64,7 +68,7 @@ class MovieApiImpl(private val client: HttpClient, private val baseUrl: String) 
         page: Int?,
         region: String?,
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
-        client.get("${baseUrl}movie/top_rated") {
+        client.get(urlProvider.topRatedMoviesUrl) {
             parameter("language", language)
             parameter("page", page)
             parameter("region", region)
@@ -76,7 +80,7 @@ class MovieApiImpl(private val client: HttpClient, private val baseUrl: String) 
         page: Int?,
         region: String?,
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
-        client.get("${baseUrl}movie/upcoming") {
+        client.get(urlProvider.upcomingMoviesUrl) {
             parameter("language", language)
             parameter("page", page)
             parameter("region", region)

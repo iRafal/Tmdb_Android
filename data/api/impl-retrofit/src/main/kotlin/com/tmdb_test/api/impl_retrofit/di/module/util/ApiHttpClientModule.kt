@@ -17,7 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiHttpClientModule {
+object ApiHttpClientModule {
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -31,20 +31,23 @@ class ApiHttpClientModule {
     @Retention(AnnotationRetention.BINARY)
     annotation class InterceptorRequest
 
-    @Provides
     @InterceptorResponse
+    @Provides
+    @JvmStatic
     fun apiResponseInterceptor(): Interceptor = ApiResponseInterceptor()
 
-    @Provides
     @InterceptorLogging
+    @Provides
+    @JvmStatic
     fun loggingInterceptor(): Interceptor = loggingInterceptor(BODY)
 
     private fun loggingInterceptor(
         loggingLevel: Level,
     ): HttpLoggingInterceptor = HttpLoggingInterceptor().apply { level = loggingLevel }
 
-    @Provides
     @InterceptorRequest
+    @Provides
+    @JvmStatic
     fun requestInterceptor(): Interceptor {
         return requestInterceptor(apiKeyKey = "api_key", apiKeyValue = BuildConfig.API_KEY)
     }
@@ -67,8 +70,9 @@ class ApiHttpClientModule {
     @Retention(AnnotationRetention.BINARY)
     annotation class OkHttpClientRetrofit
 
-    @Provides
     @OkHttpClientRetrofit
+    @Provides
+    @JvmStatic
     fun okHttpClient(
         @InterceptorLogging loggingInterceptor: Interceptor,
         @InterceptorRequest requestInterceptor: Interceptor,
@@ -82,6 +86,4 @@ class ApiHttpClientModule {
             .retryOnConnectionFailure(true)
             .build()
     }
-
-
 }

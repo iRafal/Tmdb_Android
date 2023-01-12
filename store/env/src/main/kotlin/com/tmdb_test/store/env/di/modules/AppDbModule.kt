@@ -10,8 +10,9 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppDbModule {
+object AppDbModule {
 
     @Provides
+    @JvmStatic
     fun appDatabase(): AppEnv.Database = createAppDbEnvImpl()
 }

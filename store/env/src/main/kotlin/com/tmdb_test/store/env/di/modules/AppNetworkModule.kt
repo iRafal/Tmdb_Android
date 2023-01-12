@@ -14,9 +14,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppNetworkModule {
+object AppNetworkModule {
 
     @Provides
+    @JvmStatic
     fun appNetwork(
         discoverSource: DiscoverRemoteDataSource,
         genreSource: GenreRemoteDataSource,

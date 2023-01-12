@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DispatchersModule {
+object DispatchersModule {
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -20,6 +20,7 @@ class DispatchersModule {
     @DispatcherIo
     @Provides
     @Singleton
+    @JvmStatic
     fun ioDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Qualifier
@@ -29,6 +30,7 @@ class DispatchersModule {
     @DispatcherMain
     @Provides
     @Singleton
+    @JvmStatic
     fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
     @Qualifier
@@ -38,6 +40,7 @@ class DispatchersModule {
     @DispatcherDefault
     @Provides
     @Singleton
+    @JvmStatic
     fun defaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
     @Qualifier
@@ -47,5 +50,6 @@ class DispatchersModule {
     @DispatcherUnconfined
     @Provides
     @Singleton
+    @JvmStatic
     fun unconfinedDispatcher(): CoroutineDispatcher = Dispatchers.Unconfined
 }

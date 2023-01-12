@@ -20,79 +20,75 @@ import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiModule {
+object ApiModule {
 
     @Provides
+    @JvmStatic
     fun discoverApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): DiscoverApi {
-        return api(
-            url = baseUrlProvider.discoverApiUrl,
-            client = client ,
-            jsonConverterFactory = jsonConverterFactory,
-            scalarsConverterFactory = scalarsConverterFactory,
-            factory = factory,
-            apiClass = DiscoverApi::class.java,
-        )
-    }
+    ): DiscoverApi = api(
+        url = baseUrlProvider.discoverApiUrl,
+        client = client,
+        jsonConverterFactory = jsonConverterFactory,
+        scalarsConverterFactory = scalarsConverterFactory,
+        factory = factory,
+        apiClass = DiscoverApi::class.java,
+    )
 
     @Provides
+    @JvmStatic
     fun genreApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): GenreApi {
-        return api(
-            url = baseUrlProvider.genreApiUrl,
-            client = client ,
-            jsonConverterFactory = jsonConverterFactory,
-            scalarsConverterFactory = scalarsConverterFactory,
-            factory = factory,
-            apiClass = GenreApi::class.java,
-        )
-    }
+    ): GenreApi = api(
+        url = baseUrlProvider.genreApiUrl,
+        client = client,
+        jsonConverterFactory = jsonConverterFactory,
+        scalarsConverterFactory = scalarsConverterFactory,
+        factory = factory,
+        apiClass = GenreApi::class.java,
+    )
 
     @Provides
+    @JvmStatic
     fun movieApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): MovieApi {
-        return api(
-            url = baseUrlProvider.movieApiUrl,
-            client = client ,
-            jsonConverterFactory = jsonConverterFactory,
-            scalarsConverterFactory = scalarsConverterFactory,
-            factory = factory,
-            apiClass = MovieApi::class.java,
-        )
-    }
+    ): MovieApi = api(
+        url = baseUrlProvider.movieApiUrl,
+        client = client,
+        jsonConverterFactory = jsonConverterFactory,
+        scalarsConverterFactory = scalarsConverterFactory,
+        factory = factory,
+        apiClass = MovieApi::class.java,
+    )
 
     @Provides
+    @JvmStatic
     fun personApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): PersonApi {
-        return api(
-            url = baseUrlProvider.personApiUrl,
-            client = client ,
-            jsonConverterFactory = jsonConverterFactory,
-            scalarsConverterFactory = scalarsConverterFactory,
-            factory = factory,
-            apiClass = PersonApi::class.java,
-        )
-    }
+    ): PersonApi = api(
+        url = baseUrlProvider.personApiUrl,
+        client = client,
+        jsonConverterFactory = jsonConverterFactory,
+        scalarsConverterFactory = scalarsConverterFactory,
+        factory = factory,
+        apiClass = PersonApi::class.java,
+    )
 
     private fun <T> api(
         url: String,
@@ -101,14 +97,12 @@ class ApiModule {
         scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory,
         apiClass: Class<T>
-    ): T {
-        return Retrofit.Builder()
-            .baseUrl(url)
-            .client(client)
-            .addConverterFactory(jsonConverterFactory)
-            .addConverterFactory(scalarsConverterFactory)
-            .addCallAdapterFactory(factory)
-            .build()
-            .create(apiClass)
-    }
+    ): T = Retrofit.Builder()
+        .baseUrl(url)
+        .client(client)
+        .addConverterFactory(jsonConverterFactory)
+        .addConverterFactory(scalarsConverterFactory)
+        .addCallAdapterFactory(factory)
+        .build()
+        .create(apiClass)
 }

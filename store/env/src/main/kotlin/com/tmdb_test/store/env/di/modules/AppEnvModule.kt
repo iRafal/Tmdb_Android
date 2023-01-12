@@ -9,9 +9,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppEnvModule {
+object AppEnvModule {
 
     @Provides
+    @JvmStatic
     fun appEnv(appNetwork: AppEnv.Network, appDatabase: AppEnv.Database): AppEnv =
         createAppEnvImpl(appNetwork, appDatabase)
 }

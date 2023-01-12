@@ -9,9 +9,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class HomeFeatureMappingModule {
+object HomeFeatureMappingModule {
 
     @Provides
+    @JvmStatic
     fun moviesDataToFeatureStateMapper(
     ): @JvmSuppressWildcards MoviesDataToFeatureStateMapper = ::mapDataToFeatureStateImpl
 }
