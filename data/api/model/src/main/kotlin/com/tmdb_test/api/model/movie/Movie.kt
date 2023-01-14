@@ -3,6 +3,8 @@ package com.tmdb_test.api.model.movie
 import com.tmdb_test.api.model.util.serializer.JsonKeys
 import com.tmdb_test.api.model.genre.Genre
 import com.tmdb_test.api.model.util.serializer.MovieStatusSerializer
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.serializers.LocalDateIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -116,7 +118,10 @@ data class Movie(
     @SerialName("poster_path") val posterPath: String? = null,
     @SerialName("production_companies") val productionCompanies: List<ProductionCompany> = emptyList(),
     @SerialName("production_countries") val productionCountries: List<ProductionCountry> = emptyList(),
-    @SerialName("release_date") val releaseDate: String? = null,
+
+    @Serializable(with = LocalDateIso8601Serializer::class)
+    @SerialName("release_date") val releaseDate: LocalDate? = null,
+
     @SerialName("revenue") val revenue: Int? = null,
     @SerialName("runtime") val runtime: Int? = null,
     @SerialName("spoken_languages") val spokenLanguages: List<SpokenLanguage> = emptyList(),

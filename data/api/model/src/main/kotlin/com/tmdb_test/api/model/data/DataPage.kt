@@ -1,7 +1,7 @@
 package com.tmdb_test.api.model.data
 
-import com.tmdb_test.api.model.util.serializer.DateSerializer
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.serializers.LocalDateIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -16,11 +16,11 @@ data class DataPage<T>(
     @Serializable
     data class Dates(
         @SerialName("maximum")
-        @Serializable(with = DateSerializer::class)
+        @Serializable(with = LocalDateIso8601Serializer::class)
         val maximum: LocalDate? = null,
 
         @SerialName("minimum")
-        @Serializable(with = DateSerializer::class)
+        @Serializable(with = LocalDateIso8601Serializer::class)
         val minimum: LocalDate? = null
     )
 }

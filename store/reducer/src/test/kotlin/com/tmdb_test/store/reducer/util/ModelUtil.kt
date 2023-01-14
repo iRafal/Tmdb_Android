@@ -7,13 +7,14 @@ import com.tmdb_test.api.model.movie.ProductionCompany
 import com.tmdb_test.api.model.movie.ProductionCountry
 import com.tmdb_test.api.model.movie.SpokenLanguage
 import com.tmdb_test.data.model.MovieDataModel
+import kotlinx.datetime.LocalDate
 
 object ModelUtil {
     val movieDataModel = MovieDataModel(
         id = 550,
         title = "Fight Club",
         voteAverage = 7.8,
-        releaseDate = "1999-10-12",
+        releaseDate = LocalDate.parse("1999-10-12"),
         posterUrl = null,
     )
 
@@ -51,7 +52,7 @@ object ModelUtil {
                 name = "United States of America"
             )
         ),
-        releaseDate = "1999-10-12",
+        releaseDate = LocalDate.parse("1999-10-12"),
         revenue = 100853753,
         runtime = 139,
         spokenLanguages = listOf(SpokenLanguage(iso_639_1 = "en", name = "English")),

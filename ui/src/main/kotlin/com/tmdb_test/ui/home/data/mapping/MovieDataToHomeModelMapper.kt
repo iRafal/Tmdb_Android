@@ -10,7 +10,7 @@ fun movieDataToHomeModelMapperImpl(): MovieDataToHomeModelMapper = { input ->
         id = checkNotNull(input.id),
         title = checkNotNull(input.title),
         averageVote = input.voteAverage ?: 0.0,
-        releaseDate = checkNotNull(input.releaseDate),
+        releaseDate = input.releaseDate,
         posterUrl = input.posterUrl
     )
 }

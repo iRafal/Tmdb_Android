@@ -26,6 +26,15 @@ import com.tmdb_test.ui.util.data.UiState.Error
 import com.tmdb_test.ui.util.data.UiState.Loading
 import com.tmdb_test.ui.util.data.UiState.NetworkError
 import com.tmdb_test.ui.util.data.UiState.Success
+import java.time.format.DateTimeFormatter
+import kotlinx.datetime.Clock
+import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.TimeZone.Companion
+import kotlinx.datetime.minus
+import kotlinx.datetime.toJavaLocalDate
+import kotlinx.datetime.toLocalDateTime
 
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
@@ -57,7 +66,7 @@ fun MovieSectionItemPreview() {
     MovieSectionItem(
         movie = HomeUiData.Movie(
             id = 1, title = "Movie 1", averageVote = 70.7,
-            releaseDate = "1 Jan 2022",
+            releaseDate = LocalDate.parse("1 Jan 2022"),
             posterUrl = null
         ),
         onMovieClick = { }
@@ -87,35 +96,39 @@ fun MovieSectionItem(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text(text = movie.releaseDate, style = MaterialTheme.typography.caption)
-
-            Spacer(modifier = Modifier.height(8.dp))
+            movie.releaseDate?.let { releaseDate ->
+                val formattedDate = DateTimeFormatter.ofPattern("d MMM yyyy").format(releaseDate.toJavaLocalDate())
+                Text(text = formattedDate, style = MaterialTheme.typography.caption)
+                Spacer(modifier = Modifier.height(8.dp))
+            }
 
             Text(text = movie.averageVote.toString(), style = MaterialTheme.typography.caption)
         }
     }
 }
 
+private val previewDateToday = Clock.System.now().toLocalDateTime(TimeZone.UTC).date
+
 private val moviesPreview = listOf(
     HomeUiData.Movie(
         id = 1,
         title = "Movie 1",
         averageVote = 70.7,
-        releaseDate = "1 Jan 2022",
+        releaseDate = previewDateToday,
         posterUrl = null
     ),
     HomeUiData.Movie(
         id = 2,
         title = "Movie 2",
         averageVote = 20.7,
-        releaseDate = "1 Jan 2020",
+        releaseDate = previewDateToday.minus(DatePeriod(years = 1)),
         posterUrl = null
     ),
     HomeUiData.Movie(
         id = 3,
         title = "Movie 3",
         averageVote = 95.7,
-        releaseDate = "1 Jan 2021",
+        releaseDate = previewDateToday.minus(DatePeriod(years = 2)),
         posterUrl = null
     )
 )

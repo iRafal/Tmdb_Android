@@ -17,6 +17,7 @@ import com.tmdb_test.ui.home.data.HomeUiData
 import com.tmdb_test.ui.theme.Tmdb_TestTheme
 import com.tmdb_test.ui.util.compose.ScrollableColumn
 import com.tmdb_test.ui.util.data.UiState
+import kotlinx.datetime.LocalDate
 
 
 @Preview(showBackground = false, showSystemUi = false)
@@ -89,21 +90,21 @@ fun HomeStateSuccessPreview() {
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
-                releaseDate = "1 Jan 2022",
+                releaseDate = LocalDate.parse("1 Jan 2022"),
                 posterUrl = null
             ),
             HomeUiData.Movie(
                 id = 2,
                 title = "Movie 2",
                 averageVote = 20.7,
-                releaseDate = "1 Jan 2020",
+                releaseDate = LocalDate.parse("1 Jan 2020"),
                 posterUrl = null
             ),
             HomeUiData.Movie(
                 id = 3,
                 title = "Movie 3",
                 averageVote = 95.7,
-                releaseDate = "1 Jan 2021",
+                releaseDate = LocalDate.parse("1 Jan 2021"),
                 posterUrl = null
             )
         )
@@ -132,21 +133,21 @@ fun HomeMixedStatesPreview() {
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
-                releaseDate = "1 Jan 2022",
+                releaseDate =LocalDate.parse("1 Jan 2022"),
                 posterUrl = null
             ),
             HomeUiData.Movie(
                 id = 2,
                 title = "Movie 2",
                 averageVote = 20.7,
-                releaseDate = "1 Jan 2020",
+                releaseDate = LocalDate.parse("1 Jan 2020"),
                 posterUrl = null
             ),
             HomeUiData.Movie(
                 id = 3,
                 title = "Movie 3",
                 averageVote = 95.7,
-                releaseDate = "1 Jan 2021",
+                releaseDate = LocalDate.parse("1 Jan 2021"),
                 posterUrl = null
             )
         )
@@ -205,7 +206,7 @@ fun HomeContent(
             MovieSection(
                 title = section.sectionUiName,
                 sectionState = sectionState,
-                onReloadSection = { onReloadSection(HomeMovieSection.NOW_PLAYING) },
+                onReloadSection = { onReloadSection(section) },
                 onMovieClick = onMovieClick
             )
 

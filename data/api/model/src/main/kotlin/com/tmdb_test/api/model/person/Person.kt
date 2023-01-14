@@ -1,6 +1,8 @@
 package com.tmdb_test.api.model.person
 
 import com.tmdb_test.api.model.util.serializer.JsonKeys
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.serializers.LocalDateIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -39,7 +41,10 @@ data class Person(
     @SerialName("id") val id: Int? = null,
     @SerialName("name") val name: String? = null,
     @SerialName("also_known_as") val alsoKnownAs: List<String> = listOf(),
-    @SerialName("birthday") val birthday: String? = null,
+
+    @Serializable(with = LocalDateIso8601Serializer::class)
+    @SerialName("birthday") val birthday: LocalDate? = null,
+
     @SerialName("known_for_department") val knownForDepartment: String? = null,
     @SerialName("deathday") val deathDay: String? = null,
     @SerialName(JsonKeys.GENDER) val gender: PersonGender? = null,

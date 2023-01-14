@@ -1,13 +1,14 @@
 package com.tmdb_test.ui.home.data
 
 import com.tmdb_test.ui.util.data.UiState
+import kotlinx.datetime.LocalDate
 
 data class HomeUiData(val movieSections: Map<HomeMovieSection, UiState<List<Movie>>>) {
     data class Movie(
         val id: Int,
         val title: String,
         val averageVote: Double,
-        val releaseDate: String,
+        val releaseDate: LocalDate?,
         val posterUrl: String?
     )
 
