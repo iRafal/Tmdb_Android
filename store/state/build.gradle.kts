@@ -13,16 +13,14 @@ android {
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        targetSdk = Libs.BuildConfig.targetSdk
-
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

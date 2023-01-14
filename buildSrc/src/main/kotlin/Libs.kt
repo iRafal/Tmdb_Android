@@ -9,6 +9,12 @@ object Libs {
         const val minSdk = 26
         const val targetSdk = 33
 
+        const val isMinifyEnabledDebug = false
+        const val isMinifyEnabledRelease = false
+
+        const val isShrinkResourcesDebug = false
+        const val isShrinkResourcesRelease = false
+
         object CompileOptions {
             val sourceCompatibility = JavaVersion.VERSION_11
             val targetCompatibility = JavaVersion.VERSION_11

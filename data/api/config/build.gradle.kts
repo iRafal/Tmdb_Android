@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -6,11 +8,10 @@ plugins {
     id("kotlin-kapt")
 }
 
-val apiKey = if (hasProperty("api.key")) {
-    property("api.key").toString()
-} else {
-    throw IllegalStateException("""[api.key] property is missed""")
-}
+val apiProperties = Properties().apply { load(rootProject.file("api.properties").reader()) }
+val apiKey = apiProperties["api.key"].toString()
+val apiUrlBase = apiProperties["api.url.base"].toString()
+val apiUrlImage = apiProperties["api.url.image"].toString()
 
 android {
     namespace = "com.tmdb_test.api.config"
@@ -18,29 +19,19 @@ android {
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        targetSdk = Libs.BuildConfig.targetSdk
-
         consumerProguardFiles("consumer-rules.pro")
 
-        buildConfigField("String", "API_KEY", """"$apiKey"""")
-        buildConfigField(
-            "String",
-            "API_BASE_URL",
-            "\"https://api.themoviedb.org/3/\""
-        )
-        buildConfigField(
-            "String",
-            "API_IMAGE_URL",
-            "\"https://image.tmdb.org/t/p/\""
-        )
+        buildConfigField("String", "API_KEY", apiKey)
+        buildConfigField("String", "API_BASE_URL", apiUrlBase)
+        buildConfigField("String", "API_IMAGE_URL", apiUrlImage)
     }
 
     buildTypes {
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

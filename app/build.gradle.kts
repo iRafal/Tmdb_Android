@@ -28,12 +28,12 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
-            isShrinkResources = false
-            isMinifyEnabled = false
+            isShrinkResources = Libs.BuildConfig.isShrinkResourcesDebug
+            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
         }
         getByName("release") {
-            isShrinkResources = true
-            isMinifyEnabled = true
+            isShrinkResources = Libs.BuildConfig.isShrinkResourcesRelease
+            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
