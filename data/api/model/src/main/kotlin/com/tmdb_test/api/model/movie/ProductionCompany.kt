@@ -5,8 +5,10 @@ import kotlinx.serialization.Serializable
 
 /*
     {
-        "iso_3166_1": "US",
-        "name": "United States of America"
+        "id": 25,
+        "logo_path": "/qZCc1lty5FzX30aOCVRBLzaVmcp.png",
+        "name": "20th Century Fox",
+        "origin_country": "US"
     }
  */
 @Serializable

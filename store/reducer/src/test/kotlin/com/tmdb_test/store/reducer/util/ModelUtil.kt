@@ -2,7 +2,7 @@ package com.tmdb_test.store.reducer.util
 
 import com.tmdb_test.api.model.genre.Genre
 import com.tmdb_test.api.model.movie.Movie
-import com.tmdb_test.api.model.movie.MovieStatus.Released
+import com.tmdb_test.api.model.movie.MovieStatus.RELEASED
 import com.tmdb_test.api.model.movie.ProductionCompany
 import com.tmdb_test.api.model.movie.ProductionCountry
 import com.tmdb_test.api.model.movie.SpokenLanguage
@@ -55,7 +55,7 @@ object ModelUtil {
         revenue = 100853753,
         runtime = 139,
         spokenLanguages = listOf(SpokenLanguage(iso_639_1 = "en", name = "English")),
-        status = Released,
+        status = RELEASED,
         tagline = "How much can you know about yourself if you've never been in a fight?",
         title = "Fight Club",
         isVideo = false,
