@@ -56,4 +56,5 @@ dependencies {
 
     implementation(libs.bundles.data.api.config)
     kapt(libs.bundles.data.api.config.kapt)
+    testImplementation(libs.bundles.data.api.config.test)
 }

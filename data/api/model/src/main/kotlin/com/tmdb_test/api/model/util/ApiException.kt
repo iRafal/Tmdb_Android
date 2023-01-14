@@ -5,33 +5,33 @@ sealed class ApiException(
     override val message: String? = null
 ) : Throwable(message, cause) {
 
-    class NetworkError(
+    data class NetworkError(
         override val cause: Throwable? = null,
         override val message: String? = null
     ) : ApiException(cause, message)
 
-    class InternalServerError(
+    data class InternalServerError(
         override val cause: Throwable? = null,
         override val message: String? = null
     ) : ApiException(cause, message)
 
-    class Unauthorized(
+    data class Unauthorized(
         override val cause: Throwable? = null,
         override val message: String? = null
     ) : ApiException(cause, message)
 
-    class BadRequest(
+    data class BadRequest(
         override val cause: Throwable? = null,
         override val message: String? = null
     ) : ApiException(cause, message)
 
-    class HttpError(
+    data class HttpError(
         override val cause: Throwable? = null,
         override val message: String? = null,
         val code: Int
     ) : ApiException(cause, message)
 
-    class UnknownError(
+    data class UnknownError(
         override val cause: Throwable? = null,
         override val message: String? = null
     ) : ApiException(cause, message)

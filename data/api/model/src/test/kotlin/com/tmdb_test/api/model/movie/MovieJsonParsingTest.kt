@@ -4,7 +4,7 @@ import com.tmdb_test.api.model.data.DataPage
 import com.tmdb_test.api.model.data.DataPage.Dates
 import com.tmdb_test.api.model.di.UnitTestServiceLocator
 import com.tmdb_test.api.model.util.ModelUtil
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
 import org.junit.Assert.assertEquals
@@ -117,8 +117,8 @@ class MovieJsonParsingTest {
             page = 1,
             results = listOf(movieModel),
             dates = Dates(
-                maximum = LocalDate.of(2016, 9, 22),
-                minimum = LocalDate.of(2016, 9, 1),
+                maximum = LocalDate(2016, 9, 22),
+                minimum = LocalDate(2016, 9, 1),
             ),
             totalPages = 1,
             totalResults = 1,

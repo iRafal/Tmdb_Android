@@ -14,9 +14,3 @@ fun movieDataToHomeModelMapperImpl(): MovieDataToHomeModelMapper = { input ->
         posterUrl = input.posterUrl
     )
 }
-
-typealias MovieDataItemsToHomeModelMapper = (input: List<MovieDataModel>) -> List<HomeUiData.Movie>
-
-fun movieDataItemsToHomeModelMapperImpl(
-    movieDataToHomeModelMapper: MovieDataToHomeModelMapper
-): MovieDataItemsToHomeModelMapper = { input -> input.map { movieDataToHomeModelMapper(it) } }

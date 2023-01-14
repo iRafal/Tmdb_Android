@@ -339,6 +339,7 @@ data-source-remote-impl-test = [
     "mockito",
     "mockito-kotlin",
     "kotlin-coroutines-test",
+    "kotlinx-dateTime",
 ]
 
 #BUNDLES-DATA-SOURCE-REMOTE-IMPL-KTOR
@@ -357,6 +358,7 @@ data-source-remote-impl-ktor-test = [
     "mockito",
     "mockito-kotlin",
     "kotlin-coroutines-test",
+    "kotlinx-dateTime",
 ]
 
 #DATA-MODEL
@@ -378,6 +380,11 @@ data-api-config = [
 ]
 data-api-config-kapt = [
     "hilt-kapt",
+]
+data-api-config-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
 ]
 
 #BUNDLES-DATA-SOURCE-LOCAL-CONTRACT

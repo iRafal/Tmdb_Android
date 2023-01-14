@@ -8,6 +8,7 @@ import com.tmdb_test.api.model.movie.ProductionCountry
 import com.tmdb_test.api.model.movie.SpokenLanguage
 import com.tmdb_test.api.model.person.Person
 import com.tmdb_test.api.model.person.PersonGender.MALE
+import kotlinx.datetime.LocalDate
 
 object ModelUtil {
     val movieModel = Movie(
@@ -44,7 +45,7 @@ object ModelUtil {
                 name = "United States of America"
             )
         ),
-        releaseDate = "1999-10-12",
+        releaseDate = LocalDate.parse("1999-10-12"),
         revenue = 100853753,
         runtime = 139,
         spokenLanguages = listOf(SpokenLanguage(iso_639_1 = "en", name = "English")),
@@ -57,7 +58,7 @@ object ModelUtil {
     )
 
     val personModel = Person(
-        birthday = "1963-12-18",
+        birthday = LocalDate.parse("1963-12-18"),
         knownForDepartment = "Acting",
         deathDay = null,
         id = 287,

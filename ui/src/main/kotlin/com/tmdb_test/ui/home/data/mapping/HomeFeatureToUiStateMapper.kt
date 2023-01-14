@@ -17,7 +17,7 @@ fun homeFeatureToUiStateMapperImpl(
         val nowPlayingMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.nowPlayingMoviesState)
         val nowPopularMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.nowPopularMoviesState)
         val topRatedMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.topRatedMoviesState)
-        val upcomingMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.topRatedMoviesState)
+        val upcomingMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.upcomingMoviesState)
 
         HomeUiData(
             movieSections = mapOf(
