@@ -15,13 +15,11 @@ import dagger.hilt.components.SingletonComponent
 object MovieApiMappingModule {
 
     @Provides
-    @JvmStatic
     fun movieApiToDataModelMapper(
         imageUrlProvider: ImageUrlProvider
     ): MovieApiToDataModelMapper = movieApiToDataModelMapperImpl(imageUrlProvider)
 
     @Provides
-    @JvmStatic
     fun moviesApiToDataStateMapper(
         movieApiToDataModelMapper: @JvmSuppressWildcards MovieApiToDataModelMapper,
     ): @JvmSuppressWildcards MoviesApiToDataStateMapper = moviesApiToDataStateMapperImpl(movieApiToDataModelMapper)

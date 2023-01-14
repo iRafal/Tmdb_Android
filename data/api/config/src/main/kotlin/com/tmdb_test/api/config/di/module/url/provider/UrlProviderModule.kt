@@ -22,30 +22,25 @@ import javax.inject.Singleton
 object UrlProviderModule {
     @Provides
     @Singleton
-    @JvmStatic
     fun baseUrlProvider(impl: BaseUrlProviderImpl): BaseUrlProvider = impl
 
     @Provides
     @Singleton
-    @JvmStatic
     fun discoverUrlProvider(baseUrlProvider: BaseUrlProvider): DiscoverUrlProvider =
         DiscoverUrlProviderImpl(baseUrlProvider.discoverApiUrl)
 
     @Provides
     @Singleton
-    @JvmStatic
     fun genreUrlProvider(baseUrlProvider: BaseUrlProvider): GenreUrlProvider =
         GenreUrlProviderImpl(baseUrlProvider.genreApiUrl)
 
     @Provides
     @Singleton
-    @JvmStatic
     fun movieUrlProvider(baseUrlProvider: BaseUrlProvider): MovieUrlProvider =
         MovieUrlProviderImpl(baseUrlProvider.movieApiUrl)
 
     @Provides
     @Singleton
-    @JvmStatic
     fun personUrlProvider(baseUrlProvider: BaseUrlProvider): PersonUrlProvider =
         PersonUrlProviderImpl(baseUrlProvider.personApiUrl)
 }

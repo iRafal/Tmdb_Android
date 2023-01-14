@@ -12,7 +12,6 @@ import dagger.hilt.components.SingletonComponent
 object AppEnvModule {
 
     @Provides
-    @JvmStatic
     fun appEnv(appNetwork: AppEnv.Network, appDatabase: AppEnv.Database): AppEnv =
         createAppEnvImpl(appNetwork, appDatabase)
 }

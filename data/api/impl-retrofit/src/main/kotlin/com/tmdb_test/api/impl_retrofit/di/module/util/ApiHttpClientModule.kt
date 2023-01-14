@@ -33,12 +33,10 @@ object ApiHttpClientModule {
 
     @InterceptorResponse
     @Provides
-    @JvmStatic
     fun apiResponseInterceptor(): Interceptor = ApiResponseInterceptor()
 
     @InterceptorLogging
     @Provides
-    @JvmStatic
     fun loggingInterceptor(): Interceptor = loggingInterceptor(BODY)
 
     private fun loggingInterceptor(
@@ -47,7 +45,6 @@ object ApiHttpClientModule {
 
     @InterceptorRequest
     @Provides
-    @JvmStatic
     fun requestInterceptor(): Interceptor {
         return requestInterceptor(apiKeyKey = "api_key", apiKeyValue = BuildConfig.API_KEY)
     }
@@ -72,7 +69,6 @@ object ApiHttpClientModule {
 
     @OkHttpClientRetrofit
     @Provides
-    @JvmStatic
     fun okHttpClient(
         @InterceptorLogging loggingInterceptor: Interceptor,
         @InterceptorRequest requestInterceptor: Interceptor,

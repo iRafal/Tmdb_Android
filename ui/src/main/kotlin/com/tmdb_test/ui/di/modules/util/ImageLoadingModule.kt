@@ -28,7 +28,6 @@ object ImageLoadingModule {
     @Provides
     @InterceptorCoil
     @Singleton
-    @JvmStatic
     fun coilLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply { level = BODY }
 
     @Qualifier
@@ -38,7 +37,6 @@ object ImageLoadingModule {
     @OkHttpClientCoil
     @Provides
     @Singleton
-    @JvmStatic
     fun coilOkkHttpClient(@InterceptorCoil coilLoggingInterceptor: Interceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(coilLoggingInterceptor)
@@ -46,12 +44,10 @@ object ImageLoadingModule {
 
     @Provides
     @Singleton
-    @JvmStatic
     fun coilLogger(): Logger = createCoilLogger()
 
     @Provides
     @Singleton
-    @JvmStatic
     fun coilImageLoader(
         @ApplicationContext context: Context,
         @OkHttpClientCoil coilOkkHttpClient: OkHttpClient,

@@ -17,7 +17,6 @@ import dagger.hilt.components.SingletonComponent
 object AppNetworkModule {
 
     @Provides
-    @JvmStatic
     fun appNetwork(
         discoverSource: DiscoverRemoteDataSource,
         genreSource: GenreRemoteDataSource,

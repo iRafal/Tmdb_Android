@@ -10,13 +10,7 @@ data class AppState(
     val movieDetailsState: MovieDetailsFeatureState
 ) {
     companion object {
-        fun createInitialState(
-            homeState: HomeFeatureState,
-            movieDetailsState: MovieDetailsFeatureState
-        ) = AppState(
-            homeState,
-            movieDetailsState
-        )
+        fun createInitialState() = INITIAL
 
         @VisibleForTesting
         val INITIAL = AppState(

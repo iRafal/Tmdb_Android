@@ -20,7 +20,6 @@ object DispatchersModule {
     @DispatcherIo
     @Provides
     @Singleton
-    @JvmStatic
     fun ioDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Qualifier
@@ -30,7 +29,6 @@ object DispatchersModule {
     @DispatcherMain
     @Provides
     @Singleton
-    @JvmStatic
     fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
     @Qualifier
@@ -40,7 +38,6 @@ object DispatchersModule {
     @DispatcherDefault
     @Provides
     @Singleton
-    @JvmStatic
     fun defaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
     @Qualifier
@@ -50,6 +47,5 @@ object DispatchersModule {
     @DispatcherUnconfined
     @Provides
     @Singleton
-    @JvmStatic
     fun unconfinedDispatcher(): CoroutineDispatcher = Dispatchers.Unconfined
 }

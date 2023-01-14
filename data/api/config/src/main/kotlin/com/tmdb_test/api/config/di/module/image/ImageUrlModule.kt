@@ -15,7 +15,6 @@ import javax.inject.Singleton
 object ImageUrlModule {
 
     @Provides
-    @JvmStatic
     @Singleton
     fun imageUrlProvider(baseUrlProvider: BaseUrlProvider): ImageUrlProvider =
         ImageUrlProviderImpl(baseUrlProvider.apiImageUrl)

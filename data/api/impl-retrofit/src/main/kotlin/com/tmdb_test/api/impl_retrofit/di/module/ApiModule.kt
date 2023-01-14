@@ -23,7 +23,6 @@ import retrofit2.Retrofit
 object ApiModule {
 
     @Provides
-    @JvmStatic
     fun discoverApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
@@ -40,7 +39,6 @@ object ApiModule {
     )
 
     @Provides
-    @JvmStatic
     fun genreApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
@@ -57,7 +55,6 @@ object ApiModule {
     )
 
     @Provides
-    @JvmStatic
     fun movieApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
@@ -74,7 +71,6 @@ object ApiModule {
     )
 
     @Provides
-    @JvmStatic
     fun personApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,

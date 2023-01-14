@@ -20,30 +20,6 @@ object StoreStateModule {
 
     @Provides
     @Singleton
-    @JvmStatic
     @InitialAppState
-    fun initialAppState(
-        @InitialHomeFeatureState homeState: HomeFeatureState,
-        @InitialMovieDetailsFeatureState movieDetailsState: MovieDetailsFeatureState
-    ): AppState = AppState.createInitialState(homeState, movieDetailsState)
-
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
-    annotation class InitialHomeFeatureState
-
-    @Provides
-    @Singleton
-    @JvmStatic
-    @InitialHomeFeatureState
-    fun initialHomeFeatureState(): HomeFeatureState = HomeFeatureState.INITIAL
-
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
-    annotation class InitialMovieDetailsFeatureState
-
-    @Provides
-    @Singleton
-    @JvmStatic
-    @InitialMovieDetailsFeatureState
-    fun initialMovieDetailsFeatureState(): MovieDetailsFeatureState = MovieDetailsFeatureState.INITIAL
+    fun initialAppState(): AppState = AppState.createInitialState()
 }

@@ -21,7 +21,6 @@ import kotlinx.serialization.json.Json
 object KtorApiUtilModule {
 
     @Provides
-    @JvmStatic
     @Singleton
     fun getKtorHttpClient(
         json: Json,
@@ -36,15 +35,12 @@ object KtorApiUtilModule {
     )
 
     @Provides
-    @JvmStatic
     fun ktorApiLogger(): Logger = ktorLogger()
 
     @Provides
-    @JvmStatic
     fun apiErrorMapper(): @JvmSuppressWildcards ApiErrorMapper = apiErrorMapper
 
     @Provides
-    @JvmStatic
     fun json() = Json {
         ignoreUnknownKeys = true
         prettyPrint = true
