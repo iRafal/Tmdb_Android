@@ -461,13 +461,11 @@ store-base = [
 #BUNDLES-STORE-ACTION
 store-action = [
     "kotlin-stdLib",
-    "kotlin-coroutines-core",
 ]
 
 #BUNDLES-STORE-FEATURE
 store-feature = [
     "kotlin-stdLib",
-    "kotlin-coroutines-core",
 ]
 
 #BUNDLES-STORE-ENV
@@ -511,8 +509,6 @@ store-reducer-test = [
 #BUNDLES-STORE-STATE
 store-state = [
     "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
     #
     "hilt-android",
 ]
