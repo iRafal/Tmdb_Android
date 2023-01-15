@@ -372,6 +372,9 @@ data-model = [
 data-model-kapt = [
     "hilt-kapt",
 ]
+data-model-test = [
+    "junit",
+]
 
 #BUNDLES-DATA-API-CONFIG
 data-api-config = [

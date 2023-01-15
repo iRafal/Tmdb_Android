@@ -2,7 +2,6 @@ plugins {
     id("java-library")
     id("kotlin")
     id("org.jetbrains.kotlin.jvm")
-    id("kotlinx-serialization")
 }
 
 sourceSets {

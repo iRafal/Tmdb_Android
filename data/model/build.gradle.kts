@@ -41,10 +41,10 @@ android {
     }
 }
 
-
 dependencies {
     implementation(project(":data:api:model"))
     implementation(project(":data:api:config"))
     implementation(libs.bundles.data.model)
     kapt(libs.bundles.data.model.kapt)
+    testImplementation(libs.bundles.data.model.test)
 }
