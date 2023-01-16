@@ -2,7 +2,7 @@ package com.tmdb_test.data.model.mapping
 
 import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.api.model.util.NetworkErrorModel
-import com.tmdb_test.data.model.DataState
+import com.tmdb_test.data.model.state.DataState
 
 
 internal fun <T : Any, E : NetworkErrorModel, R> ApiResponse<T, E>.mapApiToDataState(

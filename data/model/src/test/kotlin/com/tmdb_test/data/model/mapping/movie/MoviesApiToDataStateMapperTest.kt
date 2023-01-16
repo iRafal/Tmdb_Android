@@ -7,8 +7,8 @@ import com.tmdb_test.api.model.movie.Movie
 import com.tmdb_test.api.model.util.ApiException
 import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.api.model.util.NetworkErrorModel
-import com.tmdb_test.data.model.DataState
-import com.tmdb_test.data.model.MovieDataModel
+import com.tmdb_test.data.model.state.DataState
+import com.tmdb_test.data.model.movie.MovieDataModel
 import com.tmdb_test.data.model.util.ModelUtil
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -5,8 +5,8 @@ import com.tmdb_test.api.model.movie.Movie
 import com.tmdb_test.api.model.util.ApiException
 import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.api.model.util.NetworkErrorModel
-import com.tmdb_test.data.model.DataState
-import com.tmdb_test.data.model.MovieDataModel
+import com.tmdb_test.data.model.state.DataState
+import com.tmdb_test.data.model.movie.MovieDataModel
 import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
@@ -22,7 +22,6 @@ import com.tmdb_test.store.state.FeatureState.Success
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
 import org.junit.Test

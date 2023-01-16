@@ -14,11 +14,6 @@ android {
         minSdk = Libs.BuildConfig.minSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += "room.schemaLocation" to "$projectDir/schemas"
-            }
-        }
     }
 
     buildTypes {
@@ -44,8 +39,6 @@ android {
     sourceSets {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
-
-        getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
 }
 
@@ -54,10 +47,4 @@ dependencies {
     kapt(libs.bundles.data.source.local.impl.kapt)
     testImplementation(libs.bundles.data.source.local.impl.test)
     androidTestImplementation(libs.bundles.data.source.local.impl.test.android)
-}
-
-kapt{
-    arguments {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
 }

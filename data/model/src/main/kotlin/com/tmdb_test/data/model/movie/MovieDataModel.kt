@@ -1,4 +1,4 @@
-package com.tmdb_test.data.model
+package com.tmdb_test.data.model.movie
 
 import kotlinx.datetime.LocalDate
 

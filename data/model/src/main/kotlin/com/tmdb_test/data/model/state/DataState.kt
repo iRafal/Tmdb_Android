@@ -1,4 +1,4 @@
-package com.tmdb_test.data.model
+package com.tmdb_test.data.model.state
 
 
 sealed interface DataState<T> {

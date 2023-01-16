@@ -19,6 +19,9 @@
             <option value="$PROJECT_DIR$/data/api/impl-ktor" />
             <option value="$PROJECT_DIR$/data/api/impl-retrofit" />
             <option value="$PROJECT_DIR$/data/api/model" />
+            <option value="$PROJECT_DIR$/data/db" />
+            <option value="$PROJECT_DIR$/data/db/realm" />
+            <option value="$PROJECT_DIR$/data/db/room" />
             <option value="$PROJECT_DIR$/data/model" />
             <option value="$PROJECT_DIR$/data/source" />
             <option value="$PROJECT_DIR$/data/source/local" />

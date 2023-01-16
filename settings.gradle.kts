@@ -37,3 +37,5 @@ include(":ui")
 
 include(":util")
 include(":data:source:remote:impl-ktor")
+include(":data:db:room")
+include(":data:db:realm")

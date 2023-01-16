@@ -1,7 +1,7 @@
 package com.tmdb_test.store.state.home
 
 import androidx.annotation.VisibleForTesting
-import com.tmdb_test.data.model.MovieDataModel
+import com.tmdb_test.data.model.movie.MovieDataModel
 import com.tmdb_test.store.state.FeatureState
 
 
