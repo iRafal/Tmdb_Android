@@ -4,8 +4,6 @@ import com.tmdb_test.store.app.AppStore
 import com.tmdb_test.store.app.AppStoreImpl
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.reducer.AppReducer
-import com.tmdb_test.store.reducer.createAppReducer
-import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.state.di.modules.StoreStateModule.InitialAppState
 import com.tmdb_test.utill.di.modules.DispatchersModule.DispatcherIo
@@ -33,8 +31,4 @@ object AppStoreModule {
         appReducer,
         effectContext = dispatcher
     )
-
-    @Provides
-    fun appReducer(homeFeatureSlice: HomeFeatureSlice): AppReducer =
-        createAppReducer(homeFeatureSlice)
 }
