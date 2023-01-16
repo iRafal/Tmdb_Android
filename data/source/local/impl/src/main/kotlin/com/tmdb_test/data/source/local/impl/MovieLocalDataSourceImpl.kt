@@ -7,6 +7,8 @@ import com.tmdb_test.data.source.local.impl.movie.data.mapping.MovieDataModelToE
 import com.tmdb_test.data.source.local.impl.movie.data.mapping.MovieEntityToDataModelMapper
 import com.tmdb_test.data.source.remote.contract.MovieLocalDataSource
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class MovieLocalDataSourceImpl @Inject constructor(
     private val movieDao: MovieDao,
@@ -135,5 +137,21 @@ class MovieLocalDataSourceImpl @Inject constructor(
             }
         }
         movieDao.insert(mergedItemsList)
+    }
+
+    override suspend fun delete(movie: MovieDataModel) {
+        movieDao.delete(movieDataModelToEntityMapper(movie))
+    }
+
+    override fun observeAll(): Flow<List<MovieDataModel>> {
+        return movieDao.observeAll().map { it.map(movieEntityToDataModelMapper) }
+    }
+
+    override suspend fun getAll(): List<MovieDataModel> {
+        return movieDao.getAll().map(movieEntityToDataModelMapper)
+    }
+
+    override suspend fun getById(id: Int): MovieDataModel? {
+        return movieDao.getById(id)?.let { movieEntityToDataModelMapper(it) }
     }
 }

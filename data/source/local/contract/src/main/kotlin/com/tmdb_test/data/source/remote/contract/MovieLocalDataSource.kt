@@ -1,6 +1,7 @@
 package com.tmdb_test.data.source.remote.contract
 
 import com.tmdb_test.data.model.movie.MovieDataModel
+import kotlinx.coroutines.flow.Flow
 
 interface MovieLocalDataSource {
 
@@ -36,4 +37,12 @@ interface MovieLocalDataSource {
         topRatedMovies: List<MovieDataModel> = listOf(),
         upcomingMovies: List<MovieDataModel> = listOf()
     )
+
+    suspend fun delete(movie: MovieDataModel)
+
+    fun observeAll(): Flow<List<MovieDataModel>>
+
+    suspend fun getAll(): List<MovieDataModel>
+
+    suspend fun getById(id: Int): MovieDataModel?
 }
