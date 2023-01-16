@@ -9,7 +9,6 @@ import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.feature.home.HomeFeature
 import com.tmdb_test.utill.di.modules.DispatchersModule.DispatcherIo
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
