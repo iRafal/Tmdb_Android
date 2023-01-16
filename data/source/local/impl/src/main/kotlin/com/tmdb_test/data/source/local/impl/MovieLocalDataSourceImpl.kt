@@ -122,17 +122,12 @@ class MovieLocalDataSourceImpl @Inject constructor(
         val groupedByIdItems = allItems.groupBy { it.id }
         groupedByIdItems.forEach { (_, list) ->
             if (list.isNotEmpty()) {
-                var mergedItem = list.first()
-                list.forEach {
-                    if (it != mergedItem) {
-                        mergedItem = mergedItem.copy(
-                            isNowPlaying = if (it.isNowPlaying) true else mergedItem.isNowPlaying,
-                            isNowPopular = if (it.isNowPopular) true else mergedItem.isNowPopular,
-                            isTopRated = if (it.isTopRated) true else mergedItem.isTopRated,
-                            isUpcoming = if (it.isUpcoming) true else mergedItem.isUpcoming,
-                        )
-                    }
-                }
+                val mergedItem = list.first().copy(
+                    isNowPlaying = list.any { it.isNowPlaying },
+                    isNowPopular = list.any { it.isNowPopular },
+                    isTopRated = list.any { it.isTopRated },
+                    isUpcoming = list.any { it.isUpcoming },
+                )
                 mergedItemsList += mergedItem
             }
         }
