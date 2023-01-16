@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":store:state"))
     implementation(project(":data:source:remote:contract"))
     implementation(project(":data:model"))
+    implementation(project(":util"))
 
     implementation(libs.bundles.store.reducer)
     kapt(libs.bundles.store.reducer.kapt)

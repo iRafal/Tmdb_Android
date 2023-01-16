@@ -6,11 +6,14 @@ import com.tmdb_test.data.model.MovieDataModel
 import com.tmdb_test.store.action.home.HomeAction
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
+import com.tmdb_test.store.reducer.home.HomeFeatureEffects
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.reducer.home.HomeFeatureSliceImpl
 import com.tmdb_test.store.reducer.util.ModelUtil
 import com.tmdb_test.store.state.AppState
 import com.tmdb_test.store.state.FeatureState
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -20,6 +23,8 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieSectionsLoadedReducerTest {
+
+    private val testDispatcher: CoroutineDispatcher = Dispatchers.Unconfined
 
     @Test
     fun `reduce movie sections loaded success`() = runTest {
@@ -43,9 +48,11 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataSuccessMovies,
         )
 
+        val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataSuccessMovies },
             moviesDataToFeatureStateMapper = { FeatureState.Success(dataMovies) },
+            homeFeatureEffects
         )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(appState, action)
@@ -95,11 +102,13 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataNetworkErrorMovies,
         )
 
+        val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataNetworkErrorMovies },
             moviesDataToFeatureStateMapper = {
                 FeatureState.NetworkError(ApiException.NetworkError())
             },
+            homeFeatureEffects
         )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
@@ -148,9 +157,11 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataApiErrorMovies,
         )
 
+        val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataApiErrorMovies },
             moviesDataToFeatureStateMapper = { FeatureState.Error(ApiException.BadRequest()) },
+            homeFeatureEffects
         )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
@@ -191,9 +202,11 @@ class MovieSectionsLoadedReducerTest {
             upcomingMovies = dataUnknownErrorMovies,
         )
 
+        val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
             moviesApiToDataStateMapper = { dataUnknownErrorMovies },
             moviesDataToFeatureStateMapper = { FeatureState.Error(ApiException.UnknownError()) },
+            homeFeatureEffects
         )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(

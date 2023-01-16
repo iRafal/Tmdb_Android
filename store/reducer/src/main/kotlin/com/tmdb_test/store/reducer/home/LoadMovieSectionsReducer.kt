@@ -10,7 +10,8 @@ import com.tmdb_test.store.state.home.HomeFeatureState
 
 fun HomeFeatureState.reduceLoadMovieSections(
     action: HomeAction.LoadMovieSections,
-    mapper: MoviesApiToDataStateMapper
+    mapper: MoviesApiToDataStateMapper,
+    homeFeatureEffects: HomeFeatureEffects
 ): Pair<HomeFeatureState, Effect<AppEnv>?> {
     val newState = this.copy(
         nowPlayingMoviesState = FeatureState.Loading(),
@@ -18,5 +19,5 @@ fun HomeFeatureState.reduceLoadMovieSections(
         topRatedMoviesState = FeatureState.Loading(),
         upcomingMoviesState = FeatureState.Loading(),
     )
-    return newState to HomeFeatureEffects.loadMovieSections(mapper)
+    return newState to homeFeatureEffects.loadMovieSections(mapper)
 }

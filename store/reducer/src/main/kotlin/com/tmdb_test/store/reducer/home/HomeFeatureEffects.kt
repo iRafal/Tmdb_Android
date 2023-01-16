@@ -7,16 +7,18 @@ import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.Effects
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.feature.home.HomeFeature
+import com.tmdb_test.utill.di.modules.DispatchersModule.DispatcherIo
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 
-object HomeFeatureEffects {
+class HomeFeatureEffects(@DispatcherIo private val dispatcher: CoroutineDispatcher) {
     fun loadMovieSections(
         mapper: MoviesApiToDataStateMapper
     ) = mainEffect {
-        withContext(Dispatchers.IO) {
+        withContext(dispatcher) {
             val nowPlayingMovies = async { env.network.movieSource.nowPlayingMovies() }.await()
             val nowPopularMovies = async { env.network.movieSource.nowPopularMovies() }.await()
             val topRatedMovies = async { env.network.movieSource.topRatedMovies() }.await()
