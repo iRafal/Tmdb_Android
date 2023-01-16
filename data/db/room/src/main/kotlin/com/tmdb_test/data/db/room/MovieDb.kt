@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.tmdb_test.data.db.room.MovieDbMigrations.MIGRATION_1_2
 import com.tmdb_test.data.db.room.movie.MovieDao
 import com.tmdb_test.data.db.room.movie.MovieEntity
 import com.tmdb_test.data.db.room.type.converters.LocalDateConverter
@@ -12,7 +13,7 @@ import com.tmdb_test.data.db.room.type.converters.LocalDateTimeConverter
 
 @Database(
     entities = [MovieEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(
@@ -31,7 +32,7 @@ abstract class MovieDb : RoomDatabase() {
         fun getInstance(context: Context): MovieDb = getDbBuilder(context, DB_NAME).build()
 
         fun getInMemoryDbBuilder(context: Context): Builder<MovieDb> =
-            Room.inMemoryDatabaseBuilder(context, MovieDb::class.java)
+            Room.inMemoryDatabaseBuilder(context, MovieDb::class.java).addMigrations(MIGRATION_1_2)
 
         fun getInMemoryDb(context: Context): MovieDb = getInMemoryDbBuilder(context).build()
     }

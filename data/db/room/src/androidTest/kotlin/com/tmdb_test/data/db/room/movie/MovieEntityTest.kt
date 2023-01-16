@@ -46,7 +46,7 @@ class MovieEntityTest {
     lateinit var dispatcher: TestDispatcher
 
     private val movieEntity = ModelUtil.movieEntity
-    private val movieId = checkNotNull(ModelUtil.movieEntity.id)
+    private val movieId = ModelUtil.movieId
 
     @Before
     fun setup() {
