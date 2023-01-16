@@ -12,6 +12,6 @@ fun movieApiToDataModelMapperImpl(imageUrlProvider: ImageUrlProvider): MovieApiT
             title = input.title,
             voteAverage = input.voteAverage,
             releaseDate = input.releaseDate,
-            posterUrl = input.posterPath?.let { imageUrlProvider.posterUrl(it) }
+            posterUrl = input.posterPath?.let { imageUrlProvider.posterUrl(it) },
         )
     }

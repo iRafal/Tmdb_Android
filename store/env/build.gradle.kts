@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":data:source:remote:contract"))
+    implementation(project(":data:source:local:contract"))
 
     implementation(libs.bundles.store.env)
     kapt(libs.bundles.store.env.kapt)

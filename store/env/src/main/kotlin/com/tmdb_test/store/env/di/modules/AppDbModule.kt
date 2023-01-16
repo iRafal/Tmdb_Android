@@ -1,5 +1,6 @@
 package com.tmdb_test.store.env.di.modules
 
+import com.tmdb_test.data.source.remote.contract.MovieLocalDataSource
 import com.tmdb_test.store.env.AppEnv
 import com.tmdb_test.store.env.createAppDbEnvImpl
 import dagger.Module
@@ -13,5 +14,6 @@ import dagger.hilt.components.SingletonComponent
 object AppDbModule {
 
     @Provides
-    fun appDatabase(): AppEnv.Database = createAppDbEnvImpl()
+    fun appDatabase(movieSource: MovieLocalDataSource): AppEnv.Database =
+        createAppDbEnvImpl(movieSource)
 }

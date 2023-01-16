@@ -1,5 +1,6 @@
 package com.tmdb_test.store.env
 
+import com.tmdb_test.data.source.remote.contract.MovieLocalDataSource
 import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
@@ -9,7 +10,6 @@ interface AppEnv {
     val network: Network
     val database: Database
 
-
     interface Network {
         val discoverSource: DiscoverRemoteDataSource
         val genreSource: GenreRemoteDataSource
@@ -17,5 +17,7 @@ interface AppEnv {
         val personSource: PersonRemoteDataSource
     }
 
-    interface Database
+    interface Database {
+        val movieSource: MovieLocalDataSource
+    }
 }
