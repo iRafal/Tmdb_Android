@@ -10,13 +10,25 @@ interface MovieDao {
 
     suspend fun getAll(): List<MovieEntity>
 
-    suspend fun nowPlayingMovies(): List<MovieEntity>
+    suspend fun nowPlayingMovies(
+        page: Int? = null,
+        pageSize: Int? = null,
+    ): List<MovieEntity>
 
-    suspend fun nowPopularMovies(): List<MovieEntity>
+    suspend fun nowPopularMovies(
+        page: Int? = null,
+        pageSize: Int? = null,
+    ): List<MovieEntity>
 
-    suspend fun topRatedMovies(): List<MovieEntity>
+    suspend fun topRatedMovies(
+        page: Int? = null,
+        pageSize: Int? = null,
+    ): List<MovieEntity>
 
-    suspend fun upcomingMovies(): List<MovieEntity>
+    suspend fun upcomingMovies(
+        page: Int? = null,
+        pageSize: Int? = null,
+    ): List<MovieEntity>
 
     suspend fun getById(id: Int): MovieEntity?
 
