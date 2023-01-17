@@ -411,11 +411,9 @@ data-source-local-impl = [
     #
     "kotlinx-dateTime"
 ]
-
 data-source-local-impl-kapt = [
     "hilt-kapt",
 ]
-
 data-source-local-impl-test = [
     "junit",
     "mockito",
@@ -428,6 +426,38 @@ data-source-local-impl-test = [
     "kotlinx-dateTime"
 ]
 data-source-local-impl-test-android = [
+    "junit-android-ext",
+    "espresso",
+    "kotlin-coroutines-test",
+    "hilt-test",
+    "hilt-kapt",
+]
+
+#BUNDLES-DATA-SOURCE-LOCAL-IMPL-REALM
+data-source-local-impl-realm = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+    #
+    "kotlinx-dateTime"
+]
+data-source-local-impl-realm-kapt = [
+    "hilt-kapt",
+]
+data-source-local-impl-realm-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    #
+    "kotlin-coroutines-test",
+    #
+    "hilt-test",
+    #
+    "kotlinx-dateTime"
+]
+data-source-local-impl-realm-test-android = [
     "junit-android-ext",
     "espresso",
     "kotlin-coroutines-test",
