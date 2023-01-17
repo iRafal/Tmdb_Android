@@ -4,7 +4,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-//    id("realm-android")
+    id("realm-android")
 }
 
 android {
@@ -49,7 +49,3 @@ dependencies {
     testImplementation(libs.bundles.data.db.realm.test)
     androidTestImplementation(libs.bundles.data.db.realm.test.android)
 }
-
-//realm {
-//    isSyncEnabled = false // Atlas Device Sync
-//}

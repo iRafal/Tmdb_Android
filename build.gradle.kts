@@ -11,7 +11,7 @@ buildscript {
         classpath(libs.kotlin.gradle)
         classpath(libs.kotlin.serialization)
         classpath(libs.hilt.plugin)
-//        classpath(libs.realm.plugin)
+        classpath(libs.realm.plugin)
     }
 }
 

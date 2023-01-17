@@ -2,7 +2,7 @@
 
 gradle = "7.4.0"
 
-realm-plugin = "10.11.1"
+realm-plugin = "10.13.0" # https://github.com/realm/realm-java
 
 # https://mvnrepository.com/artifact/com.google.dagger/hilt-android
 # https://dagger.dev/hilt/gradle-setup.html
@@ -487,7 +487,9 @@ data-db-realm = [
     #
     "hilt-android",
     #
-#    "realm-plugin"
+    "realm-plugin",
+    #
+    "kotlinx-dateTime"
 ]
 data-db-realm-kapt = [
     "hilt-kapt",
