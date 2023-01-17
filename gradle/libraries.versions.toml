@@ -494,6 +494,12 @@ data-db-realm = [
 data-db-realm-kapt = [
     "hilt-kapt",
 ]
+data-db-realm-kapt-test = [
+    "hilt-kapt"
+]
+data-db-realm-kapt-test-android = [
+    "hilt-kapt"
+]
 data-db-realm-test = [
     "junit",
     "mockito",
@@ -502,6 +508,8 @@ data-db-realm-test = [
     "kotlin-coroutines-test",
     #
     "hilt-test",
+    #
+    "kotlinx-dateTime",
 ]
 data-db-realm-test-android = [
     "junit-android-ext",
@@ -509,6 +517,8 @@ data-db-realm-test-android = [
     "kotlin-coroutines-test",
     "hilt-test",
     "hilt-kapt",
+    "kotlinx-dateTime",
+    "realm-plugin",
 ]
 
 #BUNDLES-STORE

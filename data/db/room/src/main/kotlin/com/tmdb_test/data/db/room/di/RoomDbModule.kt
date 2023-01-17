@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RoomDbModule {
+object RoomDbModule {
     @Provides
     @Singleton
     fun dataBase(@ApplicationContext appContext: Context): MovieDb = MovieDb.getInstance(appContext)

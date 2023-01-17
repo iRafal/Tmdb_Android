@@ -8,13 +8,14 @@ import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import javax.inject.Singleton
 
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
     replaces = [RoomDbModule::class]
 )
-class TestRoomDbModule {
+object TestRoomDbModule {
 
     @Provides
     fun inMemoryDb(@ApplicationContext context: Context): MovieDb = MovieDb.getInMemoryDb(context)

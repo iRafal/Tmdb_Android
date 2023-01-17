@@ -1,4 +1,4 @@
-package com.tmdb_test.data.db.room.di
+package com.tmdb_test.data.db.realm.di
 
 import com.tmdb_test.utill.di.modules.DispatchersModule
 import dagger.Module

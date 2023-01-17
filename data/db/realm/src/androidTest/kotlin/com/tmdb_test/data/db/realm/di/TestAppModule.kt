@@ -1,4 +1,4 @@
-package com.tmdb_test.data.db.room.di
+package com.tmdb_test.data.db.realm.di
 
 import android.app.Instrumentation
 import android.content.Context
