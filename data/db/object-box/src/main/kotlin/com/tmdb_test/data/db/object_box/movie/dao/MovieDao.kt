@@ -1,6 +1,6 @@
-package com.tmdb_test.data.db.realm.movie.dao
+package com.tmdb_test.data.db.object_box.movie.dao
 
-import com.tmdb_test.data.db.realm.movie.MovieEntity
+import com.tmdb_test.data.db.object_box.movie.MovieEntity
 import kotlinx.coroutines.flow.Flow
 
 interface MovieDao {

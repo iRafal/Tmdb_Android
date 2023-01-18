@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/data/api/impl-retrofit" />
             <option value="$PROJECT_DIR$/data/api/model" />
             <option value="$PROJECT_DIR$/data/db" />
+            <option value="$PROJECT_DIR$/data/db/object-box" />
             <option value="$PROJECT_DIR$/data/db/realm" />
             <option value="$PROJECT_DIR$/data/db/room" />
             <option value="$PROJECT_DIR$/data/model" />

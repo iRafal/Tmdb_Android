@@ -121,7 +121,7 @@ class MovieLocalSourceTest {
     }
 
     @Test
-    fun `get movies by id success`() = runTest {
+    fun `get movie by id success`() = runTest {
         `when`(movieDao.getById(movieId)).thenReturn(movieEntity)
         `when`(movieEntityToDataModelMapper.invoke(movieEntity)).thenReturn(movieDataModel)
         movieLocalSource.getById(movieId).also { result ->
@@ -132,7 +132,7 @@ class MovieLocalSourceTest {
     }
 
     @Test
-    fun `get movies by id returns null`() = runTest {
+    fun `get movie by id returns null`() = runTest {
         `when`(movieDao.getById(movieId)).thenReturn(null)
         movieLocalSource.getById(movieId).also { result ->
             assertNull(result)
@@ -142,7 +142,7 @@ class MovieLocalSourceTest {
     }
 
     @Test
-    fun `get movies by id failure`() = runTest {
+    fun `get movie by id failure`() = runTest {
         val exception = IllegalStateException("Failed to get movies with id: $movieId")
         `when`(movieDao.getById(movieId)).thenThrow(exception)
 
