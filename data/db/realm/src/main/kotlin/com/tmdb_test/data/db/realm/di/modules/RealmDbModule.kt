@@ -1,7 +1,7 @@
 package com.tmdb_test.data.db.realm.di.modules
 
 import android.content.Context
-import com.tmdb_test.data.db.realm.di.RealmDbInjection
+import com.tmdb_test.data.db.realm.di.MoviesRealmDbConfig
 import com.tmdb_test.data.db.realm.movie.dao.MovieDao
 import com.tmdb_test.data.db.realm.movie.dao.MovieDaoImpl
 import dagger.Module
@@ -21,8 +21,8 @@ object RealmDbModule {
     fun providesRealmConfig(
         @ApplicationContext applicationContext: Context,
     ): RealmConfiguration {
-        RealmDbInjection.init(applicationContext)
-        return RealmDbInjection.realmConfig()
+        MoviesRealmDbConfig.initRealm(applicationContext)
+        return MoviesRealmDbConfig.realmConfig()
     }
 
     @Provides

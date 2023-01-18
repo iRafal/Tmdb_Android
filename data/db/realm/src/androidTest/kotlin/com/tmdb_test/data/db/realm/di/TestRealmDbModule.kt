@@ -25,8 +25,8 @@ object TestRealmDbModule {
     fun providesRealmConfig(
         @ApplicationContext applicationContext: Context,
     ): RealmConfiguration {
-        RealmDbInjection.init(applicationContext)
-        return RealmDbInjection.realmTestConfig()
+        MoviesRealmDbConfig.initRealm(applicationContext)
+        return MoviesRealmDbConfig.realmTestConfig()
     }
 
     @Provides
