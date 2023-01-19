@@ -44,5 +44,4 @@ dependencies {
     kapt(libs.bundles.data.db.objectBox.kapt)
     kaptTest(libs.bundles.data.db.objectBox.kapt.test)
     testImplementation(libs.bundles.data.db.objectBox.test)
-    debugImplementation(libs.objectBox.browser)
 }
