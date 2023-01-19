@@ -24,6 +24,23 @@ class MovieDaoTest : BaseObjectBoxTest() {
     }
 
     @Test
+    fun `insert duplicate`() = runTest {
+        val input = ModelUtil.movieEntity
+        movieDao.insert(input)
+
+        movieDao.getAll().run {
+            assertTrue(this.size == 1)
+            assertEquals(input.movieId, this.first().movieId)
+        }
+
+        movieDao.insert(input)
+        movieDao.getAll().run {
+            assertTrue(this.size == 1)
+            assertEquals(input.movieId, this.first().movieId)
+        }
+    }
+
+    @Test
     fun `observe all movies success`() = runTest {
         val expected = listOf(ModelUtil.movieEntity)
         movieDao.insert(expected)
