@@ -48,7 +48,7 @@ class AndroidReleaseLogcatLogger(
 
         // Tag length limit was removed in API 26.
         val trimmedTag =
-            if (tag.length <= MAX_TAG_LENGTH || Build.VERSION.SDK_INT >= 26) tag
+            if (tag.length <= MAX_TAG_LENGTH) tag
             else tag.substring(0, MAX_TAG_LENGTH)
 
         if (message.length < MAX_LOG_LENGTH) {

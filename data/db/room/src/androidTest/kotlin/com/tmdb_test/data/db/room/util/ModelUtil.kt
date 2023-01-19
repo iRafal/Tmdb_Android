@@ -4,15 +4,15 @@ import com.tmdb_test.data.db.room.movie.MovieEntity
 import kotlinx.datetime.LocalDate
 
 object ModelUtil {
-    val movieId = 550
-    val title = "Fight Club"
-    val voteAverage = 7.8
+    const val movieId = 550
+    const val title = "Fight Club"
+    const val voteAverage = 7.8
     val releaseDate = LocalDate.parse("1999-10-12")
-    val posterUrl = "https://web.page.com/posterUrl"
-    val isNowPlaying = false
-    val isNowPopular = false
-    val isTopRated = false
-    val isUpcoming = false
+    const val posterUrl = "https://web.page.com/posterUrl"
+    const val isNowPlaying = false
+    const val isNowPopular = false
+    const val isTopRated = false
+    const val isUpcoming = false
 
     val movieEntity = MovieEntity(
         id = movieId,

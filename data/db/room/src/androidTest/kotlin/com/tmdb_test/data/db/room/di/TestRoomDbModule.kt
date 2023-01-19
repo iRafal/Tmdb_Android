@@ -8,7 +8,7 @@ import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import javax.inject.Singleton
+
 
 @Module
 @TestInstallIn(
