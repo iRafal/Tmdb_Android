@@ -1,15 +1,16 @@
 package com.tmdb_test.data.db.object_box.di
 
 import android.content.Context
+import com.tmdb_test.data.db.object_box.BuildConfig
 import com.tmdb_test.data.db.object_box.movie.MovieEntity
 import com.tmdb_test.data.db.object_box.movie.MyObjectBox
 import io.objectbox.Box
 import io.objectbox.BoxStore
 import io.objectbox.DebugFlags
 import io.objectbox.android.Admin
-import io.objectbox.android.BuildConfig
 import io.objectbox.exception.DbException
 import io.objectbox.kotlin.boxFor
+import io.objectbox.sync.Sync
 import logcat.LogPriority.DEBUG
 import logcat.LogPriority.ERROR
 import logcat.asLog
@@ -35,8 +36,13 @@ object ObjectBoxConfig {
      */
     private fun initStoreAdmin(store: BoxStore, context: Context) {
         if (BuildConfig.DEBUG) {
-            logcat(DEBUG) { "Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})" }
-            Admin(store).start(context)
+            logcat(DEBUG) {
+                "Using ObjectBox version:[${BoxStore.getVersion()}], versionNative:[${BoxStore.getVersionNative()}], sync:[${Sync.isAvailable()}]"
+            }
+            val isAdminStarted = Admin(store).start(context)
+            logcat(DEBUG) {
+                "ObjectBox Admin started: $isAdminStarted"
+            }
         }
     }
 
