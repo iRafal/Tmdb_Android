@@ -30,26 +30,10 @@ class HomeFeatureEffects(@DispatcherIo private val dispatcher: CoroutineDispatch
             val mappedUpcomingMovies = mapper(upcomingMovies)
 
             env.database.movieSource.insertByCategories(
-                nowPlaying = if (mappedNowPlayingMovies.isSuccess) {
-                    (mappedNowPlayingMovies as DataState.Success).data
-                } else {
-                    listOf()
-                },
-                nowPopular = if (mappedNowPopularMovies.isSuccess) {
-                    (mappedNowPopularMovies as DataState.Success).data
-                } else {
-                    listOf()
-                },
-                topRatedMovies = if (mappedTopRatedMovies.isSuccess) {
-                    (mappedTopRatedMovies as DataState.Success).data
-                } else {
-                    listOf()
-                },
-                upcomingMovies = if (mappedUpcomingMovies.isSuccess) {
-                    (mappedUpcomingMovies as DataState.Success).data
-                } else {
-                    listOf()
-                },
+                nowPlaying = mappedNowPlayingMovies.getDataIfSuccessOrDefault(),
+                nowPopular = mappedNowPopularMovies.getDataIfSuccessOrDefault(),
+                topRatedMovies = mappedTopRatedMovies.getDataIfSuccessOrDefault(),
+                upcomingMovies = mappedUpcomingMovies.getDataIfSuccessOrDefault(),
             )
 
             MovieSectionsLoaded(
@@ -59,6 +43,10 @@ class HomeFeatureEffects(@DispatcherIo private val dispatcher: CoroutineDispatch
                 upcomingMovies = mappedUpcomingMovies,
             )
         }
+    }
+
+    private fun <T> DataState<List<T>>.getDataIfSuccessOrDefault(): List<T> {
+        return if(this.isSuccess) (this as DataState.Success).data else listOf()
     }
 
     private fun mainEffect(

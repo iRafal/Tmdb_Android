@@ -2,10 +2,12 @@ package com.tmdb_test.data.db.object_box.movie
 
 import com.tmdb_test.data.db.object_box.movie.MovieEntity.Companion.MOVIE_TABLE_NAME
 import com.tmdb_test.data.db.object_box.type.converters.LocalDateConverter
+import io.objectbox.annotation.ConflictStrategy
 import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.NameInDb
+import io.objectbox.annotation.Unique
 import kotlinx.datetime.LocalDate
 
 @Entity
@@ -14,6 +16,7 @@ data class MovieEntity(
     @NameInDb(MOVIE_TABLE_COLUMN_ID)
     @Id var id: Long = 0,
 
+    @Unique(onConflict = ConflictStrategy.REPLACE)
     @NameInDb(MOVIE_TABLE_COLUMN_MOVIE_ID)
     val movieId: Int? = null,
 

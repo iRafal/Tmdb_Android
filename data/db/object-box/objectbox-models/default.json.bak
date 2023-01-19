@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4606457132291004061",
-      "lastPropertyId": "9:4551675008051337631",
+      "lastPropertyId": "10:537209311268550044",
       "name": "movie",
       "properties": [
         {
@@ -53,13 +53,20 @@
           "id": "9:4551675008051337631",
           "name": "upcoming",
           "type": 1
+        },
+        {
+          "id": "10:537209311268550044",
+          "name": "movie_id",
+          "indexId": "1:8715858900333437864",
+          "type": 5,
+          "flags": 40
         }
       ],
       "relations": []
     }
   ],
   "lastEntityId": "1:4606457132291004061",
-  "lastIndexId": "0:0",
+  "lastIndexId": "1:8715858900333437864",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

@@ -81,7 +81,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
         if (allItems.isEmpty()) return
 
         val mergedItemsList = mutableListOf<MovieEntity>()
-        val groupedByIdItems = allItems.groupBy { it.id }
+        val groupedByIdItems = allItems.groupBy { it.movieId }
         groupedByIdItems.forEach { (_, list) ->
             if (list.isNotEmpty()) {
                 val mergedItem = list.first().copy(
