@@ -1,6 +1,5 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
@@ -12,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -48,5 +46,4 @@ dependencies {
     implementation(libs.bundles.data.source.local.impl)
     kapt(libs.bundles.data.source.local.impl.kapt)
     testImplementation(libs.bundles.data.source.local.impl.test)
-    androidTestImplementation(libs.bundles.data.source.local.impl.test.android)
 }

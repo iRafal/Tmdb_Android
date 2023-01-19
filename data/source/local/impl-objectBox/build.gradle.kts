@@ -6,20 +6,14 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.db.room"
+    namespace = "com.tmdb_test.data.local.impl_object_box"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
-        minSdk = 24
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "com.tmdb_test.data.db.room.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += "room.schemaLocation" to "$projectDir/schemas"
-            }
-        }
     }
+
     buildTypes {
         debug {
             isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
@@ -43,29 +37,13 @@ android {
     sourceSets {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
-
-        getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
-    }
-    packagingOptions {
-        resources {
-            this.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-            this.excludes.add("/META-INF/gradle/incremental.annotation.processors")
-        }
     }
 }
 
 dependencies {
-    androidTestImplementation(project(":util"))
-    implementation(libs.bundles.data.db.room)
-    kapt(libs.bundles.data.db.room.kapt)
-    kaptTest(libs.bundles.data.db.room.kapt.test)
-    kaptAndroidTest(libs.bundles.data.db.room.kapt.test.android)
-    testImplementation(libs.bundles.data.db.room.test)
-    androidTestImplementation(libs.bundles.data.db.room.test.android)
-}
-
-kapt{
-    arguments {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
+    implementation(project(":data:source:local:contract"))
+    implementation(project(":data:db:object-box"))
+    implementation(libs.bundles.data.source.local.impl.objectBox)
+    kapt(libs.bundles.data.source.local.impl.objectBox.kapt)
+    testImplementation(libs.bundles.data.source.local.impl.objectBox.test)
 }

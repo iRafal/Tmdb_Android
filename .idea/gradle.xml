@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/data/source/local" />
             <option value="$PROJECT_DIR$/data/source/local/contract" />
             <option value="$PROJECT_DIR$/data/source/local/impl" />
+            <option value="$PROJECT_DIR$/data/source/local/impl-objectBox" />
             <option value="$PROJECT_DIR$/data/source/local/impl-realm" />
             <option value="$PROJECT_DIR$/data/source/remote" />
             <option value="$PROJECT_DIR$/data/source/remote/contract" />

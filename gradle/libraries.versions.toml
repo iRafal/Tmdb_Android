@@ -196,17 +196,24 @@ app-impl-debug = [
 ]
 app-test = [
     "junit",
+    #
     "mockito",
     "mockito-kotlin",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
 ]
 app-test-android = [
     "junit-android-ext",
+    #
     "espresso",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
     "hilt-kapt",
+    #
     "compose-ui-test-manifest-debug",
     "compose-ui-test-junit"
 ]
@@ -246,29 +253,32 @@ ui-kapt = [
     "hilt-kapt",
     "hilt-work-kapt"
 ]
-ui-kapt-test = [
-    "hilt-kapt"
-]
-ui-kapt-test-android = [
-    "hilt-kapt"
-]
+ui-kapt-test = [ "hilt-kapt" ]
+ui-kapt-test-android = [ "hilt-kapt" ]
 ui-impl-debug = [
     "compose-ui-tooling-debug",
     "compose-ui-test-manifest-debug"
 ]
 ui-test = [
     "junit",
+    #
     "mockito",
     "mockito-kotlin",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
 ]
 ui-test-android = [
     "junit-android-ext",
+    #
     "espresso",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
     "hilt-kapt",
+    #
     "compose-ui-test-manifest-debug",
     "compose-ui-test-junit"
 ]
@@ -295,9 +305,7 @@ data-api-impl-retrofit = [
     #
     "hilt-android",
 ]
-data-api-impl-retrofit-kapt = [
-    "hilt-kapt",
-]
+data-api-impl-retrofit-kapt = [ "hilt-kapt" ]
 data-api-impl-retrofit-test = [ "junit" ]
 
 #BUNDLES-DATA-API-IMPL-KOTR
@@ -317,13 +325,11 @@ data-api-impl-ktor = [
     #
     "logging",
 ]
-data-api-impl-ktor-kapt = [
-    "hilt-kapt",
-]
+data-api-impl-ktor-kapt = [ "hilt-kapt" ]
 data-api-impl-ktor-test = [
     "junit",
     #
-    #    "ktor-client-mock-test",
+    #"ktor-client-mock-test",
 ]
 
 #BUNDLES-DATA-SOURCE-REMOTE-CONTRACT
@@ -340,14 +346,15 @@ data-source-remote-impl = [
     #
     "hilt-android",
 ]
-data-source-remote-impl-kapt = [
-    "hilt-kapt",
-]
+data-source-remote-impl-kapt = [ "hilt-kapt" ]
 data-source-remote-impl-test = [
     "junit",
+    #
     "mockito",
     "mockito-kotlin",
+    #
     "kotlin-coroutines-test",
+    #
     "kotlinx-dateTime",
 ]
 
@@ -359,9 +366,7 @@ data-source-remote-impl-ktor = [
     #
     "hilt-android",
 ]
-data-source-remote-impl-ktor-kapt = [
-    "hilt-kapt",
-]
+data-source-remote-impl-ktor-kapt = [ "hilt-kapt" ]
 data-source-remote-impl-ktor-test = [
     "junit",
     "mockito",
@@ -378,21 +383,15 @@ data-model = [
     #
     "kotlinx-dateTime",
 ]
-data-model-kapt = [
-    "hilt-kapt",
-]
-data-model-test = [
-    "junit",
-]
+data-model-kapt = [ "hilt-kapt" ]
+data-model-test = [ "junit" ]
 
 #BUNDLES-DATA-API-CONFIG
 data-api-config = [
     "kotlin-stdLib",
     "hilt-android",
 ]
-data-api-config-kapt = [
-    "hilt-kapt",
-]
+data-api-config-kapt = [ "hilt-kapt" ]
 data-api-config-test = [
     "junit",
     "mockito",
@@ -415,9 +414,7 @@ data-source-local-impl = [
     #
     "kotlinx-dateTime"
 ]
-data-source-local-impl-kapt = [
-    "hilt-kapt",
-]
+data-source-local-impl-kapt = [ "hilt-kapt" ]
 data-source-local-impl-test = [
     "junit",
     "mockito",
@@ -428,13 +425,6 @@ data-source-local-impl-test = [
     "hilt-test",
     #
     "kotlinx-dateTime"
-]
-data-source-local-impl-test-android = [
-    "junit-android-ext",
-    "espresso",
-    "kotlin-coroutines-test",
-    "hilt-test",
-    "hilt-kapt",
 ]
 
 #BUNDLES-DATA-SOURCE-LOCAL-IMPL-REALM
@@ -447,9 +437,7 @@ data-source-local-impl-realm = [
     #
     "kotlinx-dateTime"
 ]
-data-source-local-impl-realm-kapt = [
-    "hilt-kapt",
-]
+data-source-local-impl-realm-kapt = [ "hilt-kapt" ]
 data-source-local-impl-realm-test = [
     "junit",
     "mockito",
@@ -461,12 +449,28 @@ data-source-local-impl-realm-test = [
     #
     "kotlinx-dateTime"
 ]
-data-source-local-impl-realm-test-android = [
-    "junit-android-ext",
-    "espresso",
+
+#BUNDLES-DATA-SOURCE-LOCAL-IMPL-OBJECT_BOX
+data-source-local-impl-objectBox = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "hilt-android",
+    #
+    "kotlinx-dateTime"
+]
+data-source-local-impl-objectBox-kapt = [ "hilt-kapt" ]
+data-source-local-impl-objectBox-test = [
+    "junit",
+    "mockito",
+    "mockito-kotlin",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
-    "hilt-kapt",
+    #
+    "kotlinx-dateTime"
 ]
 
 #BUNDLEA-DATA-DB-ROOM
@@ -484,14 +488,11 @@ data-db-room = [
 ]
 data-db-room-kapt = [
     "hilt-kapt",
+    #
     "room-compiler",
 ]
-data-db-room-kapt-test = [
-    "hilt-kapt"
-]
-data-db-room-kapt-test-android = [
-    "hilt-kapt"
-]
+data-db-room-kapt-test = [ "hilt-kapt" ]
+data-db-room-kapt-test-android = [ "hilt-kapt" ]
 data-db-room-test = [
     "junit",
     "mockito",
@@ -505,11 +506,16 @@ data-db-room-test = [
 ]
 data-db-room-test-android = [
     "junit-android-ext",
+    #
     "espresso",
+    #
     "room-test",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
     "hilt-kapt",
+    #
     "kotlinx-dateTime"
 ]
 
@@ -525,15 +531,9 @@ data-db-realm = [
     #
     "kotlinx-dateTime"
 ]
-data-db-realm-kapt = [
-    "hilt-kapt",
-]
-data-db-realm-kapt-test = [
-    "hilt-kapt"
-]
-data-db-realm-kapt-test-android = [
-    "hilt-kapt"
-]
+data-db-realm-kapt = [ "hilt-kapt" ]
+data-db-realm-kapt-test = [ "hilt-kapt" ]
+data-db-realm-kapt-test-android = [ "hilt-kapt" ]
 data-db-realm-test = [
     "junit",
     "mockito",
@@ -547,11 +547,16 @@ data-db-realm-test = [
 ]
 data-db-realm-test-android = [
     "junit-android-ext",
+    #
     "espresso",
+    #
     "kotlin-coroutines-test",
+    #
     "hilt-test",
     "hilt-kapt",
+    #
     "kotlinx-dateTime",
+    #
     "realm-plugin",
 ]
 
@@ -567,12 +572,8 @@ data-db-objectBox = [
     #
     "logging"
 ]
-data-db-objectBox-kapt = [
-    "hilt-kapt",
-]
-data-db-objectBox-kapt-test = [
-    "hilt-kapt"
-]
+data-db-objectBox-kapt = [ "hilt-kapt" ]
+data-db-objectBox-kapt-test = [ "hilt-kapt" ]
 data-db-objectBox-test = [
     "junit",
     "mockito",
@@ -593,9 +594,7 @@ store = [
     #
     "hilt-android",
 ]
-store-kapt = [
-    "hilt-kapt",
-]
+store-kapt = [ "hilt-kapt" ]
 store-test = [
     "junit",
     "mockito",
@@ -613,14 +612,10 @@ store-base = [
 ]
 
 #BUNDLES-STORE-ACTION
-store-action = [
-    "kotlin-stdLib",
-]
+store-action = [ "kotlin-stdLib" ]
 
 #BUNDLES-STORE-FEATURE
-store-feature = [
-    "kotlin-stdLib",
-]
+store-feature = [ "kotlin-stdLib" ]
 
 #BUNDLES-STORE-ENV
 store-env = [
@@ -630,10 +625,7 @@ store-env = [
     #
     "hilt-android",
 ]
-
-store-env-kapt = [
-    "hilt-kapt",
-]
+store-env-kapt = [ "hilt-kapt" ]
 
 #BUNDLES-STORE-REDUCER
 store-reducer = [
@@ -643,11 +635,7 @@ store-reducer = [
     #
     "hilt-android",
 ]
-
-store-reducer-kapt = [
-    "hilt-kapt",
-]
-
+store-reducer-kapt = [ "hilt-kapt" ]
 store-reducer-test = [
     "junit",
     "mockito",
@@ -666,10 +654,7 @@ store-state = [
     #
     "hilt-android",
 ]
-
-store-state-kapt = [
-    "hilt-kapt",
-]
+store-state-kapt = [ "hilt-kapt" ]
 
 #BUNDLES-STORE-APP
 store-app = [
@@ -679,10 +664,7 @@ store-app = [
     #
     "hilt-android",
 ]
-
-store-app-kapt = [
-    "hilt-kapt",
-]
+store-app-kapt = [ "hilt-kapt" ]
 
 #BUNDLES-UTIL
 util = [
@@ -692,7 +674,4 @@ util = [
     #
     "hilt-android",
 ]
-
-util-kapt = [
-    "hilt-kapt",
-]
+util-kapt = [ "hilt-kapt" ]
