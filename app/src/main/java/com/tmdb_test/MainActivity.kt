@@ -8,21 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.tmdb_test.ui.details.MovieDetailsViewModel
-import com.tmdb_test.ui.home.HomeViewModel
 import com.tmdb_test.ui.main.MainViewModel
 import com.tmdb_test.ui.navigation.AppNavigation
-import com.tmdb_test.ui.navigation.mainNavigationGraph
+import com.tmdb_test.ui.navigation.appNavigationGraph
 import com.tmdb_test.ui.theme.Tmdb_TestTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val homeViewModel by viewModels<HomeViewModel>()
-
-    private val movieDetailsViewModel by viewModels<MovieDetailsViewModel>()
 
     private val mainViewModel by viewModels<MainViewModel>()
 
@@ -34,21 +28,18 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun SetContent() {
-        Tmdb_TestTheme { MainNavigation() }
+        Tmdb_TestTheme { AppNavigation() }
     }
 
     @Composable
-    fun MainNavigation(navController: NavHostController = rememberNavController()) {
+    fun AppNavigation(navController: NavHostController = rememberNavController()) {
         NavHost(
             navController = navController,
             startDestination = AppNavigation.Home.route
         ) {
-            this.mainNavigationGraph(
-                navController,
-                homeViewModel,
-                movieDetailsViewModel,
-                onClose = { finish() }
-            )
+            this.appNavigationGraph(
+                navController
+            ) { finish() }
         }
     }
 
