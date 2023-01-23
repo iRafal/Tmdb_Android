@@ -28,6 +28,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+
 @UninstallModules(RealmDbModule::class, DispatchersModule::class)
 @HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -40,7 +41,7 @@ class MovieEntityTest {
     lateinit var movieDao: MovieDao
 
     @Inject
-    lateinit var db: Realm
+    lateinit var realm: Realm
 
     @Inject
     @DispatchersTestModule.DispatcherTestStandard
@@ -59,7 +60,7 @@ class MovieEntityTest {
     @Throws(IOException::class)
     fun tearDown() = runTest {
         movieDao.delete()
-        db.close()
+        realm.close()
         Dispatchers.resetMain()
     }
 

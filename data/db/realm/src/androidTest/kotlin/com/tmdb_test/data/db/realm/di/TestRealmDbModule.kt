@@ -32,7 +32,6 @@ object TestRealmDbModule {
     @Provides
     fun dataBase(realmConfig: RealmConfiguration): Realm = Realm.getInstance(realmConfig)
 
-    @Singleton
     @Provides
     fun movieDao(impl: MovieDaoImpl): MovieDao = impl
 }
