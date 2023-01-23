@@ -9,8 +9,8 @@ import com.tmdb_test.ui.home.HomeUiEvent.NavigateBack
 import com.tmdb_test.ui.home.HomeUiEvent.OpenMovie
 import com.tmdb_test.ui.home.HomeUiEvent.ReloadMovieSection
 import com.tmdb_test.ui.home.data.HomeUiData
-import com.tmdb_test.ui.navigation.AppNavigation
-import com.tmdb_test.ui.navigation.AppNavigation.Close
+import com.tmdb_test.ui.app.navigation.AppNavigation
+import com.tmdb_test.ui.app.navigation.AppNavigation.Close
 import com.tmdb_test.ui.theme.Tmdb_TestTheme
 
 @Composable

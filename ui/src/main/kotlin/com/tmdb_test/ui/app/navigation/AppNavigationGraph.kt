@@ -1,13 +1,13 @@
-package com.tmdb_test.ui.navigation
+package com.tmdb_test.ui.app.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.tmdb_test.ui.details.MovieDetailsScreen
 import com.tmdb_test.ui.home.HomeScreen
-import com.tmdb_test.ui.navigation.AppNavigation.Close
-import com.tmdb_test.ui.navigation.AppNavigation.Home
-import com.tmdb_test.ui.navigation.AppNavigation.MovieDetails
+import com.tmdb_test.ui.app.navigation.AppNavigation.Close
+import com.tmdb_test.ui.app.navigation.AppNavigation.Home
+import com.tmdb_test.ui.app.navigation.AppNavigation.MovieDetails
 
 
 fun NavGraphBuilder.appNavigationGraph(
