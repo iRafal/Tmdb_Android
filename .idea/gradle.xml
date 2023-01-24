@@ -43,6 +43,7 @@
             <option value="$PROJECT_DIR$/store/reducer" />
             <option value="$PROJECT_DIR$/store/state" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui-core" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>

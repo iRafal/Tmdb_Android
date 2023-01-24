@@ -1,12 +1,13 @@
 package com.tmdb_test.store.reducer
 
+import com.tmdb_test.data.source.remote.contract.MovieLocalDataSource
 import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.feature.Feature
-import com.tmdb_test.store.env.AppEnv
+import com.tmdb_test.store.env.contract.AppEnv
 import kotlinx.coroutines.runBlocking
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
@@ -16,19 +17,22 @@ interface EffectExecutorMock : Effect.Executor<AppEnv> {
 }
 
 fun createMockEffectExecutor(
-    discoverSource: DiscoverRemoteDataSource,
-    genreSource: GenreRemoteDataSource,
-    movieSource: MovieRemoteDataSource,
-    personSource: PersonRemoteDataSource,
+    discoverRemoteSource: DiscoverRemoteDataSource,
+    genreRemoteSource: GenreRemoteDataSource,
+    movieRemoteSource: MovieRemoteDataSource,
+    personRemoteSource: PersonRemoteDataSource,
+    movieLocalSource: MovieLocalDataSource,
 ): EffectExecutorMock {
 
-    val database: AppEnv.Database = mock()
+    val database: AppEnv.Database = mock<AppEnv.Database>().apply {
+        whenever(this.movieSource).thenReturn(movieLocalSource)
+    }
 
     val network: AppEnv.Network = mock<AppEnv.Network>().apply {
-        whenever(this.discoverSource).thenReturn(discoverSource)
-        whenever(this.genreSource).thenReturn(genreSource)
-        whenever(this.movieSource).thenReturn(movieSource)
-        whenever(this.personSource).thenReturn(personSource)
+        whenever(this.discoverSource).thenReturn(discoverRemoteSource)
+        whenever(this.genreSource).thenReturn(genreRemoteSource)
+        whenever(this.movieSource).thenReturn(movieRemoteSource)
+        whenever(this.personSource).thenReturn(personRemoteSource)
     }
 
     val appEnv: AppEnv = mock<AppEnv>().apply {

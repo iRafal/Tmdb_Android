@@ -7,6 +7,7 @@ import com.tmdb_test.api.model.util.ApiResponse
 import com.tmdb_test.api.model.util.NetworkErrorModel
 import com.tmdb_test.data.model.state.DataState
 import com.tmdb_test.data.model.movie.MovieDataModel
+import com.tmdb_test.data.source.remote.contract.MovieLocalDataSource
 import com.tmdb_test.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb_test.data.source.remote.contract.movie.MovieRemoteDataSource
@@ -16,7 +17,7 @@ import com.tmdb_test.store.reducer.home.HomeFeatureEffects
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.reducer.home.HomeFeatureSliceImpl
 import com.tmdb_test.store.reducer.util.ModelUtil
-import com.tmdb_test.store.state.AppState
+import com.tmdb_test.store.state.app.AppState
 import com.tmdb_test.store.state.FeatureState
 import com.tmdb_test.store.state.FeatureState.Success
 import kotlinx.coroutines.CoroutineDispatcher
@@ -33,10 +34,11 @@ import org.mockito.kotlin.whenever
 @OptIn(ExperimentalCoroutinesApi::class)
 class LoadMovieSectionsReducerTest {
 
-    private val discoverSource = mock<DiscoverRemoteDataSource>()
-    private val genreSource = mock<GenreRemoteDataSource>()
-    private val movieSource = mock<MovieRemoteDataSource>()
-    private val personSource = mock<PersonRemoteDataSource>()
+    private val discoverRemoteSource = mock<DiscoverRemoteDataSource>()
+    private val genreRemoteSource = mock<GenreRemoteDataSource>()
+    private val movieRemoteSource = mock<MovieRemoteDataSource>()
+    private val personRemoteSource = mock<PersonRemoteDataSource>()
+    private val movieLocalSource = mock<MovieLocalDataSource>()
 
     private val testDispatcher: CoroutineDispatcher = Dispatchers.Unconfined
 
@@ -70,23 +72,24 @@ class LoadMovieSectionsReducerTest {
         assertTrue(homeFeatureState.topRatedMoviesState.isLoading)
         assertTrue(homeFeatureState.upcomingMoviesState.isLoading)
 
-        whenever(movieSource.nowPlayingMovies()).thenReturn(successResult)
-        whenever(movieSource.nowPopularMovies()).thenReturn(successResult)
-        whenever(movieSource.topRatedMovies()).thenReturn(successResult)
-        whenever(movieSource.upcomingMovies()).thenReturn(successResult)
+        whenever(movieRemoteSource.nowPlayingMovies()).thenReturn(successResult)
+        whenever(movieRemoteSource.nowPopularMovies()).thenReturn(successResult)
+        whenever(movieRemoteSource.topRatedMovies()).thenReturn(successResult)
+        whenever(movieRemoteSource.upcomingMovies()).thenReturn(successResult)
 
         val executor = createMockEffectExecutor(
-            discoverSource,
-            genreSource,
-            movieSource,
-            personSource
+            discoverRemoteSource,
+            genreRemoteSource,
+            movieRemoteSource,
+            personRemoteSource,
+            movieLocalSource
         )
         effect?.invoke(executor)
 
-        verify(movieSource, times(1)).nowPlayingMovies()
-        verify(movieSource, times(1)).nowPopularMovies()
-        verify(movieSource, times(1)).topRatedMovies()
-        verify(movieSource, times(1)).upcomingMovies()
+        verify(movieRemoteSource, times(1)).nowPlayingMovies()
+        verify(movieRemoteSource, times(1)).nowPopularMovies()
+        verify(movieRemoteSource, times(1)).topRatedMovies()
+        verify(movieRemoteSource, times(1)).upcomingMovies()
         
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
@@ -120,23 +123,24 @@ class LoadMovieSectionsReducerTest {
         assertTrue(homeFeatureState.topRatedMoviesState.isLoading)
         assertTrue(homeFeatureState.upcomingMoviesState.isLoading)
 
-        whenever(movieSource.nowPlayingMovies()).thenReturn(apiErrorResult)
-        whenever(movieSource.nowPopularMovies()).thenReturn(apiErrorResult)
-        whenever(movieSource.topRatedMovies()).thenReturn(apiErrorResult)
-        whenever(movieSource.upcomingMovies()).thenReturn(apiErrorResult)
+        whenever(movieRemoteSource.nowPlayingMovies()).thenReturn(apiErrorResult)
+        whenever(movieRemoteSource.nowPopularMovies()).thenReturn(apiErrorResult)
+        whenever(movieRemoteSource.topRatedMovies()).thenReturn(apiErrorResult)
+        whenever(movieRemoteSource.upcomingMovies()).thenReturn(apiErrorResult)
 
         val executor = createMockEffectExecutor(
-            discoverSource,
-            genreSource,
-            movieSource,
-            personSource
+            discoverRemoteSource,
+            genreRemoteSource,
+            movieRemoteSource,
+            personRemoteSource,
+            movieLocalSource
         )
         effect?.invoke(executor)
 
-        verify(movieSource, times(1)).nowPlayingMovies()
-        verify(movieSource, times(1)).nowPopularMovies()
-        verify(movieSource, times(1)).topRatedMovies()
-        verify(movieSource, times(1)).upcomingMovies()
+        verify(movieRemoteSource, times(1)).nowPlayingMovies()
+        verify(movieRemoteSource, times(1)).nowPopularMovies()
+        verify(movieRemoteSource, times(1)).topRatedMovies()
+        verify(movieRemoteSource, times(1)).upcomingMovies()
 
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
@@ -172,23 +176,24 @@ class LoadMovieSectionsReducerTest {
         assertTrue(homeFeatureState.topRatedMoviesState.isLoading)
         assertTrue(homeFeatureState.upcomingMoviesState.isLoading)
 
-        whenever(movieSource.nowPlayingMovies()).thenReturn(networkErrorResult)
-        whenever(movieSource.nowPopularMovies()).thenReturn(networkErrorResult)
-        whenever(movieSource.topRatedMovies()).thenReturn(networkErrorResult)
-        whenever(movieSource.upcomingMovies()).thenReturn(networkErrorResult)
+        whenever(movieRemoteSource.nowPlayingMovies()).thenReturn(networkErrorResult)
+        whenever(movieRemoteSource.nowPopularMovies()).thenReturn(networkErrorResult)
+        whenever(movieRemoteSource.topRatedMovies()).thenReturn(networkErrorResult)
+        whenever(movieRemoteSource.upcomingMovies()).thenReturn(networkErrorResult)
 
         val executor = createMockEffectExecutor(
-            discoverSource,
-            genreSource,
-            movieSource,
-            personSource
+            discoverRemoteSource,
+            genreRemoteSource,
+            movieRemoteSource,
+            personRemoteSource,
+            movieLocalSource
         )
         effect?.invoke(executor)
 
-        verify(movieSource, times(1)).nowPlayingMovies()
-        verify(movieSource, times(1)).nowPopularMovies()
-        verify(movieSource, times(1)).topRatedMovies()
-        verify(movieSource, times(1)).upcomingMovies()
+        verify(movieRemoteSource, times(1)).nowPlayingMovies()
+        verify(movieRemoteSource, times(1)).nowPopularMovies()
+        verify(movieRemoteSource, times(1)).topRatedMovies()
+        verify(movieRemoteSource, times(1)).upcomingMovies()
 
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
@@ -222,23 +227,24 @@ class LoadMovieSectionsReducerTest {
         assertTrue(homeFeatureState.topRatedMoviesState.isLoading)
         assertTrue(homeFeatureState.upcomingMoviesState.isLoading)
 
-        whenever(movieSource.nowPlayingMovies()).thenReturn(unknownErrorResult)
-        whenever(movieSource.nowPopularMovies()).thenReturn(unknownErrorResult)
-        whenever(movieSource.topRatedMovies()).thenReturn(unknownErrorResult)
-        whenever(movieSource.upcomingMovies()).thenReturn(unknownErrorResult)
+        whenever(movieRemoteSource.nowPlayingMovies()).thenReturn(unknownErrorResult)
+        whenever(movieRemoteSource.nowPopularMovies()).thenReturn(unknownErrorResult)
+        whenever(movieRemoteSource.topRatedMovies()).thenReturn(unknownErrorResult)
+        whenever(movieRemoteSource.upcomingMovies()).thenReturn(unknownErrorResult)
 
         val executor = createMockEffectExecutor(
-            discoverSource,
-            genreSource,
-            movieSource,
-            personSource
+            discoverRemoteSource,
+            genreRemoteSource,
+            movieRemoteSource,
+            personRemoteSource,
+            movieLocalSource
         )
         effect?.invoke(executor)
 
-        verify(movieSource, times(1)).nowPlayingMovies()
-        verify(movieSource, times(1)).nowPopularMovies()
-        verify(movieSource, times(1)).topRatedMovies()
-        verify(movieSource, times(1)).upcomingMovies()
+        verify(movieRemoteSource, times(1)).nowPlayingMovies()
+        verify(movieRemoteSource, times(1)).nowPopularMovies()
+        verify(movieRemoteSource, times(1)).topRatedMovies()
+        verify(movieRemoteSource, times(1)).upcomingMovies()
 
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(

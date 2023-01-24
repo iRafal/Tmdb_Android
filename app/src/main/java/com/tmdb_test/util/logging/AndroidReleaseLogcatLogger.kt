@@ -2,7 +2,6 @@ package com.tmdb_test.util.logging
 
 import android.app.Application
 import android.content.pm.ApplicationInfo
-import android.os.Build
 import android.util.Log
 import com.tmdb_test.util.logging.AndroidReleaseLogcatLogger.Companion.installOnReleaseApp
 import kotlin.math.min

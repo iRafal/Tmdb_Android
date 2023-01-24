@@ -5,8 +5,8 @@ import com.tmdb_test.store.state.home.HomeFeatureState
 import com.tmdb_test.ui.home.data.HomeMovieSection
 import com.tmdb_test.ui.home.data.HomeUiData
 import com.tmdb_test.ui.util.ModelUtil
-import com.tmdb_test.ui.util.data.UiState
-import com.tmdb_test.ui.util.data.mapping.mapFeatureToUiState
+import com.tmdb_test.ui.core.data.UiState
+import com.tmdb_test.ui.core.data.mapping.mapFeatureToUiState
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

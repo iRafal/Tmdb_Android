@@ -279,6 +279,45 @@ ui-test-android = [
     "compose-ui-test-manifest-debug",
     "compose-ui-test-junit"
 ]
+#BUNDLES-UI-CORE
+ui-core = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    "kotlin-serialization-json",
+    #
+    "androidx-core",
+    "androidx-lifecycle-runtime-ktx",
+    "androidx-lifecycle-viewmodel-ktx",
+    "androidx-lifecycle-viewmodel-compose",
+    #
+    "compose-activity",
+    "compose-constraintLayout",
+    "compose-navigation",
+    "compose-ui",
+    "compose-ui-preview",
+    "compose-material",
+    #
+    "coil",
+    "coil-compose",
+    #
+    "logging",
+    "kotlinx-dateTime",
+    #
+    "okHttp3-loggingInterceptor",
+    #
+    "hilt-android",
+    "hilt-work",
+    "hilt-navigation-compose"
+]
+ui-core-impl-debug = [
+    "compose-ui-tooling-debug",
+    "compose-ui-test-manifest-debug"
+]
+ui-core-kapt = [
+    "hilt-kapt",
+    "hilt-work-kapt"
+]
 
 #BUNDLES-DATA-API-MODEL
 data-api-model = [

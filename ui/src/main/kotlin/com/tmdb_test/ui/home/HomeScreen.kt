@@ -9,9 +9,9 @@ import com.tmdb_test.ui.home.HomeUiEvent.NavigateBack
 import com.tmdb_test.ui.home.HomeUiEvent.OpenMovie
 import com.tmdb_test.ui.home.HomeUiEvent.ReloadMovieSection
 import com.tmdb_test.ui.home.data.HomeUiData
-import com.tmdb_test.ui.app.navigation.AppNavigation
 import com.tmdb_test.ui.app.navigation.AppNavigation.Close
-import com.tmdb_test.ui.theme.Tmdb_TestTheme
+import com.tmdb_test.ui.app.navigation.AppNavigation.MovieDetails
+import com.tmdb_test.ui.core.theme.Tmdb_TestTheme
 
 @Composable
 fun HomeScreen(
@@ -26,7 +26,7 @@ fun HomeScreen(
                 NavigateBack -> navController.navigate(Close.route)
                 is OpenMovie -> {
                     navController.navigate(
-                        AppNavigation.MovieDetails.getRouteNameWithArguments(
+                        MovieDetails.getRouteNameWithArguments(
                             event.id.toString()
                         )
                     )

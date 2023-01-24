@@ -12,6 +12,9 @@ rootProject.name = "Tmdb_Test"
 rootProject.buildFileName = "build.gradle.kts"
 include(":app")
 
+include(":ui")
+include(":ui-core")
+
 include(":store:base")
 include(":store:feature")
 include(":store:action")
@@ -33,12 +36,11 @@ include(":data:api:impl-retrofit")
 include(":data:api:model")
 include(":data:api:config")
 
-include(":ui")
-
-include(":util")
 include(":data:source:remote:impl-ktor")
 include(":data:db:room")
 include(":data:db:realm")
 include(":data:source:local:impl-realm")
 include(":data:db:object-box")
 include(":data:source:local:impl-objectBox")
+
+include(":util")

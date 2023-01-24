@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.tmdb_test.ui.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {
+    api(project(":ui-core"))
     implementation(project(":store:base"))
     implementation(project(":store:action"))
     implementation(project(":store:feature"))
@@ -62,6 +63,8 @@ dependencies {
 //    implementation(project(":data:source:remote:impl"))
     implementation(project(":data:source:remote:impl-ktor"))
     implementation(project(":data:source:local:impl"))
+//    implementation(project(":data:source:local:impl-objectBox"))
+//    implementation(project(":data:source:local:impl-realm"))
     implementation(project(":data:model"))
 
     implementation(libs.bundles.ui)

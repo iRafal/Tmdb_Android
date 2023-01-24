@@ -14,9 +14,17 @@ import com.tmdb_test.ui.home.HomeUiEvent.OpenMovie
 import com.tmdb_test.ui.home.HomeUiEvent.ReloadMovieSection
 import com.tmdb_test.ui.home.data.HomeMovieSection
 import com.tmdb_test.ui.home.data.HomeUiData
-import com.tmdb_test.ui.theme.Tmdb_TestTheme
-import com.tmdb_test.ui.util.compose.ScrollableColumn
-import com.tmdb_test.ui.util.data.UiState
+import com.tmdb_test.ui.core.theme.Tmdb_TestTheme
+import com.tmdb_test.ui.core.compose.ScrollableColumn
+import com.tmdb_test.ui.core.data.UiState.Error
+import com.tmdb_test.ui.core.data.UiState.Loading
+import com.tmdb_test.ui.core.data.UiState.NetworkError
+import com.tmdb_test.ui.core.data.UiState.Success
+import com.tmdb_test.ui.home.data.HomeMovieSection.NOW_PLAYING
+import com.tmdb_test.ui.home.data.HomeMovieSection.NOW_POPULAR
+import com.tmdb_test.ui.home.data.HomeMovieSection.TOP_RATED
+import com.tmdb_test.ui.home.data.HomeMovieSection.UPCOMING
+import com.tmdb_test.ui.home.data.HomeUiData.Movie
 import kotlinx.datetime.LocalDate
 
 
@@ -27,10 +35,10 @@ fun HomeAllSectionsLoadingPreview() {
     Tmdb_TestTheme {
         val data = HomeUiData(
             mapOf(
-                HomeMovieSection.NOW_PLAYING to UiState.Loading(),
-                HomeMovieSection.NOW_POPULAR to UiState.Loading(),
-                HomeMovieSection.TOP_RATED to UiState.Loading(),
-                HomeMovieSection.UPCOMING to UiState.Loading(),
+                NOW_PLAYING to Loading(),
+                NOW_POPULAR to Loading(),
+                TOP_RATED to Loading(),
+                UPCOMING to Loading(),
             )
         )
         HomeScreenUi(
@@ -47,10 +55,10 @@ fun HomeAllSectionsErrorPreview() {
     Tmdb_TestTheme {
         val data = HomeUiData(
             mapOf(
-                HomeMovieSection.NOW_PLAYING to UiState.Error(),
-                HomeMovieSection.NOW_POPULAR to UiState.Error(),
-                HomeMovieSection.TOP_RATED to UiState.Error(),
-                HomeMovieSection.UPCOMING to UiState.Error(),
+                NOW_PLAYING to Error(),
+                NOW_POPULAR to Error(),
+                TOP_RATED to Error(),
+                UPCOMING to Error(),
             )
         )
         HomeScreenUi(
@@ -67,10 +75,10 @@ fun HomeAllSectionsNetworkErrorPreview() {
     Tmdb_TestTheme {
         val data = HomeUiData(
             mapOf(
-                HomeMovieSection.NOW_PLAYING to UiState.NetworkError(),
-                HomeMovieSection.NOW_POPULAR to UiState.NetworkError(),
-                HomeMovieSection.TOP_RATED to UiState.NetworkError(),
-                HomeMovieSection.UPCOMING to UiState.NetworkError(),
+                NOW_PLAYING to NetworkError(),
+                NOW_POPULAR to NetworkError(),
+                TOP_RATED to NetworkError(),
+                UPCOMING to NetworkError(),
             )
         )
         HomeScreenUi(
@@ -86,21 +94,21 @@ fun HomeAllSectionsNetworkErrorPreview() {
 fun HomeStateSuccessPreview() {
     Tmdb_TestTheme {
         val movies = listOf(
-            HomeUiData.Movie(
+            Movie(
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
                 releaseDate = LocalDate.parse("1 Jan 2022"),
                 posterUrl = null
             ),
-            HomeUiData.Movie(
+            Movie(
                 id = 2,
                 title = "Movie 2",
                 averageVote = 20.7,
                 releaseDate = LocalDate.parse("1 Jan 2020"),
                 posterUrl = null
             ),
-            HomeUiData.Movie(
+            Movie(
                 id = 3,
                 title = "Movie 3",
                 averageVote = 95.7,
@@ -110,10 +118,10 @@ fun HomeStateSuccessPreview() {
         )
         val data = HomeUiData(
             mapOf(
-                HomeMovieSection.NOW_PLAYING to UiState.Success(movies),
-                HomeMovieSection.NOW_POPULAR to UiState.Success(movies),
-                HomeMovieSection.TOP_RATED to UiState.Success(movies),
-                HomeMovieSection.UPCOMING to UiState.Success(movies),
+                NOW_PLAYING to Success(movies),
+                NOW_POPULAR to Success(movies),
+                TOP_RATED to Success(movies),
+                UPCOMING to Success(movies),
             )
         )
         HomeScreenUi(
@@ -129,21 +137,21 @@ fun HomeStateSuccessPreview() {
 fun HomeMixedStatesPreview() {
     Tmdb_TestTheme {
         val movies = listOf(
-            HomeUiData.Movie(
+            Movie(
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
                 releaseDate =LocalDate.parse("1 Jan 2022"),
                 posterUrl = null
             ),
-            HomeUiData.Movie(
+            Movie(
                 id = 2,
                 title = "Movie 2",
                 averageVote = 20.7,
                 releaseDate = LocalDate.parse("1 Jan 2020"),
                 posterUrl = null
             ),
-            HomeUiData.Movie(
+            Movie(
                 id = 3,
                 title = "Movie 3",
                 averageVote = 95.7,
@@ -153,10 +161,10 @@ fun HomeMixedStatesPreview() {
         )
         val data = HomeUiData(
             mapOf(
-                HomeMovieSection.NOW_PLAYING to UiState.Success(movies),
-                HomeMovieSection.NOW_POPULAR to UiState.NetworkError(),
-                HomeMovieSection.TOP_RATED to UiState.Error(),
-                HomeMovieSection.UPCOMING to UiState.Loading(),
+                NOW_PLAYING to Success(movies),
+                NOW_POPULAR to NetworkError(),
+                TOP_RATED to Error(),
+                UPCOMING to Loading(),
             )
         )
         HomeScreenUi(

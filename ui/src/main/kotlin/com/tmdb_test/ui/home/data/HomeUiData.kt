@@ -1,6 +1,6 @@
 package com.tmdb_test.ui.home.data
 
-import com.tmdb_test.ui.util.data.UiState
+import com.tmdb_test.ui.core.data.UiState
 import kotlinx.datetime.LocalDate
 
 data class HomeUiData(val movieSections: Map<HomeMovieSection, UiState<List<Movie>>>) {

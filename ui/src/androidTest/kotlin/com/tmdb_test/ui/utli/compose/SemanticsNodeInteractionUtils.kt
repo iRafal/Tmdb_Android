@@ -11,7 +11,7 @@ import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.unit.Dp
-import com.tmdb_test.ui.util.compose.test.ComposeTestSemantics
+import com.tmdb_test.ui.core.compose.test.ComposeTestSemantics
 
 fun SemanticsNodeInteraction.assertHasLongClickAction(): SemanticsNodeInteraction =
     assert(SemanticsMatcher.keyIsDefined(SemanticsActions.OnLongClick))

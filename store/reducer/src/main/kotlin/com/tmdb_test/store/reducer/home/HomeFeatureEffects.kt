@@ -6,7 +6,7 @@ import com.tmdb_test.store.action.home.HomeAction.MovieSectionsLoaded
 import com.tmdb_test.store.base.Action
 import com.tmdb_test.store.base.Effect
 import com.tmdb_test.store.base.Effects
-import com.tmdb_test.store.env.AppEnv
+import com.tmdb_test.store.env.contract.AppEnv
 import com.tmdb_test.store.feature.home.HomeFeature
 import com.tmdb_test.utill.di.modules.DispatchersModule.DispatcherIo
 import kotlinx.coroutines.CoroutineDispatcher

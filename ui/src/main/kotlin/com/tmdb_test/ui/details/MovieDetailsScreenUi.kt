@@ -8,7 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tmdb_test.ui.details.data.MovieDetailsUiData
-import com.tmdb_test.ui.theme.Tmdb_TestTheme
+import com.tmdb_test.ui.core.theme.Tmdb_TestTheme
+import com.tmdb_test.ui.details.MovieDetailsUiState.Error
+import com.tmdb_test.ui.details.MovieDetailsUiState.Idle
+import com.tmdb_test.ui.details.MovieDetailsUiState.Loading
+import com.tmdb_test.ui.details.MovieDetailsUiState.NetworkError
+import com.tmdb_test.ui.details.MovieDetailsUiState.Success
 
 
 @Preview(showBackground = false, showSystemUi = false)
@@ -17,7 +22,7 @@ import com.tmdb_test.ui.theme.Tmdb_TestTheme
 fun MovieDetailsStateIdlePreview() {
     Tmdb_TestTheme {
         MovieDetailsScreenUi(
-            MovieDetailsUiState.Idle,
+            Idle,
             onEvent = { }
         )
     }
@@ -29,7 +34,7 @@ fun MovieDetailsStateIdlePreview() {
 fun MovieDetailsStateLoadingPreview() {
     Tmdb_TestTheme {
         MovieDetailsScreenUi(
-            MovieDetailsUiState.Loading,
+            Loading,
             onEvent = { }
         )
     }
@@ -41,7 +46,7 @@ fun MovieDetailsStateLoadingPreview() {
 fun MovieDetailsStateErrorPreview() {
     Tmdb_TestTheme {
         MovieDetailsScreenUi(
-            MovieDetailsUiState.Error(),
+            Error(),
             onEvent = { }
         )
     }
@@ -53,7 +58,7 @@ fun MovieDetailsStateErrorPreview() {
 fun MovieDetailsStateNetworkErrorPreview() {
     Tmdb_TestTheme {
         MovieDetailsScreenUi(
-            MovieDetailsUiState.NetworkError(),
+            NetworkError(),
             onEvent = { }
         )
     }
@@ -66,7 +71,7 @@ fun MovieDetailsStateSuccessPreview() {
     Tmdb_TestTheme {
         val data = MovieDetailsUiData()
         MovieDetailsScreenUi(
-            MovieDetailsUiState.Success(data),
+            Success(data),
             onEvent = { }
         )
     }

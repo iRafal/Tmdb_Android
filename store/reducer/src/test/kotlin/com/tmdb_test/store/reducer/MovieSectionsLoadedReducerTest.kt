@@ -5,12 +5,12 @@ import com.tmdb_test.data.model.state.DataState
 import com.tmdb_test.data.model.movie.MovieDataModel
 import com.tmdb_test.store.action.home.HomeAction
 import com.tmdb_test.store.base.Effects
-import com.tmdb_test.store.env.AppEnv
+import com.tmdb_test.store.env.contract.AppEnv
 import com.tmdb_test.store.reducer.home.HomeFeatureEffects
 import com.tmdb_test.store.reducer.home.HomeFeatureSlice
 import com.tmdb_test.store.reducer.home.HomeFeatureSliceImpl
 import com.tmdb_test.store.reducer.util.ModelUtil
-import com.tmdb_test.store.state.AppState
+import com.tmdb_test.store.state.app.AppState
 import com.tmdb_test.store.state.FeatureState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
