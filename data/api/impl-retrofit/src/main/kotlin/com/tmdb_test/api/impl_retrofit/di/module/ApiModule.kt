@@ -1,6 +1,6 @@
 package com.tmdb_test.api.impl_retrofit.di.module
 
-import com.tmdb_test.api.config.url.provider.BaseUrlProvider
+import com.tmdb_test.api.config.url.provider.base.BaseUrlProvider
 import com.tmdb_test.api.impl_retrofit.di.module.util.ApiFactoriesModule.ConverterFactoryJson
 import com.tmdb_test.api.impl_retrofit.di.module.util.ApiFactoriesModule.ConverterFactoryScalars
 import com.tmdb_test.api.impl_retrofit.di.module.util.ApiHttpClientModule.OkHttpClientRetrofit

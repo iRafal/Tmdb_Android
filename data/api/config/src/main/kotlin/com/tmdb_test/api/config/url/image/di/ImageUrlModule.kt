@@ -2,7 +2,7 @@ package com.tmdb_test.api.config.url.image.di
 
 import com.tmdb_test.api.config.url.image.contract.ImageUrlProvider
 import com.tmdb_test.api.config.url.image.impl.ImageUrlProviderImpl
-import com.tmdb_test.api.config.url.provider.BaseUrlProvider
+import com.tmdb_test.api.config.url.provider.base.BaseUrlProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

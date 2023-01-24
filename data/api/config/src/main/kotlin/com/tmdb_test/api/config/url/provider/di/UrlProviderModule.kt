@@ -1,7 +1,6 @@
 package com.tmdb_test.api.config.url.provider.di
 
-import com.tmdb_test.api.config.url.provider.BaseUrlProvider
-import com.tmdb_test.api.config.url.provider.BaseUrlProviderImpl
+import com.tmdb_test.api.config.url.provider.base.BaseUrlProvider
 import com.tmdb_test.api.config.url.provider.discover.DiscoverUrlProvider
 import com.tmdb_test.api.config.url.provider.discover.DiscoverUrlProviderImpl
 import com.tmdb_test.api.config.url.provider.genre.GenreUrlProvider
@@ -20,10 +19,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object UrlProviderModule {
-    @Provides
-    @Singleton
-    fun baseUrlProvider(impl: BaseUrlProviderImpl): BaseUrlProvider = impl
-
     @Provides
     @Singleton
     fun discoverUrlProvider(baseUrlProvider: BaseUrlProvider): DiscoverUrlProvider =

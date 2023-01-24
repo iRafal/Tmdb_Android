@@ -1,4 +1,4 @@
-package com.tmdb_test.api.config.url.provider
+package com.tmdb_test.api.config.url.provider.base
 
 import com.tmdb_test.api.config.BuildConfig
 import javax.inject.Inject
