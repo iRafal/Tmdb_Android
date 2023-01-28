@@ -25,16 +25,16 @@ object HomeUiDataMappingModule {
         homeFeatureToUiStateMapperImpl(homeFeatureStateToUiSectionStateMapper)
 
     @Provides
-    fun movieDataItemsToHomeModelMapper(
-        movieDataToHomeModelMapper: @JvmSuppressWildcards MovieDataToHomeModelMapper
-    ): @JvmSuppressWildcards MovieDataItemsToHomeModelMapper =
-        movieDataItemsToHomeModelMapperImpl(movieDataToHomeModelMapper)
-
-    @Provides
     fun homeFeatureStateToUiSectionStateMapper(
         movieDataItemsToHomeModelMapper: @JvmSuppressWildcards MovieDataItemsToHomeModelMapper
     ): @JvmSuppressWildcards HomeFeatureStateToUiSectionStateMapper =
         mapFeatureToUiState(movieDataItemsToHomeModelMapper)
+
+    @Provides
+    fun movieDataItemsToHomeModelMapper(
+        movieDataToHomeModelMapper: @JvmSuppressWildcards MovieDataToHomeModelMapper
+    ): @JvmSuppressWildcards MovieDataItemsToHomeModelMapper =
+        movieDataItemsToHomeModelMapperImpl(movieDataToHomeModelMapper)
 
     @Provides
     fun movieDataToHomeModelMapper(
