@@ -1,6 +1,6 @@
 [versions]
 
-gradle = "7.4.0"
+gradle = "7.4.2"
 
 objectBox = "3.5.0" # https://github.com/objectbox/objectbox-java
 
