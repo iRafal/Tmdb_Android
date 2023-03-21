@@ -46,6 +46,23 @@ subprojects {
     // Optionally configure plugin
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)
+        verbose.set(true)
+        android.set(true)
+
+        outputToConsole.set(true)
+        outputColorName.set("RED")
+
+        relative.set(true)
+        ignoreFailures.set(false)
+        enableExperimentalRules.set(false) // https://github.com/pinterest/ktlint/blob/master/ktlint-ruleset-experimental/src/main/kotlin/com/pinterest/ktlint/ruleset/experimental/ExperimentalRuleSetProvider.kt
+        reporters {
+            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.HTML)
+            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+        }
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
+        }
     }
 }
 
