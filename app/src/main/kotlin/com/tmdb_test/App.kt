@@ -7,6 +7,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import coil.Coil
 import coil.ImageLoader
+import com.tmdb_test.BuildConfig
 import com.tmdb_test.util.logging.AndroidReleaseLogcatLogger
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
