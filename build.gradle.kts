@@ -19,6 +19,7 @@ buildscript {
 
 /**
  * Mac
+ * chmod +x gradlew (id needed, https://stackoverflow.com/questions/17668265/gradlew-permission-denied)
  * ./gradlew ktlintCheck
  * ./gradlew ktlintFormat
  *
