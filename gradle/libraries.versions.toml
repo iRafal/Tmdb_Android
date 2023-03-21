@@ -2,6 +2,14 @@
 
 gradle = "7.4.2"
 
+# https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration-with-groovy
+# https://github.com/jlleitschuh/ktlint-gradle
+ktlint-plugin = "11.3.1"
+
+# https://github.com/pinterest/ktlint
+# https://github.com/jlleitschuh/ktlint-gradle
+ktlint = "0.48.2"
+
 objectBox = "3.5.0" # https://github.com/objectbox/objectbox-java
 
 realm-plugin = "10.13.0" # https://github.com/realm/realm-java
@@ -75,12 +83,15 @@ kotlinx-dateTime = "0.4.0" # https://github.com/Kotlin/kotlinx-datetime
 [libraries]
 
 #PLUGINS
+ktlint-plugin = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint-plugin" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 realm-plugin = { group = "io.realm", name = "realm-gradle-plugin", version.ref = "realm-plugin" }
 objectBox = { group = "io.objectbox", name = "objectbox-gradle-plugin", version.ref = "objectBox" }
+
+ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
 
 #KOTLIN
 kotlin-stdLib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }

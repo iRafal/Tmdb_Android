@@ -67,7 +67,19 @@ android {
     namespace = "com.tmdb_test"
 }
 
+// Ktlint manual integration
+// val ktlint by configurations.creating
+
 dependencies {
+
+// Ktlint manual integration
+//    ktlint(libs.ktlint) {
+//        attributes {
+//            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+//        }
+//        // ktlint(project(":custom-ktlint-ruleset")) // in case of custom ruleset
+//    }
+
     implementation(project(":ui"))
     implementation(libs.bundles.app)
     debugImplementation(libs.bundles.app.impl.debug)
@@ -77,3 +89,29 @@ dependencies {
     testImplementation(libs.bundles.app.test)
     androidTestImplementation(libs.bundles.app.test.android)
 }
+
+// Ktlint manual integration
+// val outputDir = "${project.buildDir}/reports/ktlint/"
+// val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
+//
+// val ktlintCheck by tasks.creating(JavaExec::class) {
+//    inputs.files(inputFiles)
+//    outputs.dir(outputDir)
+//
+//    description = "Check Kotlin code style."
+//    classpath = ktlint
+//    mainClass.set("com.pinterest.ktlint.Main")
+//    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
+//    args = listOf("src/**/*.kt")
+// }
+//
+// val ktlintFormat by tasks.creating(JavaExec::class) {
+//    inputs.files(inputFiles)
+//    outputs.dir(outputDir)
+//
+//    description = "Fix Kotlin code style deviations."
+//    classpath = ktlint
+//    mainClass.set("com.pinterest.ktlint.Main")
+//    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
+//    args = listOf("-F", "src/**/*.kt")
+// }

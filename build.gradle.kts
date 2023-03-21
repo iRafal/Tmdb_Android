@@ -8,6 +8,7 @@ buildscript {
 
     dependencies {
         classpath(libs.gradle)
+        classpath(libs.ktlint.plugin)
         classpath(libs.kotlin.gradle)
         classpath(libs.kotlin.serialization)
         classpath(libs.hilt.plugin)
@@ -16,11 +17,35 @@ buildscript {
     }
 }
 
+/**
+ * Mac
+ * ./gradlew ktlintCheck
+ * ./gradlew ktlintFormat
+ *
+ * Windows
+ * gradlew ktlintCheck
+ * ./gradlew ktlintFormat
+ */
+
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
+    }
+}
+
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
+
+    repositories {
+        // Required to download KtLint
+        mavenCentral()
+    }
+
+    // Optionally configure plugin
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        debug.set(true)
     }
 }
 
