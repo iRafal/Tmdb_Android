@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = Version(major = 1, minor = 0, patch = 0).name
 
-        testInstrumentationRunner = "com.tmdb_test.runner.HiltTestRunner"
+        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.runner.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -64,7 +64,7 @@ android {
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
         this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
     }
-    namespace = "com.tmdb_test"
+    namespace = Libs.BuildConfig.applicationId
 }
 
 // Ktlint manual integration

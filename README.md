@@ -1,4 +1,4 @@
-# Tmdb_Test
+# Tmdb
 
 ## The goal
 The goal is to create a sample app, where I can try to use new android related technologies and experiment with libraries.

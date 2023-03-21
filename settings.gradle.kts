@@ -8,7 +8,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Tmdb_Test"
+rootProject.name = "Tmdb"
 rootProject.buildFileName = "build.gradle.kts"
 include(":app")
 

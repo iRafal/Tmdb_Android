@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.db.room"
+    namespace = "${Libs.BuildConfig.applicationId}.data.db.room"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = 24
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "com.tmdb_test.data.db.room.runner.HiltTestRunner"
+        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.data.db.room.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {

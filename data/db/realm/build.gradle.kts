@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.db.realm"
+    namespace = "${Libs.BuildConfig.applicationId}.data.db.realm"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "com.tmdb_test.data.db.realm.runner.HiltTestRunner"
+        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.data.db.realm.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 

@@ -14,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@style/Theme.Tmdb_Test"
+        android:theme="@style/Theme.Tmdb"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Tmdb_Test">
+            android:theme="@style/Theme.Tmdb">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

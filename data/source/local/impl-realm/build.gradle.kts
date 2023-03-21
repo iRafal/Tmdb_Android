@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.source.local.impl_realm"
+    namespace = "${Libs.BuildConfig.applicationId}.data.source.local.impl_realm"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.ui"
+    namespace = "${Libs.BuildConfig.applicationId}.ui"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "com.tmdb_test.ui.runner.HiltTestRunner"
+        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.ui.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true

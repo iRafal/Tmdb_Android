@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.store.reducer"
+    namespace = "${Libs.BuildConfig.applicationId}.store.reducer"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

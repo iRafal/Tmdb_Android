@@ -13,7 +13,7 @@ val apiUrlBase = apiProperties["api.url.base"].toString()
 val apiUrlImage = apiProperties["api.url.image"].toString()
 
 android {
-    namespace = "com.tmdb_test.api.config"
+    namespace = "${Libs.BuildConfig.applicationId}.api.config"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.api.impl_ktor"
+    namespace = "${Libs.BuildConfig.applicationId}.data.api.impl_ktor"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

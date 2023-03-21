@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.source.remote.impl"
+    namespace = "${Libs.BuildConfig.applicationId}.data.source.remote.impl"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

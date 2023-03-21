@@ -5,7 +5,7 @@ object Libs {
 
     object BuildConfig {
         const val compileSdk = 33
-        const val applicationId = "com.tmdb_test"
+        const val applicationId = "com.tmdb"
         const val minSdk = 26
         const val targetSdk = 33
 

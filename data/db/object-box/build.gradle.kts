@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.db.object_box"
+    namespace = "${Libs.BuildConfig.applicationId}.data.db.object_box"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

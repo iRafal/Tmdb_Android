@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tmdb_test.data.api.impl_retrofit"
+    namespace = "${Libs.BuildConfig.applicationId}.data.api.impl_retrofit"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
