@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        google()
         maven { url = uri("https://plugins.gradle.org/m2/") }
         mavenCentral()
         google()
@@ -17,6 +16,14 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+
 /**
  * Mac
  * chmod +x gradlew (id needed, https://stackoverflow.com/questions/17668265/gradlew-permission-denied)
@@ -25,16 +32,8 @@ buildscript {
  *
  * Windows
  * gradlew ktlintCheck
- * ./gradlew ktlintFormat
+ * gradlew ktlintFormat
  */
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-}
 
 subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
