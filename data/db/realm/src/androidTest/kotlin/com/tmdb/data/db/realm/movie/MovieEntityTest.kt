@@ -130,7 +130,7 @@ class MovieEntityTest {
         movieDao.insert(movieEntity)
         movieDao.getById(movieId).run { assertEquals(movieEntity, this) }
         movieDao.delete()
-        movieDao.getById(movieId).also { deletedUfo -> assertNull(deletedUfo) }
+        movieDao.getById(movieId).also { deletedMovie -> assertNull(deletedMovie) }
     }
 
     @Test
