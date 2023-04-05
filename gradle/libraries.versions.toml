@@ -27,28 +27,28 @@ hilt-navigation-compose = "1.0.0"
 
 #KOTLIN
 kotlin = "1.8.10" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin-compiler-extension = "1.4.3" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+kotlin-compiler-extension = "1.4.4" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
 kotlin-coroutines = "1.6.4" # https://github.com/kotlin/kotlinx.coroutines
 kotlin-serialization-json = "1.5.0" # https://github.com/Kotlin/kotlinx.serialization
 
 #ANDROIDX
-androidx-core = "1.10.0-rc01" # https://developer.android.com/jetpack/androidx/releases/core
-androidx-lifecycle = "2.6.0" # https://developer.android.com/jetpack/androidx/releases/lifecycle
-androidx-work = "2.8.0" # https://developer.android.com/jetpack/androidx/releases/work
+androidx-core = "1.10.0" # https://developer.android.com/jetpack/androidx/releases/core
+androidx-lifecycle = "2.6.1" # https://developer.android.com/jetpack/androidx/releases/lifecycle
+androidx-work = "2.8.1" # https://developer.android.com/jetpack/androidx/releases/work
 
 #COIL
-coil = "2.2.2" # https://github.com/coil-kt/coil
+coil = "2.3.0" # https://github.com/coil-kt/coil
 
 #COMPOSE
-compose-animation = "1.4.0-rc01" # https://developer.android.com/jetpack/androidx/releases/compose-animation
-compose-compiler = "1.4.3" # https://developer.android.com/jetpack/androidx/releases/compose-compiler
-compose-foundation = "1.4.0-rc01" # https://developer.android.com/jetpack/androidx/releases/compose-foundation
-compose-material = "1.4.0-rc01" # https://developer.android.com/jetpack/androidx/releases/compose-material
+compose-animation = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/compose-animation
+compose-compiler = "1.4.4" # https://developer.android.com/jetpack/androidx/releases/compose-compiler
+compose-foundation = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/compose-foundation
+compose-material = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/compose-material
 compose-material3 = "1.0.1" # https://developer.android.com/jetpack/androidx/releases/compose-material3
-compose-runtime = "1.4.0-rc01" # https://developer.android.com/jetpack/androidx/releases/compose-runtime
-compose-ui = "1.4.0-rc01" # https://developer.android.com/jetpack/androidx/releases/compose-ui
+compose-runtime = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/compose-runtime
+compose-ui = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/compose-ui
 
-compose-activity = "1.7.0-rc01" # https://developer.android.com/jetpack/androidx/releases/activity
+compose-activity = "1.7.0" # https://developer.android.com/jetpack/androidx/releases/activity
 compose-navigation = "2.5.3" # https://developer.android.com/jetpack/androidx/releases/navigation
 
 # https://developer.android.com/jetpack/compose/layouts/constraintlayout
@@ -56,7 +56,7 @@ compose-navigation = "2.5.3" # https://developer.android.com/jetpack/androidx/re
 compose-constraintLayout = "1.0.1"
 
 #STORAGE
-room = "2.5.0" # https://developer.android.com/jetpack/androidx/releases/room
+room = "2.5.1" # https://developer.android.com/jetpack/androidx/releases/room
 
 #NETWORK
 ktor = "2.2.4" # https://github.com/ktorio/ktor
@@ -76,7 +76,7 @@ junit-android-ext = "1.1.5"
 # https://developer.android.com/jetpack/androidx/releases/test
 espresso = "3.5.1"
 
-mockito = "5.1.0" # https://github.com/mockito/mockito
+mockito = "5.2.0" # https://github.com/mockito/mockito
 mockito-kotlin = "4.1.0" # https://github.com/mockito/mockito-kotlin
 
 #TOOLS

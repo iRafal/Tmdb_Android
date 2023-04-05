@@ -14,15 +14,16 @@ object ModelUtil {
     const val isTopRated = false
     const val isUpcoming = false
 
-    val movieEntity = MovieEntity(
-        movieId = movieId,
-        title = title,
-        voteAverage = voteAverage,
-        releaseDate = releaseDate,
-        posterUrl = posterUrl,
-        isNowPlaying = isNowPlaying,
-        isNowPopular = isNowPopular,
-        isTopRated = isTopRated,
-        isUpcoming = isUpcoming
-    )
+    val movieEntity: MovieEntity
+        get() = MovieEntity(
+            movieId = movieId,
+            title = title,
+            voteAverage = voteAverage,
+            releaseDate = releaseDate,
+            posterUrl = posterUrl,
+            isNowPlaying = isNowPlaying,
+            isNowPopular = isNowPopular,
+            isTopRated = isTopRated,
+            isUpcoming = isUpcoming
+        )
 }
