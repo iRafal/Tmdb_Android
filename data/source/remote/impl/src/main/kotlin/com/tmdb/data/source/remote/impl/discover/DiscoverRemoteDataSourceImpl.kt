@@ -1,6 +1,6 @@
 package com.tmdb.data.source.remote.impl.discover
 
-import com.tmdb.api.impl_retrofit.discover.DiscoverApi
+import com.tmdb.api.implRetrofit.discover.DiscoverApi
 import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.movie.Movie
 import com.tmdb.api.model.util.ApiResponse

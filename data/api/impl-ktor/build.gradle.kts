@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.data.api.impl_ktor"
+    namespace = "${Libs.BuildConfig.applicationId}.data.api.implKtor"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

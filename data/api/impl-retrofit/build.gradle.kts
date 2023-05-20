@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.data.api.impl_retrofit"
+    namespace = "${Libs.BuildConfig.applicationId}.data.api.implRetrofit"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

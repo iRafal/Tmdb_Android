@@ -1,6 +1,6 @@
 package com.tmdb.data.source.remote.impl.movie
 
-import com.tmdb.api.impl_retrofit.movie.MovieApi
+import com.tmdb.api.implRetrofit.movie.MovieApi
 import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.movie.Movie
 import com.tmdb.api.model.util.ApiResponse

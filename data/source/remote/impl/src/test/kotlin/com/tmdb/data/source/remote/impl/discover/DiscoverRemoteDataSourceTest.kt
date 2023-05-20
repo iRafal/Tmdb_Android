@@ -1,11 +1,10 @@
 package com.tmdb.data.source.remote.impl.discover
 
-import com.tmdb.api.impl_retrofit.discover.DiscoverApi
+import com.tmdb.api.implRetrofit.discover.DiscoverApi
 import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb.data.source.remote.impl.util.model.ModelUtil
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue

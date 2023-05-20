@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.data.db.object_box"
+    namespace = "${Libs.BuildConfig.applicationId}.data.db.objectBox"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

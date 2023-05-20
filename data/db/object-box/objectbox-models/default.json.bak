@@ -59,7 +59,7 @@
           "name": "movie_id",
           "indexId": "1:8715858900333437864",
           "type": 5,
-          "flags": 40
+          "flags": 32808
         }
       ],
       "relations": []

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.data.source.remote.impl_ktor"
+    namespace = "${Libs.BuildConfig.applicationId}.data.source.remote.implKtor"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

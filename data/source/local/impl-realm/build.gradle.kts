@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.data.source.local.impl_realm"
+    namespace = "${Libs.BuildConfig.applicationId}.data.source.local.impl.realm"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {

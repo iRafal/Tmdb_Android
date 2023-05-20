@@ -1,6 +1,6 @@
 package com.tmdb.data.source.remote.impl.genre
 
-import com.tmdb.api.impl_retrofit.genre.GenreApi
+import com.tmdb.api.implRetrofit.genre.GenreApi
 import com.tmdb.api.model.genre.Genre
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
