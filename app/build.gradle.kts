@@ -64,6 +64,10 @@ android {
         this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
     }
     namespace = Libs.BuildConfig.applicationId
+    lint {
+        // https://developer.android.com/studio/write/lint
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 // Ktlint manual integration
