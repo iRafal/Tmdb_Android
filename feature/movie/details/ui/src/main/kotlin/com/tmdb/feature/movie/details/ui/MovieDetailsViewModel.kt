@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     store: AppStore

@@ -9,6 +9,6 @@ object ModelUtil {
         title = "Fight Club",
         voteAverage = 7.8,
         releaseDate = LocalDate.parse("1999-10-12"),
-        posterUrl = null,
+        posterUrl = null
     )
 }

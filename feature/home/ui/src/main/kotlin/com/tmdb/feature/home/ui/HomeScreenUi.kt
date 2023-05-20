@@ -24,7 +24,6 @@ import com.tmdb.ui.core.data.UiState
 import com.tmdb.ui.core.theme.TmdbTheme
 import kotlinx.datetime.LocalDate
 
-
 @Preview(showBackground = false, showSystemUi = false)
 @ExperimentalMaterialApi
 @Composable
@@ -35,7 +34,7 @@ fun HomeAllSectionsLoadingPreview() {
                 NOW_PLAYING to UiState.Loading(),
                 NOW_POPULAR to UiState.Loading(),
                 TOP_RATED to UiState.Loading(),
-                UPCOMING to UiState.Loading(),
+                UPCOMING to UiState.Loading()
             )
         )
         HomeScreenUi(
@@ -55,7 +54,7 @@ fun HomeAllSectionsErrorPreview() {
                 NOW_PLAYING to UiState.Error(),
                 NOW_POPULAR to UiState.Error(),
                 TOP_RATED to UiState.Error(),
-                UPCOMING to UiState.Error(),
+                UPCOMING to UiState.Error()
             )
         )
         HomeScreenUi(
@@ -75,7 +74,7 @@ fun HomeAllSectionsNetworkErrorPreview() {
                 NOW_PLAYING to UiState.NetworkError(),
                 NOW_POPULAR to UiState.NetworkError(),
                 TOP_RATED to UiState.NetworkError(),
-                UPCOMING to UiState.NetworkError(),
+                UPCOMING to UiState.NetworkError()
             )
         )
         HomeScreenUi(
@@ -118,7 +117,7 @@ fun HomeStateSuccessPreview() {
                 NOW_PLAYING to UiState.Success(movies),
                 NOW_POPULAR to UiState.Success(movies),
                 TOP_RATED to UiState.Success(movies),
-                UPCOMING to UiState.Success(movies),
+                UPCOMING to UiState.Success(movies)
             )
         )
         HomeScreenUi(
@@ -138,7 +137,7 @@ fun HomeMixedStatesPreview() {
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
-                releaseDate =LocalDate.parse("1 Jan 2022"),
+                releaseDate = LocalDate.parse("1 Jan 2022"),
                 posterUrl = null
             ),
             Movie(
@@ -161,7 +160,7 @@ fun HomeMixedStatesPreview() {
                 NOW_PLAYING to UiState.Success(movies),
                 NOW_POPULAR to UiState.NetworkError(),
                 TOP_RATED to UiState.Error(),
-                UPCOMING to UiState.Loading(),
+                UPCOMING to UiState.Loading()
             )
         )
         HomeScreenUi(

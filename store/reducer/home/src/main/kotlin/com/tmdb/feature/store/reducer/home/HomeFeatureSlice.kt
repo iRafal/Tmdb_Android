@@ -28,7 +28,7 @@ class HomeFeatureSliceImpl(
 
     override val reducer: FeatureReducer<AppState, AppEnv, HomeFeatureState> =
         { globalState: AppState,
-          action: Action ->
+            action: Action ->
             when (action) {
                 is HomeAction -> {
                     globalState.reduce(

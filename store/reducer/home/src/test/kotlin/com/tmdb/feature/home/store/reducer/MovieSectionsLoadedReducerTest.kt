@@ -35,7 +35,7 @@ class MovieSectionsLoadedReducerTest {
                 nowPlayingMoviesState = FeatureState.Loading(),
                 nowPopularMoviesState = FeatureState.Loading(),
                 topRatedMoviesState = FeatureState.Loading(),
-                upcomingMoviesState = FeatureState.Loading(),
+                upcomingMoviesState = FeatureState.Loading()
             )
         )
 
@@ -43,7 +43,7 @@ class MovieSectionsLoadedReducerTest {
             nowPlayingMovies = dataSuccessMovies,
             nowPopularMovies = dataSuccessMovies,
             topRatedMovies = dataSuccessMovies,
-            upcomingMovies = dataSuccessMovies,
+            upcomingMovies = dataSuccessMovies
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
@@ -89,7 +89,7 @@ class MovieSectionsLoadedReducerTest {
                 nowPlayingMoviesState = FeatureState.Loading(),
                 nowPopularMoviesState = FeatureState.Loading(),
                 topRatedMoviesState = FeatureState.Loading(),
-                upcomingMoviesState = FeatureState.Loading(),
+                upcomingMoviesState = FeatureState.Loading()
             )
         )
 
@@ -97,17 +97,17 @@ class MovieSectionsLoadedReducerTest {
             nowPlayingMovies = dataNetworkErrorMovies,
             nowPopularMovies = dataNetworkErrorMovies,
             topRatedMovies = dataNetworkErrorMovies,
-            upcomingMovies = dataNetworkErrorMovies,
+            upcomingMovies = dataNetworkErrorMovies
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
-                moviesApiToDataStateMapper = { dataNetworkErrorMovies },
-                moviesDataToFeatureStateMapper = {
-                    FeatureState.NetworkError(ApiException.NetworkError())
-                },
-                homeFeatureEffects
-            )
+            moviesApiToDataStateMapper = { dataNetworkErrorMovies },
+            moviesDataToFeatureStateMapper = {
+                FeatureState.NetworkError(ApiException.NetworkError())
+            },
+            homeFeatureEffects
+        )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
             appState,
@@ -144,7 +144,7 @@ class MovieSectionsLoadedReducerTest {
                 nowPlayingMoviesState = FeatureState.Loading(),
                 nowPopularMoviesState = FeatureState.Loading(),
                 topRatedMoviesState = FeatureState.Loading(),
-                upcomingMoviesState = FeatureState.Loading(),
+                upcomingMoviesState = FeatureState.Loading()
             )
         )
 
@@ -152,15 +152,15 @@ class MovieSectionsLoadedReducerTest {
             nowPlayingMovies = dataApiErrorMovies,
             nowPopularMovies = dataApiErrorMovies,
             topRatedMovies = dataApiErrorMovies,
-            upcomingMovies = dataApiErrorMovies,
+            upcomingMovies = dataApiErrorMovies
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureSlice: HomeFeatureSlice = HomeFeatureSliceImpl(
-                moviesApiToDataStateMapper = { dataApiErrorMovies },
-                moviesDataToFeatureStateMapper = { FeatureState.Error(ApiException.BadRequest()) },
-                homeFeatureEffects
-            )
+            moviesApiToDataStateMapper = { dataApiErrorMovies },
+            moviesDataToFeatureStateMapper = { FeatureState.Error(ApiException.BadRequest()) },
+            homeFeatureEffects
+        )
 
         val (homeFeatureState, effect) = homeFeatureSlice.reducer(
             appState,
@@ -190,7 +190,7 @@ class MovieSectionsLoadedReducerTest {
                 nowPlayingMoviesState = FeatureState.Loading(),
                 nowPopularMoviesState = FeatureState.Loading(),
                 topRatedMoviesState = FeatureState.Loading(),
-                upcomingMoviesState = FeatureState.Loading(),
+                upcomingMoviesState = FeatureState.Loading()
             )
         )
 
@@ -198,7 +198,7 @@ class MovieSectionsLoadedReducerTest {
             nowPlayingMovies = dataUnknownErrorMovies,
             nowPopularMovies = dataUnknownErrorMovies,
             topRatedMovies = dataUnknownErrorMovies,
-            upcomingMovies = dataUnknownErrorMovies,
+            upcomingMovies = dataUnknownErrorMovies
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)

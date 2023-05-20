@@ -23,9 +23,8 @@ data class HomeUiData(val movieSections: Map<HomeMovieSection, UiState<List<Movi
                 NOW_PLAYING to Loading(),
                 NOW_POPULAR to Loading(),
                 TOP_RATED to Loading(),
-                UPCOMING to Loading(),
+                UPCOMING to Loading()
             )
         )
     }
 }
-

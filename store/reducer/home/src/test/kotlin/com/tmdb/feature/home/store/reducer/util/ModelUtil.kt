@@ -15,7 +15,7 @@ object ModelUtil {
         title = "Fight Club",
         voteAverage = 7.8,
         releaseDate = LocalDate.parse("1999-10-12"),
-        posterUrl = null,
+        posterUrl = null
     )
 
     val movieModel = Movie(
@@ -29,7 +29,7 @@ object ModelUtil {
         imdbId = "tt0137523",
         originalLanguage = "en",
         originalTitle = "Fight Club",
-        overview = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+        overview = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.", // ktlint-disable max-line-length
         popularity = 0.5,
         posterPath = null,
         productionCompanies = listOf(
@@ -37,14 +37,14 @@ object ModelUtil {
                 id = 508,
                 logoPath = "/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png",
                 name = "Regency Enterprises",
-                originCountry = "US",
+                originCountry = "US"
             ),
             ProductionCompany(
                 id = 711,
                 logoPath = null,
                 name = "Fox 2000 Pictures",
-                originCountry = "",
-            ),
+                originCountry = ""
+            )
         ),
         productionCountries = listOf(
             ProductionCountry(

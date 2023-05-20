@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.tmdb.feature.movie.details.ui.data.model.MovieDetailsUiData
 import com.tmdb.ui.core.theme.TmdbTheme
 
-
 @Preview(showBackground = false, showSystemUi = false)
 @ExperimentalMaterialApi
 @Composable
@@ -96,20 +95,16 @@ fun MovieDetails(state: MovieDetailsUiState) {
 
 @Composable
 fun MovieDetailsContent(data: MovieDetailsUiData) {
-
 }
 
 @Composable
 fun MovieDetailsLoading() {
-
 }
 
 @Composable
 fun MovieDetailsError() {
-
 }
 
 @Composable
 fun MovieDetailsNetworkError() {
-
 }

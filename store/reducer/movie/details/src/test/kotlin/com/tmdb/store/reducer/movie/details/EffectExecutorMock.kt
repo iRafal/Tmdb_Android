@@ -21,9 +21,8 @@ fun createMockEffectExecutor(
     genreRemoteSource: GenreRemoteDataSource,
     movieRemoteSource: MovieRemoteDataSource,
     personRemoteSource: PersonRemoteDataSource,
-    movieLocalSource: MovieLocalDataSource,
+    movieLocalSource: MovieLocalDataSource
 ): EffectExecutorMock {
-
     val database: AppEnv.Database = mock<AppEnv.Database>().apply {
         whenever(this.movieSource).thenReturn(movieLocalSource)
     }

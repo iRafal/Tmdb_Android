@@ -14,12 +14,12 @@ fun ScrollableColumn(
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val scrollState = rememberScrollState()
     Column(
         modifier = modifier.verticalScroll(scrollState),
         verticalArrangement = verticalArrangement,
-        horizontalAlignment = horizontalAlignment,
+        horizontalAlignment = horizontalAlignment
     ) { content() }
 }

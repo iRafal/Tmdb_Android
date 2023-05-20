@@ -1,6 +1,5 @@
 package com.tmdb.ui.core.data
 
-
 sealed interface UiState<T> {
     class Loading<T> : UiState<T> {
         override fun equals(other: Any?): Boolean = when {

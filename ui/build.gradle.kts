@@ -66,7 +66,7 @@ dependencies {
     androidTestImplementationDependencies()
 }
 
-fun DependencyHandlerScope.apiDependencies()  {
+fun DependencyHandlerScope.apiDependencies() {
     api(libs.androidx.lifecycle.runtime.ktx)
     api(libs.androidx.lifecycle.viewmodel.ktx)
     api(libs.androidx.lifecycle.viewmodel.compose)
@@ -74,7 +74,7 @@ fun DependencyHandlerScope.apiDependencies()  {
     api(project(":ui-core"))
 }
 
-fun DependencyHandlerScope.implementationDependencies()  {
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.hilt.android)
 
     implementation(project(":feature:home:ui"))

@@ -15,7 +15,7 @@ interface MovieDetailsFeatureSlice : FeatureSlice<AppState, AppEnv, MovieDetails
 class MovieDetailsFeatureSliceImpl : MovieDetailsFeatureSlice {
     override val reducer: FeatureReducer<AppState, AppEnv, MovieDetailsFeatureState> =
         { globalState: AppState,
-          action: Action ->
+            action: Action ->
             when (action) {
                 is MovieDetailsAction -> {
                     reduce(action)
@@ -27,6 +27,6 @@ class MovieDetailsFeatureSliceImpl : MovieDetailsFeatureSlice {
 
 private fun reduce(action: MovieDetailsAction): Pair<MovieDetailsFeatureState, Effect<AppEnv>?> {
     return when (action) {
-        else -> MovieDetailsFeatureState.INITIAL to Effects.empty() //TODO
+        else -> MovieDetailsFeatureState.INITIAL to Effects.empty() // TODO
     }
 }

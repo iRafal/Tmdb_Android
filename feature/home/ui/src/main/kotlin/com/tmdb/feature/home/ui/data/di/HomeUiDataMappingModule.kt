@@ -20,7 +20,7 @@ import dagger.hilt.components.SingletonComponent
 object HomeUiDataMappingModule {
     @Provides
     fun homeFeatureToUiStateMapper(
-        homeFeatureStateToUiSectionStateMapper: @JvmSuppressWildcards HomeFeatureStateToUiSectionStateMapper,
+        homeFeatureStateToUiSectionStateMapper: @JvmSuppressWildcards HomeFeatureStateToUiSectionStateMapper
     ): @JvmSuppressWildcards HomeFeatureToUiStateMapper =
         homeFeatureToUiStateMapperImpl(homeFeatureStateToUiSectionStateMapper)
 
@@ -37,10 +37,8 @@ object HomeUiDataMappingModule {
         movieDataItemsToHomeModelMapperImpl(movieDataToHomeModelMapper)
 
     @Provides
-    fun movieDataToHomeModelMapper(
-    ): @JvmSuppressWildcards MovieDataToHomeModelMapper = movieDataToHomeModelMapperImpl()
+    fun movieDataToHomeModelMapper(): @JvmSuppressWildcards MovieDataToHomeModelMapper = movieDataToHomeModelMapperImpl()
 
     @Provides
-    fun homeMovieSectionToActionMapper(
-    ): @JvmSuppressWildcards HomeMovieSectionToActionMapper = ::homeMovieSectionToActionMapperImpl
+    fun homeMovieSectionToActionMapper(): @JvmSuppressWildcards HomeMovieSectionToActionMapper = ::homeMovieSectionToActionMapperImpl
 }

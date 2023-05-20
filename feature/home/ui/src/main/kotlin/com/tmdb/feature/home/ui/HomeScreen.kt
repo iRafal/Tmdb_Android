@@ -15,7 +15,7 @@ import com.tmdb.ui.core.theme.TmdbTheme
 @Composable
 fun HomeScreen(
     navController: NavController,
-    homeViewModel: HomeViewModel = hiltViewModel(),
+    homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     TmdbTheme {
         val data by homeViewModel.uiStateFlow.collectAsState(HomeUiData.INITIAL)

@@ -10,7 +10,6 @@ import com.tmdb.ui.core.theme.TmdbTheme
 import com.tmdb.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

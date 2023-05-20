@@ -57,13 +57,12 @@ dependencies {
     kapt(libs.hilt.kapt)
 }
 
-
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":store:state"))
     implementation(libs.hilt.android)
 }
 
-fun DependencyHandlerScope.apiDependencies()  {
+fun DependencyHandlerScope.apiDependencies() {
     implementation(project(":util"))
 
     api(libs.androidx.core)

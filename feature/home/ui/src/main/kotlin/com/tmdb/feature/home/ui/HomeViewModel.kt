@@ -19,12 +19,11 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val store: AppStore,
     private val homeFeatureToUiStateMapper: @JvmSuppressWildcards HomeFeatureToUiStateMapper,
-    private val homeMovieSectionToActionMapper: @JvmSuppressWildcards HomeMovieSectionToActionMapper,
+    private val homeMovieSectionToActionMapper: @JvmSuppressWildcards HomeMovieSectionToActionMapper
 ) : ViewModel() {
 
     val uiState: HomeUiData

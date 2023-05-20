@@ -13,7 +13,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
-
 class HomeFeatureEffects(@DispatcherIo private val dispatcher: CoroutineDispatcher) {
     fun loadMovieSections(
         mapper: MoviesApiToDataStateMapper
@@ -33,20 +32,20 @@ class HomeFeatureEffects(@DispatcherIo private val dispatcher: CoroutineDispatch
                 nowPlaying = mappedNowPlayingMovies.getDataIfSuccessOrDefault(),
                 nowPopular = mappedNowPopularMovies.getDataIfSuccessOrDefault(),
                 topRatedMovies = mappedTopRatedMovies.getDataIfSuccessOrDefault(),
-                upcomingMovies = mappedUpcomingMovies.getDataIfSuccessOrDefault(),
+                upcomingMovies = mappedUpcomingMovies.getDataIfSuccessOrDefault()
             )
 
             MovieSectionsLoaded(
                 nowPlayingMovies = mappedNowPlayingMovies,
                 nowPopularMovies = mappedNowPopularMovies,
                 topRatedMovies = mappedTopRatedMovies,
-                upcomingMovies = mappedUpcomingMovies,
+                upcomingMovies = mappedUpcomingMovies
             )
         }
     }
 
     private fun <T> DataState<List<T>>.getDataIfSuccessOrDefault(): List<T> {
-        return if(this.isSuccess) (this as DataState.Success).data else listOf()
+        return if (this.isSuccess) (this as DataState.Success).data else listOf()
     }
 
     private fun mainEffect(

@@ -8,7 +8,7 @@ import logcat.asLog
 import logcat.logcat
 
 fun createCoilLogger(): Logger = object : Logger {
-    override var level: Int = if(BuildConfig.DEBUG) Log.DEBUG else Log.ERROR
+    override var level: Int = if (BuildConfig.DEBUG) Log.DEBUG else Log.ERROR
 
     override fun log(
         tag: String,

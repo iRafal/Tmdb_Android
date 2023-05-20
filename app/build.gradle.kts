@@ -82,10 +82,10 @@ dependencies {
 
     kaptDependencies()
 
-    //debugImplementationDependencies() //INFO: not used
+    // debugImplementationDependencies() //INFO: not used
 }
 
-fun DependencyHandlerScope.implementationDependencies()  {
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":ui"))
 
     implementation(libs.hilt.android)
@@ -94,12 +94,12 @@ fun DependencyHandlerScope.implementationDependencies()  {
     implementation(libs.androidx.work.runtime)
 }
 
-fun DependencyHandlerScope.kaptDependencies()  {
+fun DependencyHandlerScope.kaptDependencies() {
     kapt(libs.hilt.kapt)
     kapt(libs.hilt.work.kapt)
 }
 
-fun DependencyHandlerScope.debugImplementationDependencies()  {
+fun DependencyHandlerScope.debugImplementationDependencies() {
     debugImplementation(libs.leakCanary.debug)
 }
 

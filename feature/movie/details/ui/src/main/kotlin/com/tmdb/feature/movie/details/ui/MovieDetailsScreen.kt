@@ -12,7 +12,7 @@ import com.tmdb.ui.core.theme.TmdbTheme
 fun MovieDetailsScreen(
     navController: NavController,
     movieId: Int,
-    movieDetailsViewModel: MovieDetailsViewModel = hiltViewModel(),
+    movieDetailsViewModel: MovieDetailsViewModel = hiltViewModel()
 ) {
     TmdbTheme {
         val state = Loading

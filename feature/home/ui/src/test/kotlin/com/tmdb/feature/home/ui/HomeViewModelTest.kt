@@ -50,7 +50,7 @@ class HomeViewModelTest {
     fun onReloadMovieSection() {
         whenever(appStore.state).thenReturn(AppState.INITIAL)
         viewModel.onReloadMovieSection
-        //TODO
+        // TODO
         /*
          whenever(appStore.state).thenReturn(AppState.Initial)
         val name = "Name"

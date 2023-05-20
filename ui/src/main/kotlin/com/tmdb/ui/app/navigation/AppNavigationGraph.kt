@@ -9,10 +9,9 @@ import com.tmdb.ui.core.navigation.app.model.AppNavigation.Close
 import com.tmdb.ui.core.navigation.app.model.AppNavigation.Home
 import com.tmdb.ui.core.navigation.app.model.AppNavigation.MovieDetails
 
-
 fun NavGraphBuilder.appNavigationGraph(
     navController: NavController,
-    onClose: () -> Unit,
+    onClose: () -> Unit
 ) {
     composable(Home.route) {
         HomeScreen(navController)

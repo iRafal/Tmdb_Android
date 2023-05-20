@@ -13,7 +13,7 @@ import javax.inject.Inject
 import logcat.AndroidLogcatLogger
 
 @HiltAndroidApp
-class App: Application(), Configuration.Provider {
+class App : Application(), Configuration.Provider {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
@@ -34,7 +34,8 @@ class App: Application(), Configuration.Provider {
         } else {
             AndroidReleaseLogcatLogger.installOnReleaseApp(
                 this,
-                onErrorLog = { priority, tag, message -> /* TODO pass logs to crash tracking tool */ })
+                onErrorLog = { priority, tag, message -> /* TODO pass logs to crash tracking tool */ }
+            )
         }
     }
 

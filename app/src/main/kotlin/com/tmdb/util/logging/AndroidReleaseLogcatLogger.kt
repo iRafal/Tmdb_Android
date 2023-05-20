@@ -9,7 +9,6 @@ import logcat.LogPriority
 import logcat.LogPriority.ERROR
 import logcat.LogcatLogger
 
-
 private const val MAX_LOG_LENGTH = 4_000
 private const val MAX_TAG_LENGTH = 23
 
@@ -47,8 +46,11 @@ class AndroidReleaseLogcatLogger(
 
         // Tag length limit was removed in API 26.
         val trimmedTag =
-            if (tag.length <= MAX_TAG_LENGTH) tag
-            else tag.substring(0, MAX_TAG_LENGTH)
+            if (tag.length <= MAX_TAG_LENGTH) {
+                tag
+            } else {
+                tag.substring(0, MAX_TAG_LENGTH)
+            }
 
         if (message.length < MAX_LOG_LENGTH) {
             logToLogcat(priority.priorityInt, trimmedTag, message)
@@ -76,13 +78,18 @@ class AndroidReleaseLogcatLogger(
         tag: String,
         part: String
     ) {
-        if (priority == Log.ASSERT) Log.wtf(tag, part)
-        else Log.println(priority, tag, part)
+        if (priority == Log.ASSERT) {
+            Log.wtf(tag, part)
+        } else {
+            Log.println(priority, tag, part)
+        }
     }
 
     companion object {
         fun installOnReleaseApp(
-            application: Application, minPriority: LogPriority = ERROR, onErrorLog: (
+            application: Application,
+            minPriority: LogPriority = ERROR,
+            onErrorLog: (
                 priority: LogPriority,
                 tag: String,
                 message: String

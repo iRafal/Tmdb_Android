@@ -1,0 +1,8 @@
+# https://editorconfig.org/
+# https://github.com/pinterest/ktlint/blob/master/.editorconfig
+
+root = true
+
+[*.{kt,kts,java}]
+max_line_length=200
+#  use [ktlint-disable max-line-length] if needed

@@ -7,7 +7,6 @@ import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.store.state.FeatureState
 import com.tmdb.store.state.home.HomeFeatureState
 
-
 fun HomeFeatureState.reduceLoadMovieSections(
     action: HomeAction.LoadMovieSections,
     mapper: MoviesApiToDataStateMapper,
@@ -17,7 +16,7 @@ fun HomeFeatureState.reduceLoadMovieSections(
         nowPlayingMoviesState = FeatureState.Loading(),
         nowPopularMoviesState = FeatureState.Loading(),
         topRatedMoviesState = FeatureState.Loading(),
-        upcomingMoviesState = FeatureState.Loading(),
+        upcomingMoviesState = FeatureState.Loading()
     )
     return newState to homeFeatureEffects.loadMovieSections(mapper)
 }

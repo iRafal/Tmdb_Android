@@ -4,7 +4,6 @@ import androidx.annotation.PluralsRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-
 @Composable
 fun pluralResource(
     @PluralsRes resId: Int,

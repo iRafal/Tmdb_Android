@@ -12,7 +12,6 @@ typealias HomeFeatureToUiStateMapper = (featureState: HomeFeatureState) -> HomeU
 fun homeFeatureToUiStateMapperImpl(
     homeFeatureStateToUiSectionStateMapper: HomeFeatureStateToUiSectionStateMapper
 ): HomeFeatureToUiStateMapper {
-
     return { featureState ->
         val nowPlayingMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.nowPlayingMoviesState)
         val nowPopularMoviesState = homeFeatureStateToUiSectionStateMapper(featureState.nowPopularMoviesState)
@@ -24,7 +23,7 @@ fun homeFeatureToUiStateMapperImpl(
                 NOW_PLAYING to nowPlayingMoviesState,
                 NOW_POPULAR to nowPopularMoviesState,
                 TOP_RATED to topRatedMoviesState,
-                UPCOMING to upcomingMoviesState,
+                UPCOMING to upcomingMoviesState
             )
         )
     }

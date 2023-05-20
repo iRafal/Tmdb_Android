@@ -32,7 +32,7 @@ class HomeFeatureToUiStateMapperTest {
             nowPlayingMoviesState = FeatureState.Loading(),
             nowPopularMoviesState = FeatureState.Loading(),
             topRatedMoviesState = FeatureState.Loading(),
-            upcomingMoviesState = FeatureState.Loading(),
+            upcomingMoviesState = FeatureState.Loading()
         )
         val actual = mapper.invoke(input)
         val expected = HomeUiData(
@@ -40,7 +40,7 @@ class HomeFeatureToUiStateMapperTest {
                 NOW_PLAYING to UiState.Loading(),
                 NOW_POPULAR to UiState.Loading(),
                 TOP_RATED to UiState.Loading(),
-                UPCOMING to UiState.Loading(),
+                UPCOMING to UiState.Loading()
             )
         )
         assertEquals(expected, actual)
@@ -52,7 +52,7 @@ class HomeFeatureToUiStateMapperTest {
             nowPlayingMoviesState = FeatureState.NetworkError(),
             nowPopularMoviesState = FeatureState.NetworkError(),
             topRatedMoviesState = FeatureState.NetworkError(),
-            upcomingMoviesState = FeatureState.NetworkError(),
+            upcomingMoviesState = FeatureState.NetworkError()
         )
         val actual = mapper.invoke(input)
         val expected = HomeUiData(
@@ -60,7 +60,7 @@ class HomeFeatureToUiStateMapperTest {
                 NOW_PLAYING to UiState.NetworkError(),
                 NOW_POPULAR to UiState.NetworkError(),
                 TOP_RATED to UiState.NetworkError(),
-                UPCOMING to UiState.NetworkError(),
+                UPCOMING to UiState.NetworkError()
             )
         )
         assertEquals(expected, actual)
@@ -72,7 +72,7 @@ class HomeFeatureToUiStateMapperTest {
             nowPlayingMoviesState = FeatureState.Error(),
             nowPopularMoviesState = FeatureState.Error(),
             topRatedMoviesState = FeatureState.Error(),
-            upcomingMoviesState = FeatureState.Error(),
+            upcomingMoviesState = FeatureState.Error()
         )
         val actual = mapper.invoke(input)
         val expected = HomeUiData(
@@ -80,7 +80,7 @@ class HomeFeatureToUiStateMapperTest {
                 NOW_PLAYING to UiState.Error(),
                 NOW_POPULAR to UiState.Error(),
                 TOP_RATED to UiState.Error(),
-                UPCOMING to UiState.Error(),
+                UPCOMING to UiState.Error()
             )
         )
         assertEquals(expected, actual)
@@ -100,7 +100,7 @@ class HomeFeatureToUiStateMapperTest {
             ),
             upcomingMoviesState = FeatureState.Success(
                 listOf(ModelUtil.movieDataModel.copy(id = 3))
-            ),
+            )
         )
         val actual = mapper.invoke(input)
         val expected = HomeUiData(
@@ -108,7 +108,7 @@ class HomeFeatureToUiStateMapperTest {
                 NOW_PLAYING to UiState.Success(listOf(ModelUtil.uiModelMovie)),
                 NOW_POPULAR to UiState.Success(listOf(ModelUtil.uiModelMovie.copy(id = 1))),
                 TOP_RATED to UiState.Success(listOf(ModelUtil.uiModelMovie.copy(id = 2))),
-                UPCOMING to UiState.Success(listOf(ModelUtil.uiModelMovie.copy(id = 3))),
+                UPCOMING to UiState.Success(listOf(ModelUtil.uiModelMovie.copy(id = 3)))
             )
         )
         assertEquals(expected, actual)

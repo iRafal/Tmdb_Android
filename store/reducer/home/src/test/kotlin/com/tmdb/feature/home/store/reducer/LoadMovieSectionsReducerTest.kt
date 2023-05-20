@@ -47,7 +47,7 @@ class LoadMovieSectionsReducerTest {
                 page = 1,
                 results = listOf(ModelUtil.movieModel),
                 totalPages = 1,
-                totalResults = 1,
+                totalResults = 1
             )
         )
 
@@ -93,7 +93,7 @@ class LoadMovieSectionsReducerTest {
                 nowPlayingMovies = dataSuccessMovies,
                 nowPopularMovies = dataSuccessMovies,
                 topRatedMovies = dataSuccessMovies,
-                upcomingMovies = dataSuccessMovies,
+                upcomingMovies = dataSuccessMovies
             )
         )
     }
@@ -144,7 +144,7 @@ class LoadMovieSectionsReducerTest {
                 nowPlayingMovies = dataErrorMovies,
                 nowPopularMovies = dataErrorMovies,
                 topRatedMovies = dataErrorMovies,
-                upcomingMovies = dataErrorMovies,
+                upcomingMovies = dataErrorMovies
             )
         )
     }
@@ -197,7 +197,7 @@ class LoadMovieSectionsReducerTest {
                 nowPlayingMovies = dataErrorMovies,
                 nowPopularMovies = dataErrorMovies,
                 topRatedMovies = dataErrorMovies,
-                upcomingMovies = dataErrorMovies,
+                upcomingMovies = dataErrorMovies
             )
         )
     }
@@ -249,7 +249,7 @@ class LoadMovieSectionsReducerTest {
                 nowPlayingMovies = dataErrorMovies,
                 nowPopularMovies = dataErrorMovies,
                 topRatedMovies = dataErrorMovies,
-                upcomingMovies = dataErrorMovies,
+                upcomingMovies = dataErrorMovies
             )
         )
     }

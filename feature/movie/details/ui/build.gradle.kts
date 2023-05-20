@@ -62,7 +62,7 @@ dependencies {
     androidTestImplementation(libs.bundles.feature.ui.impl.test.android)
 }
 
-fun DependencyHandlerScope.implementationDependencies()  {
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":ui-core"))
     implementation(project(":store:app"))
 

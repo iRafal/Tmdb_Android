@@ -60,7 +60,9 @@ fun MovieSectionError(text: String, buttonText: String, onReloadSection: () -> U
 fun MovieSectionItemPreview() {
     MovieSectionItem(
         movie = HomeUiData.Movie(
-            id = 1, title = "Movie 1", averageVote = 70.7,
+            id = 1,
+            title = "Movie 1",
+            averageVote = 70.7,
             releaseDate = LocalDate.parse("1 Jan 2022"),
             posterUrl = null
         ),
