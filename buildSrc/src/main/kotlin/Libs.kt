@@ -15,13 +15,15 @@ object Libs {
         const val isShrinkResourcesDebug = false
         const val isShrinkResourcesRelease = false
 
+        private val javaVersion = JavaVersion.VERSION_17
+
         object CompileOptions {
-            val sourceCompatibility = JavaVersion.VERSION_11
-            val targetCompatibility = JavaVersion.VERSION_11
+            val sourceCompatibility = javaVersion
+            val targetCompatibility = javaVersion
         }
 
         object KotlinOptions {
-            val jvmTarget = JavaVersion.VERSION_11.toString()
+            val jvmTarget = javaVersion.toString()
         }
     }
 
