@@ -17,7 +17,7 @@ class GenreApiImpl @Inject constructor(
     private val urlProvider: GenreUrlProvider
 ) : GenreApi {
     override suspend fun genreMovieList(
-        language: String?,
+        language: String?
     ): ApiResponse<List<Genre>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.genreMovieListUrl) {
             parameter("language", language)
@@ -25,7 +25,7 @@ class GenreApiImpl @Inject constructor(
     }
 
     override suspend fun genreTvList(
-        language: String?,
+        language: String?
     ): ApiResponse<List<Genre>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.genreTvListUrl) {
             parameter("language", language)

@@ -41,7 +41,7 @@ object Effects {
 
     fun <Env> effect(
         effectExecutorScope: suspend Scope<Env>.() -> Action,
-        feature: Feature,
+        feature: Feature
     ): Effect<Env> = create(feature) {
         dispatch(action = effectExecutorScope())
     }

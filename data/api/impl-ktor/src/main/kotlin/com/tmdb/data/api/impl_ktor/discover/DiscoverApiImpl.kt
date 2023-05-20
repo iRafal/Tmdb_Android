@@ -19,7 +19,7 @@ class DiscoverApiImpl @Inject constructor(
     override suspend fun discoverMovie(
         language: String?,
         page: Int?,
-        region: String?,
+        region: String?
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.discoverMovieUrl) {
             parameter("language", language)
@@ -31,7 +31,7 @@ class DiscoverApiImpl @Inject constructor(
     override suspend fun discoverTv(
         language: String?,
         page: Int?,
-        region: String?,
+        region: String?
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.discoverTvUrl) {
             parameter("language", language)

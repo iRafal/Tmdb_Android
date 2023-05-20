@@ -12,5 +12,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SpokenLanguage(
     @SerialName("iso_639_1") val iso_639_1: String? = null,
-    @SerialName("name") val name: String? = null,
+    @SerialName("name") val name: String? = null
 )

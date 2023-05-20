@@ -7,13 +7,14 @@ import com.tmdb.data.api.impl_ktor.genre.GenreApi
 import com.tmdb.data.source.remote.contract.genre.GenreRemoteDataSource
 import javax.inject.Inject
 
-
 class GenreRemoteDataSourceImpl @Inject constructor(
     private val api: GenreApi
 ) : GenreRemoteDataSource {
-    override suspend fun genreMovieList(language: String?): ApiResponse<List<Genre>, NetworkErrorModel> =
-        api.genreMovieList(language)
+    override suspend fun genreMovieList(
+        language: String?
+    ): ApiResponse<List<Genre>, NetworkErrorModel> = api.genreMovieList(language)
 
-    override suspend fun genreTvList(language: String?): ApiResponse<List<Genre>, NetworkErrorModel> =
-        api.genreTvList(language)
+    override suspend fun genreTvList(
+        language: String?
+    ): ApiResponse<List<Genre>, NetworkErrorModel> = api.genreTvList(language)
 }

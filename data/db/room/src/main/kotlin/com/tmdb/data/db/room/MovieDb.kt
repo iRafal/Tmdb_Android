@@ -17,7 +17,8 @@ import com.tmdb.data.db.room.type.converters.LocalDateTimeConverter
     exportSchema = true
 )
 @TypeConverters(
-    LocalDateTimeConverter::class, LocalDateConverter::class
+    LocalDateTimeConverter::class,
+    LocalDateConverter::class
 )
 abstract class MovieDb : RoomDatabase() {
 

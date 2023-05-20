@@ -11,5 +11,5 @@ fun movieEntityToDataModelMapperImpl(input: MovieEntity): MovieDataModel =
         title = input.title,
         voteAverage = input.voteAverage,
         releaseDate = input.releaseDate,
-        posterUrl = input.posterUrl,
+        posterUrl = input.posterUrl
     )

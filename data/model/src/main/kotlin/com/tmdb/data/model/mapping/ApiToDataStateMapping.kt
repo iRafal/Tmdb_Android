@@ -4,7 +4,6 @@ import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
 import com.tmdb.data.model.state.DataState
 
-
 internal fun <T : Any, E : NetworkErrorModel, R> ApiResponse<T, E>.mapApiToDataState(
     dataMapper: (T) -> R
 ): DataState<R> {

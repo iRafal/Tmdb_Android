@@ -21,7 +21,6 @@ open class MovieEntity(
         }
         get() = releaseDateAsString?.let { LocalDate.parse(it) }
 
-
     override fun hashCode(): Int {
         var result = id ?: 0
         result = 31 * result + (title?.hashCode() ?: 0)

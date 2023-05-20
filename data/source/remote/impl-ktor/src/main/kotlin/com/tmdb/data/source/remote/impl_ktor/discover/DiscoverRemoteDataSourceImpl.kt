@@ -8,7 +8,6 @@ import com.tmdb.data.api.impl_ktor.discover.DiscoverApi
 import com.tmdb.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import javax.inject.Inject
 
-
 class DiscoverRemoteDataSourceImpl @Inject constructor(
     private val api: DiscoverApi
 ) : DiscoverRemoteDataSource {

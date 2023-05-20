@@ -2,8 +2,8 @@ package com.tmdb.data.source.local.impl_realm.movie
 
 import com.tmdb.data.db.realm.movie.MovieEntity
 import com.tmdb.data.db.realm.movie.dao.MovieDao
-import com.tmdb.data.source.local.impl_realm.di.UnitTestServiceLocator
 import com.tmdb.data.source.local.impl_realm.MovieLocalDataSourceImpl
+import com.tmdb.data.source.local.impl_realm.di.UnitTestServiceLocator
 import com.tmdb.data.source.local.impl_realm.mapping.MovieDataModelToEntityMapper
 import com.tmdb.data.source.local.impl_realm.mapping.MovieEntityToDataModelMapper
 import com.tmdb.data.source.local.impl_realm.util.ModelUtil

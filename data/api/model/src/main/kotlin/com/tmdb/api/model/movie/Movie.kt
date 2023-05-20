@@ -1,7 +1,7 @@
 package com.tmdb.api.model.movie
 
-import com.tmdb.api.model.util.serializer.JsonKeys
 import com.tmdb.api.model.genre.Genre
+import com.tmdb.api.model.util.serializer.JsonKeys
 import com.tmdb.api.model.util.serializer.MovieStatusSerializer
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.serializers.LocalDateIso8601Serializer
@@ -120,7 +120,8 @@ data class Movie(
     @SerialName("production_countries") val productionCountries: List<ProductionCountry> = emptyList(),
 
     @Serializable(with = LocalDateIso8601Serializer::class)
-    @SerialName("release_date") val releaseDate: LocalDate? = null,
+    @SerialName("release_date")
+    val releaseDate: LocalDate? = null,
 
     @SerialName("revenue") val revenue: Int? = null,
     @SerialName("runtime") val runtime: Int? = null,
@@ -134,11 +135,5 @@ data class Movie(
     @SerialName("title") val title: String? = null,
     @SerialName("video") val isVideo: Boolean = false,
     @SerialName("vote_average") val voteAverage: Double? = null,
-    @SerialName("vote_count") val voteCount: Int? = null,
+    @SerialName("vote_count") val voteCount: Int? = null
 )
-
-
-
-
-
-

@@ -46,6 +46,6 @@ dependencies {
     implementation(project(":data:api:config"))
 
     implementation(libs.bundles.data.api.impl.retrofit)
-    kapt(libs.bundles.data.api.impl.retrofit.kapt)
-    testImplementation(libs.bundles.data.api.impl.retrofit.test)
+    kapt(libs.hilt.kapt)
+    testImplementation(libs.junit)
 }

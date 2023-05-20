@@ -9,22 +9,22 @@ interface MovieLocalDataSource {
 
     suspend fun nowPlayingMovies(
         page: Int? = null,
-        pageSize: Int? = null,
+        pageSize: Int? = null
     ): List<MovieDataModel>
 
     suspend fun nowPopularMovies(
         page: Int? = null,
-        pageSize: Int? = null,
+        pageSize: Int? = null
     ): List<MovieDataModel>
 
     suspend fun topRatedMovies(
         page: Int? = null,
-        pageSize: Int? = null,
+        pageSize: Int? = null
     ): List<MovieDataModel>
 
     suspend fun upcomingMovies(
         page: Int? = null,
-        pageSize: Int? = null,
+        pageSize: Int? = null
     ): List<MovieDataModel>
 
     suspend fun insert(movie: MovieDataModel)

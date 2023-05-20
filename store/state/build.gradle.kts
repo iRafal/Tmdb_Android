@@ -9,7 +9,6 @@ android {
     namespace = "${Libs.BuildConfig.applicationId}.store.state"
     compileSdk = Libs.BuildConfig.compileSdk
 
-
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
         consumerProguardFiles("consumer-rules.pro")
@@ -41,9 +40,15 @@ android {
 }
 
 dependencies {
+    implementationDependencies()
+
+    kapt(libs.hilt.kapt)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":store:base"))
     implementation(project(":data:model"))
 
-    implementation(libs.bundles.store.state)
-    kapt(libs.bundles.store.state.kapt)
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.hilt.android)
 }

@@ -79,7 +79,7 @@ internal class NetworkResponseCall<S : Any, E : Any>(
                 }
             }
             else -> ApiException.UnknownError(cause = this)
-        }.run {  ApiResponse.UnknownError(this) }
+        }.run { ApiResponse.UnknownError(this) }
     }
 
     override fun isExecuted() = delegate.isExecuted

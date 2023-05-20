@@ -8,7 +8,9 @@ import kotlinx.datetime.LocalDate
 
 @Entity(tableName = MOVIE_TABLE_NAME)
 data class MovieEntity(
-    @PrimaryKey @ColumnInfo(name = MOVIE_TABLE_COLUMN_ID) val id: Int? = null,
+    @PrimaryKey
+    @ColumnInfo(name = MOVIE_TABLE_COLUMN_ID)
+    val id: Int? = null,
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_TITLE) val title: String? = null,
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_VOTE_AVERAGE) val voteAverage: Double? = null,
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_RELEASE_DATE) val releaseDate: LocalDate? = null,
@@ -28,7 +30,7 @@ data class MovieEntity(
     @ColumnInfo(
         name = MOVIE_TABLE_COLUMN_UPCOMING,
         defaultValue = "0"
-    ) val isUpcoming: Boolean = false,
+    ) val isUpcoming: Boolean = false
 ) {
     companion object {
         const val MOVIE_TABLE_NAME = "movie"

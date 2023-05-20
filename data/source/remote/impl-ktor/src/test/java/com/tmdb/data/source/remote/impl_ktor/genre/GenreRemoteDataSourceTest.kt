@@ -4,7 +4,6 @@ import com.tmdb.api.model.genre.Genre
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.data.api.impl_ktor.genre.GenreApi
 import com.tmdb.data.source.remote.contract.genre.GenreRemoteDataSource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -14,7 +13,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class GenreRemoteDataSourceTest {
     private val genreApi = mock<GenreApi>()
     private val genreSource: GenreRemoteDataSource = GenreRemoteDataSourceImpl(genreApi)

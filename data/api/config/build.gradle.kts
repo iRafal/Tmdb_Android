@@ -52,8 +52,18 @@ android {
 }
 
 dependencies {
+    implementationDependencies()
+    kapt(libs.hilt.kapt)
+    testImplementationDependencies()
+}
 
-    implementation(libs.bundles.data.api.config)
-    kapt(libs.bundles.data.api.config.kapt)
-    testImplementation(libs.bundles.data.api.config.test)
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.hilt.android)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
 }

@@ -1,7 +1,7 @@
 package com.tmdb.store.action.home
 
-import com.tmdb.data.model.state.DataState
 import com.tmdb.data.model.movie.MovieDataModel
+import com.tmdb.data.model.state.DataState
 import com.tmdb.store.base.Action
 
 sealed interface HomeAction : Action {
@@ -10,7 +10,7 @@ sealed interface HomeAction : Action {
         val nowPlayingMovies: DataState<List<MovieDataModel>>,
         val nowPopularMovies: DataState<List<MovieDataModel>>,
         val topRatedMovies: DataState<List<MovieDataModel>>,
-        val upcomingMovies: DataState<List<MovieDataModel>>,
+        val upcomingMovies: DataState<List<MovieDataModel>>
     ) : HomeAction
 
     object ReloadNowPlayingMovies : HomeAction

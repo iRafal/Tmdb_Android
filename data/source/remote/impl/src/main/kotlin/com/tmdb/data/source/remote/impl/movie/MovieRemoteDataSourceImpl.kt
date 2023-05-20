@@ -8,7 +8,6 @@ import com.tmdb.api.model.util.NetworkErrorModel
 import com.tmdb.data.source.remote.contract.movie.MovieRemoteDataSource
 import javax.inject.Inject
 
-
 class MovieRemoteDataSourceImpl @Inject constructor(
     private val api: MovieApi
 ) : MovieRemoteDataSource {

@@ -19,7 +19,7 @@ object RealmDbModule {
     @Singleton
     @Provides
     fun providesRealmConfig(
-        @ApplicationContext applicationContext: Context,
+        @ApplicationContext applicationContext: Context
     ): RealmConfiguration {
         MoviesRealmDbConfig.initRealm(applicationContext)
         return MoviesRealmDbConfig.realmConfig()

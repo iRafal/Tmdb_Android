@@ -11,7 +11,7 @@ data class DataPage<T>(
     @SerialName("results") val results: List<T> = emptyList(),
     @SerialName("dates") val dates: Dates? = null,
     @SerialName("total_pages") val totalPages: Int? = null,
-    @SerialName("total_results") val totalResults: Int? = null,
+    @SerialName("total_results") val totalResults: Int? = null
 ) {
     @Serializable
     data class Dates(
@@ -24,4 +24,3 @@ data class DataPage<T>(
         val minimum: LocalDate? = null
     )
 }
-

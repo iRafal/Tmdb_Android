@@ -39,7 +39,12 @@ android {
     }
 }
 dependencies {
+    implementationDependencies()
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":store:base"))
     implementation(project(":data:model"))
-    implementation(libs.bundles.store.action)
+
+    implementation(libs.kotlin.stdLib)
 }

@@ -22,7 +22,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun nowPlayingMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.nowPlayingMovies(page = page, pageSize = pageSize)
         return entities.map { movieEntityToDataModelMapper(it) }
@@ -30,7 +30,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun nowPopularMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.nowPopularMovies(page = page, pageSize = pageSize)
         return entities.map { movieEntityToDataModelMapper(it) }
@@ -38,7 +38,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun topRatedMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.topRatedMovies(page = page, pageSize = pageSize)
         return entities.map { movieEntityToDataModelMapper(it) }
@@ -46,7 +46,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun upcomingMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.upcomingMovies(page = page, pageSize = pageSize)
         return entities.map { movieEntityToDataModelMapper(it) }
@@ -88,7 +88,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
                     isNowPlaying = list.any { it.isNowPlaying },
                     isNowPopular = list.any { it.isNowPopular },
                     isTopRated = list.any { it.isTopRated },
-                    isUpcoming = list.any { it.isUpcoming },
+                    isUpcoming = list.any { it.isUpcoming }
                 )
                 mergedItemsList += mergedItem
             }

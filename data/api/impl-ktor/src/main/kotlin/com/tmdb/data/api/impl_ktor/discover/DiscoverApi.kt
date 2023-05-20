@@ -5,7 +5,6 @@ import com.tmdb.api.model.movie.Movie
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
 
-
 interface DiscoverApi {
 
     suspend fun discoverMovie(
@@ -29,7 +28,7 @@ interface DiscoverApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        region: String? = null,
+        region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     suspend fun discoverTv(
@@ -53,6 +52,6 @@ interface DiscoverApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        region: String? = null,
+        region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 }

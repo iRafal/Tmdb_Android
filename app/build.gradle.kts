@@ -16,7 +16,6 @@ android {
         versionCode = 1
         versionName = Version(major = 1, minor = 0, patch = 0).name
 
-        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.runner.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -79,15 +78,29 @@ dependencies {
 //        }
 //        // ktlint(project(":custom-ktlint-ruleset")) // in case of custom ruleset
 //    }
+    implementationDependencies()
 
+    kaptDependencies()
+
+    //debugImplementationDependencies() //INFO: not used
+}
+
+fun DependencyHandlerScope.implementationDependencies()  {
     implementation(project(":ui"))
-    implementation(libs.bundles.app)
-    debugImplementation(libs.bundles.app.impl.debug)
-    kapt(libs.bundles.app.kapt)
-    kaptTest(libs.bundles.app.kapt.test)
-    kaptAndroidTest(libs.bundles.app.kapt.test.android)
-    testImplementation(libs.bundles.app.test)
-    androidTestImplementation(libs.bundles.app.test.android)
+
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.work)
+
+    implementation(libs.androidx.work.runtime)
+}
+
+fun DependencyHandlerScope.kaptDependencies()  {
+    kapt(libs.hilt.kapt)
+    kapt(libs.hilt.work.kapt)
+}
+
+fun DependencyHandlerScope.debugImplementationDependencies()  {
+    debugImplementation(libs.leakCanary.debug)
 }
 
 // Ktlint manual integration

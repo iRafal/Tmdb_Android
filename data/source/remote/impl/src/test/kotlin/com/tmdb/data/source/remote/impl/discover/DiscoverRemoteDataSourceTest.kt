@@ -15,7 +15,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class DiscoverRemoteDataSourceTest {
     private val discoverApi = mock<DiscoverApi>()
     private val discoverSource: DiscoverRemoteDataSource = DiscoverRemoteDataSourceImpl(discoverApi)

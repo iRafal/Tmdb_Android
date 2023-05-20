@@ -11,7 +11,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppNetworkModule {
@@ -21,11 +20,11 @@ object AppNetworkModule {
         discoverSource: DiscoverRemoteDataSource,
         genreSource: GenreRemoteDataSource,
         movieSource: MovieRemoteDataSource,
-        personSource: PersonRemoteDataSource,
+        personSource: PersonRemoteDataSource
     ): Network = createAppNetworkEnvImpl(
         discoverSource,
         genreSource,
         movieSource,
-        personSource,
+        personSource
     )
 }

@@ -19,7 +19,7 @@ class MovieApiImpl @Inject constructor(
     override suspend fun movie(
         movieId: Int,
         language: String?,
-        appendToResponse: String?,
+        appendToResponse: String?
     ): ApiResponse<Movie, NetworkErrorModel> {
         return runApiCall {
             client.get(urlProvider.movieUrl(movieId)) {
@@ -30,7 +30,7 @@ class MovieApiImpl @Inject constructor(
     }
 
     override suspend fun latestMovie(
-        language: String?,
+        language: String?
     ): ApiResponse<Movie, NetworkErrorModel> {
         return runApiCall {
             client.get(urlProvider.latestMovieUrl) {
@@ -42,7 +42,7 @@ class MovieApiImpl @Inject constructor(
     override suspend fun nowPlayingMovies(
         language: String?,
         page: Int?,
-        region: String?,
+        region: String?
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.nowPlayingMoviesUrl) {
             parameter("language", language)
@@ -54,7 +54,7 @@ class MovieApiImpl @Inject constructor(
     override suspend fun nowPopularMovies(
         language: String?,
         page: Int?,
-        region: String?,
+        region: String?
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.nowPopularMoviesUrl) {
             parameter("language", language)
@@ -66,7 +66,7 @@ class MovieApiImpl @Inject constructor(
     override suspend fun topRatedMovies(
         language: String?,
         page: Int?,
-        region: String?,
+        region: String?
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.topRatedMoviesUrl) {
             parameter("language", language)
@@ -78,7 +78,7 @@ class MovieApiImpl @Inject constructor(
     override suspend fun upcomingMovies(
         language: String?,
         page: Int?,
-        region: String?,
+        region: String?
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.upcomingMoviesUrl) {
             parameter("language", language)

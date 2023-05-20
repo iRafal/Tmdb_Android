@@ -41,9 +41,13 @@ android {
 }
 
 dependencies {
+    implementationDependencies()
+    kapt(libs.hilt.kapt)
+    testImplementation(libs.bundles.data.source.local.impl.test)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":data:source:local:contract"))
     implementation(project(":data:db:realm"))
-    implementation(libs.bundles.data.source.local.impl.realm)
-    kapt(libs.bundles.data.source.local.impl.realm.kapt)
-    testImplementation(libs.bundles.data.source.local.impl.realm.test)
+    implementation(libs.bundles.data.source.local.impl)
 }

@@ -24,25 +24,25 @@ class MovieDaoImpl @Inject constructor(private val box: Box<MovieEntity>) : Movi
 
     override suspend fun nowPlayingMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieEntity> =
         getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_NOW_PLAYING)
 
     override suspend fun nowPopularMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieEntity> =
         getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_NOW_POPULAR)
 
     override suspend fun topRatedMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieEntity> =
         getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_TOP_RATED)
 
     override suspend fun upcomingMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieEntity> =
         getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_UPCOMING)
 
@@ -57,7 +57,9 @@ class MovieDaoImpl @Inject constructor(private val box: Box<MovieEntity>) : Movi
                 MovieEntity.MOVIE_TABLE_COLUMN_NOW_POPULAR -> it.isNowPopular
                 MovieEntity.MOVIE_TABLE_COLUMN_TOP_RATED -> it.isTopRated
                 MovieEntity.MOVIE_TABLE_COLUMN_UPCOMING -> it.isUpcoming
-                else -> throw IllegalArgumentException("Wrong category column name: $categoryColumnName")
+                else -> throw IllegalArgumentException(
+                    "Wrong category column name: $categoryColumnName"
+                )
             }
         }.build()
 
@@ -73,7 +75,7 @@ class MovieDaoImpl @Inject constructor(private val box: Box<MovieEntity>) : Movi
 
     private fun processPageData(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): Pair<Int, Int>? {
         val _page = page ?: 0
         val _pageSize = pageSize ?: 0

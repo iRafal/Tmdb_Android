@@ -6,7 +6,9 @@ import com.tmdb.api.model.util.NetworkErrorModel
 
 interface GenreRemoteDataSource {
 
-    suspend fun genreMovieList(language: String? = null): ApiResponse<List<Genre>, NetworkErrorModel>
+    suspend fun genreMovieList(
+        language: String? = null
+    ): ApiResponse<List<Genre>, NetworkErrorModel>
 
     suspend fun genreTvList(language: String? = null): ApiResponse<List<Genre>, NetworkErrorModel>
 }

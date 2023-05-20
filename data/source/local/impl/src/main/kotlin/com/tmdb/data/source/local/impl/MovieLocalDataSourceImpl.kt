@@ -22,7 +22,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun nowPlayingMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val limitAndOffset = processPageData(page, pageSize)
         val entities = if (limitAndOffset == null) {
@@ -35,7 +35,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun nowPopularMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val limitAndOffset = processPageData(page, pageSize)
         val entities = if (limitAndOffset == null) {
@@ -48,7 +48,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun topRatedMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val limitAndOffset = processPageData(page, pageSize)
         val entities = if (limitAndOffset == null) {
@@ -61,7 +61,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     override suspend fun upcomingMovies(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): List<MovieDataModel> {
         val limitAndOffset = processPageData(page, pageSize)
         val entities = if (limitAndOffset == null) {
@@ -74,7 +74,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
 
     private fun processPageData(
         page: Int?,
-        pageSize: Int?,
+        pageSize: Int?
     ): Pair<Int, Int>? {
         val _page = page ?: 0
         val _pageSize = pageSize ?: 0
@@ -126,7 +126,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
                     isNowPlaying = list.any { it.isNowPlaying },
                     isNowPopular = list.any { it.isNowPopular },
                     isTopRated = list.any { it.isTopRated },
-                    isUpcoming = list.any { it.isUpcoming },
+                    isUpcoming = list.any { it.isUpcoming }
                 )
                 mergedItemsList += mergedItem
             }

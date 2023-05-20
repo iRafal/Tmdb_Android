@@ -3,7 +3,6 @@ package com.tmdb.api.model.person
 import com.tmdb.api.model.di.UnitTestServiceLocator
 import com.tmdb.api.model.util.ModelUtil
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.decodeFromString
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

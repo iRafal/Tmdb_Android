@@ -11,15 +11,14 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import javax.inject.Inject
 
-
 class PersonApiImpl @Inject constructor(
     private val client: HttpClient,
-    private val urlProvider: PersonUrlProvider,
+    private val urlProvider: PersonUrlProvider
 ) : PersonApi {
     override suspend fun personDetails(
         personId: Int,
         language: String?,
-        appendToResponse: String?,
+        appendToResponse: String?
     ): ApiResponse<Person, NetworkErrorModel> = runApiCall {
         client.get(urlProvider.personDetailsUrl(personId)) {
             parameter("language", language)

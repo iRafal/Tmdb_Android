@@ -1,8 +1,8 @@
 package com.tmdb.api.impl_retrofit.genre
 
+import com.tmdb.api.model.genre.GenresList
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
-import com.tmdb.api.model.genre.GenresList
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -16,7 +16,7 @@ interface GenreApi {
          * pattern: ([a-z]{2})-([A-Z]{2})
          * default: en-US
          */
-        @Query("language") language: String? = null,
+        @Query("language") language: String? = null
     ): ApiResponse<GenresList, NetworkErrorModel>
 
     @GET("genre/tv/list")
@@ -27,6 +27,6 @@ interface GenreApi {
          * pattern: ([a-z]{2})-([A-Z]{2})
          * default: en-US
          */
-        @Query("language") language: String? = null,
+        @Query("language") language: String? = null
     ): ApiResponse<GenresList, NetworkErrorModel>
 }

@@ -15,7 +15,7 @@ object ModelUtil {
         title = "Fight Club",
         voteAverage = 7.8,
         releaseDate = LocalDate.parse("1999-10-12"),
-        posterUrl = null,
+        posterUrl = null
     )
 
     val movieModel = Movie(
@@ -37,14 +37,14 @@ object ModelUtil {
                 id = 508,
                 logoPath = "/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png",
                 name = "Regency Enterprises",
-                originCountry = "US",
+                originCountry = "US"
             ),
             ProductionCompany(
                 id = 711,
                 logoPath = null,
                 name = "Fox 2000 Pictures",
-                originCountry = "",
-            ),
+                originCountry = ""
+            )
         ),
         productionCountries = listOf(
             ProductionCountry(

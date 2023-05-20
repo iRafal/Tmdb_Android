@@ -49,11 +49,42 @@ android {
 }
 
 dependencies {
+    implementationDependencies()
+
+    kapt(libs.hilt.kapt)
+    kaptTest(libs.hilt.kapt)
+    kaptAndroidTest(libs.hilt.kapt)
+
+    testImplementationDependencies()
+
+    androidTestImplementationDependencies()
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(project(":util"))
+
+    implementation(libs.hilt.android)
+    implementation(libs.realm.plugin)
+    implementation(libs.kotlinx.dateTime)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.hilt.test)
+    testImplementation(libs.kotlinx.dateTime)
+}
+
+fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(project(":util"))
-    implementation(libs.bundles.data.db.realm)
-    kapt(libs.bundles.data.db.realm.kapt)
-    kaptTest(libs.bundles.data.db.realm.kapt.test)
-    kaptAndroidTest(libs.bundles.data.db.realm.kapt.test.android)
-    testImplementation(libs.bundles.data.db.realm.test)
-    androidTestImplementation(libs.bundles.data.db.realm.test.android)
+
+    androidTestImplementation(libs.junit.android.ext)
+    androidTestImplementation(libs.espresso)
+    androidTestImplementation(libs.kotlin.coroutines.test)
+    androidTestImplementation(libs.hilt.test)
+    androidTestImplementation(libs.hilt.kapt)
+    androidTestImplementation(libs.kotlinx.dateTime)
+    androidTestImplementation(libs.realm.plugin)
 }

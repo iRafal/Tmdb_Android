@@ -5,11 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable(with = MovieStatusSerializer::class)
 enum class MovieStatus {
-     RUMORED,
-     PLANNED,
-     IN_PRODUCTION,
-     POST_PRODUCTION,
-     RELEASED,
-     CANCELED
+    RUMORED,
+    PLANNED,
+    IN_PRODUCTION,
+    POST_PRODUCTION,
+    RELEASED,
+    CANCELED
 }
-

@@ -42,9 +42,12 @@ android {
 
 dependencies {
     api(project(":data:source:remote:contract"))
-    implementation(project(":data:api:impl-ktor"))
+    implementationDependencies()
+    kapt(libs.hilt.kapt)
+    testImplementation(libs.bundles.data.source.remote.impl.test)
+}
 
-    implementation(libs.bundles.data.source.remote.impl.ktor)
-    kapt(libs.bundles.data.source.remote.impl.ktor.kapt)
-    testImplementation(libs.bundles.data.source.remote.impl.ktor.test)
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(project(":data:api:impl-ktor"))
+    implementation(libs.bundles.data.source.remote.impl)
 }

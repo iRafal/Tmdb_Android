@@ -23,7 +23,6 @@ import kotlinx.serialization.json.Json
 import logcat.LogPriority.DEBUG
 import logcat.logcat
 
-
 private const val TIMEOUT_DEFAULT = 10_000
 private const val PARAMETER_API_KEY = "api_key"
 

@@ -14,7 +14,6 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class MovieDaoTest : BaseObjectBoxTest() {
     private lateinit var movieDao: MovieDao
 

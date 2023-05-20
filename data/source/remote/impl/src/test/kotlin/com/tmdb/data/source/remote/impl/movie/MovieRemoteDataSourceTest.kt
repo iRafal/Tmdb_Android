@@ -15,7 +15,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class MovieRemoteDataSourceTest {
     private val movieApi = mock<MovieApi>()
     private val movieSource: MovieRemoteDataSource = MovieRemoteDataSourceImpl(movieApi)

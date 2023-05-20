@@ -14,7 +14,6 @@ import io.objectbox.Box
 import io.objectbox.BoxStore
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object ObjectBoxDbModule {

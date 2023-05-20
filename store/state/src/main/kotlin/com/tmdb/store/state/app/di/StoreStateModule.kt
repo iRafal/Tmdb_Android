@@ -19,5 +19,5 @@ object StoreStateModule {
     @Provides
     @Singleton
     @InitialAppState
-    fun initialAppState(): AppState = AppState.createInitialState()
+    fun initialAppState(): AppState = AppState.INITIAL
 }

@@ -21,6 +21,8 @@ object MovieApiMappingModule {
 
     @Provides
     fun moviesApiToDataStateMapper(
-        movieApiToDataModelMapper: @JvmSuppressWildcards MovieApiToDataModelMapper,
-    ): @JvmSuppressWildcards MoviesApiToDataStateMapper = moviesApiToDataStateMapperImpl(movieApiToDataModelMapper)
+        movieApiToDataModelMapper: @JvmSuppressWildcards MovieApiToDataModelMapper
+    ): @JvmSuppressWildcards MoviesApiToDataStateMapper = moviesApiToDataStateMapperImpl(
+        movieApiToDataModelMapper
+    )
 }

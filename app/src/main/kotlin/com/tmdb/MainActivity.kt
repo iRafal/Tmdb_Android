@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import com.tmdb.ui.app.navigation.AppNavigation
 import com.tmdb.ui.core.theme.TmdbTheme
 import com.tmdb.ui.main.MainViewModel
-import com.tmdb.ui.core.theme.TmdbTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Genre(
     @SerialName("id") val id: Int? = null,
-    @SerialName("name") val name: String? = null,
+    @SerialName("name") val name: String? = null
 )

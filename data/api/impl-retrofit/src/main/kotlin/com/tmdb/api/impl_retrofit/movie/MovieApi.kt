@@ -1,9 +1,9 @@
 package com.tmdb.api.impl_retrofit.movie
 
-import com.tmdb.api.model.util.ApiResponse
-import com.tmdb.api.model.util.NetworkErrorModel
 import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.movie.Movie
+import com.tmdb.api.model.util.ApiResponse
+import com.tmdb.api.model.util.NetworkErrorModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -20,7 +20,7 @@ interface MovieApi {
          * default: en-US
          */
         @Query("language") language: String? = null,
-        @Query("append_to_response") appendToResponse: String? = null,
+        @Query("append_to_response") appendToResponse: String? = null
     ): ApiResponse<Movie, NetworkErrorModel>
 
     @GET("movie/latest")
@@ -31,7 +31,7 @@ interface MovieApi {
          * pattern: ([a-z]{2})-([A-Z]{2})
          * default: en-US
          */
-        @Query("language") language: String? = null,
+        @Query("language") language: String? = null
     ): ApiResponse<Movie, NetworkErrorModel>
 
     @GET("movie/now_playing")
@@ -56,7 +56,7 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        @Query("region") region: String? = null,
+        @Query("region") region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     @GET("movie/popular")
@@ -81,7 +81,7 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        @Query("region") region: String? = null,
+        @Query("region") region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     @GET("movie/top_rated")
@@ -106,7 +106,7 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        @Query("region") region: String? = null,
+        @Query("region") region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     @GET("movie/upcoming")
@@ -131,6 +131,6 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        @Query("region") region: String? = null,
+        @Query("region") region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 }

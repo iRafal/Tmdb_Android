@@ -40,11 +40,24 @@ android {
 }
 
 dependencies {
-    implementation(project(":store:base"))
-    implementation(project(":store:env"))
-    implementation(project(":store:state"))
-    implementation(project(":store:reducer"))
+    implementationDependencies()
+    apiDependencies()
+    kapt(libs.hilt.kapt)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(project(":store:reducer:app"))
     implementation(project(":util"))
-    implementation(libs.bundles.store.app)
-    kapt(libs.bundles.store.app.kapt)
+
+    implementation(libs.hilt.android)
+}
+
+fun DependencyHandlerScope.apiDependencies() {
+    api(project(":store:base"))
+    api(project(":store:env"))
+    api(project(":store:state"))
+    api(project(":store:action"))
+    api(project(":store:feature"))
+
+    api(project(":data:model"))
 }

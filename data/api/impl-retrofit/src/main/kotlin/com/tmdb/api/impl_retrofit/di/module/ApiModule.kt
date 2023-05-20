@@ -17,7 +17,6 @@ import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
@@ -35,7 +34,7 @@ object ApiModule {
         jsonConverterFactory = jsonConverterFactory,
         scalarsConverterFactory = scalarsConverterFactory,
         factory = factory,
-        apiClass = DiscoverApi::class.java,
+        apiClass = DiscoverApi::class.java
     )
 
     @Provides
@@ -51,7 +50,7 @@ object ApiModule {
         jsonConverterFactory = jsonConverterFactory,
         scalarsConverterFactory = scalarsConverterFactory,
         factory = factory,
-        apiClass = GenreApi::class.java,
+        apiClass = GenreApi::class.java
     )
 
     @Provides
@@ -67,7 +66,7 @@ object ApiModule {
         jsonConverterFactory = jsonConverterFactory,
         scalarsConverterFactory = scalarsConverterFactory,
         factory = factory,
-        apiClass = MovieApi::class.java,
+        apiClass = MovieApi::class.java
     )
 
     @Provides
@@ -83,7 +82,7 @@ object ApiModule {
         jsonConverterFactory = jsonConverterFactory,
         scalarsConverterFactory = scalarsConverterFactory,
         factory = factory,
-        apiClass = PersonApi::class.java,
+        apiClass = PersonApi::class.java
     )
 
     private fun <T> api(

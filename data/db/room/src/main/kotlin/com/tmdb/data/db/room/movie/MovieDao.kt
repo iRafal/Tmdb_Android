@@ -18,7 +18,6 @@ private const val columnNowPopular = MovieEntity.MOVIE_TABLE_COLUMN_NOW_POPULAR
 private const val columnTopRated = MovieEntity.MOVIE_TABLE_COLUMN_TOP_RATED
 private const val columnUpcoming = MovieEntity.MOVIE_TABLE_COLUMN_UPCOMING
 
-
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -33,7 +32,9 @@ interface MovieDao {
     @Query("SELECT * FROM $movieTable WHERE $columnNowPlaying like 1")
     suspend fun nowPlayingMovies(): List<MovieEntity>
 
-    @Query("SELECT * FROM $movieTable WHERE ${MovieEntity.MOVIE_TABLE_COLUMN_NOW_PLAYING} like 1 LIMIT :limit  OFFSET :offset")
+    @Query(
+        "SELECT * FROM $movieTable WHERE ${MovieEntity.MOVIE_TABLE_COLUMN_NOW_PLAYING} like 1 LIMIT :limit  OFFSET :offset"
+    )
     suspend fun nowPlayingMovies(limit: Int, offset: Int): List<MovieEntity>
 
     @Query("SELECT * FROM $movieTable WHERE $columnNowPopular like 1")
@@ -54,7 +55,7 @@ interface MovieDao {
     @Query("SELECT * FROM $movieTable WHERE $columnUpcoming like 1 LIMIT :limit OFFSET :offset")
     suspend fun upcomingMovies(limit: Int, offset: Int): List<MovieEntity>
 
-    @Query("SELECT * FROM $movieTable WHERE $movieTable.${columId} is :id")
+    @Query("SELECT * FROM $movieTable WHERE $movieTable.$columId is :id")
     suspend fun getById(id: Int): MovieEntity?
 
     @Query("SELECT * FROM $movieTable")

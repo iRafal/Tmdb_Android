@@ -178,202 +178,6 @@ hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", ve
 
 [bundles]
 
-#BUNDLES-APP
-app = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    "kotlin-serialization-json",
-    #
-    "androidx-core",
-    "androidx-lifecycle-runtime-ktx",
-    "androidx-lifecycle-viewmodel-ktx",
-    "androidx-lifecycle-viewmodel-compose",
-    "androidx-work-runtime",
-    #
-    "compose-ui",
-    "compose-ui-preview",
-    "compose-material",
-    "compose-material3",
-    "compose-animation",
-    "compose-compiler",
-    "compose-foundation",
-    "compose-runtime",
-    "compose-activity",
-    "compose-constraintLayout",
-    "compose-navigation",
-    #
-    "coil",
-    "coil-compose",
-    #
-    "logging",
-    "kotlinx-dateTime",
-    #
-    "okHttp3-loggingInterceptor",
-    #
-    "hilt-android",
-    "hilt-work",
-    "hilt-navigation-compose",
-]
-app-kapt = [
-    "hilt-kapt",
-    "hilt-work-kapt"
-]
-app-kapt-test = [
-    "hilt-kapt"
-]
-app-kapt-test-android = [
-    "hilt-kapt"
-]
-app-impl-debug = [
-    "leakCanary-debug",
-    #
-    "compose-ui-tooling-debug",
-    "compose-ui-test-manifest-debug"
-]
-app-test = [
-    "junit",
-    #
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-]
-app-test-android = [
-    "junit-android-ext",
-    #
-    "espresso",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    "hilt-kapt",
-    #
-    "compose-ui-test-manifest-debug",
-    "compose-ui-test-junit"
-]
-
-#BUNDLES-UI
-ui = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    "kotlin-serialization-json",
-    #
-    "androidx-core",
-    "androidx-lifecycle-runtime-ktx",
-    "androidx-lifecycle-viewmodel-ktx",
-    "androidx-lifecycle-viewmodel-compose",
-    "androidx-work-runtime",
-    #
-    "compose-ui",
-    "compose-ui-preview",
-    "compose-material",
-    "compose-material3",
-    "compose-animation",
-    "compose-compiler",
-    "compose-foundation",
-    "compose-runtime",
-    "compose-activity",
-    "compose-constraintLayout",
-    "compose-navigation",
-    #
-    "coil",
-    "coil-compose",
-    #
-    "logging",
-    "kotlinx-dateTime",
-    #
-    "okHttp3-loggingInterceptor",
-    #
-    "hilt-android",
-    "hilt-work",
-    "hilt-navigation-compose"
-]
-ui-kapt = [
-    "hilt-kapt",
-    "hilt-work-kapt"
-]
-ui-kapt-test = [ "hilt-kapt" ]
-ui-kapt-test-android = [ "hilt-kapt" ]
-ui-impl-debug = [
-    "compose-ui-tooling-debug",
-    "compose-ui-test-manifest-debug"
-]
-ui-test = [
-    "junit",
-    #
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-]
-ui-test-android = [
-    "junit-android-ext",
-    #
-    "espresso",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    "hilt-kapt",
-    #
-    "compose-ui-test-manifest-debug",
-    "compose-ui-test-junit"
-]
-#BUNDLES-UI-CORE
-ui-core = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    "kotlin-serialization-json",
-    #
-    "androidx-core",
-    "androidx-lifecycle-runtime-ktx",
-    "androidx-lifecycle-viewmodel-ktx",
-    "androidx-lifecycle-viewmodel-compose",
-    "androidx-work-runtime",
-    #
-    "compose-activity",
-    "compose-constraintLayout",
-    "compose-navigation",
-    "compose-ui",
-    "compose-ui-preview",
-    "compose-material",
-    #
-    "coil",
-    "coil-compose",
-    #
-    "logging",
-    "kotlinx-dateTime",
-    #
-    "okHttp3-loggingInterceptor",
-    #
-    "hilt-android",
-    "hilt-work",
-    "hilt-navigation-compose"
-]
-ui-core-impl-debug = [
-    "compose-ui-tooling-debug",
-    "compose-ui-test-manifest-debug"
-]
-ui-core-kapt = [
-    "hilt-kapt",
-    "hilt-work-kapt"
-]
-
-#BUNDLES-DATA-API-MODEL
-data-api-model = [
-    "kotlin-stdLib",
-    "kotlin-serialization-json",
-    "kotlinx-dateTime",
-]
-data-api-model-test = [ "junit" ]
-
 #BUNDLES-DATA-API-IMPL-RETROFIT
 data-api-impl-retrofit = [
     "kotlin-stdLib",
@@ -388,8 +192,6 @@ data-api-impl-retrofit = [
     #
     "hilt-android",
 ]
-data-api-impl-retrofit-kapt = [ "hilt-kapt" ]
-data-api-impl-retrofit-test = [ "junit" ]
 
 #BUNDLES-DATA-API-IMPL-KOTR
 data-api-impl-ktor = [
@@ -408,7 +210,6 @@ data-api-impl-ktor = [
     #
     "logging",
 ]
-data-api-impl-ktor-kapt = [ "hilt-kapt" ]
 data-api-impl-ktor-test = [
     "junit",
     #
@@ -421,7 +222,7 @@ data-source-remote-contract = [
     "kotlin-coroutines-core",
 ]
 
-#BUNDLES-DATA-SOURCE-REMOTE-IMPL
+#BUNDLES-DATA-SOURCE-REMOTE
 data-source-remote-impl = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
@@ -429,7 +230,6 @@ data-source-remote-impl = [
     #
     "hilt-android",
 ]
-data-source-remote-impl-kapt = [ "hilt-kapt" ]
 data-source-remote-impl-test = [
     "junit",
     #
@@ -441,53 +241,13 @@ data-source-remote-impl-test = [
     "kotlinx-dateTime",
 ]
 
-#BUNDLES-DATA-SOURCE-REMOTE-IMPL-KTOR
-data-source-remote-impl-ktor = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-]
-data-source-remote-impl-ktor-kapt = [ "hilt-kapt" ]
-data-source-remote-impl-ktor-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    "kotlin-coroutines-test",
-    "kotlinx-dateTime",
-]
-
-#DATA-MODEL
-data-model = [
-    "kotlin-stdLib",
-    #
-    "hilt-android",
-    #
-    "kotlinx-dateTime",
-]
-data-model-kapt = [ "hilt-kapt" ]
-data-model-test = [ "junit" ]
-
-#BUNDLES-DATA-API-CONFIG
-data-api-config = [
-    "kotlin-stdLib",
-    "hilt-android",
-]
-data-api-config-kapt = [ "hilt-kapt" ]
-data-api-config-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-]
-
 #BUNDLES-DATA-SOURCE-LOCAL-CONTRACT
 data-source-local-contract = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
 ]
 
-#BUNDLES-DATA-SOURCE-LOCAL-IMPL
+#BUNDLES-DATA-SOURCE-LOCAL
 data-source-local-impl = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
@@ -497,7 +257,6 @@ data-source-local-impl = [
     #
     "kotlinx-dateTime"
 ]
-data-source-local-impl-kapt = [ "hilt-kapt" ]
 data-source-local-impl-test = [
     "junit",
     "mockito",
@@ -510,125 +269,19 @@ data-source-local-impl-test = [
     "kotlinx-dateTime"
 ]
 
-#BUNDLES-DATA-SOURCE-LOCAL-IMPL-REALM
-data-source-local-impl-realm = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-    #
-    "kotlinx-dateTime"
-]
-data-source-local-impl-realm-kapt = [ "hilt-kapt" ]
-data-source-local-impl-realm-test = [
+#BUNDLES-FEATURE-UI
+feature-ui-impl-test = [
     "junit",
+    #
     "mockito",
     "mockito-kotlin",
     #
     "kotlin-coroutines-test",
     #
-    "hilt-test",
-    #
-    "kotlinx-dateTime"
+    "hilt-test"
 ]
 
-#BUNDLES-DATA-SOURCE-LOCAL-IMPL-OBJECT_BOX
-data-source-local-impl-objectBox = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-    #
-    "kotlinx-dateTime"
-]
-data-source-local-impl-objectBox-kapt = [ "hilt-kapt" ]
-data-source-local-impl-objectBox-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    #
-    "kotlinx-dateTime"
-]
-
-#BUNDLEA-DATA-DB-ROOM
-data-db-room = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-    #
-    "room-runtime",
-    "room-ktx",
-    #
-    "kotlinx-dateTime"
-]
-data-db-room-kapt = [
-    "hilt-kapt",
-    #
-    "room-compiler",
-]
-data-db-room-kapt-test = [ "hilt-kapt" ]
-data-db-room-kapt-test-android = [ "hilt-kapt" ]
-data-db-room-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    #
-    "kotlinx-dateTime"
-]
-data-db-room-test-android = [
-    "junit-android-ext",
-    #
-    "espresso",
-    #
-    "room-test",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    "hilt-kapt",
-    #
-    "kotlinx-dateTime"
-]
-
-#BUNDLEA-DATA-DB-ROOM
-data-db-realm = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-    #
-    "realm-plugin",
-    #
-    "kotlinx-dateTime"
-]
-data-db-realm-kapt = [ "hilt-kapt" ]
-data-db-realm-kapt-test = [ "hilt-kapt" ]
-data-db-realm-kapt-test-android = [ "hilt-kapt" ]
-data-db-realm-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    #
-    "kotlinx-dateTime",
-]
-data-db-realm-test-android = [
+feature-ui-impl-test-android = [
     "junit-android-ext",
     #
     "espresso",
@@ -638,123 +291,6 @@ data-db-realm-test-android = [
     "hilt-test",
     "hilt-kapt",
     #
-    "kotlinx-dateTime",
-    #
-    "realm-plugin",
+    "compose-ui-test-manifest-debug",
+    "compose-ui-test-junit"
 ]
-
-#BUNDLEA-DATA-DB-ROOM
-data-db-objectBox = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-    #
-    "kotlinx-dateTime",
-    #
-    "logging"
-]
-data-db-objectBox-kapt = [ "hilt-kapt" ]
-data-db-objectBox-kapt-test = [ "hilt-kapt" ]
-data-db-objectBox-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    #
-    "kotlinx-dateTime",
-]
-
-#BUNDLES-STORE
-store = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-]
-store-kapt = [ "hilt-kapt" ]
-store-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-]
-
-#BUNDLES-STORE-BASE
-store-base = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-]
-
-#BUNDLES-STORE-ACTION
-store-action = [ "kotlin-stdLib" ]
-
-#BUNDLES-STORE-FEATURE
-store-feature = [ "kotlin-stdLib" ]
-
-#BUNDLES-STORE-ENV
-store-env = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-]
-store-env-kapt = [ "hilt-kapt" ]
-
-#BUNDLES-STORE-REDUCER
-store-reducer = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-]
-store-reducer-kapt = [ "hilt-kapt" ]
-store-reducer-test = [
-    "junit",
-    "mockito",
-    "mockito-kotlin",
-    #
-    "kotlin-coroutines-test",
-    #
-    "hilt-test",
-    #
-    "kotlinx-dateTime",
-]
-
-#BUNDLES-STORE-STATE
-store-state = [
-    "kotlin-stdLib",
-    #
-    "hilt-android",
-]
-store-state-kapt = [ "hilt-kapt" ]
-
-#BUNDLES-STORE-APP
-store-app = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-]
-store-app-kapt = [ "hilt-kapt" ]
-
-#BUNDLES-UTIL
-util = [
-    "kotlin-stdLib",
-    "kotlin-coroutines-core",
-    "kotlin-coroutines-android",
-    #
-    "hilt-android",
-]
-util-kapt = [ "hilt-kapt" ]

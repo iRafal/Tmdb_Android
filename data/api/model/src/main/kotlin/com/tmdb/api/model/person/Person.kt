@@ -6,7 +6,6 @@ import kotlinx.datetime.serializers.LocalDateIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
 /*
     {
         "birthday": "1963-12-18",
@@ -43,7 +42,8 @@ data class Person(
     @SerialName("also_known_as") val alsoKnownAs: List<String> = listOf(),
 
     @Serializable(with = LocalDateIso8601Serializer::class)
-    @SerialName("birthday") val birthday: LocalDate? = null,
+    @SerialName("birthday")
+    val birthday: LocalDate? = null,
 
     @SerialName("known_for_department") val knownForDepartment: String? = null,
     @SerialName("deathday") val deathDay: String? = null,
@@ -54,7 +54,5 @@ data class Person(
     @SerialName("profile_path") val profilePath: String? = null,
     @SerialName("adult") val isAdult: Boolean = false,
     @SerialName("imdb_id") val imdbId: String? = null,
-    @SerialName("homepage") val homepage: String? = null,
+    @SerialName("homepage") val homepage: String? = null
 )
-
-

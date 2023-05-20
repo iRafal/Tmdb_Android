@@ -5,7 +5,6 @@ import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.data.api.impl_ktor.discover.DiscoverApi
 import com.tmdb.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb.data.source.remote.impl_ktor.util.model.ModelUtil
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -15,7 +14,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class DiscoverRemoteDataSourceTest {
     private val discoverApi = mock<DiscoverApi>()
     private val discoverSource: DiscoverRemoteDataSource = DiscoverRemoteDataSourceImpl(discoverApi)

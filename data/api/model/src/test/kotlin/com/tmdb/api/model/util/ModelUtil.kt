@@ -30,14 +30,14 @@ object ModelUtil {
                 id = 508,
                 logoPath = "/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png",
                 name = "Regency Enterprises",
-                originCountry = "US",
+                originCountry = "US"
             ),
             ProductionCompany(
                 id = 711,
                 logoPath = null,
                 name = "Fox 2000 Pictures",
-                originCountry = "",
-            ),
+                originCountry = ""
+            )
         ),
         productionCountries = listOf(
             ProductionCountry(
@@ -82,6 +82,6 @@ object ModelUtil {
         profilePath = "/kU3B75TyRiCgE270EyZnHjfivoq.jpg",
         isAdult = false,
         imdbId = "nm0000093",
-        homepage = null,
+        homepage = null
     )
 }

@@ -15,7 +15,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class GenreRemoteDataSourceTest {
     private val genreApi = mock<GenreApi>()
     private val genreSource: GenreRemoteDataSource = GenreRemoteDataSourceImpl(genreApi)

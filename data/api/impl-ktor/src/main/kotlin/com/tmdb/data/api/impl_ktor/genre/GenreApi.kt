@@ -13,7 +13,7 @@ interface GenreApi {
          * pattern: ([a-z]{2})-([A-Z]{2})
          * default: en-US
          */
-        language: String? = null,
+        language: String? = null
     ): ApiResponse<List<Genre>, NetworkErrorModel>
 
     suspend fun genreTvList(
@@ -23,6 +23,6 @@ interface GenreApi {
          * pattern: ([a-z]{2})-([A-Z]{2})
          * default: en-US
          */
-        language: String? = null,
+        language: String? = null
     ): ApiResponse<List<Genre>, NetworkErrorModel>
 }

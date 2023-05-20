@@ -41,8 +41,26 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.data.db.objectBox)
-    kapt(libs.bundles.data.db.objectBox.kapt)
-    kaptTest(libs.bundles.data.db.objectBox.kapt.test)
-    testImplementation(libs.bundles.data.db.objectBox.test)
+    implementationDependencies()
+    kapt(libs.hilt.kapt)
+    kaptTest(libs.hilt.kapt)
+    testImplementationDependencies()
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlin.coroutines.android)
+    implementation(libs.hilt.android)
+    implementation(libs.kotlinx.dateTime)
+    implementation(libs.logging)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.hilt.test)
+    testImplementation(libs.kotlinx.dateTime)
 }

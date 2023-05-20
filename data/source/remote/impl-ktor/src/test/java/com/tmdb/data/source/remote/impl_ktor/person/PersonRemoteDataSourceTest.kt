@@ -4,7 +4,6 @@ import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.data.api.impl_ktor.person.PersonApi
 import com.tmdb.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb.data.source.remote.impl_ktor.util.model.ModelUtil
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -14,7 +13,6 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class PersonRemoteDataSourceTest {
     private val personApi = mock<PersonApi>()
     private val personSource: PersonRemoteDataSource = PersonRemoteDataSourceImpl(personApi)

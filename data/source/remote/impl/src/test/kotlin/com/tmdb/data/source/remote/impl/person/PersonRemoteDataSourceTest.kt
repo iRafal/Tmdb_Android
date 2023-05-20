@@ -14,7 +14,6 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class PersonRemoteDataSourceTest {
     private val personApi = mock<PersonApi>()
     private val personSource: PersonRemoteDataSource = PersonRemoteDataSourceImpl(personApi)

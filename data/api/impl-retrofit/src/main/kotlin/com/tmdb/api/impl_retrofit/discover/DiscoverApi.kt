@@ -31,7 +31,7 @@ interface DiscoverApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        @Query("region") region: String? = null,
+        @Query("region") region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     @GET("discover/tv")
@@ -56,6 +56,6 @@ interface DiscoverApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        @Query("region") region: String? = null,
+        @Query("region") region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 }

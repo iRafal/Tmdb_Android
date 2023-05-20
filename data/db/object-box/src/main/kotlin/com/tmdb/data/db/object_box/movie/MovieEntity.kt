@@ -14,7 +14,8 @@ import kotlinx.datetime.LocalDate
 @NameInDb(MOVIE_TABLE_NAME)
 data class MovieEntity(
     @NameInDb(MOVIE_TABLE_COLUMN_ID)
-    @Id var id: Long = 0,
+    @Id
+    var id: Long = 0,
 
     @Unique(onConflict = ConflictStrategy.REPLACE)
     @NameInDb(MOVIE_TABLE_COLUMN_MOVIE_ID)

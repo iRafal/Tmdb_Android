@@ -16,6 +16,12 @@ java {
 }
 
 dependencies {
-    implementation(libs.bundles.data.api.model)
-    testImplementation(libs.bundles.data.api.model.test)
+    implementationDependencies()
+    testImplementation(libs.junit)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.kotlin.serialization.json)
+    implementation(libs.kotlinx.dateTime)
 }

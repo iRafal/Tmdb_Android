@@ -51,8 +51,46 @@ android {
 }
 
 dependencies {
+    implementationDependencies()
+    apiDependencies()
+    debugApiDependencies()
+    kapt(libs.hilt.kapt)
+}
+
+
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":store:state"))
-    implementation(libs.bundles.ui.core)
-    debugImplementation(libs.bundles.ui.core.impl.debug)
-    kapt(libs.bundles.ui.core.kapt)
+    implementation(libs.hilt.android)
+}
+
+fun DependencyHandlerScope.apiDependencies()  {
+    implementation(project(":util"))
+
+    api(libs.androidx.core)
+
+    api(libs.compose.animation)
+    api(libs.compose.compiler)
+    api(libs.compose.foundation)
+    api(libs.compose.runtime)
+    api(libs.compose.activity)
+    api(libs.compose.constraintLayout)
+    api(libs.compose.navigation)
+    api(libs.compose.ui)
+    api(libs.compose.ui.preview)
+    api(libs.compose.material)
+    api(libs.compose.material3)
+
+    api(libs.coil)
+    api(libs.coil.compose)
+    api(libs.okHttp3.loggingInterceptor)
+
+    api(libs.logging)
+    api(libs.kotlinx.dateTime)
+
+    api(libs.hilt.navigation.compose)
+}
+
+fun DependencyHandlerScope.debugApiDependencies() {
+    debugApi(libs.compose.ui.tooling.debug)
+    debugImplementation(libs.compose.ui.test.manifest.debug)
 }

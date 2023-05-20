@@ -7,7 +7,6 @@ import com.tmdb.data.api.impl_ktor.person.PersonApi
 import com.tmdb.data.source.remote.contract.person.PersonRemoteDataSource
 import javax.inject.Inject
 
-
 class PersonRemoteDataSourceImpl @Inject constructor(
     private val api: PersonApi
 ) : PersonRemoteDataSource {

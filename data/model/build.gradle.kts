@@ -41,9 +41,16 @@ android {
 }
 
 dependencies {
+    implementationDependencies()
+    kapt(libs.hilt.kapt)
+    testImplementation(libs.junit)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":data:api:model"))
     implementation(project(":data:api:config"))
-    implementation(libs.bundles.data.model)
-    kapt(libs.bundles.data.model.kapt)
-    testImplementation(libs.bundles.data.model.test)
+
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.hilt.android)
+    implementation(libs.kotlinx.dateTime)
 }

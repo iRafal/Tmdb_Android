@@ -45,6 +45,6 @@ dependencies {
     implementation(project(":data:api:config"))
 
     implementation(libs.bundles.data.api.impl.ktor)
-    kapt(libs.bundles.data.api.impl.ktor.kapt)
+    kapt(libs.hilt.kapt)
     testImplementation(libs.bundles.data.api.impl.ktor.test)
 }

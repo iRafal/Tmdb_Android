@@ -42,9 +42,12 @@ android {
 
 dependencies {
     api(project(":data:source:remote:contract"))
-    implementation(project(":data:api:impl-retrofit"))
-
-    implementation(libs.bundles.data.source.remote.impl)
-    kapt(libs.bundles.data.source.remote.impl.kapt)
+    implementationDependencies()
+    kapt(libs.hilt.kapt)
     testImplementation(libs.bundles.data.source.remote.impl.test)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(project(":data:api:impl-retrofit"))
+    implementation(libs.bundles.data.source.remote.impl)
 }

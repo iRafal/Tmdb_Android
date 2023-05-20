@@ -7,5 +7,5 @@ enum class PosterImageSize(val sizeName: String) {
     W_342("w342"),
     W_500("w500"),
     W_780("w780"),
-    ORIGINAL("original"),
+    ORIGINAL("original")
 }

@@ -5,7 +5,6 @@ import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.data.api.impl_ktor.movie.MovieApi
 import com.tmdb.data.source.remote.contract.movie.MovieRemoteDataSource
 import com.tmdb.data.source.remote.impl_ktor.util.model.ModelUtil
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -15,7 +14,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class MovieRemoteDataSourceTest {
     private val movieApi = mock<MovieApi>()
     private val movieSource: MovieRemoteDataSource = MovieRemoteDataSourceImpl(movieApi)

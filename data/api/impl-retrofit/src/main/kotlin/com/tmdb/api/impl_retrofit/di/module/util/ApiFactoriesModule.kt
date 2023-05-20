@@ -14,7 +14,6 @@ import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiFactoriesModule {

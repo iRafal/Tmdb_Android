@@ -1,8 +1,8 @@
 package com.tmdb.api.impl_retrofit.person
 
+import com.tmdb.api.model.person.Person
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
-import com.tmdb.api.model.person.Person
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -18,6 +18,6 @@ interface PersonApi {
          * default: en-US
          */
         @Query("language") language: String? = null,
-        @Query("append_to_response") appendToResponse: String? = null,
+        @Query("append_to_response") appendToResponse: String? = null
     ): ApiResponse<Person, NetworkErrorModel>
 }

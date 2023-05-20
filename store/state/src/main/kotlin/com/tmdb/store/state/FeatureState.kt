@@ -1,6 +1,5 @@
 package com.tmdb.store.state
 
-
 sealed interface FeatureState<T> {
     class Loading<T> : FeatureState<T> {
         override fun equals(other: Any?): Boolean = when {

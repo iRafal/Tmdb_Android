@@ -33,6 +33,6 @@ object ModelUtil {
         title = title,
         voteAverage = voteAverage,
         releaseDate = releaseDate,
-        posterUrl = posterUrl,
+        posterUrl = posterUrl
     )
 }

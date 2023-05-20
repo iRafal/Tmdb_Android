@@ -6,7 +6,6 @@ import com.tmdb.api.model.di.UnitTestServiceLocator
 import com.tmdb.api.model.util.ModelUtil
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.decodeFromString
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -74,7 +73,7 @@ class MovieJsonParsingTest {
               "vote_average": 7.8,
               "vote_count": 3439
         }
-        """.trimIndent()
+    """.trimIndent()
 
     @Test
     fun `parse movie`() {
@@ -118,10 +117,10 @@ class MovieJsonParsingTest {
             results = listOf(movieModel),
             dates = Dates(
                 maximum = LocalDate(2016, 9, 22),
-                minimum = LocalDate(2016, 9, 1),
+                minimum = LocalDate(2016, 9, 1)
             ),
             totalPages = 1,
-            totalResults = 1,
+            totalResults = 1
         )
         val actual = json.decodeFromString<DataPage<Movie>>(moviePageJson)
         assertEquals(expected, actual)

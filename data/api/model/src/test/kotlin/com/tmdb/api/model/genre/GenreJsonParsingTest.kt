@@ -2,10 +2,8 @@ package com.tmdb.api.model.genre
 
 import com.tmdb.api.model.di.UnitTestServiceLocator
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.decodeFromString
 import org.junit.Assert.assertEquals
 import org.junit.Test
-
 
 @OptIn(ExperimentalSerializationApi::class)
 class GenreJsonParsingTest {

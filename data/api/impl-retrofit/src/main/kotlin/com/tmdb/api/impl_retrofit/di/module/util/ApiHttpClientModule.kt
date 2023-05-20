@@ -14,7 +14,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiHttpClientModule {
@@ -40,7 +39,7 @@ object ApiHttpClientModule {
     fun loggingInterceptor(): Interceptor = loggingInterceptor(BODY)
 
     private fun loggingInterceptor(
-        loggingLevel: Level,
+        loggingLevel: Level
     ): HttpLoggingInterceptor = HttpLoggingInterceptor().apply { level = loggingLevel }
 
     @InterceptorRequest
@@ -72,7 +71,7 @@ object ApiHttpClientModule {
     fun okHttpClient(
         @InterceptorLogging loggingInterceptor: Interceptor,
         @InterceptorRequest requestInterceptor: Interceptor,
-        @InterceptorResponse apiResponseInterceptor: Interceptor,
+        @InterceptorResponse apiResponseInterceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient()
             .newBuilder()

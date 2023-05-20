@@ -12,6 +12,5 @@ import dagger.hilt.components.SingletonComponent
 object HomeFeatureMappingModule {
 
     @Provides
-    fun moviesDataToFeatureStateMapper(
-    ): @JvmSuppressWildcards MoviesDataToFeatureStateMapper = ::mapDataToFeatureStateImpl
+    fun moviesDataToFeatureStateMapper(): @JvmSuppressWildcards MoviesDataToFeatureStateMapper = ::mapDataToFeatureStateImpl
 }

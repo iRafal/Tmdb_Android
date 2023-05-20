@@ -15,7 +15,6 @@ import io.ktor.client.plugins.logging.Logger
 import javax.inject.Singleton
 import kotlinx.serialization.json.Json
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object KtorApiUtilModule {
@@ -31,7 +30,7 @@ object KtorApiUtilModule {
         logLevel = BODY,
         apiErrorMapper = apiErrorMapper,
         logger = logger,
-        json = json,
+        json = json
     )
 
     @Provides

@@ -41,6 +41,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.util)
-    kapt(libs.bundles.util.kapt)
+    implementation(libs.hilt.android)
+    apiDependencies()
+    kapt(libs.hilt.kapt)
+}
+
+fun DependencyHandlerScope.apiDependencies() {
+    api(libs.kotlin.stdLib)
+    api(libs.kotlin.coroutines.core)
+    api(libs.kotlin.coroutines.android)
 }

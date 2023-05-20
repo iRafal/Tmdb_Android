@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.ui.runner.HiltTestRunner"
+        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.ui.core.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -52,26 +52,61 @@ android {
 }
 
 dependencies {
+    apiDependencies()
+
+    implementationDependencies()
+
+    kaptDependencies()
+
+    kaptTest(libs.hilt.kapt)
+    kaptAndroidTest(libs.hilt.kapt)
+
+    testImplementationDependencies()
+
+    androidTestImplementationDependencies()
+}
+
+fun DependencyHandlerScope.apiDependencies()  {
+    api(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.viewmodel.ktx)
+    api(libs.androidx.lifecycle.viewmodel.compose)
+
     api(project(":ui-core"))
-    implementation(project(":store:base"))
-    implementation(project(":store:action"))
-    implementation(project(":store:feature"))
-    implementation(project(":store:env"))
-    implementation(project(":store:state"))
-    implementation(project(":store:app"))
+}
 
-//    implementation(project(":data:source:remote:impl"))
-    implementation(project(":data:source:remote:impl-ktor"))
-    implementation(project(":data:source:local:impl"))
-//    implementation(project(":data:source:local:impl-objectBox"))
-//    implementation(project(":data:source:local:impl-realm"))
-    implementation(project(":data:model"))
+fun DependencyHandlerScope.implementationDependencies()  {
+    implementation(libs.hilt.android)
 
-    implementation(libs.bundles.ui)
-    debugImplementation(libs.bundles.ui.impl.debug)
-    kapt(libs.bundles.ui.kapt)
-    kaptTest(libs.bundles.ui.kapt.test)
-    kaptAndroidTest(libs.bundles.ui.kapt.test.android)
-    testImplementation(libs.bundles.ui.test)
-    androidTestImplementation(libs.bundles.ui.test.android)
+    implementation(project(":feature:home:ui"))
+    implementation(project(":feature:movie:details:ui"))
+}
+
+fun DependencyHandlerScope.kaptDependencies() {
+    kapt(libs.hilt.kapt)
+    kapt(libs.hilt.work.kapt)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
+    testImplementation(libs.junit)
+
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+
+    testImplementation(libs.kotlin.coroutines.test)
+
+    testImplementation(libs.hilt.test)
+}
+
+fun DependencyHandlerScope.androidTestImplementationDependencies() {
+    androidTestImplementation(libs.junit.android.ext)
+
+    androidTestImplementation(libs.espresso)
+
+    androidTestImplementation(libs.kotlin.coroutines.test)
+
+    androidTestImplementation(libs.hilt.test)
+    androidTestImplementation(libs.hilt.kapt)
+
+    androidTestImplementation(libs.compose.ui.test.manifest.debug)
+    androidTestImplementation(libs.compose.ui.test.junit)
 }

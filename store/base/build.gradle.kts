@@ -15,5 +15,6 @@ java {
 }
 
 dependencies {
-    implementation(libs.bundles.store.base)
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.kotlin.coroutines.core)
 }

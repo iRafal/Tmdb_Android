@@ -10,7 +10,6 @@ android {
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
-        minSdk = 24
         minSdk = Libs.BuildConfig.minSdk
         testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.data.db.room.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -55,16 +54,56 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(project(":util"))
-    implementation(libs.bundles.data.db.room)
-    kapt(libs.bundles.data.db.room.kapt)
-    kaptTest(libs.bundles.data.db.room.kapt.test)
-    kaptAndroidTest(libs.bundles.data.db.room.kapt.test.android)
-    testImplementation(libs.bundles.data.db.room.test)
-    androidTestImplementation(libs.bundles.data.db.room.test.android)
+    implementationDependencies()
+
+    kaptDependencies()
+
+    kaptTest(libs.hilt.kapt)
+    kaptAndroidTest(libs.hilt.kapt)
+
+    testImplementationDependencies()
+
+    androidTestImplementationDependencies()
 }
 
-kapt{
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlin.coroutines.android)
+
+    implementation(libs.hilt.android)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.kotlinx.dateTime)
+}
+
+fun DependencyHandlerScope.kaptDependencies() {
+    kapt(libs.hilt.kapt)
+    kapt(libs.room.compiler)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.hilt.test)
+    testImplementation(libs.kotlinx.dateTime)
+}
+
+fun DependencyHandlerScope.androidTestImplementationDependencies() {
+    androidTestImplementation(project(":util"))
+
+    androidTestImplementation(libs.junit.android.ext)
+    androidTestImplementation(libs.espresso)
+    androidTestImplementation(libs.room.test)
+    androidTestImplementation(libs.kotlin.coroutines.test)
+    androidTestImplementation(libs.hilt.test)
+    androidTestImplementation(libs.hilt.kapt)
+    androidTestImplementation(libs.kotlinx.dateTime)
+}
+
+kapt {
     arguments {
         arg("room.schemaLocation", "$projectDir/schemas")
     }

@@ -16,7 +16,7 @@ interface MovieApi {
          * default: en-US
          */
         language: String? = null,
-        appendToResponse: String? = null,
+        appendToResponse: String? = null
     ): ApiResponse<Movie, NetworkErrorModel>
 
     suspend fun latestMovie(
@@ -26,7 +26,7 @@ interface MovieApi {
          * pattern: ([a-z]{2})-([A-Z]{2})
          * default: en-US
          */
-        language: String? = null,
+        language: String? = null
     ): ApiResponse<Movie, NetworkErrorModel>
 
     suspend fun nowPlayingMovies(
@@ -50,7 +50,7 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        region: String? = null,
+        region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     suspend fun nowPopularMovies(
@@ -74,7 +74,7 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        region: String? = null,
+        region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     suspend fun topRatedMovies(
@@ -98,7 +98,7 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        region: String? = null,
+        region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 
     suspend fun upcomingMovies(
@@ -122,6 +122,6 @@ interface MovieApi {
          * Must be uppercase.
          * pattern: ^[A-Z]{2}$
          */
-        region: String? = null,
+        region: String? = null
     ): ApiResponse<DataPage<Movie>, NetworkErrorModel>
 }

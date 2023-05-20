@@ -10,7 +10,7 @@ fun createAppNetworkEnvImpl(
     discoverSource: DiscoverRemoteDataSource,
     genreSource: GenreRemoteDataSource,
     movieSource: MovieRemoteDataSource,
-    personSource: PersonRemoteDataSource,
+    personSource: PersonRemoteDataSource
 ): AppEnv.Network = object : AppEnv.Network {
     override val discoverSource = discoverSource
     override val genreSource = genreSource

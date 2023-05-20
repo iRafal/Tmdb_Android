@@ -7,5 +7,5 @@ data class MovieDataModel(
     val title: String? = null,
     val voteAverage: Double? = null,
     val releaseDate: LocalDate? = null,
-    val posterUrl: String? = null,
+    val posterUrl: String? = null
 )
