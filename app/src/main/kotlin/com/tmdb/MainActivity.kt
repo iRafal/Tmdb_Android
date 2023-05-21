@@ -5,9 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import com.tmdb.ui.app.navigation.AppNavigation
 import com.tmdb.ui.core.theme.TmdbTheme
 import com.tmdb.ui.main.MainViewModel
+import com.tmdb.ui.navigation.AppNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

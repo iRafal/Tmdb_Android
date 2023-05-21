@@ -55,6 +55,7 @@ dependencies {
     apiDependencies()
     debugApiDependencies()
     kapt(libs.hilt.kapt)
+    testImplementation(libs.junit)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {

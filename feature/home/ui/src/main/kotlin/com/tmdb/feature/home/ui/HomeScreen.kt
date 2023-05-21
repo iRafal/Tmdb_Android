@@ -9,7 +9,7 @@ import com.tmdb.feature.home.ui.HomeUiEvent.NavigateBack
 import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
 import com.tmdb.feature.home.ui.HomeUiEvent.ReloadMovieSection
 import com.tmdb.feature.home.ui.data.model.HomeUiData
-import com.tmdb.ui.core.navigation.app.model.AppNavigation
+import com.tmdb.ui.core.navigation.model.NavigationRoute
 import com.tmdb.ui.core.theme.TmdbTheme
 
 @Composable
@@ -22,10 +22,10 @@ fun HomeScreen(
 
         val onEvent: (HomeUiEvent) -> Unit = { event ->
             when (event) {
-                NavigateBack -> navController.navigate(AppNavigation.Close.route)
+                NavigateBack -> navController.navigate(NavigationRoute.Close.route)
                 is OpenMovie -> {
                     navController.navigate(
-                        AppNavigation.MovieDetails.getRouteNameWithArguments(
+                        NavigationRoute.MovieDetails.getRouteNameWithArguments(
                             event.id.toString()
                         )
                     )
