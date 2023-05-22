@@ -1,0 +1,9 @@
+<resources>
+    <string name="load_fail">Failed to load</string>
+    <string name="reload">Reload</string>
+    <string name="no_internet">No internet</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="now_popular">Now Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="upcoming">Upcoming</string>
+</resources>

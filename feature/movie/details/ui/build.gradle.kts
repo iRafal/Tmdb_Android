@@ -6,12 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.feature.movie.details.ui"
+    val nameSpace = "${Libs.BuildConfig.applicationId}.feature.movie.details.ui"
+    namespace = nameSpace
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.ui.core.runner.HiltTestRunner"
+        testInstrumentationRunner = "$nameSpace.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -63,11 +64,12 @@ dependencies {
 
     testImplementation(libs.bundles.feature.ui.impl.test)
 
-    androidTestImplementation(libs.bundles.feature.ui.impl.test.android)
+    androidTestImplementation(libs.bundles.ui.test.android)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":ui-core"))
+    implementation(project(":util"))
     implementation(project(":store:app"))
 
     implementation(libs.hilt.android)

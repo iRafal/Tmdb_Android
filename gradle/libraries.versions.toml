@@ -281,8 +281,12 @@ feature-ui-impl-test = [
     "hilt-test"
 ]
 
-feature-ui-impl-test-android = [
+#BUNDLES-UI
+ui-test-android = [
     "junit-android-ext",
+    #
+    "mockito",
+    "mockito-kotlin",
     #
     "espresso",
     #

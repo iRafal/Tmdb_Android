@@ -56,6 +56,7 @@ dependencies {
     debugApiDependencies()
     kapt(libs.hilt.kapt)
     testImplementation(libs.junit)
+    androidTestImplementation(libs.bundles.ui.test.android)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {

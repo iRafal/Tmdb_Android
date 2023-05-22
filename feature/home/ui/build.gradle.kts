@@ -6,12 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.feature.home.ui"
+    val nameSpace = "${Libs.BuildConfig.applicationId}.feature.home.ui"
+    namespace = nameSpace
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.ui.core.runner.HiltTestRunner"
+        testInstrumentationRunner = "$nameSpace.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -43,6 +44,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
     }
+    packaging {
+        resources {
+            this.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            this.excludes.add("/META-INF/gradle/incremental.annotation.processors")
+        }
+    }
     sourceSets {
         this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
@@ -63,11 +70,12 @@ dependencies {
 
     testImplementation(libs.bundles.feature.ui.impl.test)
 
-    androidTestImplementation(libs.bundles.feature.ui.impl.test.android)
+    androidTestImplementation(libs.bundles.ui.test.android)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":ui-core"))
+    implementation(project(":util"))
     implementation(project(":store:app"))
 
     implementation(libs.hilt.android)

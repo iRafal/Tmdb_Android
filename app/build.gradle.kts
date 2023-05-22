@@ -52,7 +52,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
     }
-    packagingOptions {
+    packaging {
         resources {
             this.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
             this.excludes.add("/META-INF/gradle/incremental.annotation.processors")

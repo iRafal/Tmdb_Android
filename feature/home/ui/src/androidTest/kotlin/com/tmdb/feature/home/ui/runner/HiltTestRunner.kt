@@ -1,4 +1,4 @@
-package com.tmdb.ui.core.runner
+package com.tmdb.feature.home.ui.runner
 
 import android.app.Application
 import android.content.Context

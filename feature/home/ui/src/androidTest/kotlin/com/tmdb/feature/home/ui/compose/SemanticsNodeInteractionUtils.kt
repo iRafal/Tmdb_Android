@@ -1,4 +1,4 @@
-package com.tmdb.ui.core.utli.compose
+package com.tmdb.feature.home.ui.compose
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -15,6 +15,9 @@ import com.tmdb.ui.core.compose.test.ComposeTestSemantics
 
 fun SemanticsNodeInteraction.assertHasLongClickAction(): SemanticsNodeInteraction =
     assert(SemanticsMatcher.keyIsDefined(SemanticsActions.OnLongClick))
+
+fun SemanticsNodeInteraction.assertHasNoLongClickAction(): SemanticsNodeInteraction =
+    assert(SemanticsMatcher.keyNotDefined(SemanticsActions.OnLongClick))
 
 fun SemanticsNodeInteraction.performLongClick(): SemanticsNodeInteraction =
     performTouchInput { longClick() }

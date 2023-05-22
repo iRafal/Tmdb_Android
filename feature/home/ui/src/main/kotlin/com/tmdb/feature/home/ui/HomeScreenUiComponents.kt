@@ -16,27 +16,28 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.tmdb.feature.home.ui.data.model.HomeUiData
+import com.tmdb.ui.core.compose.ComposeTestTags
 import com.tmdb.ui.core.data.UiState
-import java.time.format.DateTimeFormatter
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
-import kotlinx.datetime.toJavaLocalDate
 import kotlinx.datetime.toLocalDateTime
 
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun MovieSectionErrorPreview() {
     MovieSectionError(
-        text = "Failed to load",
-        buttonText = "Reload",
+        text = stringResource(id = R.string.load_fail),
+        buttonText = stringResource(id = R.string.reload),
         onReloadSection = { }
     )
 }
@@ -63,7 +64,7 @@ fun MovieSectionItemPreview() {
             id = 1,
             title = "Movie 1",
             averageVote = 70.7,
-            releaseDate = LocalDate.parse("1 Jan 2022"),
+            releaseDate = LocalDate.parse("2022-01-01"),
             posterUrl = null
         ),
         onMovieClick = { }
@@ -76,7 +77,9 @@ fun MovieSectionItem(
     onMovieClick: (movieId: Int) -> Unit
 ) {
     Column(
-        modifier = Modifier.clickable { onMovieClick(movie.id) }
+        modifier = Modifier
+            .testTag(HomeScreenTestTags.TAG_MOVIE_ITEM)
+            .clickable { onMovieClick(movie.id) }
     ) {
         AsyncImage(
             model = movie.posterUrl,
@@ -93,9 +96,8 @@ fun MovieSectionItem(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            movie.releaseDate?.let { releaseDate ->
-                val formattedDate = DateTimeFormatter.ofPattern("d MMM yyyy").format(releaseDate.toJavaLocalDate())
-                Text(text = formattedDate, style = MaterialTheme.typography.caption)
+            movie.formattedReleaseDate?.let { releaseDate ->
+                Text(text = releaseDate, style = MaterialTheme.typography.caption)
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
@@ -154,7 +156,7 @@ fun MovieSectionList(movies: List<HomeUiData.Movie>, onMovieClick: (movieId: Int
 @Composable
 fun MovieSectionLoadingStatePreview() {
     MovieSection(
-        title = "Popular movies",
+        title = stringResource(id = R.string.now_playing),
         sectionState = UiState.Loading(),
         onReloadSection = { },
         onMovieClick = { }
@@ -165,7 +167,7 @@ fun MovieSectionLoadingStatePreview() {
 @Composable
 fun MovieSectionErrorStatePreview() {
     MovieSection(
-        title = "Popular movies",
+        title = stringResource(id = R.string.now_playing),
         sectionState = UiState.Error(),
         onReloadSection = { },
         onMovieClick = { }
@@ -176,7 +178,7 @@ fun MovieSectionErrorStatePreview() {
 @Composable
 fun MovieSectionNetworkErrorStatePreview() {
     MovieSection(
-        title = "Popular movies",
+        title = stringResource(id = R.string.now_playing),
         sectionState = UiState.NetworkError(),
         onReloadSection = { },
         onMovieClick = { }
@@ -187,7 +189,7 @@ fun MovieSectionNetworkErrorStatePreview() {
 @Composable
 fun MovieSectionSuccessStatePreview() {
     MovieSection(
-        title = "Popular movies",
+        title = stringResource(id = R.string.now_playing),
         sectionState = UiState.Success(moviesPreview),
         onReloadSection = { },
         onMovieClick = { }
@@ -202,29 +204,32 @@ fun MovieSection(
     onMovieClick: (movieId: Int) -> Unit
 ) {
     Column {
-        Text(text = title, style = MaterialTheme.typography.h6)
+        Text(modifier = Modifier.testTag(HomeScreenTestTags.TAG_MOVIE_SECTION_HEADER), text = title, style = MaterialTheme.typography.h6)
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
             when (sectionState) {
                 is UiState.Loading -> {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(modifier = Modifier.testTag(ComposeTestTags.TAG_CIRCULAR_PROGRESS_INDICATOR))
                 }
+
                 is UiState.Error -> {
                     MovieSectionError(
-                        text = "Failed to load",
-                        buttonText = "Reload",
+                        text = stringResource(id = R.string.load_fail),
+                        buttonText = stringResource(id = R.string.reload),
                         onReloadSection = onReloadSection
                     )
                 }
+
                 is UiState.NetworkError -> {
                     MovieSectionError(
-                        text = "No internet",
-                        buttonText = "Reload",
+                        text = stringResource(id = R.string.no_internet),
+                        buttonText = stringResource(id = R.string.reload),
                         onReloadSection = onReloadSection
                     )
                 }
+
                 is UiState.Success<List<HomeUiData.Movie>> -> {
                     MovieSectionList(sectionState.data, onMovieClick)
                 }

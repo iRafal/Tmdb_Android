@@ -6,7 +6,9 @@ import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
 import com.tmdb.ui.core.data.UiState
 import com.tmdb.ui.core.data.UiState.Loading
+import com.tmdb.utill.date.DateFormatsUtil
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toJavaLocalDate
 
 data class HomeUiData(val movieSections: Map<HomeMovieSection, UiState<List<Movie>>>) {
     data class Movie(
@@ -15,7 +17,14 @@ data class HomeUiData(val movieSections: Map<HomeMovieSection, UiState<List<Movi
         val averageVote: Double,
         val releaseDate: LocalDate?,
         val posterUrl: String?
-    )
+    ) {
+        val formattedReleaseDate: String?
+            get() {
+                return releaseDate?.let {
+                    DateFormatsUtil.dayShortMonthNameFullYearDateFormat.format(it.toJavaLocalDate())
+                }
+            }
+    }
 
     companion object {
         val INITIAL = HomeUiData(

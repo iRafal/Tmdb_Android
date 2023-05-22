@@ -8,6 +8,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
@@ -29,16 +31,8 @@ import kotlinx.datetime.LocalDate
 @Composable
 fun HomeAllSectionsLoadingPreview() {
     TmdbTheme {
-        val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.Loading(),
-                NOW_POPULAR to UiState.Loading(),
-                TOP_RATED to UiState.Loading(),
-                UPCOMING to UiState.Loading()
-            )
-        )
         HomeScreenUi(
-            data,
+            HomeUiData.INITIAL,
             onEvent = { }
         )
     }
@@ -94,21 +88,21 @@ fun HomeStateSuccessPreview() {
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
-                releaseDate = LocalDate.parse("1 Jan 2022"),
+                releaseDate = LocalDate.parse("2022-01-01"),
                 posterUrl = null
             ),
             Movie(
                 id = 2,
                 title = "Movie 2",
                 averageVote = 20.7,
-                releaseDate = LocalDate.parse("1 Jan 2020"),
+                releaseDate = LocalDate.parse("2020-01-01"),
                 posterUrl = null
             ),
             Movie(
                 id = 3,
                 title = "Movie 3",
                 averageVote = 95.7,
-                releaseDate = LocalDate.parse("1 Jan 2021"),
+                releaseDate = LocalDate.parse("2021-01-01"),
                 posterUrl = null
             )
         )
@@ -137,21 +131,21 @@ fun HomeMixedStatesPreview() {
                 id = 1,
                 title = "Movie 1",
                 averageVote = 70.7,
-                releaseDate = LocalDate.parse("1 Jan 2022"),
+                releaseDate = LocalDate.parse("2022-01-01"),
                 posterUrl = null
             ),
             Movie(
                 id = 2,
                 title = "Movie 2",
                 averageVote = 20.7,
-                releaseDate = LocalDate.parse("1 Jan 2020"),
+                releaseDate = LocalDate.parse("2020-01-01"),
                 posterUrl = null
             ),
             Movie(
                 id = 3,
                 title = "Movie 3",
                 averageVote = 95.7,
-                releaseDate = LocalDate.parse("1 Jan 2021"),
+                releaseDate = LocalDate.parse("2021-01-01"),
                 posterUrl = null
             )
         )
@@ -189,6 +183,7 @@ fun Home(
     onMovieClick: (movieId: Int) -> Unit
 ) {
     Scaffold(
+        modifier = Modifier.testTag(HomeScreenTestTags.TAG_HOME_CONTENT),
         content = {
             Box(modifier = Modifier.padding(it)) {
                 HomeContent(data, onReloadSection, onMovieClick)
@@ -208,7 +203,7 @@ fun HomeContent(
     ) {
         data.movieSections.forEach { (section, sectionState) ->
             MovieSection(
-                title = section.sectionUiName,
+                title = stringResource(id = section.labelRes),
                 sectionState = sectionState,
                 onReloadSection = { onReloadSection(section) },
                 onMovieClick = onMovieClick
@@ -218,11 +213,3 @@ fun HomeContent(
         }
     }
 }
-
-private val HomeMovieSection.sectionUiName: String
-    get() = when (this) {
-        NOW_PLAYING -> "Now Playing"
-        NOW_POPULAR -> "Now Popular"
-        TOP_RATED -> "Top Rated"
-        UPCOMING -> "Upcoming"
-    }
