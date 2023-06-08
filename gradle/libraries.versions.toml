@@ -1,10 +1,11 @@
 [versions]
 
+# https://developer.android.com/studio/releases/gradle-plugin
 gradle = "8.0.2"
 
 # https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration-with-groovy
 # https://github.com/jlleitschuh/ktlint-gradle
-ktlint-plugin = "11.3.2"
+ktlint-plugin = "11.4.0"
 
 # https://github.com/pinterest/ktlint
 # https://github.com/jlleitschuh/ktlint-gradle
@@ -12,7 +13,7 @@ ktlint = "0.49.1"
 
 objectBox = "3.6.0" # https://github.com/objectbox/objectbox-java
 
-realm-plugin = "10.15.1" # https://github.com/realm/realm-java
+realm-plugin = "10.16.0" # https://github.com/realm/realm-java
 
 # https://mvnrepository.com/artifact/com.google.dagger/hilt-android
 # https://dagger.dev/hilt/gradle-setup.html
@@ -37,7 +38,7 @@ androidx-lifecycle = "2.6.1" # https://developer.android.com/jetpack/androidx/re
 androidx-work = "2.8.1" # https://developer.android.com/jetpack/androidx/releases/work
 
 #COIL
-coil = "2.3.0" # https://github.com/coil-kt/coil
+coil = "2.4.0" # https://github.com/coil-kt/coil
 
 #COMPOSE
 compose-animation = "1.4.3" # https://developer.android.com/jetpack/androidx/releases/compose-animation
@@ -48,7 +49,7 @@ compose-material3 = "1.1.0" # https://developer.android.com/jetpack/androidx/rel
 compose-runtime = "1.4.3" # https://developer.android.com/jetpack/androidx/releases/compose-runtime
 compose-ui = "1.4.3" # https://developer.android.com/jetpack/androidx/releases/compose-ui
 
-compose-activity = "1.7.1" # https://developer.android.com/jetpack/androidx/releases/activity
+compose-activity = "1.7.2" # https://developer.android.com/jetpack/androidx/releases/activity
 compose-navigation = "2.5.3" # https://developer.android.com/jetpack/androidx/releases/navigation
 
 # https://developer.android.com/jetpack/compose/layouts/constraintlayout
@@ -59,7 +60,7 @@ compose-constraintLayout = "1.0.1"
 room = "2.5.1" # https://developer.android.com/jetpack/androidx/releases/room
 
 #NETWORK
-ktor = "2.3.0" # https://github.com/ktorio/ktor
+ktor = "2.3.1" # https://github.com/ktorio/ktor
 retrofit2 = "2.9.0" # https://github.com/square/retrofit
 retrofit2-serializationConverter = "1.0.0" # https://github.com/jakewharton/retrofit2-kotlinx-serialization-converter
 okhttp3-loggingInterceptor = "4.11.0" # https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
@@ -77,10 +78,10 @@ junit-android-ext = "1.1.5"
 espresso = "3.5.1"
 
 mockito = "5.3.1" # https://github.com/mockito/mockito
-mockito-kotlin = "4.1.0" # https://github.com/mockito/mockito-kotlin
+mockito-kotlin = "5.0.0" # https://github.com/mockito/mockito-kotlin
 
 #TOOLS
-leakcanary = "2.10" # https://square.github.io/leakcanary/getting_started/
+leakcanary = "2.11" # https://square.github.io/leakcanary/getting_started/
 logging = "0.1" # https://github.com/square/logcat
 kotlinx-dateTime = "0.4.0" # https://github.com/Kotlin/kotlinx-datetime
 
