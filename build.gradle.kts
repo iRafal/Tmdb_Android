@@ -13,6 +13,7 @@ buildscript {
         classpath(libs.hilt.plugin)
         classpath(libs.realm.plugin)
         classpath(libs.objectBox)
+        classpath(libs.detekt)
     }
 }
 
@@ -22,6 +23,11 @@ allprojects {
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
     }
+
+    /**
+     * ./gradlew detekt
+     */
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 }
 
 /**
@@ -35,6 +41,7 @@ allprojects {
  * gradlew ktlintFormat
  */
 
+
 subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
 
@@ -43,7 +50,6 @@ subprojects {
         mavenCentral()
     }
 
-    // Optionally configure plugin
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)
         verbose.set(true)
@@ -64,6 +70,23 @@ subprojects {
             include("**/kotlin/**")
         }
     }
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    config.setFrom(file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        txt.required.set(true)
+        sarif.required.set(true)
+        md.required.set(true)
+    }
+    jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
+    jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
 }
 
 tasks.register("clean", Delete::class) {
