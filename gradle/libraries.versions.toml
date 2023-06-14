@@ -68,6 +68,7 @@ ktor = "2.3.1" # https://github.com/ktorio/ktor
 retrofit2 = "2.9.0" # https://github.com/square/retrofit
 retrofit2-serializationConverter = "1.0.0" # https://github.com/jakewharton/retrofit2-kotlinx-serialization-converter
 okhttp3-loggingInterceptor = "4.11.0" # https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
+okhttp3-mockwebserver = "4.11.0" # https://github.com/square/okhttp/tree/master/mockwebserver
 
 #TEST
 junit = "4.13.2" # https://mvnrepository.com/artifact/junit/junit
@@ -161,6 +162,7 @@ retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofi
 retrofit2-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit2" }
 retrofit2-serializationConverter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2-serializationConverter" }
 okHttp3-loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3-loggingInterceptor" }
+okHttp3-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp3-mockwebserver" }
 
 #TEST
 junit = { module = "junit:junit", version.ref = "junit" }

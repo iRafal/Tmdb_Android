@@ -47,5 +47,18 @@ dependencies {
 
     implementation(libs.bundles.data.api.impl.retrofit)
     kapt(libs.hilt.kapt)
+
     testImplementation(libs.junit)
+
+    testImplementation(libs.kotlin.stdLib)
+    testImplementation(libs.kotlin.coroutines.core)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.kotlin.serialization.json)
+    testImplementation(libs.kotlinx.dateTime)
+
+    testImplementation(libs.retrofit2)
+    testImplementation(libs.retrofit2.scalars)
+    testImplementation(libs.retrofit2.serializationConverter)
+    testImplementation(libs.okHttp3.loggingInterceptor)
+    testImplementation(libs.okHttp3.mockwebserver)
 }
