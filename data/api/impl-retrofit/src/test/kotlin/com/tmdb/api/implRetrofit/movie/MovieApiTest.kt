@@ -7,6 +7,7 @@ import com.tmdb.api.implRetrofit.di.module.util.ApiHttpClientModule
 import com.tmdb.api.implRetrofit.di.module.util.ApiJsonModule
 import com.tmdb.api.implRetrofit.util.ModelUtil
 import com.tmdb.api.model.data.DataPage
+import com.tmdb.api.model.util.ApiException
 import com.tmdb.api.model.util.ApiResponse
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -16,6 +17,7 @@ import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import java.net.HttpURLConnection
@@ -40,6 +42,9 @@ class MovieApiTest {
     }
 
     private val movieId = ModelUtil.movieModel.id ?: 0
+
+    private val mockedResponseNotFound: MockResponse
+        get() = MockResponse().setResponseCode(404)
 
     private lateinit var api: MovieApi
 
@@ -121,135 +126,163 @@ class MovieApiTest {
         }
     """.trimIndent()
 
-    @Test
-    fun `movie by id success`() = runTest {
-        mockWebServer.dispatcher = object : Dispatcher() {
-            @Throws(InterruptedException::class)
-            override fun dispatch(request: RecordedRequest): MockResponse {
-                return if (request.path?.contains("movie/$movieId") == true) {
-                    MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(movieJson)
-                } else {
-                    MockResponse().setResponseCode(404)
-                }
+    private val moviesListBody = """
+    {
+        "page": 1,
+        "total_pages": 1,
+        "total_results": 1,
+        "results": [
+            $movieJson
+        ]
+    }
+    """.trimIndent()
+
+    private fun noBodyDispatcher(urlPath: String): Dispatcher = object : Dispatcher() {
+        @Throws(InterruptedException::class)
+        override fun dispatch(request: RecordedRequest): MockResponse {
+            return if (request.path?.contains(urlPath) == true) {
+                MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody("")
+            } else {
+                mockedResponseNotFound
             }
         }
+    }
 
-        val actualResponse = api.movie(movieId)
-        assert(actualResponse.isSuccess)
-        assertEquals((actualResponse as ApiResponse.Success).data, movieModel)
+    private fun successBodyDispatcher(urlPath: String, body: String): Dispatcher = object : Dispatcher() {
+        @Throws(InterruptedException::class)
+        override fun dispatch(request: RecordedRequest): MockResponse {
+            return if (request.path?.contains(urlPath) == true) {
+                MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(body)
+            } else {
+                mockedResponseNotFound
+            }
+        }
+    }
+
+    @Test
+    fun `movie by id success`() = runTest {
+        mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/$movieId", body = movieJson)
+
+        val response = api.movie(movieId)
+        assert(response.isSuccess)
+        assertEquals((response as ApiResponse.Success).data, movieModel)
+    }
+
+    @Test
+    fun `movie by id no body`() = runTest {
+        mockWebServer.dispatcher = noBodyDispatcher("movie/$movieId")
+
+        val response = api.movie(movieId)
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
 
     @Test
     fun `latest movie success`() = runTest {
-        mockWebServer.dispatcher = object : Dispatcher() {
-            @Throws(InterruptedException::class)
-            override fun dispatch(request: RecordedRequest): MockResponse {
-                return if (request.path?.contains("movie/latest") == true) {
-                    MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(movieJson)
-                } else {
-                    MockResponse().setResponseCode(404)
-                }
-            }
-        }
+        mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/latest", body = movieJson)
 
-        val actualResponse = api.latestMovie()
-        assert(actualResponse.isSuccess)
-        assertEquals((actualResponse as ApiResponse.Success).data, movieModel)
+        val response = api.latestMovie()
+        assert(response.isSuccess)
+        assertEquals((response as ApiResponse.Success).data, movieModel)
     }
 
-    private val moviesListBody = """
-                                {
-                                    "page": 1,
-                                    "total_pages": 1,
-                                    "total_results": 1,
-                                    "results": [
-                                        $movieJson
-                                    ]
-                                }
-                            """.trimIndent()
+    @Test
+    fun `latest movie no body`() = runTest {
+        mockWebServer.dispatcher = noBodyDispatcher("movie/latest")
+
+        val response = api.latestMovie()
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
+    }
 
     @Test
     fun `now playing movies success`() = runTest {
-        mockWebServer.dispatcher = object : Dispatcher() {
-            @Throws(InterruptedException::class)
-            override fun dispatch(request: RecordedRequest): MockResponse {
-                return if (request.path?.contains("movie/now_playing") == true) {
-                    MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(moviesListBody)
-                } else {
-                    MockResponse().setResponseCode(404)
-                }
-            }
-        }
+        mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/now_playing", body = moviesListBody)
 
-        val actualResponse = api.nowPlayingMovies()
-        assert(actualResponse.isSuccess)
+        val response = api.nowPlayingMovies()
+        assert(response.isSuccess)
         assertEquals(
-            (actualResponse as ApiResponse.Success).data,
+            (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
         )
+    }
+
+    @Test
+    fun `now playing movies no body`() = runTest {
+        mockWebServer.dispatcher = noBodyDispatcher("movie/now_playing")
+
+        val response = api.nowPlayingMovies()
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
 
     @Test
     fun `now popular movies success`() = runTest {
-        mockWebServer.dispatcher = object : Dispatcher() {
-            @Throws(InterruptedException::class)
-            override fun dispatch(request: RecordedRequest): MockResponse {
-                return if (request.path?.contains("movie/popular") == true) {
-                    MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(moviesListBody)
-                } else {
-                    MockResponse().setResponseCode(404)
-                }
-            }
-        }
+        mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/popular", body = moviesListBody)
 
-        val actualResponse = api.nowPopularMovies()
-        assert(actualResponse.isSuccess)
+        val response = api.nowPopularMovies()
+        assert(response.isSuccess)
         assertEquals(
-            (actualResponse as ApiResponse.Success).data,
+            (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
         )
+    }
+
+    @Test
+    fun `now popular movies no body`() = runTest {
+        mockWebServer.dispatcher = noBodyDispatcher("movie/popular")
+
+        val response = api.nowPopularMovies()
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
 
     @Test
     fun `top rated movies success`() = runTest {
-        mockWebServer.dispatcher = object : Dispatcher() {
-            @Throws(InterruptedException::class)
-            override fun dispatch(request: RecordedRequest): MockResponse {
-                return if (request.path?.contains("movie/top_rated") == true) {
-                    MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(moviesListBody)
-                } else {
-                    MockResponse().setResponseCode(404)
-                }
-            }
-        }
+        mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/top_rated", body = moviesListBody)
 
-        val actualResponse = api.topRatedMovies()
-        assert(actualResponse.isSuccess)
+        val response = api.topRatedMovies()
+        assert(response.isSuccess)
         assertEquals(
-            (actualResponse as ApiResponse.Success).data,
+            (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
         )
     }
 
     @Test
-    fun `upcoming movies success`() = runTest {
-        mockWebServer.dispatcher = object : Dispatcher() {
-            @Throws(InterruptedException::class)
-            override fun dispatch(request: RecordedRequest): MockResponse {
-                return if (request.path?.contains("movie/upcoming") == true) {
-                    MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(moviesListBody)
-                } else {
-                    MockResponse().setResponseCode(404)
-                }
-            }
-        }
+    fun `top rated movies no body`() = runTest {
+        mockWebServer.dispatcher = noBodyDispatcher("movie/top_rated")
 
-        val actualResponse = api.upcomingMovies()
-        assert(actualResponse.isSuccess)
+        val response = api.topRatedMovies()
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
+    }
+
+    @Test
+    fun `upcoming movies success`() = runTest {
+        mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/upcoming", body = moviesListBody)
+
+        val response = api.upcomingMovies()
+        assert(response.isSuccess)
         assertEquals(
-            (actualResponse as ApiResponse.Success).data,
+            (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
         )
+    }
+
+    @Test
+    fun `upcoming movies no body`() = runTest {
+        mockWebServer.dispatcher = noBodyDispatcher("movie/upcoming")
+
+        val response = api.upcomingMovies()
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
 
     @After
