@@ -44,7 +44,7 @@ class MovieApiTest {
     private val movieId = ModelUtil.movieModel.id ?: 0
 
     private val mockedResponseNotFound: MockResponse
-        get() = MockResponse().setResponseCode(404)
+        get() = MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
 
     private lateinit var api: MovieApi
 
