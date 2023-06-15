@@ -46,5 +46,15 @@ dependencies {
 
     implementation(libs.bundles.data.api.impl.ktor)
     kapt(libs.hilt.kapt)
-    testImplementation(libs.bundles.data.api.impl.ktor.test)
+
+    testImplementation(libs.junit)
+
+    testImplementation(libs.kotlin.stdLib)
+    testImplementation(libs.kotlin.coroutines.core)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.kotlin.serialization.json)
+
+    testImplementation(libs.kotlinx.dateTime)
+
+    testImplementation(libs.ktor.client.mock)
 }

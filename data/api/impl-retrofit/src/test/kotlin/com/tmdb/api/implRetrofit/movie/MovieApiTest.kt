@@ -48,24 +48,6 @@ class MovieApiTest {
 
     private lateinit var api: MovieApi
 
-    @OptIn(ExperimentalSerializationApi::class)
-    @Before
-    fun setup() {
-        mockWebServer.start()
-
-        api = ApiModule.movieApi(
-            baseUrlProvider = movieBaseUrlProvider,
-            client = ApiHttpClientModule.okHttpClient(
-                ApiHttpClientModule.loggingInterceptor(),
-                ApiHttpClientModule.requestInterceptor(),
-                ApiHttpClientModule.apiResponseInterceptor()
-            ),
-            jsonConverterFactory = ApiFactoriesModule.jsonConverterFactory(ApiJsonModule.json()),
-            scalarsConverterFactory = ApiFactoriesModule.scalarsConverterFactory(),
-            factory = ApiFactoriesModule.networkResponseFactory(),
-        )
-    }
-
     private val movieModel = ModelUtil.movieModel
 
     private val movieJson = """
@@ -137,6 +119,24 @@ class MovieApiTest {
     }
     """.trimIndent()
 
+    @OptIn(ExperimentalSerializationApi::class)
+    @Before
+    fun setup() {
+        mockWebServer.start()
+
+        api = ApiModule.movieApi(
+            baseUrlProvider = movieBaseUrlProvider,
+            client = ApiHttpClientModule.okHttpClient(
+                ApiHttpClientModule.loggingInterceptor(),
+                ApiHttpClientModule.requestInterceptor(),
+                ApiHttpClientModule.apiResponseInterceptor()
+            ),
+            jsonConverterFactory = ApiFactoriesModule.jsonConverterFactory(ApiJsonModule.json()),
+            scalarsConverterFactory = ApiFactoriesModule.scalarsConverterFactory(),
+            factory = ApiFactoriesModule.networkResponseFactory(),
+        )
+    }
+
     private fun noBodyDispatcher(urlPath: String): Dispatcher = object : Dispatcher() {
         @Throws(InterruptedException::class)
         override fun dispatch(request: RecordedRequest): MockResponse {
@@ -164,7 +164,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/$movieId", body = movieJson)
 
         val response = api.movie(movieId)
-        assert(response.isSuccess)
+        assertTrue(response.isSuccess)
         assertEquals((response as ApiResponse.Success).data, movieModel)
     }
 
@@ -173,7 +173,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = noBodyDispatcher("movie/$movieId")
 
         val response = api.movie(movieId)
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
@@ -193,7 +193,7 @@ class MovieApiTest {
         }
 
         val response = api.movie(movieId)
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.HttpError)
         assertTrue((response.cause as ApiException.HttpError).code == errorCode)
@@ -204,7 +204,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/latest", body = movieJson)
 
         val response = api.latestMovie()
-        assert(response.isSuccess)
+        assertTrue(response.isSuccess)
         assertEquals((response as ApiResponse.Success).data, movieModel)
     }
 
@@ -213,7 +213,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = noBodyDispatcher("movie/latest")
 
         val response = api.latestMovie()
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
@@ -223,7 +223,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/now_playing", body = moviesListBody)
 
         val response = api.nowPlayingMovies()
-        assert(response.isSuccess)
+        assertTrue(response.isSuccess)
         assertEquals(
             (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
@@ -235,7 +235,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = noBodyDispatcher("movie/now_playing")
 
         val response = api.nowPlayingMovies()
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
@@ -245,7 +245,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/popular", body = moviesListBody)
 
         val response = api.nowPopularMovies()
-        assert(response.isSuccess)
+        assertTrue(response.isSuccess)
         assertEquals(
             (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
@@ -257,7 +257,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = noBodyDispatcher("movie/popular")
 
         val response = api.nowPopularMovies()
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
@@ -267,7 +267,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/top_rated", body = moviesListBody)
 
         val response = api.topRatedMovies()
-        assert(response.isSuccess)
+        assertTrue(response.isSuccess)
         assertEquals(
             (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
@@ -279,7 +279,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = noBodyDispatcher("movie/top_rated")
 
         val response = api.topRatedMovies()
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }
@@ -289,7 +289,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/upcoming", body = moviesListBody)
 
         val response = api.upcomingMovies()
-        assert(response.isSuccess)
+        assertTrue(response.isSuccess)
         assertEquals(
             (response as ApiResponse.Success).data,
             DataPage(page = 1, results = listOf(movieModel), totalPages = 1, totalResults = 1)
@@ -301,7 +301,7 @@ class MovieApiTest {
         mockWebServer.dispatcher = noBodyDispatcher("movie/upcoming")
 
         val response = api.upcomingMovies()
-        assert(response.isUnknownError)
+        assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
         assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
     }

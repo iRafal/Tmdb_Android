@@ -157,6 +157,7 @@ ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json"
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
 retrofit2-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit2" }
@@ -217,11 +218,6 @@ data-api-impl-ktor = [
     "hilt-android",
     #
     "logging",
-]
-data-api-impl-ktor-test = [
-    "junit",
-    #
-    #"ktor-client-mock-test",
 ]
 
 #BUNDLES-DATA-SOURCE-REMOTE-CONTRACT
