@@ -179,6 +179,27 @@ class MovieApiTest {
     }
 
     @Test
+    fun `movie by id api error no body`() = runTest {
+        val errorCode = HttpURLConnection.HTTP_BAD_REQUEST
+        mockWebServer.dispatcher = object : Dispatcher() {
+            @Throws(InterruptedException::class)
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                return if (request.path?.contains("movie/$movieId") == true) {
+                    MockResponse().setResponseCode(errorCode).setBody("")
+                } else {
+                    mockedResponseNotFound
+                }
+            }
+        }
+
+        val response = api.movie(movieId)
+        assert(response.isUnknownError)
+        assertTrue(response is ApiResponse.UnknownError)
+        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.HttpError)
+        assertTrue((response.cause as ApiException.HttpError).code == errorCode)
+    }
+
+    @Test
     fun `latest movie success`() = runTest {
         mockWebServer.dispatcher = successBodyDispatcher(urlPath = "movie/latest", body = movieJson)
 

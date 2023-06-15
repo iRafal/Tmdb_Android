@@ -45,14 +45,9 @@ internal class NetworkResponseCall<S : Any, E : Any>(
                                 }
                             }
                         }
-                        val apiResponse = if (errorBody == null) {
-                            val exception = ApiException.UnknownError()
-                            ApiResponse.UnknownError(exception)
-                        } else {
-                            val exception =
-                                ApiException.HttpError(message = errorBody.toString(), code = code)
-                            ApiResponse.UnknownError(exception)
-                        }
+                        val exception = ApiException.HttpError(message = errorBody.toString(), code = code)
+                        val apiResponse = ApiResponse.UnknownError(exception)
+
                         callback.onResponse(this@NetworkResponseCall, Response.success(apiResponse))
                     }
                 }
