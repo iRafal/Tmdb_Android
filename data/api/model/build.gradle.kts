@@ -1,13 +1,8 @@
 plugins {
-    id("java-library")
-    id("kotlin")
-    id("org.jetbrains.kotlin.jvm")
-    id("kotlinx-serialization")
-}
-
-sourceSets {
-    this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
-    this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
+    id(GradleConfig.Plugins.JAVA_LIBRARY)
+    id(GradleConfig.Plugins.KOTLIN)
+    id(GradleConfig.Plugins.KOTLIN_JVM)
+    id(GradleConfig.Plugins.KOTLINX_SERIALIZATION)
 }
 
 java {

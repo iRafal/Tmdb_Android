@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("dagger.hilt.android.plugin")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("kotlinx-serialization")
+    id(GradleConfig.Plugins.ANDROID_LIBRARY)
+    id(GradleConfig.Plugins.HILT)
+    id(GradleConfig.Plugins.KOTLIN_ANDROID)
+    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    id(GradleConfig.Plugins.KOTLINX_SERIALIZATION)
 }
 
 android {
@@ -33,11 +33,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = GradleConfig.javaVersionAsString
-    }
-
-    sourceSets {
-        this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
-        this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
     }
 }
 

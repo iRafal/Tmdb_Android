@@ -21,20 +21,15 @@ object GradleConfig {
     val javaVersion = JavaVersion.VERSION_17
     val javaVersionAsString = javaVersion.toString()
 
-    object SourceSet {
-        object Main {
-            const val name = "main"
-            val sourceSets = arrayOf("src/main/java", "src/main/kotlin")
-        }
-
-        object Test {
-            const val name = "test"
-            val sourceSets = arrayOf("src/test/java", "src/test/kotlin")
-        }
-
-        object AndroidTest {
-            const val name = "androidTest"
-            val sourceSets = arrayOf("src/androidTest/java", "src/androidTest/kotlin")
-        }
+    object Plugins {
+        const val ANDROID_LIBRARY = "com.android.library"
+        const val ANDROID_APPLICATION = "com.android.application"
+        const val KOTLIN_ANDROID = "kotlin-android"
+        const val KOTLIN = "kotlin"
+        const val KOTLIN_JVM = "org.jetbrains.kotlin.jvm"
+        const val KOTLIN_KAPT = "kotlin-kapt"
+        const val JAVA_LIBRARY = "java-library"
+        const val HILT = "dagger.hilt.android.plugin"
+        const val KOTLINX_SERIALIZATION = "kotlinx-serialization"
     }
 }

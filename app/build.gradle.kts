@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    id(GradleConfig.Plugins.ANDROID_APPLICATION)
+    id(GradleConfig.Plugins.KOTLIN_ANDROID)
+    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    id(GradleConfig.Plugins.HILT)
 }
 
 android {
@@ -56,11 +56,6 @@ android {
         resources {
             this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
         }
-    }
-    sourceSets {
-        this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
-        this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
-        this[GradleConfig.SourceSet.AndroidTest.name].java.srcDirs(*GradleConfig.SourceSet.AndroidTest.sourceSets)
     }
     namespace = GradleConfig.Android.applicationId
     lint {
