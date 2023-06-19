@@ -1,18 +1,15 @@
 package com.tmdb.api.implRetrofit.di.module.util
 
+import com.tmdb.api.implRetrofit.di.module.ApiDependenciesProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.json.Json
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object ApiJsonModule {
 
     @Provides
-    fun json() = Json {
-        ignoreUnknownKeys = true
-        prettyPrint = true
-    }
+    fun json() = ApiDependenciesProvider.json()
 }

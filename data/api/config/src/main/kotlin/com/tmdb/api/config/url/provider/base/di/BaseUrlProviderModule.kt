@@ -8,10 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+@[Module InstallIn(SingletonComponent::class)]
 object BaseUrlProviderModule {
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun baseUrlProvider(impl: BaseUrlProviderImpl): BaseUrlProvider = impl
 }

@@ -15,26 +15,23 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object UrlProviderModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun discoverUrlProvider(baseUrlProvider: BaseUrlProvider): DiscoverUrlProvider =
         DiscoverUrlProviderImpl(baseUrlProvider.discoverApiUrl)
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun genreUrlProvider(baseUrlProvider: BaseUrlProvider): GenreUrlProvider =
         GenreUrlProviderImpl(baseUrlProvider.genreApiUrl)
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun movieUrlProvider(baseUrlProvider: BaseUrlProvider): MovieUrlProvider =
         MovieUrlProviderImpl(baseUrlProvider.movieApiUrl)
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun personUrlProvider(baseUrlProvider: BaseUrlProvider): PersonUrlProvider =
         PersonUrlProviderImpl(baseUrlProvider.personApiUrl)
 }

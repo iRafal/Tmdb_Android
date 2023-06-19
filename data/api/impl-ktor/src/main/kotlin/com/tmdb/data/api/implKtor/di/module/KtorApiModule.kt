@@ -14,23 +14,19 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 interface KtorApiModule {
 
-    @Binds
-    @Singleton
+    @[Binds Singleton]
     fun discoverApi(impl: DiscoverApiImpl): DiscoverApi
 
-    @Binds
-    @Singleton
+    @[Binds Singleton]
     fun genreApi(impl: GenreApiImpl): GenreApi
 
-    @Binds
-    @Singleton
+    @[Binds Singleton]
     fun movieApi(impl: MovieApiImpl): MovieApi
 
-    @Binds
-    @Singleton
+    @[Binds Singleton]
     fun personApi(impl: PersonApiImpl): PersonApi
 }

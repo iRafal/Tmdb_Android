@@ -10,8 +10,8 @@ import io.objectbox.annotation.NameInDb
 import io.objectbox.annotation.Unique
 import kotlinx.datetime.LocalDate
 
-@Entity
-@NameInDb(MOVIE_TABLE_NAME)
+
+@[Entity NameInDb(MOVIE_TABLE_NAME)]
 data class MovieEntity(
     @NameInDb(MOVIE_TABLE_COLUMN_ID)
     @Id

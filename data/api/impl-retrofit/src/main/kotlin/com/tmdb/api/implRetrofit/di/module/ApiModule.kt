@@ -15,10 +15,9 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Converter
-import retrofit2.Retrofit
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object ApiModule {
 
     @Provides
@@ -28,7 +27,7 @@ object ApiModule {
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): DiscoverApi = api(
+    ): DiscoverApi = ApiDependenciesProvider.api(
         url = baseUrlProvider.discoverApiUrl,
         client = client,
         jsonConverterFactory = jsonConverterFactory,
@@ -44,7 +43,7 @@ object ApiModule {
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): GenreApi = api(
+    ): GenreApi = ApiDependenciesProvider.api(
         url = baseUrlProvider.genreApiUrl,
         client = client,
         jsonConverterFactory = jsonConverterFactory,
@@ -60,7 +59,7 @@ object ApiModule {
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): MovieApi = api(
+    ): MovieApi = ApiDependenciesProvider.api(
         url = baseUrlProvider.movieApiUrl,
         client = client,
         jsonConverterFactory = jsonConverterFactory,
@@ -76,7 +75,7 @@ object ApiModule {
         @ConverterFactoryJson jsonConverterFactory: Converter.Factory,
         @ConverterFactoryScalars scalarsConverterFactory: Converter.Factory,
         factory: CallAdapter.Factory
-    ): PersonApi = api(
+    ): PersonApi = ApiDependenciesProvider.api(
         url = baseUrlProvider.personApiUrl,
         client = client,
         jsonConverterFactory = jsonConverterFactory,
@@ -84,20 +83,4 @@ object ApiModule {
         factory = factory,
         apiClass = PersonApi::class.java
     )
-
-    private fun <T> api(
-        url: String,
-        client: OkHttpClient,
-        jsonConverterFactory: Converter.Factory,
-        scalarsConverterFactory: Converter.Factory,
-        factory: CallAdapter.Factory,
-        apiClass: Class<T>
-    ): T = Retrofit.Builder()
-        .baseUrl(url)
-        .client(client)
-        .addConverterFactory(jsonConverterFactory)
-        .addConverterFactory(scalarsConverterFactory)
-        .addCallAdapterFactory(factory)
-        .build()
-        .create(apiClass)
 }

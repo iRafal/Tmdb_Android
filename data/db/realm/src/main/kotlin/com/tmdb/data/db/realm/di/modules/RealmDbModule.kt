@@ -13,11 +13,11 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object RealmDbModule {
-    @Singleton
-    @Provides
+
+    @[Singleton Provides]
     fun providesRealmConfig(
         @ApplicationContext applicationContext: Context
     ): RealmConfiguration {
@@ -25,11 +25,9 @@ object RealmDbModule {
         return MoviesRealmDbConfig.realmConfig()
     }
 
-    @Provides
-    @Singleton
+    @[Singleton Provides]
     fun dataBase(realmConfig: RealmConfiguration): Realm = Realm.getInstance(realmConfig)
 
-    @Singleton
-    @Provides
+    @[Singleton Provides]
     fun movieDao(impl: MovieDaoImpl): MovieDao = impl
 }

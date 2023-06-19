@@ -14,25 +14,20 @@ import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object ApiFactoriesModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class ConverterFactoryScalars
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class ConverterFactoryJson
 
-    @Provides
-    @ConverterFactoryScalars
+    @[Provides ConverterFactoryScalars]
     fun scalarsConverterFactory(): Converter.Factory = ScalarsConverterFactory.create()
 
-    @Provides
-    @ConverterFactoryJson
-    @ExperimentalSerializationApi
+    @[Provides ConverterFactoryJson ExperimentalSerializationApi]
     fun jsonConverterFactory(json: Json): Converter.Factory {
         val contentType = "application/json".toMediaType()
         // https://petnagy.medium.com/kotlinx-serialization-part2-d6c23f7839c4

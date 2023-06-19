@@ -14,11 +14,10 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object AppStoreModule {
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun appStore(
         appEnv: AppEnv,
         appReducer: @JvmSuppressWildcards AppReducer,

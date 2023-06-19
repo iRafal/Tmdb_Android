@@ -9,12 +9,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+@[Module InstallIn(SingletonComponent::class)]
 object ImageUrlModule {
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun imageUrlProvider(baseUrlProvider: BaseUrlProvider): ImageUrlProvider =
         ImageUrlProviderImpl(baseUrlProvider.apiImageUrl)
 }

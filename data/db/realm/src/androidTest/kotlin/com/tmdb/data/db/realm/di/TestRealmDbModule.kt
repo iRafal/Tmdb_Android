@@ -20,8 +20,7 @@ import javax.inject.Singleton
 )
 object TestRealmDbModule {
 
-    @Singleton
-    @Provides
+    @[Singleton Provides]
     fun providesRealmConfig(
         @ApplicationContext applicationContext: Context,
     ): RealmConfiguration {

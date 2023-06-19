@@ -10,14 +10,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object RoomDbModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun dataBase(@ApplicationContext appContext: Context): MovieDb = MovieDb.getInstance(appContext)
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun movieDao(database: MovieDb): MovieDao = database.movieDao()
 }

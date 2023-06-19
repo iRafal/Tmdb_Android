@@ -9,6 +9,7 @@ import com.tmdb.api.implRetrofit.util.ModelUtil
 import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.util.ApiException
 import com.tmdb.api.model.util.ApiResponse
+import java.net.HttpURLConnection
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.ExperimentalSerializationApi
 import okhttp3.mockwebserver.Dispatcher
@@ -20,7 +21,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import java.net.HttpURLConnection
 
 /**
  * https://hanru-yeh.medium.com/unit-test-retrofit-and-mockwebserver-a3e4e81fd2a2
@@ -119,8 +119,7 @@ class MovieApiTest {
     }
     """.trimIndent()
 
-    @OptIn(ExperimentalSerializationApi::class)
-    @Before
+    @[OptIn(ExperimentalSerializationApi::class) Before]
     fun setup() {
         mockWebServer.start()
 

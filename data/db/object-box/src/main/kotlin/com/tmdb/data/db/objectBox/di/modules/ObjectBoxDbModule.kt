@@ -14,20 +14,17 @@ import io.objectbox.Box
 import io.objectbox.BoxStore
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+@[Module InstallIn(SingletonComponent::class)]
 object ObjectBoxDbModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun dataBase(@ApplicationContext appContext: Context): BoxStore {
         return ObjectBoxConfig.store(appContext)
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun movieBox(boxStore: BoxStore): Box<MovieEntity> = ObjectBoxConfig.moviesBox(boxStore)
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun movieDao(impl: MovieDaoImpl): MovieDao = impl
 }

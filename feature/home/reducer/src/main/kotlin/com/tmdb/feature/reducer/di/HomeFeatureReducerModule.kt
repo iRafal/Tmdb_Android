@@ -13,8 +13,8 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object HomeFeatureReducerModule {
 
     @Provides
@@ -28,8 +28,7 @@ object HomeFeatureReducerModule {
         homeFeatureEffects
     )
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun homeFeatureEffects(
         @DispatcherIo dispatcher: CoroutineDispatcher
     ) = HomeFeatureEffects(dispatcher)

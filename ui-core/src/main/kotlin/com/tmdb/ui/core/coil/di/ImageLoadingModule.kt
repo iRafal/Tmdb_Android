@@ -17,37 +17,28 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
-@Module
-@InstallIn(SingletonComponent::class)
+@[Module InstallIn(SingletonComponent::class)]
 object ImageLoadingModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class InterceptorCoil
 
-    @Provides
-    @InterceptorCoil
-    @Singleton
+    @[Provides InterceptorCoil Singleton]
     fun coilLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply { level = BODY }
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class OkHttpClientCoil
 
-    @OkHttpClientCoil
-    @Provides
-    @Singleton
+    @[OkHttpClientCoil Provides Singleton]
     fun coilOkkHttpClient(@InterceptorCoil coilLoggingInterceptor: Interceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(coilLoggingInterceptor)
             .build()
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun coilLogger(): Logger = createCoilLogger()
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun coilImageLoader(
         @ApplicationContext context: Context,
         @OkHttpClientCoil coilOkkHttpClient: OkHttpClient,

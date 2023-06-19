@@ -9,43 +9,31 @@ import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object DispatchersModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class DispatcherIo
 
-    @DispatcherIo
-    @Provides
-    @Singleton
+    @[DispatcherIo Provides Singleton]
     fun ioDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class DispatcherMain
 
-    @DispatcherMain
-    @Provides
-    @Singleton
+    @[DispatcherMain Provides Singleton]
     fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class DispatcherDefault
 
-    @DispatcherDefault
-    @Provides
-    @Singleton
+    @[DispatcherDefault Provides Singleton]
     fun defaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class DispatcherUnconfined
 
-    @DispatcherUnconfined
-    @Provides
-    @Singleton
+    @[DispatcherUnconfined Provides Singleton]
     fun unconfinedDispatcher(): CoroutineDispatcher = Dispatchers.Unconfined
 }

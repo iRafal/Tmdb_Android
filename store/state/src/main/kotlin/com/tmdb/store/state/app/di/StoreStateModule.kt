@@ -8,16 +8,13 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object StoreStateModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class InitialAppState
 
-    @Provides
-    @Singleton
-    @InitialAppState
+    @[Provides Singleton InitialAppState]
     fun initialAppState(): AppState = AppState.INITIAL
 }

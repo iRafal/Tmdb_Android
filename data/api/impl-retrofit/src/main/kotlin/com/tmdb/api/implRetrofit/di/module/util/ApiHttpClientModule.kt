@@ -1,6 +1,7 @@
 package com.tmdb.api.implRetrofit.di.module.util
 
 import com.tmdb.api.config.BuildConfig
+import com.tmdb.api.implRetrofit.di.module.ApiDependenciesProvider
 import com.tmdb.api.implRetrofit.util.ApiResponseInterceptor
 import dagger.Module
 import dagger.Provides
@@ -9,65 +10,42 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
-@Module
-@InstallIn(SingletonComponent::class)
+
+@[Module InstallIn(SingletonComponent::class)]
 object ApiHttpClientModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class InterceptorResponse
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class InterceptorLogging
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class InterceptorRequest
 
-    @InterceptorResponse
-    @Provides
+    @[InterceptorResponse Provides]
     fun apiResponseInterceptor(): Interceptor = ApiResponseInterceptor()
 
-    @InterceptorLogging
-    @Provides
+    @[InterceptorLogging Provides]
     fun loggingInterceptor(): Interceptor = loggingInterceptor(BODY)
 
     private fun loggingInterceptor(
         loggingLevel: Level
     ): HttpLoggingInterceptor = HttpLoggingInterceptor().apply { level = loggingLevel }
 
-    @InterceptorRequest
-    @Provides
+    @[InterceptorRequest Provides]
     fun requestInterceptor(): Interceptor {
-        return requestInterceptor(apiKeyKey = "api_key", apiKeyValue = BuildConfig.API_KEY)
+        return ApiDependenciesProvider.requestInterceptor(apiKey = ApiDependenciesProvider.API_KEY, apiKeyValue = BuildConfig.API_KEY)
     }
 
-    private fun requestInterceptor(apiKeyKey: String, apiKeyValue: String): Interceptor {
-        return Interceptor { chain ->
-            val original: Request = chain.request()
-
-            val url = original.url.newBuilder()
-                .addQueryParameter(apiKeyKey, apiKeyValue)
-                .build()
-
-            val request: Request = original.newBuilder().url(url).build()
-
-            chain.proceed(request)
-        }
-    }
-
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class OkHttpClientRetrofit
 
-    @OkHttpClientRetrofit
-    @Provides
+    @[OkHttpClientRetrofit Provides]
     fun okHttpClient(
         @InterceptorLogging loggingInterceptor: Interceptor,
         @InterceptorRequest requestInterceptor: Interceptor,

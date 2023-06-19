@@ -22,23 +22,18 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 )
 object DispatchersTestModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class DispatcherTestStandard
 
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class DispatcherTestUnconfined
 
-    @DispatcherTestStandard
-    @Provides
+    @[DispatcherTestUnconfined Provides]
     fun standardTestDispatcher(): TestDispatcher = StandardTestDispatcher()
 
-    @DispatcherTestUnconfined
-    @Provides
+    @[DispatcherTestUnconfined Provides]
     fun unconfinedTestDispatcher(): TestDispatcher = UnconfinedTestDispatcher()
 
-    @DispatchersModule.DispatcherIo
-    @Provides
+    @[DispatchersModule.DispatcherIo Provides]
     fun ioDispatcher(): CoroutineDispatcher = Dispatchers.Default
 }
