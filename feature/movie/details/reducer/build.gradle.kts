@@ -6,13 +6,15 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.store.reducer.movie.details"
+    namespace = "${Libs.BuildConfig.applicationId}.feature.movie.details.reducer"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
+
         consumerProguardFiles("consumer-rules.pro")
     }
+
     buildTypes {
         debug {
             isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
@@ -38,6 +40,7 @@ android {
         this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
     }
 }
+
 
 dependencies {
     implementationDependencies()

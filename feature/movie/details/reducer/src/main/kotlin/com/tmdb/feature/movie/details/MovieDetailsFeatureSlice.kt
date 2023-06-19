@@ -1,4 +1,4 @@
-package com.tmdb.store.reducer.movie.details
+package com.tmdb.feature.movie.details
 
 import com.tmdb.store.action.details.MovieDetailsAction
 import com.tmdb.store.base.Action
