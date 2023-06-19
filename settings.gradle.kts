@@ -17,9 +17,7 @@ include(":store:base")
 include(":store:feature")
 include(":store:action")
 include(":store:env")
-
 include(":store:reducer:app")
-
 include(":store:state")
 include(":store:app")
 
@@ -51,3 +49,4 @@ include(":feature:home:action")
 
 include(":feature:movie:details:ui")
 include(":feature:movie:details:reducer")
+include(":feature:movie:details:action")

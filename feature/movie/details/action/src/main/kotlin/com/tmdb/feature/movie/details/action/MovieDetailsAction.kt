@@ -1,4 +1,4 @@
-package com.tmdb.store.action.details
+package com.tmdb.feature.movie.details.action
 
 import com.tmdb.store.base.Action
 

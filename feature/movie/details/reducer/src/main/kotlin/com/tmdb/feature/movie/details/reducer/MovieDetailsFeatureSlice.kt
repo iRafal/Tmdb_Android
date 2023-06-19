@@ -1,6 +1,6 @@
 package com.tmdb.feature.movie.details.reducer
 
-import com.tmdb.store.action.details.MovieDetailsAction
+import com.tmdb.feature.movie.details.action.MovieDetailsAction
 import com.tmdb.store.base.Action
 import com.tmdb.store.base.Effect
 import com.tmdb.store.base.Effects
