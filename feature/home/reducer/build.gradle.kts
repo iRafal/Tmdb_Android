@@ -6,13 +6,14 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.store.reducer.app"
+    namespace = "${Libs.BuildConfig.applicationId}.feature.reducer"
     compileSdk = Libs.BuildConfig.compileSdk
 
     defaultConfig {
         minSdk = Libs.BuildConfig.minSdk
         consumerProguardFiles("consumer-rules.pro")
     }
+
     buildTypes {
         debug {
             isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
@@ -42,11 +43,10 @@ android {
 dependencies {
     implementationDependencies()
     kapt(libs.hilt.kapt)
+    testImplementationDependencies()
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(project(":feature:home:reducer"))
-    implementation(project(":store:reducer:movie:details"))
     implementation(project(":store:base"))
     implementation(project(":store:env"))
     implementation(project(":store:action"))
@@ -58,4 +58,13 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
 
     implementation(libs.hilt.android)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.hilt.test)
+    testImplementation(libs.kotlinx.dateTime)
 }

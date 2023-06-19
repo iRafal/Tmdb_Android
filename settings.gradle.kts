@@ -19,7 +19,6 @@ include(":store:action")
 include(":store:env")
 
 include(":store:reducer:app")
-include(":store:reducer:home")
 include(":store:reducer:movie:details")
 
 include(":store:state")
@@ -48,4 +47,6 @@ include(":data:source:local:impl-objectBox")
 include(":util")
 
 include(":feature:home:ui")
+include(":feature:home:reducer")
+
 include(":feature:movie:details:ui")
