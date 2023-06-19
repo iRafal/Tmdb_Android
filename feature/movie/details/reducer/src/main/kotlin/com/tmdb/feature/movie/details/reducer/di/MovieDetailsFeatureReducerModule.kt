@@ -1,7 +1,7 @@
-package com.tmdb.feature.movie.details.di
+package com.tmdb.feature.movie.details.reducer.di
 
-import com.tmdb.feature.movie.details.MovieDetailsFeatureSlice
-import com.tmdb.feature.movie.details.MovieDetailsFeatureSliceImpl
+import com.tmdb.feature.movie.details.reducer.MovieDetailsFeatureSlice
+import com.tmdb.feature.movie.details.reducer.MovieDetailsFeatureSliceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

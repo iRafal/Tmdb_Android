@@ -1,4 +1,4 @@
-package com.tmdb.feature.movie.details
+package com.tmdb.feature.movie.details.reducer
 
 import com.tmdb.data.source.remote.contract.MovieLocalDataSource
 import com.tmdb.data.source.remote.contract.discover.DiscoverRemoteDataSource
