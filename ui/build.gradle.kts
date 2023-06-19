@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "${GradleConfig.BuildConfig.applicationId}.ui"
-    compileSdk = GradleConfig.BuildConfig.compileSdk
+    namespace = "${GradleConfig.Android.applicationId}.ui"
+    compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
-        minSdk = GradleConfig.BuildConfig.minSdk
-        testInstrumentationRunner = "${GradleConfig.BuildConfig.applicationId}.ui.core.runner.HiltTestRunner"
+        minSdk = GradleConfig.Android.minSdk
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.ui.core.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -20,10 +20,10 @@ android {
 
     buildTypes {
         debug {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

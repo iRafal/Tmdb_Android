@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "${GradleConfig.BuildConfig.applicationId}.data.db.room"
-    compileSdk = GradleConfig.BuildConfig.compileSdk
+    namespace = "${GradleConfig.Android.applicationId}.data.db.room"
+    compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
-        minSdk = GradleConfig.BuildConfig.minSdk
-        testInstrumentationRunner = "${GradleConfig.BuildConfig.applicationId}.data.db.room.runner.HiltTestRunner"
+        minSdk = GradleConfig.Android.minSdk
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.room.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {
@@ -21,10 +21,10 @@ android {
     }
     buildTypes {
         debug {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -45,12 +45,11 @@ android {
         this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
         this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
 
-        getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
+        getByName(GradleConfig.SourceSet.AndroidTest.name).assets.srcDirs(files("$projectDir/schemas"))
     }
-    packagingOptions {
+    packaging {
         resources {
-            this.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-            this.excludes.add("/META-INF/gradle/incremental.annotation.processors")
+            this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
         }
     }
 }

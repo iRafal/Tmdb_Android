@@ -3,7 +3,7 @@ import org.gradle.api.JavaVersion
 
 object GradleConfig {
 
-    object BuildConfig {
+    object Android {
         const val compileSdk = 33
         const val applicationId = "com.tmdb"
         const val minSdk = 26
@@ -14,6 +14,8 @@ object GradleConfig {
 
         const val isShrinkResourcesDebug = false
         const val isShrinkResourcesRelease = false
+
+        val excludePackagingResources = arrayOf("/META-INF/{AL2.0,LGPL2.1}", "/META-INF/gradle/incremental.annotation.processors")
     }
 
     val javaVersion = JavaVersion.VERSION_17

@@ -6,20 +6,20 @@ plugins {
 }
 
 android {
-    namespace = "${GradleConfig.BuildConfig.applicationId}.util"
-    compileSdk = GradleConfig.BuildConfig.compileSdk
+    namespace = "${GradleConfig.Android.applicationId}.util"
+    compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
-        minSdk = GradleConfig.BuildConfig.minSdk
+        minSdk = GradleConfig.Android.minSdk
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         debug {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

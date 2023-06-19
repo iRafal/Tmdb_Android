@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk = GradleConfig.BuildConfig.compileSdk
+    compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
-        applicationId = GradleConfig.BuildConfig.applicationId
-        minSdk = GradleConfig.BuildConfig.minSdk
-        targetSdk = GradleConfig.BuildConfig.targetSdk
+        applicationId = GradleConfig.Android.applicationId
+        minSdk = GradleConfig.Android.minSdk
+        targetSdk = GradleConfig.Android.targetSdk
 
         versionCode = 1
         versionName = Version(major = 1, minor = 0, patch = 0).name
@@ -26,12 +26,12 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
-            isShrinkResources = GradleConfig.BuildConfig.isShrinkResourcesDebug
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
+            isShrinkResources = GradleConfig.Android.isShrinkResourcesDebug
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         getByName("release") {
-            isShrinkResources = GradleConfig.BuildConfig.isShrinkResourcesRelease
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
+            isShrinkResources = GradleConfig.Android.isShrinkResourcesRelease
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -54,8 +54,7 @@ android {
     }
     packaging {
         resources {
-            this.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-            this.excludes.add("/META-INF/gradle/incremental.annotation.processors")
+            this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
         }
     }
     sourceSets {
@@ -63,7 +62,7 @@ android {
         this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
         this[GradleConfig.SourceSet.AndroidTest.name].java.srcDirs(*GradleConfig.SourceSet.AndroidTest.sourceSets)
     }
-    namespace = GradleConfig.BuildConfig.applicationId
+    namespace = GradleConfig.Android.applicationId
     lint {
         // https://developer.android.com/studio/write/lint
         baseline = file("lint-baseline.xml")

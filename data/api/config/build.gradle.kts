@@ -13,11 +13,11 @@ val apiUrlBase = apiProperties["api.url.base"].toString()
 val apiUrlImage = apiProperties["api.url.image"].toString()
 
 android {
-    namespace = "${GradleConfig.BuildConfig.applicationId}.api.config"
-    compileSdk = GradleConfig.BuildConfig.compileSdk
+    namespace = "${GradleConfig.Android.applicationId}.api.config"
+    compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
-        minSdk = GradleConfig.BuildConfig.minSdk
+        minSdk = GradleConfig.Android.minSdk
         consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField("String", "API_KEY", apiKey)
@@ -27,10 +27,10 @@ android {
 
     buildTypes {
         debug {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
