@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk = Libs.BuildConfig.compileSdk
+    compileSdk = GradleConfig.BuildConfig.compileSdk
 
     defaultConfig {
-        applicationId = Libs.BuildConfig.applicationId
-        minSdk = Libs.BuildConfig.minSdk
-        targetSdk = Libs.BuildConfig.targetSdk
+        applicationId = GradleConfig.BuildConfig.applicationId
+        minSdk = GradleConfig.BuildConfig.minSdk
+        targetSdk = GradleConfig.BuildConfig.targetSdk
 
         versionCode = 1
         versionName = Version(major = 1, minor = 0, patch = 0).name
@@ -26,12 +26,12 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
-            isShrinkResources = Libs.BuildConfig.isShrinkResourcesDebug
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
+            isShrinkResources = GradleConfig.BuildConfig.isShrinkResourcesDebug
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
         }
         getByName("release") {
-            isShrinkResources = Libs.BuildConfig.isShrinkResourcesRelease
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
+            isShrinkResources = GradleConfig.BuildConfig.isShrinkResourcesRelease
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -40,11 +40,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
-        targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
+        sourceCompatibility = GradleConfig.javaVersion
+        targetCompatibility = GradleConfig.javaVersion
     }
     kotlinOptions {
-        jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+        jvmTarget = GradleConfig.javaVersionAsString
     }
     buildFeatures {
         compose = true
@@ -59,11 +59,11 @@ android {
         }
     }
     sourceSets {
-        this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
-        this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
-        this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
+        this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
+        this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
+        this[GradleConfig.SourceSet.AndroidTest.name].java.srcDirs(*GradleConfig.SourceSet.AndroidTest.sourceSets)
     }
-    namespace = Libs.BuildConfig.applicationId
+    namespace = GradleConfig.BuildConfig.applicationId
     lint {
         // https://developer.android.com/studio/write/lint
         baseline = file("lint-baseline.xml")

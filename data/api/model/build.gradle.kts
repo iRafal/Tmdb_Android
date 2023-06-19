@@ -6,13 +6,13 @@ plugins {
 }
 
 sourceSets {
-    this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
-    this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
+    this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
+    this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
 }
 
 java {
-    sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
-    targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
+    sourceCompatibility = GradleConfig.javaVersion
+    targetCompatibility = GradleConfig.javaVersion
 }
 
 dependencies {

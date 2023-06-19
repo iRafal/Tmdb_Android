@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.data.db.room"
-    compileSdk = Libs.BuildConfig.compileSdk
+    namespace = "${GradleConfig.BuildConfig.applicationId}.data.db.room"
+    compileSdk = GradleConfig.BuildConfig.compileSdk
 
     defaultConfig {
-        minSdk = Libs.BuildConfig.minSdk
-        testInstrumentationRunner = "${Libs.BuildConfig.applicationId}.data.db.room.runner.HiltTestRunner"
+        minSdk = GradleConfig.BuildConfig.minSdk
+        testInstrumentationRunner = "${GradleConfig.BuildConfig.applicationId}.data.db.room.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {
@@ -21,10 +21,10 @@ android {
     }
     buildTypes {
         debug {
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -33,15 +33,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
-        targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
+        compileOptions {
+            sourceCompatibility = GradleConfig.javaVersion
+            targetCompatibility = GradleConfig.javaVersion
+        }
     }
     kotlinOptions {
-        jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+        jvmTarget = GradleConfig.javaVersionAsString
     }
     sourceSets {
-        this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
-        this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
+        this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
+        this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
 
         getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }

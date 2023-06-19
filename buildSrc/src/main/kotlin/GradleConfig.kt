@@ -1,7 +1,7 @@
 import org.gradle.api.JavaVersion
 
 
-object Libs {
+object GradleConfig {
 
     object BuildConfig {
         const val compileSdk = 33
@@ -14,18 +14,10 @@ object Libs {
 
         const val isShrinkResourcesDebug = false
         const val isShrinkResourcesRelease = false
-
-        private val javaVersion = JavaVersion.VERSION_17
-
-        object CompileOptions {
-            val sourceCompatibility = javaVersion
-            val targetCompatibility = javaVersion
-        }
-
-        object KotlinOptions {
-            val jvmTarget = javaVersion.toString()
-        }
     }
+
+    val javaVersion = JavaVersion.VERSION_17
+    val javaVersionAsString = javaVersion.toString()
 
     object SourceSet {
         object Main {

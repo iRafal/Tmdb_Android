@@ -13,11 +13,11 @@ val apiUrlBase = apiProperties["api.url.base"].toString()
 val apiUrlImage = apiProperties["api.url.image"].toString()
 
 android {
-    namespace = "${Libs.BuildConfig.applicationId}.api.config"
-    compileSdk = Libs.BuildConfig.compileSdk
+    namespace = "${GradleConfig.BuildConfig.applicationId}.api.config"
+    compileSdk = GradleConfig.BuildConfig.compileSdk
 
     defaultConfig {
-        minSdk = Libs.BuildConfig.minSdk
+        minSdk = GradleConfig.BuildConfig.minSdk
         consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField("String", "API_KEY", apiKey)
@@ -27,10 +27,10 @@ android {
 
     buildTypes {
         debug {
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -39,15 +39,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
-        targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
+        sourceCompatibility = GradleConfig.javaVersion
+        targetCompatibility = GradleConfig.javaVersion
     }
     kotlinOptions {
-        jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+        jvmTarget = GradleConfig.javaVersionAsString
     }
     sourceSets {
-        this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
-        this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
+        this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
+        this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
     }
 }
 

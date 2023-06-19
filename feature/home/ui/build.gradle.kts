@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    val nameSpace = "${Libs.BuildConfig.applicationId}.feature.home.ui"
+    val nameSpace = "${GradleConfig.BuildConfig.applicationId}.feature.home.ui"
     namespace = nameSpace
-    compileSdk = Libs.BuildConfig.compileSdk
+    compileSdk = GradleConfig.BuildConfig.compileSdk
 
     defaultConfig {
-        minSdk = Libs.BuildConfig.minSdk
+        minSdk = GradleConfig.BuildConfig.minSdk
         testInstrumentationRunner = "$nameSpace.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
@@ -20,10 +20,10 @@ android {
     }
     buildTypes {
         debug {
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledDebug
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = Libs.BuildConfig.isMinifyEnabledRelease
+            isMinifyEnabled = GradleConfig.BuildConfig.isMinifyEnabledRelease
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Libs.BuildConfig.CompileOptions.sourceCompatibility
-        targetCompatibility = Libs.BuildConfig.CompileOptions.targetCompatibility
+        sourceCompatibility = GradleConfig.javaVersion
+        targetCompatibility = GradleConfig.javaVersion
     }
     kotlinOptions {
-        jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+        jvmTarget = GradleConfig.javaVersionAsString
     }
     buildFeatures {
         compose = true
@@ -51,9 +51,9 @@ android {
         }
     }
     sourceSets {
-        this[Libs.SourceSet.Main.name].java.srcDirs(*Libs.SourceSet.Main.sourceSets)
-        this[Libs.SourceSet.Test.name].java.srcDirs(*Libs.SourceSet.Test.sourceSets)
-        this[Libs.SourceSet.AndroidTest.name].java.srcDirs(*Libs.SourceSet.AndroidTest.sourceSets)
+        this[GradleConfig.SourceSet.Main.name].java.srcDirs(*GradleConfig.SourceSet.Main.sourceSets)
+        this[GradleConfig.SourceSet.Test.name].java.srcDirs(*GradleConfig.SourceSet.Test.sourceSets)
+        this[GradleConfig.SourceSet.AndroidTest.name].java.srcDirs(*GradleConfig.SourceSet.AndroidTest.sourceSets)
     }
 }
 

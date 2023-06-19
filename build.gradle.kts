@@ -82,11 +82,11 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
         sarif.required.set(true)
         md.required.set(true)
     }
-    jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+    jvmTarget = GradleConfig.javaVersionAsString
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
-    jvmTarget = Libs.BuildConfig.KotlinOptions.jvmTarget
+    jvmTarget = GradleConfig.javaVersionAsString
 }
 
 tasks.register("clean", Delete::class) {
