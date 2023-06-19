@@ -56,7 +56,6 @@ fun DependencyHandlerScope.apiDependencies() {
     api(project(":store:base"))
     api(project(":store:env"))
     api(project(":store:state"))
-    api(project(":store:action"))
     api(project(":store:feature"))
 
     api(project(":feature:home:action"))

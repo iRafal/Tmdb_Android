@@ -49,10 +49,10 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":feature:home:action"))
 
     implementation(project(":feature:movie:details:reducer"))
+    implementation(project(":feature:movie:details:action"))
 
     implementation(project(":store:base"))
     implementation(project(":store:env"))
-    implementation(project(":store:action"))
     implementation(project(":store:feature"))
     implementation(project(":store:state"))
     implementation(project(":data:source:remote:contract"))
