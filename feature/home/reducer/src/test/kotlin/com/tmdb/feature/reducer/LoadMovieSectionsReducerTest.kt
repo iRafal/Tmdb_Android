@@ -12,8 +12,8 @@ import com.tmdb.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb.data.source.remote.contract.movie.MovieRemoteDataSource
 import com.tmdb.data.source.remote.contract.person.PersonRemoteDataSource
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.feature.reducer.util.ModelUtil
-import com.tmdb.store.action.home.HomeAction
 import com.tmdb.store.state.FeatureState
 import com.tmdb.store.state.app.AppState
 import kotlinx.coroutines.CoroutineDispatcher

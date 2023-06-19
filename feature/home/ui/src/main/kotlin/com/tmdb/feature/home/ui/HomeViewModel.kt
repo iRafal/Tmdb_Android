@@ -2,11 +2,11 @@ package com.tmdb.feature.home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.feature.home.ui.data.mapping.HomeFeatureToUiStateMapper
 import com.tmdb.feature.home.ui.data.mapping.HomeMovieSectionToActionMapper
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection
 import com.tmdb.feature.home.ui.data.model.HomeUiData
-import com.tmdb.store.action.home.HomeAction
 import com.tmdb.store.app.AppStore
 import com.tmdb.store.feature.home.HomeFeature
 import com.tmdb.store.state.app.AppState

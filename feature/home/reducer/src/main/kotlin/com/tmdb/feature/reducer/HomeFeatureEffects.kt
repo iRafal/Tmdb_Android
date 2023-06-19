@@ -2,7 +2,7 @@ package com.tmdb.feature.reducer
 
 import com.tmdb.data.model.mapping.movie.MoviesApiToDataStateMapper
 import com.tmdb.data.model.state.DataState
-import com.tmdb.store.action.home.HomeAction.MovieSectionsLoaded
+import com.tmdb.feature.home.action.HomeAction.MovieSectionsLoaded
 import com.tmdb.store.base.Action
 import com.tmdb.store.base.Effect
 import com.tmdb.store.base.Effects

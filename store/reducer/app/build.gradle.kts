@@ -46,7 +46,10 @@ dependencies {
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":feature:home:reducer"))
+    implementation(project(":feature:home:action"))
+
     implementation(project(":feature:movie:details:reducer"))
+
     implementation(project(":store:base"))
     implementation(project(":store:env"))
     implementation(project(":store:action"))

@@ -1,6 +1,6 @@
 package com.tmdb.feature.reducer
 
-import com.tmdb.store.action.home.HomeAction
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.store.base.Effect
 import com.tmdb.store.base.Effects
 import com.tmdb.store.env.contract.AppEnv

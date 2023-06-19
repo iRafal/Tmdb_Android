@@ -1,7 +1,7 @@
 package com.tmdb.feature.home.ui.data.mapping
 
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection
-import com.tmdb.store.action.home.HomeAction
 
 typealias HomeMovieSectionToActionMapper = (input: HomeMovieSection) -> HomeAction
 

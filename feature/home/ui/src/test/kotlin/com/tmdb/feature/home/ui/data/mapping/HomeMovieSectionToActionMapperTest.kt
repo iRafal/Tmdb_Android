@@ -1,10 +1,10 @@
 package com.tmdb.feature.home.ui.data.mapping
 
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_PLAYING
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_POPULAR
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
-import com.tmdb.store.action.home.HomeAction
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

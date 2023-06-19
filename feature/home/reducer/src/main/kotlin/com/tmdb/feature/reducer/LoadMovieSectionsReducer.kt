@@ -1,7 +1,7 @@
 package com.tmdb.feature.reducer
 
 import com.tmdb.data.model.mapping.movie.MoviesApiToDataStateMapper
-import com.tmdb.store.action.home.HomeAction
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.store.base.Effect
 import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.store.state.FeatureState

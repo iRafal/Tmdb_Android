@@ -1,13 +1,13 @@
 package com.tmdb.feature.reducer
 
 import com.tmdb.data.model.mapping.movie.MoviesApiToDataStateMapper
-import com.tmdb.store.action.home.HomeAction
-import com.tmdb.store.action.home.HomeAction.LoadMovieSections
-import com.tmdb.store.action.home.HomeAction.MovieSectionsLoaded
-import com.tmdb.store.action.home.HomeAction.ReloadNowPlayingMovies
-import com.tmdb.store.action.home.HomeAction.ReloadNowPopularMovies
-import com.tmdb.store.action.home.HomeAction.ReloadTopRatedMovies
-import com.tmdb.store.action.home.HomeAction.ReloadUpcomingMovies
+import com.tmdb.feature.home.action.HomeAction
+import com.tmdb.feature.home.action.HomeAction.LoadMovieSections
+import com.tmdb.feature.home.action.HomeAction.MovieSectionsLoaded
+import com.tmdb.feature.home.action.HomeAction.ReloadNowPlayingMovies
+import com.tmdb.feature.home.action.HomeAction.ReloadNowPopularMovies
+import com.tmdb.feature.home.action.HomeAction.ReloadTopRatedMovies
+import com.tmdb.feature.home.action.HomeAction.ReloadUpcomingMovies
 import com.tmdb.store.base.Action
 import com.tmdb.store.base.Effect
 import com.tmdb.store.base.Effects

@@ -47,6 +47,7 @@ include(":util")
 
 include(":feature:home:ui")
 include(":feature:home:reducer")
+include(":feature:home:action")
 
 include(":feature:movie:details:ui")
 include(":feature:movie:details:reducer")

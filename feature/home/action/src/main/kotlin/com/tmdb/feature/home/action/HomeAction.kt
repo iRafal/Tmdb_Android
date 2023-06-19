@@ -1,4 +1,4 @@
-package com.tmdb.store.action.home
+package com.tmdb.feature.home.action
 
 import com.tmdb.data.model.movie.MovieDataModel
 import com.tmdb.data.model.state.DataState

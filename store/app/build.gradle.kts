@@ -59,5 +59,7 @@ fun DependencyHandlerScope.apiDependencies() {
     api(project(":store:action"))
     api(project(":store:feature"))
 
+    api(project(":feature:home:action"))
+
     api(project(":data:model"))
 }

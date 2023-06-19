@@ -3,8 +3,8 @@ package com.tmdb.feature.reducer
 import com.tmdb.api.model.util.ApiException
 import com.tmdb.data.model.movie.MovieDataModel
 import com.tmdb.data.model.state.DataState
+import com.tmdb.feature.home.action.HomeAction
 import com.tmdb.feature.reducer.util.ModelUtil
-import com.tmdb.store.action.home.HomeAction
 import com.tmdb.store.base.Effects
 import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.store.state.FeatureState
