@@ -3,7 +3,7 @@ plugins {
     id(GradleConfig.Plugins.KOTLIN_ANDROID)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
     id(GradleConfig.Plugins.HILT)
-    id("realm-android")
+    id(GradleConfig.Plugins.REALM)
 }
 
 android {

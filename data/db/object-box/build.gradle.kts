@@ -2,7 +2,7 @@ plugins {
     id(GradleConfig.Plugins.ANDROID_LIBRARY)
     id(GradleConfig.Plugins.KOTLIN_ANDROID)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
-    id("io.objectbox")
+    id(GradleConfig.Plugins.OBJECTBOX)
 }
 
 android {

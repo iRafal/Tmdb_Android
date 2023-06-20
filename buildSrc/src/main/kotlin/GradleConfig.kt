@@ -31,5 +31,7 @@ object GradleConfig {
         const val JAVA_LIBRARY = "java-library"
         const val HILT = "dagger.hilt.android.plugin"
         const val KOTLINX_SERIALIZATION = "kotlinx-serialization"
+        const val REALM = "realm-android"
+        const val OBJECTBOX = "io.objectbox"
     }
 }
