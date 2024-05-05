@@ -1,15 +1,21 @@
 package com.tmdb.data.local.impl.objectBox.mapping
 
 import com.tmdb.data.db.objectBox.movie.MovieEntity
-import com.tmdb.data.model.movie.MovieDataModel
+import com.tmdb.data.model.MovieDataModel
+import javax.inject.Inject
 
-typealias MovieEntityToDataModelMapper = (input: MovieEntity) -> MovieDataModel
+interface MovieEntityToDataModelMapper {
+    fun map(input: MovieEntity): MovieDataModel
+}
 
-fun movieEntityToDataModelMapperImpl(input: MovieEntity): MovieDataModel =
-    MovieDataModel(
-        id = input.movieId,
-        title = input.title,
-        voteAverage = input.voteAverage,
-        releaseDate = input.releaseDate,
-        posterUrl = input.posterUrl
-    )
+class MovieEntityToDataModelMapperImpl @Inject constructor() : MovieEntityToDataModelMapper {
+    override fun map(input: MovieEntity): MovieDataModel {
+        return MovieDataModel(
+            id = input.movieId,
+            title = input.title,
+            voteAverage = input.voteAverage,
+            releaseDate = input.releaseDate,
+            posterUrl = input.posterUrl
+        )
+    }
+}

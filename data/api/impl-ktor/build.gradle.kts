@@ -1,7 +1,6 @@
 plugins {
-    id(GradleConfig.Plugins.ANDROID_LIBRARY)
-    id(GradleConfig.Plugins.HILT)
-    id(GradleConfig.Plugins.KOTLIN_ANDROID)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
     id(GradleConfig.Plugins.KOTLINX_SERIALIZATION)
 }
@@ -31,21 +30,42 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions {
-        jvmTarget = GradleConfig.javaVersionAsString
-    }
+    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
 }
 
 dependencies {
+    apiDependencies()
+    kapt(libs.dagger.compiler)
+    implementationDependencies()
+    testImplementationDependencies()
+}
+
+fun DependencyHandlerScope.apiDependencies() {
     api(project(":data:api:model"))
     implementation(project(":data:api:config"))
+}
 
-    implementation(libs.bundles.data.api.impl.ktor)
-    kapt(libs.hilt.kapt)
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(project(":util"))
 
-    testImplementation(libs.junit)
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlin.coroutines.android)
+    implementation(libs.kotlin.serialization.json)
 
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.serialization)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.logging)
+
+    implementation(libs.dagger)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
     testImplementation(libs.kotlin.stdLib)
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlin.coroutines.core)
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.kotlin.serialization.json)

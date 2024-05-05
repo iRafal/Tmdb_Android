@@ -1,6 +1,6 @@
 package com.tmdb.store.env.impl
 
-import com.tmdb.data.source.remote.contract.MovieLocalDataSource
+import com.tmdb.data.source.local.contract.MovieLocalDataSource
 import com.tmdb.store.env.contract.AppEnv
 
 fun createAppDbEnvImpl(

@@ -1,6 +1,6 @@
 package com.tmdb.feature.movie.details.ui.util
 
-import com.tmdb.data.model.movie.MovieDataModel
+import com.tmdb.data.model.MovieDataModel
 import kotlinx.datetime.LocalDate
 
 object ModelUtil {

@@ -4,8 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -21,13 +20,12 @@ import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.data.model.HomeUiData.Movie
-import com.tmdb.ui.core.compose.ScrollableColumn
+import com.tmdb.ui.core.compose.theme.TmdbTheme
+import com.tmdb.ui.core.compose.ui.ScrollableColumn
 import com.tmdb.ui.core.data.UiState
-import com.tmdb.ui.core.theme.TmdbTheme
 import kotlinx.datetime.LocalDate
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun HomeAllSectionsLoadingPreview() {
     TmdbTheme {
@@ -39,7 +37,6 @@ fun HomeAllSectionsLoadingPreview() {
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun HomeAllSectionsErrorPreview() {
     TmdbTheme {
@@ -59,7 +56,6 @@ fun HomeAllSectionsErrorPreview() {
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun HomeAllSectionsNetworkErrorPreview() {
     TmdbTheme {
@@ -79,7 +75,6 @@ fun HomeAllSectionsNetworkErrorPreview() {
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun HomeStateSuccessPreview() {
     TmdbTheme {
@@ -122,7 +117,6 @@ fun HomeStateSuccessPreview() {
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun HomeMixedStatesPreview() {
     TmdbTheme {

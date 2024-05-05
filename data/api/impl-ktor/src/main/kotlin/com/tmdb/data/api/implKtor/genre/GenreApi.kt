@@ -1,6 +1,6 @@
 package com.tmdb.data.api.implKtor.genre
 
-import com.tmdb.api.model.genre.Genre
+import com.tmdb.api.model.genre.GenresList
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
 
@@ -14,7 +14,7 @@ interface GenreApi {
          * default: en-US
          */
         language: String? = null
-    ): ApiResponse<List<Genre>, NetworkErrorModel>
+    ): ApiResponse<GenresList, NetworkErrorModel>
 
     suspend fun genreTvList(
         /**
@@ -24,5 +24,5 @@ interface GenreApi {
          * default: en-US
          */
         language: String? = null
-    ): ApiResponse<List<Genre>, NetworkErrorModel>
+    ): ApiResponse<GenresList, NetworkErrorModel>
 }

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Tmdb</string>
+    <string name="root_device_warning">Sorry, the app cannot run on this device due to security reasons. Please ensure that your device is not rooted.</string>
+    <string name="missed_google_play_services_warning">Sorry, the app cannot run on this device due to lack of Google Play Services.</string>
 </resources>

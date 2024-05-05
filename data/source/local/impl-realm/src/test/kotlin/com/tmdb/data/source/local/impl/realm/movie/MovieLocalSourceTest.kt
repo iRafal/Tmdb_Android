@@ -2,12 +2,18 @@ package com.tmdb.data.source.local.impl.realm.movie
 
 import com.tmdb.data.db.realm.movie.MovieEntity
 import com.tmdb.data.db.realm.movie.dao.MovieDao
+import com.tmdb.data.source.local.contract.MovieLocalDataSource
 import com.tmdb.data.source.local.impl.realm.MovieLocalDataSourceImpl
 import com.tmdb.data.source.local.impl.realm.di.UnitTestServiceLocator
 import com.tmdb.data.source.local.impl.realm.mapping.MovieDataModelToEntityMapper
 import com.tmdb.data.source.local.impl.realm.mapping.MovieEntityToDataModelMapper
 import com.tmdb.data.source.local.impl.realm.util.ModelUtil
-import com.tmdb.data.source.remote.contract.MovieLocalDataSource
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
@@ -16,16 +22,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
-import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
 import org.mockito.Mockito.times
-import org.mockito.Mockito.`when`
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieLocalSourceTest {
@@ -43,12 +43,12 @@ class MovieLocalSourceTest {
     private val movieEntity = ModelUtil.movieEntity
     private val movieDataModel = ModelUtil.movieDataModel
 
-    @Before
+    @BeforeTest
     fun setup() {
         Dispatchers.setMain(dispatcher)
     }
 
-    @After
+    @AfterTest
     fun tearDown() {
         Dispatchers.resetMain()
     }
@@ -57,15 +57,15 @@ class MovieLocalSourceTest {
     fun `observe all movies success`() = runTest {
         val allMoviesEntities = listOf(movieEntity)
         val allMovieDataModels = listOf(movieDataModel)
-        `when`(movieEntityToDataModelMapper.invoke(movieEntity)).thenReturn(movieDataModel)
+        whenever(movieEntityToDataModelMapper.map(movieEntity)).thenReturn(movieDataModel)
         val flow = flow {
             emit(allMoviesEntities)
         }
-        `when`(movieDao.observeAll()).thenReturn(flow)
+        whenever(movieDao.observeAll()).thenReturn(flow)
         movieLocalSource.observeAll().collect { result ->
             verify(movieDao, times(1)).observeAll()
-            verify(movieEntityToDataModelMapper, times(1)).invoke(movieEntity)
-            assertEquals(allMovieDataModels, result)
+            verify(movieEntityToDataModelMapper, times(1)).map(movieEntity)
+            assertEquals(expected = allMovieDataModels, actual = result)
         }
     }
 
@@ -75,11 +75,11 @@ class MovieLocalSourceTest {
         val flow = flow<List<MovieEntity>> {
             throw exception
         }
-        `when`(movieDao.observeAll()).thenReturn(flow)
+        whenever(movieDao.observeAll()).thenReturn(flow)
         movieLocalSource.observeAll().catch { e ->
             verify(movieDao, times(1)).observeAll()
-            verify(movieEntityToDataModelMapper, times(0)).invoke(movieEntity)
-            assertEquals(e, exception)
+            verify(movieEntityToDataModelMapper, times(0)).map(movieEntity)
+            assertEquals(expected = e, actual = exception)
         }.collect()
     }
 
@@ -87,115 +87,115 @@ class MovieLocalSourceTest {
     fun `get all movies success`() = runTest {
         val allMovieEntities = listOf(movieEntity)
         val allMovieDataModels = listOf(movieDataModel)
-        `when`(movieDao.getAll()).thenReturn(allMovieEntities)
-        `when`(movieEntityToDataModelMapper.invoke(movieEntity)).thenReturn(movieDataModel)
+        whenever(movieDao.getAll()).thenReturn(allMovieEntities)
+        whenever(movieEntityToDataModelMapper.map(movieEntity)).thenReturn(movieDataModel)
         movieLocalSource.getAll().also { result ->
-            assertEquals(allMovieDataModels, result)
+            assertEquals(expected = allMovieDataModels, actual = result)
         }
         verify(movieDao, times(1)).getAll()
-        verify(movieEntityToDataModelMapper, times(1)).invoke(movieEntity)
+        verify(movieEntityToDataModelMapper, times(1)).map(movieEntity)
     }
 
     @Test
     fun `get all movies returns empty result`() = runTest {
-        `when`(movieDao.getAll()).thenReturn(emptyList())
+        whenever(movieDao.getAll()).thenReturn(emptyList())
         movieLocalSource.getAll().also { result ->
             assertTrue(result.isEmpty())
         }
         verify(movieDao, times(1)).getAll()
-        verify(movieEntityToDataModelMapper, times(0)).invoke(movieEntity)
+        verify(movieEntityToDataModelMapper, times(0)).map(movieEntity)
     }
 
     @Test
     fun `get all movies failure`() = runTest {
         val exception = IllegalStateException("Failed to get all movies")
-        `when`(movieDao.getAll()).thenThrow(exception)
+        whenever(movieDao.getAll()).thenThrow(exception)
 
         runCatching {
             movieLocalSource.getAll()
         }.onFailure { e ->
             verify(movieDao, times(1)).getAll()
-            verify(movieEntityToDataModelMapper, times(0)).invoke(movieEntity)
-            assertEquals(e, exception)
+            verify(movieEntityToDataModelMapper, times(0)).map(movieEntity)
+            assertEquals(expected = e, actual = exception)
         }
     }
 
     @Test
     fun `get movie by id success`() = runTest {
-        `when`(movieDao.getById(movieId)).thenReturn(movieEntity)
-        `when`(movieEntityToDataModelMapper.invoke(movieEntity)).thenReturn(movieDataModel)
+        whenever(movieDao.getById(movieId)).thenReturn(movieEntity)
+        whenever(movieEntityToDataModelMapper.map(movieEntity)).thenReturn(movieDataModel)
         movieLocalSource.getById(movieId).also { result ->
-            assertEquals(movieDataModel, result)
+            assertEquals(expected = movieDataModel, actual = result)
         }
         verify(movieDao, times(1)).getById(movieId)
-        verify(movieEntityToDataModelMapper, times(1)).invoke(movieEntity)
+        verify(movieEntityToDataModelMapper, times(1)).map(movieEntity)
     }
 
     @Test
     fun `get movie by id returns null`() = runTest {
-        `when`(movieDao.getById(movieId)).thenReturn(null)
+        whenever(movieDao.getById(movieId)).thenReturn(null)
         movieLocalSource.getById(movieId).also { result ->
             assertNull(result)
         }
         verify(movieDao, times(1)).getById(movieId)
-        verify(movieEntityToDataModelMapper, times(0)).invoke(movieEntity)
+        verify(movieEntityToDataModelMapper, times(0)).map(movieEntity)
     }
 
     @Test
     fun `get movie by id failure`() = runTest {
         val exception = IllegalStateException("Failed to get movies with id: $movieId")
-        `when`(movieDao.getById(movieId)).thenThrow(exception)
+        whenever(movieDao.getById(movieId)).thenThrow(exception)
 
         runCatching {
             movieLocalSource.getById(movieId)
         }.onFailure { e ->
             verify(movieDao, times(1)).getById(movieId)
-            verify(movieEntityToDataModelMapper, times(0)).invoke(movieEntity)
+            verify(movieEntityToDataModelMapper, times(0)).map(movieEntity)
             assertEquals(e, exception)
         }
     }
 
     @Test
     fun `insert movies success`() = runTest {
-        `when`(movieDao.insert(movieEntity)).thenReturn(Unit)
-        `when`(movieDataModelToEntityMapper.invoke(movieDataModel)).thenReturn(movieEntity)
+        whenever(movieDao.insert(movieEntity)).thenReturn(Unit)
+        whenever(movieDataModelToEntityMapper.map(movieDataModel)).thenReturn(movieEntity)
         movieLocalSource.insert(movieDataModel)
-        verify(movieDataModelToEntityMapper, times(1)).invoke(movieDataModel)
+        verify(movieDataModelToEntityMapper, times(1)).map(movieDataModel)
         verify(movieDao, times(1)).insert(movieEntity)
     }
 
     @Test
     fun `insert movies failure`() = runTest {
         val exception = IllegalStateException("Failed to insert movies with id: $movieId")
-        `when`(movieDao.insert(movieEntity)).thenThrow(exception)
+        whenever(movieDao.insert(movieEntity)).thenThrow(exception)
 
         runCatching {
             movieLocalSource.insert(movieDataModel)
         }.onFailure { e ->
             verify(movieDao, times(1)).insert(movieEntity)
-            verify(movieDataModelToEntityMapper, times(0)).invoke(movieDataModel)
+            verify(movieDataModelToEntityMapper, times(0)).map(movieDataModel)
             assertEquals(e, exception)
         }
     }
 
     @Test
     fun `delete movies success`() = runTest {
-        `when`(movieDataModelToEntityMapper.invoke(movieDataModel)).thenReturn(movieEntity)
+        whenever(movieDataModelToEntityMapper.map(movieDataModel)).thenReturn(movieEntity)
         movieLocalSource.delete(movieDataModel)
         verify(movieDao, times(1)).delete(movieEntity)
-        verify(movieDataModelToEntityMapper, times(1)).invoke(movieDataModel)
+        verify(movieDataModelToEntityMapper, times(1)).map(movieDataModel)
     }
 
     @Test
     fun `delete movies failure`() = runTest {
         val exception = IllegalStateException("Failed to delete movies with id: $movieId")
-        `when`(movieDao.delete(movieEntity)).thenThrow(exception)
+        whenever(movieDao.delete(movieEntity)).thenThrow(exception)
 
         runCatching {
             movieLocalSource.delete(movieDataModel)
         }.onFailure { e ->
             verify(movieDao, times(1)).delete(movieEntity)
-            verify(movieDataModelToEntityMapper, times(0)).invoke(movieDataModel)
+            verify(movieDataModelToEntityMapper, times(0)).map(movieDataModel)
             assertEquals(e, exception)
         }
     }

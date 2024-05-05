@@ -52,7 +52,9 @@ open class MovieEntity(
     }
 
     override fun toString(): String {
-        return "MovieEntity(id=$id, title=$title, voteAverage=$voteAverage, releaseDateAsString=$releaseDateAsString, posterUrl=$posterUrl, isNowPlaying=$isNowPlaying, isNowPopular=$isNowPopular, isTopRated=$isTopRated, isUpcoming=$isUpcoming)" // ktlint-disable max-line-length
+        return "MovieEntity(id=$id, title=$title, voteAverage=$voteAverage, releaseDateAsString=$releaseDateAsString," +
+                " posterUrl=$posterUrl, isNowPlaying=$isNowPlaying, isNowPopular=$isNowPopular," +
+                " isTopRated=$isTopRated, isUpcoming=$isUpcoming)"
     }
 
     companion object {

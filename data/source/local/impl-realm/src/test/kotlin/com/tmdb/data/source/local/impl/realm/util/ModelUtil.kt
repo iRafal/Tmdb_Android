@@ -1,7 +1,7 @@
 package com.tmdb.data.source.local.impl.realm.util
 
 import com.tmdb.data.db.realm.movie.MovieEntity
-import com.tmdb.data.model.movie.MovieDataModel
+import com.tmdb.data.model.MovieDataModel
 import kotlinx.datetime.LocalDate
 
 object ModelUtil {

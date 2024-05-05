@@ -3,6 +3,7 @@ package com.tmdb.data.db.objectBox.movie.dao
 import com.tmdb.data.db.objectBox.movie.MovieEntity
 import kotlinx.coroutines.flow.Flow
 
+@Suppress("TooManyFunctions")
 interface MovieDao {
     suspend fun insert(movie: MovieEntity)
 

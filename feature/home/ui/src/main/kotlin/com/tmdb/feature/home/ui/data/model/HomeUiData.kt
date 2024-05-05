@@ -6,7 +6,7 @@ import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
 import com.tmdb.ui.core.data.UiState
 import com.tmdb.ui.core.data.UiState.Loading
-import com.tmdb.utill.date.DateFormatsUtil
+import com.tmdb.util.date.DateFormatsUtil
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toJavaLocalDate
 

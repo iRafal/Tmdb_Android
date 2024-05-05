@@ -9,6 +9,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
 @OptIn(ExperimentalCoroutinesApi::class)
+@Suppress("TooManyFunctions")
 class MovieDaoImpl @Inject constructor(private val box: Box<MovieEntity>) : MovieDao {
     override suspend fun insert(movie: MovieEntity) {
         box.store.awaitCallInTx { box.put(movie) }
@@ -25,26 +26,22 @@ class MovieDaoImpl @Inject constructor(private val box: Box<MovieEntity>) : Movi
     override suspend fun nowPlayingMovies(
         page: Int?,
         pageSize: Int?
-    ): List<MovieEntity> =
-        getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_NOW_PLAYING)
+    ): List<MovieEntity> = getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_NOW_PLAYING)
 
     override suspend fun nowPopularMovies(
         page: Int?,
         pageSize: Int?
-    ): List<MovieEntity> =
-        getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_NOW_POPULAR)
+    ): List<MovieEntity> = getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_NOW_POPULAR)
 
     override suspend fun topRatedMovies(
         page: Int?,
         pageSize: Int?
-    ): List<MovieEntity> =
-        getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_TOP_RATED)
+    ): List<MovieEntity> = getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_TOP_RATED)
 
     override suspend fun upcomingMovies(
         page: Int?,
         pageSize: Int?
-    ): List<MovieEntity> =
-        getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_UPCOMING)
+    ): List<MovieEntity> = getMoviesByCategories(page, pageSize, MovieEntity.MOVIE_TABLE_COLUMN_UPCOMING)
 
     private suspend fun getMoviesByCategories(
         page: Int?,
@@ -77,16 +74,16 @@ class MovieDaoImpl @Inject constructor(private val box: Box<MovieEntity>) : Movi
         page: Int?,
         pageSize: Int?
     ): Pair<Int, Int>? {
-        val _page = page ?: 0
-        val _pageSize = pageSize ?: 0
-        if (_page == 0 && _pageSize == 0) return null
+        val pageOrDefault = page ?: 0
+        val pageSizeOrDefault = pageSize ?: 0
+        if (pageOrDefault == 0 && pageSizeOrDefault == 0) return null
 
         return if (page == 0) {
-            _pageSize to 0
+            pageSizeOrDefault to 0
         } else {
-            val currentPage = _page - 1
-            val dropFirstItemsCount = currentPage * _pageSize
-            val takeLastItemsCount = _page * _pageSize
+            val currentPage = pageOrDefault - 1
+            val dropFirstItemsCount = currentPage * pageSizeOrDefault
+            val takeLastItemsCount = pageOrDefault * pageSizeOrDefault
             dropFirstItemsCount to takeLastItemsCount
         }
     }

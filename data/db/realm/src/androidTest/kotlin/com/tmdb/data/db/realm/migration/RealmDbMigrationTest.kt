@@ -4,29 +4,27 @@ import android.content.Context
 import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tmdb.data.db.realm.MoviesRealmDbMigrations
-import com.tmdb.data.db.realm.di.DispatchersTestModule
 import com.tmdb.data.db.realm.di.MoviesRealmDbConfig
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
+import com.tmdb.data.db.realm.di.component.app.TestAppComponentStore
+import com.tmdb.data.db.realm.di.component.db.TestDbComponent
+import com.tmdb.data.db.realm.di.module.DispatchersTestModule
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.exceptions.RealmMigrationNeededException
 import java.io.IOException
 import javax.inject.Inject
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
-@HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 class RealmDbMigrationTest {
     @Inject
@@ -37,17 +35,17 @@ class RealmDbMigrationTest {
     @InstrumentationContext
     lateinit var context: Context
 
-    @get:Rule
-    val hiltRule = HiltAndroidRule(this)
+    private lateinit var testDbComponent: TestDbComponent
 
-    @Before
+    @BeforeTest
     fun setup() {
-        hiltRule.inject()
+        testDbComponent = TestAppComponentStore.component.testDbComponentBuilder.build()
+        testDbComponent.inject(this)
         Realm.init(context)
         Dispatchers.setMain(dispatcher)
     }
 
-    @After
+    @AfterTest
     @Throws(IOException::class)
     fun tearDown() {
         Dispatchers.resetMain()

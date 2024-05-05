@@ -5,7 +5,7 @@ import io.realm.FieldAttribute.PRIMARY_KEY
 import io.realm.RealmMigration
 
 object MoviesRealmDbMigrations {
-    fun migration0To1() = RealmMigration { realm, oldVersion, newVersion ->
+    fun migration0To1() = RealmMigration { realm, oldVersion, _ ->
         if (oldVersion < 1) {
             realm.schema.create(MovieEntity::class.java.simpleName).run {
                 addField(MovieEntity.MOVIE_TABLE_COLUMN_ID, String::class.java, PRIMARY_KEY)
@@ -16,7 +16,7 @@ object MoviesRealmDbMigrations {
             }
         }
     }
-    fun migration1To2() = RealmMigration { realm, oldVersion, newVersion ->
+    fun migration1To2() = RealmMigration { realm, oldVersion, _ ->
         if (oldVersion < 2) {
             checkNotNull(realm.schema.get(MovieEntity::class.java.simpleName))
                 .addField(MovieEntity.MOVIE_TABLE_COLUMN_NOW_PLAYING, Boolean::class.java)

@@ -1,9 +1,9 @@
 package com.tmdb.api.model.genre
 
 import com.tmdb.api.model.di.UnitTestServiceLocator
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.serialization.ExperimentalSerializationApi
-import org.junit.Assert.assertEquals
-import org.junit.Test
 
 @OptIn(ExperimentalSerializationApi::class)
 class GenreJsonParsingTest {
@@ -26,15 +26,16 @@ class GenreJsonParsingTest {
 
         val expected = GenresList(listOf(Genre(id = 28, name = "Action")))
         val actual = json.decodeFromString<GenresList>(genresResponseJson)
-        assertEquals(expected, actual)
+
+        assertEquals(expected = expected, actual = actual)
     }
 
     @Test
     fun `parse empty genres response json object`() {
         val genresResponseJson = "{ }"
-        val expected = GenresList()
         val actual = json.decodeFromString<GenresList>(genresResponseJson)
-        assertEquals(expected, actual)
+
+        assertEquals(expected = GenresList(), actual = actual)
     }
 
     @Test(expected = Exception::class)

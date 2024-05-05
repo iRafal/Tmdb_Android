@@ -1,10 +1,10 @@
 package com.tmdb.data.api.implKtor.discover
 
-import com.tmdb.api.config.url.provider.discover.DiscoverUrlProvider
 import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.movie.Movie
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
+import com.tmdb.data.api.config.url.provider.discover.DiscoverUrlProvider
 import com.tmdb.data.api.implKtor.util.runApiCall
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

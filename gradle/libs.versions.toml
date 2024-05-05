@@ -1,0 +1,245 @@
+[versions]
+# https://developer.android.com/studio/releases/gradle-plugin
+gradle = "8.3.2"
+
+# https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration-with-groovy
+# https://github.com/jlleitschuh/ktlint-gradle
+ktlint-plugin = "12.1.0"
+
+# https://github.com/pinterest/ktlint
+# https://github.com/jlleitschuh/ktlint-gradle
+ktlint = "1.2.1"
+
+# https://detekt.dev/docs/intro
+# https://github.com/detekt/detekt
+detekt = "1.23.6"
+
+objectBox = "3.7.1" # https://github.com/objectbox/objectbox-java
+
+realm-plugin = "10.18.0" # https://github.com/realm/realm-java
+
+# https://github.com/google/dagger/releases
+dagger = "2.51.1"
+
+#KOTLIN
+kotlin = "1.9.23" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+kotlin-test = "1.9.23"
+kotlin-compiler-extension = "1.5.12" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+kotlin-coroutines = "1.8.0" # https://github.com/kotlin/kotlinx.coroutines
+kotlin-serialization-json = "1.6.3" # https://github.com/Kotlin/kotlinx.serialization
+
+#ANDROIDX
+androidx-core = "1.13.1" # https://developer.android.com/jetpack/androidx/releases/core
+androidx-splashscreen = "1.1.0-rc01" # https://mvnrepository.com/artifact/androidx.core/core-splashscreen?repo=google
+androidx-lifecycle = "2.7.0" # https://developer.android.com/jetpack/androidx/releases/lifecycle
+androidx-work = "2.9.0" # https://developer.android.com/jetpack/androidx/releases/work
+androidx-window-core = "1.2.0" # https://developer.android.com/jetpack/androidx/releases/window
+androidx-material3-window-size = "1.2.1" # https://developer.android.com/jetpack/androidx/releases/compose-material3
+androidx-metrics-performance = "1.0.0-beta01" # https://developer.android.com/jetpack/androidx/releases/metrics
+
+material-components-android = "1.12.0" # https://github.com/material-components/material-components-android
+
+#COIL
+coil = "2.6.0" # https://github.com/coil-kt/coil
+
+#COMPOSE
+compose-animation = "1.6.7" # https://developer.android.com/jetpack/androidx/releases/compose-animation
+compose-compiler = "1.5.13" # https://developer.android.com/jetpack/androidx/releases/compose-compiler
+compose-foundation = "1.6.7" # https://developer.android.com/jetpack/androidx/releases/compose-foundation
+compose-material = "1.6.7" # https://developer.android.com/jetpack/androidx/releases/compose-material
+compose-material3 = "1.2.1" # https://developer.android.com/jetpack/androidx/releases/compose-material3
+compose-runtime = "1.6.7" # https://developer.android.com/jetpack/androidx/releases/compose-runtime
+compose-ui = "1.6.7" # https://developer.android.com/jetpack/androidx/releases/compose-ui
+
+# https://developer.android.com/jetpack/androidx/releases/compose-ui
+# https://mvnrepository.com/artifact/androidx.compose.ui/ui-viewbinding
+compose-viewBinding = "1.6.7"
+
+compose-activity = "1.9.0" # https://developer.android.com/jetpack/androidx/releases/activity
+compose-navigation = "2.7.7" # https://developer.android.com/jetpack/androidx/releases/navigation
+
+# https://developer.android.com/jetpack/compose/layouts/constraintlayout
+# https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose?repo=google
+compose-constraintLayout = "1.0.1"
+
+#STORAGE
+room = "2.6.1" # https://developer.android.com/jetpack/androidx/releases/room
+
+#NETWORK
+ktor = "2.3.10" # https://github.com/ktorio/ktor
+retrofit2 = "2.11.0" # https://github.com/square/retrofit
+retrofit2-serializationConverter = "1.0.0" # https://github.com/jakewharton/retrofit2-kotlinx-serialization-converter
+okhttp3-loggingInterceptor = "4.12.0" # https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
+okhttp3-mockwebserver = "4.12.0" # https://github.com/square/okhttp/tree/master/mockwebserver
+
+#TEST
+junit = "4.13.2" # https://mvnrepository.com/artifact/junit/junit
+
+# https://developer.android.com/training/testing/set-up-project
+# https://developer.android.com/jetpack/androidx/releases/test
+junit-android-ext = "1.1.5"
+
+# https://mvnrepository.com/artifact/androidx.test.espresso/espresso-core
+# https://developer.android.com/training/testing/set-up-project
+# https://developer.android.com/jetpack/androidx/releases/test
+espresso = "3.5.1"
+
+mockito = "5.11.0" # https://github.com/mockito/mockito
+mockito-kotlin = "5.3.1" # https://github.com/mockito/mockito-kotlin
+
+#TOOLS
+leakcanary = "2.14" # https://square.github.io/leakcanary/getting_started/
+logging = "0.1" # https://github.com/square/logcat
+kotlinx-dateTime = "0.6.0-RC.2" # https://github.com/Kotlin/kotlinx-datetime
+google-phoneNumber = "8.13.35" # https://github.com/google/libphonenumber
+playServicesBase = "18.4.0"
+appcompat = "1.6.1" # https://mvnrepository.com/artifact/com.google.android.gms/play-services-base
+
+[libraries]
+
+#KOTLIN
+kotlin-stdLib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
+
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+
+#ANDROIDX
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-window-core = { group = "androidx.window", name = "window-core", version.ref = "androidx-window-core" }
+androidx-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidx-material3-window-size" }
+androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splashscreen" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
+androidx-metrics-performance = { module = "androidx.metrics:metrics-performance", version.ref = "androidx-metrics-performance"  }
+
+material-components-android = { module = "com.google.android.material:material", version.ref = "material-components-android" }
+
+#UI
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+
+#COMPOSE
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-ui" }
+compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-ui" }
+compose-ui-tooling-debug = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-ui" }
+compose-ui-test-manifest-debug = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose-ui" }
+compose-ui-test-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-ui" }
+compose-viewBinding = { module = "androidx.compose.ui:ui-viewbinding", version.ref = "compose-viewBinding" }
+
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose-material" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose-ui" }
+
+compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose-animation" }
+
+compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose-compiler" }
+
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose-foundation" }
+
+compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose-runtime" }
+
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
+compose-constraintLayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "compose-constraintLayout" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
+compose-navigation-test = { module = "androidx.navigation:navigation-testing", version.ref = "compose-navigation" }
+
+#STORAGE
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-test = { module = "androidx.room:room-testing", version.ref = "room" }
+
+#NETWORK
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+
+retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
+retrofit2-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit2" }
+retrofit2-serializationConverter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2-serializationConverter" }
+okHttp3-loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3-loggingInterceptor" }
+okHttp3-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp3-mockwebserver" }
+
+#TEST
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-android-ext = { module = "androidx.test.ext:junit", version.ref = "junit-android-ext" }
+espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin-test" }
+
+#TOOLS
+leakCanary-debug = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+logging = { module = "com.squareup.logcat:logcat", version.ref = "logging" }
+kotlinx-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-dateTime" }
+phoneNumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-phoneNumber" }
+play-services-base = { group = "com.google.android.gms", name = "play-services-base", version.ref = "playServicesBase" }
+
+#DI
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+#PLUGINS
+ktlint-plugin = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint-plugin" }
+detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+objectBox = { group = "io.objectbox", name = "objectbox-gradle-plugin", version.ref = "objectBox" }
+realm-plugin = { group = "io.realm", name = "realm-gradle-plugin", version.ref = "realm-plugin" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+[bundles]
+
+data-source-local-impl = [
+    "kotlin-stdLib",
+    "kotlin-coroutines-core",
+    "kotlin-coroutines-android",
+    #
+    "dagger",
+    #
+    "kotlinx-dateTime"
+]
+data-source-local-impl-test = [
+    "kotlin-test",
+    "mockito",
+    "mockito-kotlin",
+    #
+    "kotlin-coroutines-test",
+    #
+    "kotlinx-dateTime"
+]
+
+feature-ui-impl-test = [
+    "kotlin-test",
+    #
+    "mockito",
+    "mockito-kotlin",
+    #
+    "kotlin-coroutines-test",
+]
+
+ui-test-android = [
+    "junit-android-ext",
+    #
+    "mockito",
+    "mockito-kotlin",
+    #
+    "espresso",
+    #
+    "kotlin-test",
+    "kotlin-coroutines-test",
+    #
+    "compose-ui-test-manifest-debug",
+    "compose-ui-test-junit"
+]

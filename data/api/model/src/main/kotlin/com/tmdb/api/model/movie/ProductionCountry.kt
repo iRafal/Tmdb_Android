@@ -9,6 +9,7 @@ import kotlinx.serialization.Serializable
         "name": "United States of America"
     }
  */
+@Suppress("ConstructorParameterNaming")
 @Serializable
 data class ProductionCountry(
     @SerialName("iso_3166_1") val iso_3166_1: String? = null,

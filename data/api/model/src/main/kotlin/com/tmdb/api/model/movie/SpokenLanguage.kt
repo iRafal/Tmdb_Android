@@ -9,6 +9,7 @@ import kotlinx.serialization.Serializable
         "name": "English"
     }
  */
+@Suppress("ConstructorParameterNaming")
 @Serializable
 data class SpokenLanguage(
     @SerialName("iso_639_1") val iso_639_1: String? = null,

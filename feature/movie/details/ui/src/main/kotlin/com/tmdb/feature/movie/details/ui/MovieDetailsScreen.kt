@@ -1,27 +1,29 @@
 package com.tmdb.feature.movie.details.ui
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.tmdb.feature.movie.details.ui.MovieDetailsUiEvent.NavigateBack
 import com.tmdb.feature.movie.details.ui.MovieDetailsUiState.Loading
-import com.tmdb.ui.core.navigation.model.NavigationRoute
-import com.tmdb.ui.core.theme.TmdbTheme
+import com.tmdb.feature.movie.details.ui.di.MovieDetailsFeatureDi
+import com.tmdb.ui.core.compose.navigation.model.NavigationRoute
+import com.tmdb.ui.core.di.daggerViewModel
 
 @Composable
 fun MovieDetailsScreen(
     navController: NavController,
     movieId: Int,
-    movieDetailsViewModel: MovieDetailsViewModel = hiltViewModel()
 ) {
-    TmdbTheme {
-        val state = Loading
+    val context = LocalContext.current
+    val component = remember { MovieDetailsFeatureDi.fromContext(context) }
+    val movieDetailsViewModel: MovieDetailsViewModel = daggerViewModel { component.movieDetailsViewModel }
+    val state = Loading
 //        val state by movieDetailsViewModel.state.collectAsState(MovieDetailsState.Idle)
-        val onEvent: (MovieDetailsUiEvent) -> Unit = { event ->
-            when (event) {
-                NavigateBack -> navController.navigate(NavigationRoute.Close.route)
-            }
+    val onEvent: (MovieDetailsUiEvent) -> Unit = { event ->
+        when (event) {
+            NavigateBack -> navController.navigate(NavigationRoute.Close.route)
         }
-        MovieDetailsScreenUi(state, onEvent)
     }
+    MovieDetailsScreenUi(state, onEvent)
 }

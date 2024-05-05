@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.tmdb.feature.home.ui
 
 import androidx.compose.foundation.clickable
@@ -9,10 +11,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,7 +50,7 @@ fun MovieSectionError(text: String, buttonText: String, onReloadSection: () -> U
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = text, style = MaterialTheme.typography.body1)
+        Text(text = text, style = MaterialTheme.typography.bodyLarge)
         Spacer(modifier = Modifier.height(32.dp))
         Button(onClick = { onReloadSection() }) {
             Text(text = buttonText)
@@ -92,16 +94,16 @@ fun MovieSectionItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         Column {
-            Text(text = movie.title, style = MaterialTheme.typography.body2)
+            Text(text = movie.title, style = MaterialTheme.typography.bodyMedium)
 
             Spacer(modifier = Modifier.height(8.dp))
 
             movie.formattedReleaseDate?.let { releaseDate ->
-                Text(text = releaseDate, style = MaterialTheme.typography.caption)
+                Text(text = releaseDate, style = MaterialTheme.typography.bodySmall)
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            Text(text = movie.averageVote.toString(), style = MaterialTheme.typography.caption)
+            Text(text = movie.averageVote.toString(), style = MaterialTheme.typography.bodySmall)
         }
     }
 }
@@ -204,14 +206,20 @@ fun MovieSection(
     onMovieClick: (movieId: Int) -> Unit
 ) {
     Column {
-        Text(modifier = Modifier.testTag(HomeScreenTestTags.TAG_MOVIE_SECTION_HEADER), text = title, style = MaterialTheme.typography.h6)
+        Text(
+            modifier = Modifier.testTag(HomeScreenTestTags.TAG_MOVIE_SECTION_HEADER),
+            text = title,
+            style = MaterialTheme.typography.titleLarge
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
             when (sectionState) {
                 is UiState.Loading -> {
-                    CircularProgressIndicator(modifier = Modifier.testTag(ComposeTestTags.TAG_CIRCULAR_PROGRESS_INDICATOR))
+                    CircularProgressIndicator(
+                        modifier = Modifier.testTag(ComposeTestTags.TAG_CIRCULAR_PROGRESS_INDICATOR)
+                    )
                 }
 
                 is UiState.Error -> {

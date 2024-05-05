@@ -8,30 +8,26 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.MovieDbMigrations
-import com.tmdb.data.db.room.di.DispatchersTestModule
+import com.tmdb.data.db.room.di.component.app.TestAppComponentStore
+import com.tmdb.data.db.room.di.component.db.TestDbComponent
+import com.tmdb.data.db.room.di.module.DispatchersTestModule
 import com.tmdb.data.db.room.movie.MovieEntity
 import com.tmdb.data.db.room.util.ModelUtil
-import com.tmdb.utill.di.modules.DispatchersModule
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import java.io.IOException
 import javax.inject.Inject
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 
-@UninstallModules(DispatchersModule::class)
-@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
 class AppDbMigrationTest {
@@ -45,22 +41,22 @@ class AppDbMigrationTest {
     lateinit var context: Context
 
     @get:Rule
-    val hiltRule = HiltAndroidRule(this)
-
-    @get:Rule
     val helper: MigrationTestHelper = MigrationTestHelper(
         InstrumentationRegistry.getInstrumentation(),
         MovieDb::class.java.canonicalName,
         FrameworkSQLiteOpenHelperFactory()
     )
 
-    @Before
+   private lateinit var testDbComponent: TestDbComponent
+
+    @BeforeTest
     fun setup() {
-        hiltRule.inject()
+        testDbComponent = TestAppComponentStore.component.testDbComponentBuilder.build()
+        testDbComponent.inject(this)
         Dispatchers.setMain(dispatcher)
     }
 
-    @After
+    @AfterTest
     @Throws(IOException::class)
     fun tearDown() {
         Dispatchers.resetMain()
@@ -92,9 +88,11 @@ class AppDbMigrationTest {
         helper.createDatabase(TEST_DB, versionFrom).apply {
             //INFO: db has schema version 1. insert some data using SQL queries.
             //INFO: You cannot use DAO classes because they expect the latest schema.
-            execSQL("INSERT INTO $tableName " +
-                    "($columId, $columnTitle, $columnVoteAverage, $columnReleaseDate, $columnPosterUrl) " +
-                    "VALUES ('$movieId', '$title', '$voteAverage', '$releaseDate', '$posterUrl')")
+            execSQL(
+                "INSERT INTO $tableName " +
+                        "($columId, $columnTitle, $columnVoteAverage, $columnReleaseDate, $columnPosterUrl) " +
+                        "VALUES ('$movieId', '$title', '$voteAverage', '$releaseDate', '$posterUrl')"
+            )
 
             //INFO: Prepare for the next version.
             close()
@@ -113,15 +111,15 @@ class AppDbMigrationTest {
         val actualMovie = migratedDb.movieDao().getAll().firstOrNull()
         checkNotNull(actualMovie)
 
-        assertEquals(actualMovie.id, movieId)
-        assertEquals(actualMovie.title, title)
-        assertEquals(actualMovie.voteAverage, voteAverage)
-        assertEquals(actualMovie.releaseDate, releaseDate)
-        assertEquals(actualMovie.posterUrl, posterUrl)
-        assertEquals(actualMovie.isNowPlaying, isNowPlaying)
-        assertEquals(actualMovie.isNowPopular, isNowPopular)
-        assertEquals(actualMovie.isTopRated, isTopRated)
-        assertEquals(actualMovie.isUpcoming, isUpcoming)
+        assertEquals(expected = actualMovie.id, actual = movieId)
+        assertEquals(expected = actualMovie.title, actual = title)
+        assertEquals(expected = actualMovie.voteAverage, actual = voteAverage)
+        assertEquals(expected = actualMovie.releaseDate, actual = releaseDate)
+        assertEquals(expected = actualMovie.posterUrl, actual = posterUrl)
+        assertEquals(expected = actualMovie.isNowPlaying, actual = isNowPlaying)
+        assertEquals(expected = actualMovie.isNowPopular, actual = isNowPopular)
+        assertEquals(expected = actualMovie.isTopRated, actual = isTopRated)
+        assertEquals(expected = actualMovie.isUpcoming, actual = isUpcoming)
 
         migratedDb.close()
         db.close()

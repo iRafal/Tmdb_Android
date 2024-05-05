@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimen value copied and modified from splash screen library  -->
+    <dimen name="custom_splashscreen_icon_size_no_background">288dp</dimen>
+</resources>

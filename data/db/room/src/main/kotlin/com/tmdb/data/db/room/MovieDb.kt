@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.tmdb.data.db.room.MovieDbMigrations.MIGRATION_1_2
+import com.tmdb.data.db.room.converters.LocalDateConverter
+import com.tmdb.data.db.room.converters.LocalDateTimeConverter
 import com.tmdb.data.db.room.movie.MovieDao
 import com.tmdb.data.db.room.movie.MovieEntity
-import com.tmdb.data.db.room.type.converters.LocalDateConverter
-import com.tmdb.data.db.room.type.converters.LocalDateTimeConverter
 
 @Database(
     entities = [MovieEntity::class],

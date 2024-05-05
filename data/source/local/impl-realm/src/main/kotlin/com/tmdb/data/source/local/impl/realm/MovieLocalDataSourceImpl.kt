@@ -2,22 +2,23 @@ package com.tmdb.data.source.local.impl.realm
 
 import com.tmdb.data.db.realm.movie.MovieEntity
 import com.tmdb.data.db.realm.movie.dao.MovieDao
-import com.tmdb.data.model.movie.MovieDataModel
+import com.tmdb.data.model.MovieDataModel
+import com.tmdb.data.source.local.contract.MovieLocalDataSource
 import com.tmdb.data.source.local.impl.realm.mapping.MovieDataModelToEntityMapper
 import com.tmdb.data.source.local.impl.realm.mapping.MovieEntityToDataModelMapper
-import com.tmdb.data.source.remote.contract.MovieLocalDataSource
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+@Suppress("TooManyFunctions")
 class MovieLocalDataSourceImpl @Inject constructor(
     private val movieDao: MovieDao,
-    private val movieEntityToDataModelMapper: @JvmSuppressWildcards MovieEntityToDataModelMapper,
-    private val movieDataModelToEntityMapper: @JvmSuppressWildcards MovieDataModelToEntityMapper
+    private val movieEntityToDataModelMapper: MovieEntityToDataModelMapper,
+    private val movieDataModelToEntityMapper: MovieDataModelToEntityMapper
 ) : MovieLocalDataSource {
 
     override suspend fun movie(movieId: Int): MovieDataModel? {
-        return movieDao.getById(movieId)?.let { movieEntityToDataModelMapper(it) }
+        return movieDao.getById(movieId)?.let { movieEntityToDataModelMapper.map(it) }
     }
 
     override suspend fun nowPlayingMovies(
@@ -25,7 +26,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
         pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.nowPlayingMovies(page = page, pageSize = pageSize)
-        return entities.map { movieEntityToDataModelMapper(it) }
+        return entities.map { movieEntityToDataModelMapper.map(it) }
     }
 
     override suspend fun nowPopularMovies(
@@ -33,7 +34,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
         pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.nowPopularMovies(page = page, pageSize = pageSize)
-        return entities.map { movieEntityToDataModelMapper(it) }
+        return entities.map { movieEntityToDataModelMapper.map(it) }
     }
 
     override suspend fun topRatedMovies(
@@ -41,7 +42,7 @@ class MovieLocalDataSourceImpl @Inject constructor(
         pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.topRatedMovies(page = page, pageSize = pageSize)
-        return entities.map { movieEntityToDataModelMapper(it) }
+        return entities.map { movieEntityToDataModelMapper.map(it) }
     }
 
     override suspend fun upcomingMovies(
@@ -49,15 +50,15 @@ class MovieLocalDataSourceImpl @Inject constructor(
         pageSize: Int?
     ): List<MovieDataModel> {
         val entities = movieDao.upcomingMovies(page = page, pageSize = pageSize)
-        return entities.map { movieEntityToDataModelMapper(it) }
+        return entities.map { movieEntityToDataModelMapper.map(it) }
     }
 
     override suspend fun insert(movie: MovieDataModel) {
-        movieDao.insert(movieDataModelToEntityMapper(movie))
+        movieDao.insert(movieDataModelToEntityMapper.map(movie))
     }
 
     override suspend fun insertAll(movies: List<MovieDataModel>) {
-        val mapped = movies.map { movieDataModelToEntityMapper(it) }
+        val mapped = movies.map { movieDataModelToEntityMapper.map(it) }
         movieDao.insert(mapped)
     }
 
@@ -68,13 +69,13 @@ class MovieLocalDataSourceImpl @Inject constructor(
         upcomingMovies: List<MovieDataModel>
     ) {
         val mappedNowPlaying =
-            nowPlaying.map { movieDataModelToEntityMapper(it).apply { isNowPlaying = true } }
+            nowPlaying.map { movieDataModelToEntityMapper.map(it).apply { isNowPlaying = true } }
         val mappedNowPopular =
-            nowPlaying.map { movieDataModelToEntityMapper(it).apply { isNowPopular = true } }
+            nowPlaying.map { movieDataModelToEntityMapper.map(it).apply { isNowPopular = true } }
         val mappedTopRatedMovies =
-            nowPlaying.map { movieDataModelToEntityMapper(it).apply { isTopRated = true } }
+            nowPlaying.map { movieDataModelToEntityMapper.map(it).apply { isTopRated = true } }
         val mappedUpcomingMovies =
-            nowPlaying.map { movieDataModelToEntityMapper(it).apply { isUpcoming = true } }
+            nowPlaying.map { movieDataModelToEntityMapper.map(it).apply { isUpcoming = true } }
 
         val allItems =
             mappedNowPlaying + mappedNowPopular + mappedTopRatedMovies + mappedUpcomingMovies
@@ -97,18 +98,18 @@ class MovieLocalDataSourceImpl @Inject constructor(
     }
 
     override suspend fun delete(movie: MovieDataModel) {
-        movieDao.delete(movieDataModelToEntityMapper(movie))
+        movieDao.delete(movieDataModelToEntityMapper.map(movie))
     }
 
     override fun observeAll(): Flow<List<MovieDataModel>> {
-        return movieDao.observeAll().map { it.map(movieEntityToDataModelMapper) }
+        return movieDao.observeAll().map { it.map(movieEntityToDataModelMapper::map) }
     }
 
     override suspend fun getAll(): List<MovieDataModel> {
-        return movieDao.getAll().map(movieEntityToDataModelMapper)
+        return movieDao.getAll().map(movieEntityToDataModelMapper::map)
     }
 
     override suspend fun getById(id: Int): MovieDataModel? {
-        return movieDao.getById(id)?.let { movieEntityToDataModelMapper(it) }
+        return movieDao.getById(id)?.let { movieEntityToDataModelMapper.map(it) }
     }
 }

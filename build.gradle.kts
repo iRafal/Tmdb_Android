@@ -1,3 +1,13 @@
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.kotlin) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.android.library) apply false
+
+    val kotlinVersion = libs.versions.kotlin.asProvider().get()
+    id(GradleConfig.Plugins.KOTLINX_SERIALIZATION_EXTENDED_NAME) version kotlinVersion apply false
+}
+
 buildscript {
     repositories {
         maven { url = uri("https://plugins.gradle.org/m2/") }
@@ -6,29 +16,39 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.gradle)
         classpath(libs.ktlint.plugin)
-        classpath(libs.kotlin.gradle)
-        classpath(libs.kotlin.serialization)
-        classpath(libs.hilt.plugin)
-        classpath(libs.realm.plugin)
-        classpath(libs.objectBox)
         classpath(libs.detekt)
+        classpath(libs.objectBox)
+        classpath(libs.realm.plugin)
+
     }
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-
     /**
      * ./gradlew detekt
+     * ./gradlew detektBaseline - prefer using this one
      */
     apply(plugin = "io.gitlab.arturbosch.detekt")
 }
+
+/**
+ * Lint terminal https://developer.android.com/studio/write/lint
+ * ./gradlew lint
+ * ./gradlew lintDebug
+ * ./gradlew lintRelease
+ */
+
+
+/**
+ * Run all tests
+ * https://developer.android.com/studio/test/command-line
+ *
+ * ./gradlew test
+ *
+ * ./gradlew connectedAndroidTest
+ * ./gradlew cAT
+ */
 
 /**
  * Mac
@@ -41,14 +61,8 @@ allprojects {
  * gradlew ktlintFormat
  */
 
-
 subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
-
-    repositories {
-        // Required to download KtLint
-        mavenCentral()
-    }
 
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)
@@ -72,9 +86,20 @@ subprojects {
     }
 }
 
+// https://detekt.dev/docs/gettingstarted/gradle#kotlin-dsl-3
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     config.setFrom(file("config/detekt/detekt.yml"))
+    baseline.set(file("${rootProject.projectDir}/config/detekt/baseline.xml"))
+    include("**/*.kt")
+    exclude("**/build/**")
+    setSource(projectDir)
+    allRules = false
+    parallel = false
+    disableDefaultRuleSets = false
     buildUponDefaultConfig = true
+    debug = false
+    ignoreFailures = false
+    basePath = projectDir.absolutePath
     reports {
         xml.required.set(true)
         html.required.set(true)
@@ -85,10 +110,24 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     jvmTarget = GradleConfig.javaVersionAsString
 }
 
+/**
+ * https://detekt.dev/docs/introduction/baseline/
+ */
 tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
     jvmTarget = GradleConfig.javaVersionAsString
+    description = "Overrides current baseline."
+    buildUponDefaultConfig.set(true)
+    ignoreFailures.set(true)
+    parallel.set(true)
+    setSource(files(rootDir))
+    config.setFrom(files("config/detekt/detekt.yml"))
+    baseline.set(file("config/detekt/baseline.xml"))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }

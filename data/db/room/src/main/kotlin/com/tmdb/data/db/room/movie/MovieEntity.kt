@@ -11,22 +11,27 @@ data class MovieEntity(
     @PrimaryKey
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_ID)
     val id: Int? = null,
+
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_TITLE) val title: String? = null,
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_VOTE_AVERAGE) val voteAverage: Double? = null,
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_RELEASE_DATE) val releaseDate: LocalDate? = null,
     @ColumnInfo(name = MOVIE_TABLE_COLUMN_POSTER_URL) val posterUrl: String? = null,
+
     @ColumnInfo(
         name = MOVIE_TABLE_COLUMN_NOW_PLAYING,
         defaultValue = "0"
     ) val isNowPlaying: Boolean = false,
+
     @ColumnInfo(
         name = MOVIE_TABLE_COLUMN_NOW_POPULAR,
         defaultValue = "0"
     ) val isNowPopular: Boolean = false,
+
     @ColumnInfo(
         name = MOVIE_TABLE_COLUMN_TOP_RATED,
         defaultValue = "0"
     ) val isTopRated: Boolean = false,
+
     @ColumnInfo(
         name = MOVIE_TABLE_COLUMN_UPCOMING,
         defaultValue = "0"

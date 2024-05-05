@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.Tmdb" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 
-    <style name="Theme.Tmdb" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+    <style name="Theme.Tmdb.CustomSplash" parent="Theme.Tmdb">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Tmdb.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.Tmdb</item>
     </style>
 </resources>

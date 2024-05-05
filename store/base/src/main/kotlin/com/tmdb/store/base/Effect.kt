@@ -1,7 +1,6 @@
 package com.tmdb.store.base
 
 import com.tmdb.store.base.Effect.Executor
-import com.tmdb.store.base.Effect.Executor.Scope
 import com.tmdb.store.base.feature.Feature
 
 interface Effect<Env> {
@@ -12,12 +11,12 @@ interface Effect<Env> {
             feature: Feature,
             effectBlock: suspend Scope<Env>.() -> Unit
         )
+    }
 
-        interface Scope<Env> {
-            val env: Env
+    interface Scope<Env> {
+        val env: Env
 
-            fun dispatch(action: Action)
-        }
+        fun dispatch(action: Action)
     }
 }
 
@@ -26,7 +25,7 @@ object Effects {
 
     fun <E> create(
         feature: Feature,
-        effect: suspend Scope<E>.() -> Unit
+        effect: suspend Effect.Scope<E>.() -> Unit
     ): Effect<E> = object : Effect<E> {
         override fun invoke(executor: Executor<E>) {
             executor.execute(feature, effect)
@@ -40,7 +39,7 @@ object Effects {
     }
 
     fun <Env> effect(
-        effectExecutorScope: suspend Scope<Env>.() -> Action,
+        effectExecutorScope: suspend Effect.Scope<Env>.() -> Action,
         feature: Feature
     ): Effect<Env> = create(feature) {
         dispatch(action = effectExecutorScope())

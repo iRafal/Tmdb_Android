@@ -1,9 +1,9 @@
 package com.tmdb.data.api.implKtor.person
 
-import com.tmdb.api.config.url.provider.person.PersonUrlProvider
 import com.tmdb.api.model.person.Person
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
+import com.tmdb.data.api.config.url.provider.person.PersonUrlProvider
 import com.tmdb.data.api.implKtor.util.runApiCall
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

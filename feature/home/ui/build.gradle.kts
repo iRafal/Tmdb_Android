@@ -1,8 +1,7 @@
 plugins {
-    id(GradleConfig.Plugins.ANDROID_LIBRARY)
-    id(GradleConfig.Plugins.KOTLIN_ANDROID)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
-    id(GradleConfig.Plugins.HILT)
 }
 
 android {
@@ -12,7 +11,7 @@ android {
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "$nameSpace.runner.HiltTestRunner"
+        testInstrumentationRunner = "$nameSpace.runner.DaggerTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -35,15 +34,9 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions {
-        jvmTarget = GradleConfig.javaVersionAsString
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
-    }
+    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
+    buildFeatures.compose = true
+    composeOptions.kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
     packaging {
         resources {
             this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
@@ -51,26 +44,22 @@ android {
     }
 }
 
-hilt {
-    enableAggregatingTask = true
-}
-
 dependencies {
     implementationDependencies()
-
-    kapt(libs.hilt.kapt)
-    kaptTest(libs.hilt.kapt)
-    kaptAndroidTest(libs.hilt.kapt)
-
+    kaptDependencies()
+    kaptAndroidTest(libs.dagger.compiler)
     testImplementation(libs.bundles.feature.ui.impl.test)
-
     androidTestImplementation(libs.bundles.ui.test.android)
+}
+
+fun DependencyHandlerScope.kaptDependencies() {
+    kapt(libs.dagger.compiler)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":ui-core"))
     implementation(project(":util"))
-    implementation(project(":store:app"))
+    implementation(project(":store:app-store"))
 
-    implementation(libs.hilt.android)
+    implementation(libs.dagger)
 }

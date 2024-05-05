@@ -1,11 +1,12 @@
 package com.tmdb.data.api.implKtor.movie
 
-import com.tmdb.api.config.url.provider.movie.MovieUrlProvider
-import com.tmdb.api.config.url.provider.movie.MovieUrlProviderImpl
 import com.tmdb.api.model.util.ApiException
 import com.tmdb.api.model.util.ApiResponse
-import com.tmdb.data.api.implKtor.di.apiErrorMapper
-import com.tmdb.data.api.implKtor.di.module.KtorApiUtilModule
+import com.tmdb.data.api.config.url.provider.movie.MovieUrlProvider
+import com.tmdb.data.api.config.url.provider.movie.MovieUrlProviderImpl
+import com.tmdb.data.api.implKtor.di.module.ApiUtilModule
+import com.tmdb.data.api.implKtor.util.ApiErrorMapper
+import com.tmdb.data.api.implKtor.util.ApiErrorMapperImpl
 import com.tmdb.data.api.implKtor.util.ModelUtil
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
@@ -20,16 +21,14 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
-import org.junit.Test
 
 class MovieApiTest {
-
     private val movieModel = ModelUtil.movieModel
-
     private val movieJson = """
         {
               "adult": false,
@@ -47,7 +46,7 @@ class MovieApiTest {
               "imdb_id": "tt0137523",
               "original_language": "en",
               "original_title": "Fight Club",
-              "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+              "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male",
               "popularity": 0.5,
               "poster_path": null,
               "production_companies": [
@@ -110,6 +109,10 @@ class MovieApiTest {
         MovieUrlProviderImpl("/")
     }
 
+    private val apiErrorMapper: ApiErrorMapper by lazy(LazyThreadSafetyMode.NONE) {
+        ApiErrorMapperImpl()
+    }
+
     private val responseHeaders by lazy(LazyThreadSafetyMode.NONE) {
         headersOf(HttpHeaders.ContentType to listOf(ContentType.Application.Json.toString()))
     }
@@ -120,11 +123,11 @@ class MovieApiTest {
                 addHandler(mockRequestHandler)
             }
             install(ContentNegotiation) {
-                json(KtorApiUtilModule.json())
+                json(ApiUtilModule.json())
             }
             HttpResponseValidator {
-                handleResponseExceptionWithRequest { cause, request ->
-                    throw apiErrorMapper(cause)
+                handleResponseExceptionWithRequest { cause, _ ->
+                    throw apiErrorMapper.map(cause)
                 }
             }
         }
@@ -144,7 +147,7 @@ class MovieApiTest {
 
         val response = movieApi.movie(movieId)
         assertTrue(response.isSuccess)
-        assertEquals((response as ApiResponse.Success).data, movieModel)
+        assertEquals(expected = (response as ApiResponse.Success).data, actual = movieModel)
     }
 
     @Test
@@ -162,7 +165,7 @@ class MovieApiTest {
         val response = movieApi.movie(movieId)
         assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
-        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
+        assertTrue(response.cause is ApiException.UnknownError)
     }
 
     @Test
@@ -180,12 +183,11 @@ class MovieApiTest {
         val response = movieApi.movie(movieId)
         assertTrue(response.isUnknownError)
         assertTrue(response is ApiResponse.UnknownError)
-        assertTrue((response as ApiResponse.UnknownError).cause is ApiException.UnknownError)
+        assertTrue(response.cause is ApiException.UnknownError)
     }
 
-    @After
+    @AfterTest
     fun teardown() {
         httpClient.close()
     }
 }
-

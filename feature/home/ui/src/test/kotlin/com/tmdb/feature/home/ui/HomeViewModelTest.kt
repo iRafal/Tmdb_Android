@@ -1,19 +1,19 @@
 package com.tmdb.feature.home.ui
 
-import com.tmdb.feature.home.ui.data.mapping.HomeFeatureToUiStateMapper
+import com.tmdb.feature.home.ui.data.mapping.HomeFeatureStateToUiStateMapper
 import com.tmdb.feature.home.ui.data.mapping.HomeMovieSectionToActionMapper
 import com.tmdb.feature.home.ui.data.model.HomeUiData
-import com.tmdb.store.app.AppStore
-import com.tmdb.store.state.app.AppState
+import com.tmdb.store.AppStore
+import com.tmdb.store.state.AppState
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
@@ -22,20 +22,20 @@ class HomeViewModelTest {
     private val dispatcher = StandardTestDispatcher()
 
     private val appStore = mock<AppStore>()
-    private val homeFeatureToUiStateMapper = mock<HomeFeatureToUiStateMapper>()
+    private val homeFeatureStateToUiStateMapper = mock<HomeFeatureStateToUiStateMapper>()
     private val homeMovieSectionToActionMapper = mock<HomeMovieSectionToActionMapper>()
     private val viewModel = HomeViewModel(
         appStore,
-        homeFeatureToUiStateMapper,
+        homeFeatureStateToUiStateMapper,
         homeMovieSectionToActionMapper
     )
 
-    @Before
+    @BeforeTest
     fun setup() {
         Dispatchers.setMain(dispatcher)
     }
 
-    @After
+    @AfterTest
     fun tearDown() {
         Dispatchers.resetMain()
     }

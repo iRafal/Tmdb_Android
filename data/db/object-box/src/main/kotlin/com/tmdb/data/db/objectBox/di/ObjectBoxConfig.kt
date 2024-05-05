@@ -6,8 +6,8 @@ import com.tmdb.data.db.objectBox.movie.MovieEntity
 import com.tmdb.data.db.objectBox.movie.MyObjectBox
 import io.objectbox.Box
 import io.objectbox.BoxStore
-import io.objectbox.DebugFlags
 import io.objectbox.android.Admin
+import io.objectbox.config.DebugFlags
 import io.objectbox.exception.DbException
 import io.objectbox.kotlin.boxFor
 import io.objectbox.sync.Sync
@@ -37,7 +37,9 @@ object ObjectBoxConfig {
     private fun initStoreAdmin(store: BoxStore, context: Context) {
         if (BuildConfig.DEBUG) {
             logcat(DEBUG) {
-                "Using ObjectBox version:[${BoxStore.getVersion()}], versionNative:[${BoxStore.getVersionNative()}], sync:[${Sync.isAvailable()}]"
+                "Using ObjectBox version:[${BoxStore.getVersion()}], " +
+                        "versionNative:[${BoxStore.getVersionNative()}], " +
+                        "sync:[${Sync.isAvailable()}]"
             }
             val isAdminStarted = Admin(store).start(context)
             logcat(DEBUG) {

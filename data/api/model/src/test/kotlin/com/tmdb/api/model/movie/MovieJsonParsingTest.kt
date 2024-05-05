@@ -4,10 +4,10 @@ import com.tmdb.api.model.data.DataPage
 import com.tmdb.api.model.data.DataPage.Dates
 import com.tmdb.api.model.di.UnitTestServiceLocator
 import com.tmdb.api.model.util.ModelUtil
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
-import org.junit.Assert.assertEquals
-import org.junit.Test
 
 @OptIn(ExperimentalSerializationApi::class)
 class MovieJsonParsingTest {
@@ -34,7 +34,7 @@ class MovieJsonParsingTest {
               "imdb_id": "tt0137523",
               "original_language": "en",
               "original_title": "Fight Club",
-              "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+              "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression",
               "popularity": 0.5,
               "poster_path": null,
               "production_companies": [
@@ -77,23 +77,21 @@ class MovieJsonParsingTest {
 
     @Test
     fun `parse movie`() {
-        val expected = movieModel
         val actual = json.decodeFromString<Movie>(movieJson)
-        assertEquals(expected, actual)
+
+        assertEquals(expected = movieModel, actual = actual)
     }
 
     @Test
     fun `parse empty movie json object`() {
-        val movieJson = "{ }"
-        val expected = Movie()
-        val actual = json.decodeFromString<Movie>(movieJson)
-        assertEquals(expected, actual)
+        val actual = json.decodeFromString<Movie>("{ }")
+
+        assertEquals(expected = Movie(), actual = actual)
     }
 
     @Test(expected = Exception::class)
     fun `parse empty movie json`() {
-        val movieJson = ""
-        json.decodeFromString<Movie>(movieJson)
+        json.decodeFromString<Movie>("")
     }
 
     @Test(expected = Exception::class)
@@ -123,6 +121,7 @@ class MovieJsonParsingTest {
             totalResults = 1
         )
         val actual = json.decodeFromString<DataPage<Movie>>(moviePageJson)
-        assertEquals(expected, actual)
+
+        assertEquals(expected = expected, actual = actual)
     }
 }

@@ -5,7 +5,8 @@ sealed interface ApiResponse<out T : Any, out U : Any> {
 
     data class ApiError<U : Any>(
         val body: U? = null,
-        val code: Int? = null
+        val code: Int? = null,
+        val cause: ApiException? = null
     ) : ApiResponse<Nothing, U>
 
     data class NetworkError(

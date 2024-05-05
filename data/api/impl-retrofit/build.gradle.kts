@@ -1,7 +1,6 @@
 plugins {
-    id(GradleConfig.Plugins.ANDROID_LIBRARY)
-    id(GradleConfig.Plugins.HILT)
-    id(GradleConfig.Plugins.KOTLIN_ANDROID)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
     id(GradleConfig.Plugins.KOTLINX_SERIALIZATION)
 }
@@ -31,21 +30,40 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions {
-        jvmTarget = GradleConfig.javaVersionAsString
-    }
+    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
 }
 
 dependencies {
+    apiDependencies()
+    implementationDependencies()
+    kapt(libs.dagger.compiler)
+    testImplementationDependencies()
+    implementation(libs.dagger.compiler)
+}
+
+fun DependencyHandlerScope.apiDependencies() {
     api(project(":data:api:model"))
     implementation(project(":data:api:config"))
+    implementation(project(":util"))
+}
 
-    implementation(libs.bundles.data.api.impl.retrofit)
-    kapt(libs.hilt.kapt)
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(libs.kotlin.stdLib)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlin.coroutines.android)
+    implementation(libs.kotlin.serialization.json)
 
-    testImplementation(libs.junit)
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.scalars)
+    implementation(libs.retrofit2.serializationConverter)
+    implementation(libs.okHttp3.loggingInterceptor)
 
+    implementation(libs.dagger)
+}
+
+fun DependencyHandlerScope.testImplementationDependencies() {
     testImplementation(libs.kotlin.stdLib)
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlin.coroutines.core)
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.kotlin.serialization.json)

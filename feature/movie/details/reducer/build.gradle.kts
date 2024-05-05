@@ -1,71 +1,32 @@
 plugins {
-    id(GradleConfig.Plugins.ANDROID_LIBRARY)
-    id(GradleConfig.Plugins.KOTLIN_ANDROID)
-    id(GradleConfig.Plugins.KOTLIN_KAPT)
-    id(GradleConfig.Plugins.HILT)
+    id(GradleConfig.Plugins.JAVA_LIBRARY)
+    alias(libs.plugins.kotlin.jvm)
 }
-
-android {
-    namespace = "${GradleConfig.Android.applicationId}.feature.movie.details.reducer"
-    compileSdk = GradleConfig.Android.compileSdk
-
-    defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
-
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-        }
-        release {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            consumerProguardFiles("consumer-rules.pro")
-        }
-    }
-    compileOptions {
-        sourceCompatibility = GradleConfig.javaVersion
-        targetCompatibility = GradleConfig.javaVersion
-    }
-    kotlinOptions {
-        jvmTarget = GradleConfig.javaVersionAsString
-    }
-}
-
 
 dependencies {
     implementationDependencies()
-    kapt(libs.hilt.kapt)
     testImplementationDependencies()
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
+    implementation(project(":feature:common"))
+
     implementation(project(":store:base"))
     implementation(project(":store:env"))
     implementation(project(":store:feature"))
     implementation(project(":store:state"))
+    implementation(project(":store:action"))
 
     implementation(project(":data:source:remote:contract"))
     implementation(project(":data:source:local:contract"))
     implementation(project(":data:model"))
-
-    implementation(project(":feature:movie:details:action"))
-
-    implementation(project(":util"))
-
-    implementation(libs.hilt.android)
 }
 
 fun DependencyHandlerScope.testImplementationDependencies() {
-    testImplementation(libs.junit)
+    testImplementation(project(":feature:common-test"))
     testImplementation(libs.mockito)
     testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlin.coroutines.test)
-    testImplementation(libs.hilt.test)
     testImplementation(libs.kotlinx.dateTime)
 }

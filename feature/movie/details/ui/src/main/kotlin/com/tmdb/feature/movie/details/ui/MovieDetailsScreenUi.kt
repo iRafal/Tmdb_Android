@@ -1,72 +1,68 @@
+@file:Suppress("TooManyFunctions")
+
 package com.tmdb.feature.movie.details.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.tmdb.feature.movie.details.ui.data.model.MovieDetailsUiData
-import com.tmdb.ui.core.theme.TmdbTheme
+import com.tmdb.feature.movie.details.ui.model.MovieDetailsUiData
+import com.tmdb.ui.core.compose.theme.TmdbTheme
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun MovieDetailsStateIdlePreview() {
     TmdbTheme {
         MovieDetailsScreenUi(
             MovieDetailsUiState.Idle,
-            onEvent = { }
+            onEvent = {}
         )
     }
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun MovieDetailsStateLoadingPreview() {
     TmdbTheme {
         MovieDetailsScreenUi(
             MovieDetailsUiState.Loading,
-            onEvent = { }
+            onEvent = {}
         )
     }
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun MovieDetailsStateErrorPreview() {
     TmdbTheme {
         MovieDetailsScreenUi(
             MovieDetailsUiState.Error(),
-            onEvent = { }
+            onEvent = {}
         )
     }
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun MovieDetailsStateNetworkErrorPreview() {
     TmdbTheme {
         MovieDetailsScreenUi(
             MovieDetailsUiState.NetworkError(),
-            onEvent = { }
+            onEvent = {}
         )
     }
 }
 
 @Preview(showBackground = false, showSystemUi = false)
-@ExperimentalMaterialApi
 @Composable
 fun MovieDetailsStateSuccessPreview() {
     TmdbTheme {
         val data = MovieDetailsUiData()
         MovieDetailsScreenUi(
             MovieDetailsUiState.Success(data),
-            onEvent = { }
+            onEvent = {}
         )
     }
 }

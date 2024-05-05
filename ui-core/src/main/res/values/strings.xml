@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <plurals name="begins_in_days">
+        <item quantity="one">Begins in <xliff:g example="1" id="day">%d</xliff:g> day</item>
+        <item quantity="other">Begins in <xliff:g example="1" id="day">%d</xliff:g> days</item>
+    </plurals>
+</resources>

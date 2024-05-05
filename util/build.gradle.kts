@@ -1,8 +1,7 @@
 plugins {
-    id(GradleConfig.Plugins.ANDROID_LIBRARY)
-    id(GradleConfig.Plugins.KOTLIN_ANDROID)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
-    id(GradleConfig.Plugins.HILT)
 }
 
 android {
@@ -24,26 +23,34 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            consumerProguardFiles("consumer-rules.pro")
         }
     }
     compileOptions {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions {
-        jvmTarget = GradleConfig.javaVersionAsString
-    }
+    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
 }
 
 dependencies {
-    implementation(libs.hilt.android)
+    implementationDependencies()
+    kaptDependencies()
     apiDependencies()
-    kapt(libs.hilt.kapt)
+}
+
+fun DependencyHandlerScope.implementationDependencies() {
+    implementation(libs.dagger)
+    implementation(libs.kotlinx.dateTime)
+    implementation(libs.logging)
+}
+
+fun DependencyHandlerScope.kaptDependencies() {
+    kapt(libs.dagger.compiler)
 }
 
 fun DependencyHandlerScope.apiDependencies() {
     api(libs.kotlin.stdLib)
     api(libs.kotlin.coroutines.core)
     api(libs.kotlin.coroutines.android)
+    api(project(":util-logging"))
 }

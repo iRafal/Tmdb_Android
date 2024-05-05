@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Layout copied and modified from splash screen library  -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="false"
+    android:fitsSystemWindows="false">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/splashscreen_icon_view"
+        android:layout_width="@dimen/custom_splashscreen_icon_size_no_background"
+        android:layout_height="@dimen/custom_splashscreen_icon_size_no_background"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center" />
+
+</FrameLayout>

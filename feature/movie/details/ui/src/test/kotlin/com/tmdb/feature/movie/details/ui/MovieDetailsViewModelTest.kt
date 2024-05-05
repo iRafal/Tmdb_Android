@@ -1,13 +1,13 @@
 package com.tmdb.feature.movie.details.ui
 
-import com.tmdb.store.app.AppStore
+import com.tmdb.store.AppStore
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
 import org.mockito.kotlin.mock
 
 // TODO
@@ -18,12 +18,12 @@ class MovieDetailsViewModelTest {
     private val appStore = mock<AppStore>()
     private val viewModel = MovieDetailsViewModel(appStore)
 
-    @Before
+    @BeforeTest
     fun setup() {
         Dispatchers.setMain(dispatcher)
     }
 
-    @After
+    @AfterTest
     fun tearDown() {
         Dispatchers.resetMain()
     }

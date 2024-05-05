@@ -27,33 +27,28 @@ import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
 import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.data.model.HomeUiData.Movie
+import com.tmdb.feature.home.ui.di.TestAppComponentStore
 import com.tmdb.ui.core.compose.ComposeTestTags
 import com.tmdb.ui.core.data.UiState
 import com.tmdb.ui.core.data.UiState.Success
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
 import javax.inject.Inject
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
-import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 
-@HiltAndroidTest
 class HomeScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @get:Rule
-    val hiltRule = HiltAndroidRule(this)
-
     @Inject
     lateinit var resources: Resources
 
-    @Before
+    @BeforeTest
     fun init() {
-        hiltRule.inject()
+        TestAppComponentStore.component.inject(this)
     }
 
     @Test
@@ -64,7 +59,7 @@ class HomeScreenTest {
             HomeScreenUi(data, onEvent = {})
         }
 
-        HomeMovieSection.values().forEach { section ->
+        HomeMovieSection.entries.forEach { section ->
             onNodeWithText(resources.getString(section.labelRes), useUnmergedTree = true)
                 .assertIsDisplayed()
                 .assertHasNoClickAction()
@@ -88,7 +83,7 @@ class HomeScreenTest {
             HomeScreenUi(data, onEvent = {})
         }
 
-        HomeMovieSection.values().forEach { section ->
+        HomeMovieSection.entries.forEach { section ->
             onNodeWithText(resources.getString(section.labelRes), useUnmergedTree = true)
                 .assertIsDisplayed()
                 .assertHasNoClickAction()
@@ -113,7 +108,7 @@ class HomeScreenTest {
             HomeScreenUi(data, onEvent = {})
         }
 
-        HomeMovieSection.values().forEach { section ->
+        HomeMovieSection.entries.forEach { section ->
             onNodeWithText(resources.getString(section.labelRes), useUnmergedTree = true)
                 .assertIsDisplayed()
                 .assertHasNoClickAction()
@@ -177,7 +172,7 @@ class HomeScreenTest {
             }
 
             val allMovieSectionHeaders = onAllNodesWithTag(HomeScreenTestTags.TAG_MOVIE_SECTION_HEADER)
-            HomeMovieSection.values().forEach { section ->
+            HomeMovieSection.entries.forEach { section ->
                 allMovieSectionHeaders.filter(hasText(resources.getString(section.labelRes))).assertCountEquals(1)
             }
 
