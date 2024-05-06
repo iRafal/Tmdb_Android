@@ -4,7 +4,6 @@ plugins {
     id(GradleConfig.Plugins.KOTLIN_KAPT)
 }
 
-
 android {
     val packageName = "com.tmdb.ui.gallery"
     namespace = packageName
@@ -32,12 +31,7 @@ android {
             isShrinkResources = GradleConfig.Android.isShrinkResourcesDebug
             isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
 
-            resValue("string", "app_name", "Cspace-Ui-Gallery-Debug")
-            resValue(
-                type = "string",
-                name = "file_provider_authority",
-                value = "${GradleConfig.Android.applicationId}$applicationIdSuffix.fileProvider"
-            )
+            resValue("string", "app_name", "Tmdb-Ui-Gallery-Debug")
         }
     }
 
@@ -66,4 +60,5 @@ dependencies {
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":ui-core"))
+    implementation(libs.material.components.android)
 }
