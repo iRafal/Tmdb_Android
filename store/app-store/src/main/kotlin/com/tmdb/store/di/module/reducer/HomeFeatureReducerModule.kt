@@ -1,7 +1,7 @@
 package com.tmdb.store.di.module.reducer
 
-import com.tmdb.feature.home.reducer.HomeFeatureEffects
-import com.tmdb.feature.home.reducer.HomeFeatureSlice
+import com.tmdb.feature.home.reducer.effects.HomeFeatureEffects
+import com.tmdb.feature.home.reducer.HomeFeatureReducer
 import com.tmdb.util.di.modules.DispatchersModule
 import com.tmdb.util.di.qualifiers.ApplicationScope
 import com.tmdb.util.di.qualifiers.DispatcherIo
@@ -13,9 +13,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 object HomeFeatureReducerModule {
 
     @Provides
-    fun homeFeatureSlice(
+    fun homeFeatureReducer(
         homeFeatureEffects: HomeFeatureEffects
-    ) = HomeFeatureSlice(homeFeatureEffects)
+    ) = HomeFeatureReducer(homeFeatureEffects)
 
     @[Provides ApplicationScope]
     fun homeFeatureEffects(@DispatcherIo dispatcher: CoroutineDispatcher) = HomeFeatureEffects(dispatcher)

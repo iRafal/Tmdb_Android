@@ -3,6 +3,7 @@ package com.tmdb.feature.home.reducer
 import com.tmdb.api.model.util.ApiException
 import com.tmdb.data.model.MovieDataModel
 import com.tmdb.data.model.state.DataState
+import com.tmdb.feature.home.reducer.effects.HomeFeatureEffects
 import com.tmdb.feature.home.reducer.util.ModelUtil
 import com.tmdb.store.action.HomeAction
 import com.tmdb.store.base.Effects
@@ -32,13 +33,11 @@ class MovieSectionsLoadedReducerTest {
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
-
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL.copy(
             homeState = AppState.INITIAL.homeState.copyAsAllLoading
         )
-
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, action)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, action)
 
         assertSame(expected = effect, actual = Effects.empty())
 
@@ -68,10 +67,9 @@ class MovieSectionsLoadedReducerTest {
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
-
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL.copy(homeState = AppState.INITIAL.homeState.copyAsAllLoading)
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, action)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, action)
 
         assertSame(expected = effect, actual = Effects.empty())
 
@@ -102,9 +100,8 @@ class MovieSectionsLoadedReducerTest {
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
-
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, action)
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, action)
 
         assertSame(expected = effect, actual = Effects.empty())
 
@@ -135,9 +132,8 @@ class MovieSectionsLoadedReducerTest {
         )
 
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
-
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, action)
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, action)
 
         assertSame(expected = effect, actual = Effects.empty())
 

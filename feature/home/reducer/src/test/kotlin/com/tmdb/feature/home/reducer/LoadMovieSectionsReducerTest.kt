@@ -3,6 +3,7 @@ package com.tmdb.feature.home.reducer
 import com.tmdb.api.model.util.ApiException
 import com.tmdb.data.model.MovieDataModel
 import com.tmdb.data.model.state.DataState
+import com.tmdb.feature.home.reducer.effects.HomeFeatureEffects
 import com.tmdb.feature.home.reducer.util.ModelUtil
 import com.tmdb.store.action.HomeAction
 import com.tmdb.store.common.test.MockExecutorHolder
@@ -24,9 +25,9 @@ class LoadMovieSectionsReducerTest {
     @Test
     fun `reduce load movie sections success`() = runTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
@@ -73,9 +74,9 @@ class LoadMovieSectionsReducerTest {
     @Test
     fun `reduce load movie sections api error`() = runTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
@@ -122,9 +123,9 @@ class LoadMovieSectionsReducerTest {
     fun `reduce load movie sections network error`() = runTest {
         val dataErrorMovies = DataState.NetworkError<List<MovieDataModel>>(ApiException.NetworkError())
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
@@ -170,9 +171,9 @@ class LoadMovieSectionsReducerTest {
     fun `reduce load movie sections unknown error`() = runTest {
         val dataErrorMovies = DataState.Error<List<MovieDataModel>>(ApiException.UnknownError())
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
-        val homeFeatureSlice = HomeFeatureSlice(homeFeatureEffects)
+        val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureSlice.reducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)

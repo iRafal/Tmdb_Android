@@ -1,4 +1,5 @@
 <resources>
+    <string name="movies">Movies</string>
     <string name="load_fail">Failed to load</string>
     <string name="reload">Reload</string>
     <string name="no_internet">No internet</string>

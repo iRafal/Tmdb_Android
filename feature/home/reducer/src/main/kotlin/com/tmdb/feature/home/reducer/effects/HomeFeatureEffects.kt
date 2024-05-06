@@ -1,4 +1,4 @@
-package com.tmdb.feature.home.reducer
+package com.tmdb.feature.home.reducer.effects
 
 import com.tmdb.data.model.state.DataState
 import com.tmdb.store.action.HomeAction
@@ -12,7 +12,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class HomeFeatureEffects(private val dispatcher: CoroutineDispatcher) {
-    fun loadMovieSections() = mainEffect {
+    fun loadMovieGroups() = mainEffect {
         withContext(dispatcher) {
             val nowPlayingMovies = async { env.network.movieSource.nowPlayingMovies() }.await()
             val nowPopularMovies = async { env.network.movieSource.nowPopularMovies() }.await()
