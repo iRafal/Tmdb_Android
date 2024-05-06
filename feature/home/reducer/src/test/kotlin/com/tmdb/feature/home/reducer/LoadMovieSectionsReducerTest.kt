@@ -30,7 +30,7 @@ class LoadMovieSectionsReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
-            assertTrue(nowPopularMovies.isLoading)
+            assertTrue(popularMovies.isLoading)
             assertTrue(topRatedMovies.isLoading)
             assertTrue(upcomingMovies.isLoading)
         }
@@ -63,7 +63,7 @@ class LoadMovieSectionsReducerTest {
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
                 nowPlayingMovies = dataSuccessMovies,
-                nowPopularMovies = dataSuccessMovies,
+                popularMovies = dataSuccessMovies,
                 topRatedMovies = dataSuccessMovies,
                 upcomingMovies = dataSuccessMovies
             )
@@ -79,7 +79,7 @@ class LoadMovieSectionsReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
-            assertTrue(nowPopularMovies.isLoading)
+            assertTrue(popularMovies.isLoading)
             assertTrue(topRatedMovies.isLoading)
             assertTrue(upcomingMovies.isLoading)
         }
@@ -111,7 +111,7 @@ class LoadMovieSectionsReducerTest {
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
                 nowPlayingMovies = dataErrorMovies,
-                nowPopularMovies = dataErrorMovies,
+                popularMovies = dataErrorMovies,
                 topRatedMovies = dataErrorMovies,
                 upcomingMovies = dataErrorMovies
             )
@@ -128,7 +128,7 @@ class LoadMovieSectionsReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
-            assertTrue(nowPopularMovies.isLoading)
+            assertTrue(popularMovies.isLoading)
             assertTrue(topRatedMovies.isLoading)
             assertTrue(upcomingMovies.isLoading)
         }
@@ -159,7 +159,7 @@ class LoadMovieSectionsReducerTest {
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
                 nowPlayingMovies = dataErrorMovies,
-                nowPopularMovies = dataErrorMovies,
+                popularMovies = dataErrorMovies,
                 topRatedMovies = dataErrorMovies,
                 upcomingMovies = dataErrorMovies
             )
@@ -176,7 +176,7 @@ class LoadMovieSectionsReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
-            assertTrue(nowPopularMovies.isLoading)
+            assertTrue(popularMovies.isLoading)
             assertTrue(topRatedMovies.isLoading)
             assertTrue(upcomingMovies.isLoading)
         }
@@ -207,7 +207,7 @@ class LoadMovieSectionsReducerTest {
         verify(executor.effectExecutorScope).dispatch(
             HomeAction.MovieSectionsLoaded(
                 nowPlayingMovies = dataErrorMovies,
-                nowPopularMovies = dataErrorMovies,
+                popularMovies = dataErrorMovies,
                 topRatedMovies = dataErrorMovies,
                 upcomingMovies = dataErrorMovies
             )

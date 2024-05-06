@@ -1,17 +1,17 @@
 package com.tmdb.feature.home.ui.mapping
 
-import com.tmdb.feature.home.ui.data.mapping.HomeMovieSectionToActionMapper
-import com.tmdb.feature.home.ui.data.mapping.HomeMovieSectionToActionMapperImpl
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_PLAYING
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_POPULAR
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
+import com.tmdb.feature.home.ui.data.mapping.HomeMovieGroupToActionMapper
+import com.tmdb.feature.home.ui.data.mapping.HomeMovieGroupToActionMapperImpl
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType.NOW_PLAYING
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType.POPULAR
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType.TOP_RATED
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType.UPCOMING
 import com.tmdb.store.action.HomeAction
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class HomeMovieSectionToActionMapperTest {
-    private val mapper: HomeMovieSectionToActionMapper = HomeMovieSectionToActionMapperImpl()
+class MovieGroupTypeToActionMapperTest {
+    private val mapper: HomeMovieGroupToActionMapper = HomeMovieGroupToActionMapperImpl()
 
     @Test
     fun `test map Now Playing section to Action`() {
@@ -23,10 +23,10 @@ class HomeMovieSectionToActionMapperTest {
 
     @Test
     fun `test map Now Popular section to Action`() {
-        val section = NOW_POPULAR
+        val section = POPULAR
         val actual = mapper.map(section)
 
-        assertEquals(expected = HomeAction.ReloadNowPopularMovies, actual = actual)
+        assertEquals(expected = HomeAction.ReloadPopularMovies, actual = actual)
     }
 
     @Test

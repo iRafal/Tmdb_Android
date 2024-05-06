@@ -4,9 +4,8 @@ import com.tmdb.store.base.Effect
 import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.store.state.HomeFeatureState
 
-fun HomeFeatureState.reduceReloadTopRatedMovies(
+fun HomeFeatureState.reduceReloadAllMovies(
     homeFeatureEffects: HomeFeatureEffects
 ): Pair<HomeFeatureState, Effect<AppEnv>?> {
-    val newState = this.copy(topRatedMovies = topRatedMovies.copyAsLoading)
-    return newState to homeFeatureEffects.loadTopRatedMovies()
+    return this.copyAsFullReload to homeFeatureEffects.loadMovieSections()
 }

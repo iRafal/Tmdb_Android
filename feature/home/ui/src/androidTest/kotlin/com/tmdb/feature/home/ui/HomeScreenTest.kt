@@ -16,21 +16,14 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.tmdb.feature.home.ui.HomeUiEvent.NavigateBack
-import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
-import com.tmdb.feature.home.ui.HomeUiEvent.ReloadMovieSection
 import com.tmdb.feature.home.ui.compose.assertHasNoLongClickAction
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_PLAYING
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_POPULAR
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType
 import com.tmdb.feature.home.ui.data.model.HomeUiData
-import com.tmdb.feature.home.ui.data.model.HomeUiData.Movie
+import com.tmdb.feature.home.ui.data.model.Movie
+import com.tmdb.feature.home.ui.data.model.MovieGroup
+import com.tmdb.feature.home.ui.data.model.MovieGroup.Error.NetworkError
 import com.tmdb.feature.home.ui.di.TestAppComponentStore
 import com.tmdb.ui.core.compose.ComposeTestTags
-import com.tmdb.ui.core.data.UiState
-import com.tmdb.ui.core.data.UiState.Success
 import javax.inject.Inject
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -59,8 +52,13 @@ class HomeScreenTest {
             HomeScreenUi(data, onEvent = {})
         }
 
-        HomeMovieSection.entries.forEach { section ->
-            onNodeWithText(resources.getString(section.labelRes), useUnmergedTree = true)
+        listOf(
+            R.string.now_playing,
+            R.string.popular,
+            R.string.top_rated,
+            R.string.upcoming
+        ).forEach {
+            onNodeWithText(resources.getString(it), useUnmergedTree = true)
                 .assertIsDisplayed()
                 .assertHasNoClickAction()
         }
@@ -71,11 +69,36 @@ class HomeScreenTest {
     @Test
     fun homeScreenErrorState(): Unit = with(composeTestRule) {
         val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.Error(),
-                NOW_POPULAR to UiState.Error(),
-                TOP_RATED to UiState.Error(),
-                UPCOMING to UiState.Error()
+            isFullReload = false,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                )
             )
         )
 
@@ -83,8 +106,13 @@ class HomeScreenTest {
             HomeScreenUi(data, onEvent = {})
         }
 
-        HomeMovieSection.entries.forEach { section ->
-            onNodeWithText(resources.getString(section.labelRes), useUnmergedTree = true)
+        listOf(
+            R.string.now_playing,
+            R.string.popular,
+            R.string.top_rated,
+            R.string.upcoming
+        ).forEach {
+            onNodeWithText(resources.getString(it), useUnmergedTree = true)
                 .assertIsDisplayed()
                 .assertHasNoClickAction()
         }
@@ -96,11 +124,36 @@ class HomeScreenTest {
     @Test
     fun homeScreenNetworkErrorState(): Unit = with(composeTestRule) {
         val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.NetworkError(),
-                NOW_POPULAR to UiState.NetworkError(),
-                TOP_RATED to UiState.NetworkError(),
-                UPCOMING to UiState.NetworkError()
+            isFullReload = false,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = NetworkError
+                )
             )
         )
 
@@ -108,8 +161,13 @@ class HomeScreenTest {
             HomeScreenUi(data, onEvent = {})
         }
 
-        HomeMovieSection.entries.forEach { section ->
-            onNodeWithText(resources.getString(section.labelRes), useUnmergedTree = true)
+        listOf(
+            R.string.now_playing,
+            R.string.popular,
+            R.string.top_rated,
+            R.string.upcoming
+        ).forEach {
+            onNodeWithText(resources.getString(it), useUnmergedTree = true)
                 .assertIsDisplayed()
                 .assertHasNoClickAction()
         }
@@ -145,11 +203,36 @@ class HomeScreenTest {
                 )
             )
             val data = HomeUiData(
-                mapOf(
-                    NOW_PLAYING to Success(movies),
-                    NOW_POPULAR to Success(movies),
-                    TOP_RATED to Success(movies),
-                    UPCOMING to Success(movies)
+                isFullReload = false,
+                listOf(
+                    MovieGroup(
+                        title = R.string.popular,
+                        type = HomeMovieSectionType.POPULAR,
+                        movies = movies,
+                        isLoading = false,
+                        error = null
+                    ),
+                    MovieGroup(
+                        title = R.string.top_rated,
+                        type = HomeMovieSectionType.TOP_RATED,
+                        movies = movies,
+                        isLoading = false,
+                        error = null
+                    ),
+                    MovieGroup(
+                        title = R.string.now_playing,
+                        type = HomeMovieSectionType.NOW_PLAYING,
+                        movies = movies,
+                        isLoading = false,
+                        error = null
+                    ),
+                    MovieGroup(
+                        title = R.string.upcoming,
+                        type = HomeMovieSectionType.UPCOMING,
+                        movies = movies,
+                        isLoading = false,
+                        error = null
+                    )
                 )
             )
 
@@ -157,12 +240,17 @@ class HomeScreenTest {
 
             val onEvent: (HomeUiEvent) -> Unit = { event ->
                 when (event) {
-                    NavigateBack -> {
-                    }
-                    is OpenMovie -> {
+                    is HomeUiEvent.OpenMovie -> {
                         isItemClicked = true
                     }
-                    is ReloadMovieSection -> {
+
+                    HomeUiEvent.NavigateBack -> {
+                    }
+
+                    is HomeUiEvent.ReloadMovieSection -> {
+                    }
+
+                    HomeUiEvent.ReloadAll -> {
                     }
                 }
             }
@@ -172,8 +260,13 @@ class HomeScreenTest {
             }
 
             val allMovieSectionHeaders = onAllNodesWithTag(HomeScreenTestTags.TAG_MOVIE_SECTION_HEADER)
-            HomeMovieSection.entries.forEach { section ->
-                allMovieSectionHeaders.filter(hasText(resources.getString(section.labelRes))).assertCountEquals(1)
+            listOf(
+                R.string.now_playing,
+                R.string.popular,
+                R.string.top_rated,
+                R.string.upcoming
+            ).forEach {
+                allMovieSectionHeaders.filter(hasText(resources.getString(it))).assertCountEquals(1)
             }
 
             movies.first().let { firstMovie ->

@@ -27,12 +27,22 @@ private fun AppState.reduce(
     homeFeatureEffects: HomeFeatureEffects
 ): Pair<HomeFeatureState, Effect<AppEnv>?> {
     return when (action) {
-        is HomeAction.ReloadNowPlayingMovies -> this.homeState.reduceReloadNowPlayingMovies(action)
-        is HomeAction.ReloadNowPopularMovies -> this.homeState.reduceReloadNowPopularMovies(action)
-        is HomeAction.ReloadTopRatedMovies -> this.homeState.reduceReloadTopRatedMovies(action)
-        is HomeAction.ReloadUpcomingMovies -> this.homeState.reduceReloadUpcomingMovies(action)
-        is HomeAction.LoadMovieSections -> this.homeState.reduceLoadMovieSections(action, homeFeatureEffects)
-        is HomeAction.MovieSectionsLoaded -> this.homeState.reduceMovieSectionsLoaded(action)
+        is HomeAction.ReloadNowPlayingMovies -> homeState.reduceReloadNowPlayingMovies(homeFeatureEffects)
+        is HomeAction.NowPlayingMoviesLoaded -> homeState.reduceNowPlayingMoviesLoaded(action)
+
+        is HomeAction.ReloadPopularMovies -> homeState.reduceReloadPopularMovies(homeFeatureEffects)
+        is HomeAction.PopularMoviesLoaded -> homeState.reducePopularMoviesLoaded(action)
+
+        is HomeAction.ReloadTopRatedMovies -> homeState.reduceReloadTopRatedMovies(homeFeatureEffects)
+        is HomeAction.TopRatedMoviesLoaded -> homeState.reduceTopRatedMoviesLoaded(action)
+
+        is HomeAction.ReloadUpcomingMovies -> homeState.reduceReloadUpcomingMovies(homeFeatureEffects)
+        is HomeAction.UpcomingMoviesLoaded -> homeState.reduceUpcomingMoviesLoaded(action)
+
+        is HomeAction.LoadMovieSections -> homeState.reduceLoadMovieSections(homeFeatureEffects)
+        is HomeAction.MovieSectionsLoaded -> homeState.reduceMovieSectionsLoaded(action)
+
+        is HomeAction.ReloadAllMovies -> homeState.reduceReloadAllMovies(homeFeatureEffects)
     }
 }
 
@@ -51,12 +61,22 @@ class HomeFeatureReducer(
         homeFeatureEffects: HomeFeatureEffects
     ): Pair<HomeFeatureState, Effect<AppEnv>?> {
         return when (action) {
-            is HomeAction.ReloadNowPlayingMovies -> this.homeState.reduceReloadNowPlayingMovies(action)
-            is HomeAction.ReloadNowPopularMovies -> this.homeState.reduceReloadNowPopularMovies(action)
-            is HomeAction.ReloadTopRatedMovies -> this.homeState.reduceReloadTopRatedMovies(action)
-            is HomeAction.ReloadUpcomingMovies -> this.homeState.reduceReloadUpcomingMovies(action)
-            is HomeAction.LoadMovieSections -> this.homeState.reduceLoadMovieSections(action, homeFeatureEffects)
-            is HomeAction.MovieSectionsLoaded -> this.homeState.reduceMovieSectionsLoaded(action)
+            is HomeAction.ReloadNowPlayingMovies -> homeState.reduceReloadNowPlayingMovies(homeFeatureEffects)
+            is HomeAction.NowPlayingMoviesLoaded -> homeState.reduceNowPlayingMoviesLoaded(action)
+
+            is HomeAction.ReloadPopularMovies -> homeState.reduceReloadPopularMovies(homeFeatureEffects)
+            is HomeAction.PopularMoviesLoaded -> homeState.reducePopularMoviesLoaded(action)
+
+            is HomeAction.ReloadTopRatedMovies -> homeState.reduceReloadTopRatedMovies(homeFeatureEffects)
+            is HomeAction.TopRatedMoviesLoaded -> homeState.reduceTopRatedMoviesLoaded(action)
+
+            is HomeAction.ReloadUpcomingMovies -> homeState.reduceReloadUpcomingMovies(homeFeatureEffects)
+            is HomeAction.UpcomingMoviesLoaded -> homeState.reduceUpcomingMoviesLoaded(action)
+
+            is HomeAction.LoadMovieSections -> homeState.reduceLoadMovieSections(homeFeatureEffects)
+            is HomeAction.MovieSectionsLoaded -> homeState.reduceMovieSectionsLoaded(action)
+
+            is HomeAction.ReloadAllMovies -> homeState.reduceReloadAllMovies(homeFeatureEffects)
         }
     }
 }

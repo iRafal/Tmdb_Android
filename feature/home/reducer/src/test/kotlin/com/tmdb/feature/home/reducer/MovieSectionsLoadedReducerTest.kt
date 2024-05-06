@@ -26,7 +26,7 @@ class MovieSectionsLoadedReducerTest {
 
         val action = HomeAction.MovieSectionsLoaded(
             nowPlayingMovies = dataSuccessMovies,
-            nowPopularMovies = dataSuccessMovies,
+            popularMovies = dataSuccessMovies,
             topRatedMovies = dataSuccessMovies,
             upcomingMovies = dataSuccessMovies
         )
@@ -44,12 +44,12 @@ class MovieSectionsLoadedReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.movies?.isSuccess == true)
-            assertTrue(nowPopularMovies.movies?.isSuccess == true)
+            assertTrue(popularMovies.movies?.isSuccess == true)
             assertTrue(topRatedMovies.movies?.isSuccess == true)
             assertTrue(upcomingMovies.movies?.isSuccess == true)
 
             assertEquals(expected = dataMovies, actual = (nowPlayingMovies.movies as DataState.Success).data)
-            assertEquals(expected = dataMovies, actual = (nowPopularMovies.movies as DataState.Success).data)
+            assertEquals(expected = dataMovies, actual = (popularMovies.movies as DataState.Success).data)
             assertEquals(expected = dataMovies, actual = (topRatedMovies.movies as DataState.Success).data)
             assertEquals(expected = dataMovies, actual = (upcomingMovies.movies as DataState.Success).data)
         }
@@ -62,7 +62,7 @@ class MovieSectionsLoadedReducerTest {
 
         val action = HomeAction.MovieSectionsLoaded(
             nowPlayingMovies = dataNetworkErrorMovies,
-            nowPopularMovies = dataNetworkErrorMovies,
+            popularMovies = dataNetworkErrorMovies,
             topRatedMovies = dataNetworkErrorMovies,
             upcomingMovies = dataNetworkErrorMovies
         )
@@ -77,12 +77,12 @@ class MovieSectionsLoadedReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.movies?.isNetworkError == true)
-            assertTrue(nowPopularMovies.movies?.isNetworkError == true)
+            assertTrue(popularMovies.movies?.isNetworkError == true)
             assertTrue(topRatedMovies.movies?.isNetworkError == true)
             assertTrue(upcomingMovies.movies?.isNetworkError == true)
 
             assertTrue((nowPlayingMovies.movies as DataState.NetworkError).cause is ApiException.NetworkError)
-            assertTrue((nowPopularMovies.movies as DataState.NetworkError).cause is ApiException.NetworkError)
+            assertTrue((popularMovies.movies as DataState.NetworkError).cause is ApiException.NetworkError)
             assertTrue((topRatedMovies.movies as DataState.NetworkError).cause is ApiException.NetworkError)
             assertTrue((upcomingMovies.movies as DataState.NetworkError).cause is ApiException.NetworkError)
         }
@@ -96,7 +96,7 @@ class MovieSectionsLoadedReducerTest {
 
         val action = HomeAction.MovieSectionsLoaded(
             nowPlayingMovies = dataApiErrorMovies,
-            nowPopularMovies = dataApiErrorMovies,
+            popularMovies = dataApiErrorMovies,
             topRatedMovies = dataApiErrorMovies,
             upcomingMovies = dataApiErrorMovies
         )
@@ -110,12 +110,12 @@ class MovieSectionsLoadedReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.movies?.isError == true)
-            assertTrue(nowPopularMovies.movies?.isError == true)
+            assertTrue(popularMovies.movies?.isError == true)
             assertTrue(topRatedMovies.movies?.isError == true)
             assertTrue(upcomingMovies.movies?.isError == true)
 
             assertTrue((nowPlayingMovies.movies as DataState.Error).cause is ApiException.BadRequest)
-            assertTrue((nowPopularMovies.movies as DataState.Error).cause is ApiException.BadRequest)
+            assertTrue((popularMovies.movies as DataState.Error).cause is ApiException.BadRequest)
             assertTrue((topRatedMovies.movies as DataState.Error).cause is ApiException.BadRequest)
             assertTrue((upcomingMovies.movies as DataState.Error).cause is ApiException.BadRequest)
         }
@@ -129,7 +129,7 @@ class MovieSectionsLoadedReducerTest {
 
         val action = HomeAction.MovieSectionsLoaded(
             nowPlayingMovies = dataUnknownErrorMovies,
-            nowPopularMovies = dataUnknownErrorMovies,
+            popularMovies = dataUnknownErrorMovies,
             topRatedMovies = dataUnknownErrorMovies,
             upcomingMovies = dataUnknownErrorMovies
         )
@@ -143,12 +143,12 @@ class MovieSectionsLoadedReducerTest {
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.movies?.isError == true)
-            assertTrue(nowPopularMovies.movies?.isError == true)
+            assertTrue(popularMovies.movies?.isError == true)
             assertTrue(topRatedMovies.movies?.isError == true)
             assertTrue(upcomingMovies.movies?.isError == true)
 
             assertTrue((nowPlayingMovies.movies as DataState.Error).cause is ApiException.UnknownError)
-            assertTrue((nowPopularMovies.movies as DataState.Error).cause is ApiException.UnknownError)
+            assertTrue((popularMovies.movies as DataState.Error).cause is ApiException.UnknownError)
             assertTrue((topRatedMovies.movies as DataState.Error).cause is ApiException.UnknownError)
             assertTrue((upcomingMovies.movies as DataState.Error).cause is ApiException.UnknownError)
         }

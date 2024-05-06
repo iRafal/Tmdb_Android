@@ -3,11 +3,11 @@ package com.tmdb.feature.home.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tmdb.feature.home.ui.data.mapping.HomeFeatureStateToUiStateMapper
-import com.tmdb.feature.home.ui.data.mapping.HomeMovieSectionToActionMapper
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection
+import com.tmdb.feature.home.ui.data.mapping.HomeMovieGroupToActionMapper
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType
 import com.tmdb.feature.home.ui.data.model.HomeUiData
-import com.tmdb.store.action.HomeAction
 import com.tmdb.store.AppStore
+import com.tmdb.store.action.HomeAction
 import com.tmdb.store.feature.HomeFeature
 import com.tmdb.store.state.AppState
 import javax.inject.Inject
@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.stateIn
 class HomeViewModel @Inject constructor(
     private val store: AppStore,
     private val homeFeatureStateToUiStateMapper: HomeFeatureStateToUiStateMapper,
-    private val homeMovieSectionToActionMapper: HomeMovieSectionToActionMapper
+    private val homeMovieGroupToActionMapper: HomeMovieGroupToActionMapper
 ) : ViewModel() {
 
     val uiState: HomeUiData
@@ -34,12 +34,20 @@ class HomeViewModel @Inject constructor(
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.Eagerly, HomeUiData.INITIAL)
 
-    val onReloadMovieSection: (HomeMovieSection) -> Unit = { movieSection ->
-        store.dispatch(homeMovieSectionToActionMapper.map(movieSection))
+    val onReloadMovieSection: (HomeMovieSectionType) -> Unit = { movieSection ->
+        store.dispatch(homeMovieGroupToActionMapper.map(movieSection))
+    }
+
+    val onReloadAll: () -> Unit = {
+        store.dispatch(HomeAction.ReloadAllMovies)
     }
 
     init {
         store.setFeatureScope(HomeFeature, viewModelScope)
         store.dispatch(HomeAction.LoadMovieSections)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }

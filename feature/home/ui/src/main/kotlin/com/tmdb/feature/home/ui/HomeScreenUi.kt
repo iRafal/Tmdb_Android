@@ -1,36 +1,73 @@
+@file:OptIn(ExperimentalMaterialApi::class)
+
 package com.tmdb.feature.home.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
-import com.tmdb.feature.home.ui.HomeUiEvent.ReloadMovieSection
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_PLAYING
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.NOW_POPULAR
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.TOP_RATED
-import com.tmdb.feature.home.ui.data.model.HomeMovieSection.UPCOMING
+import com.tmdb.feature.home.ui.components.MovieSection
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType
 import com.tmdb.feature.home.ui.data.model.HomeUiData
-import com.tmdb.feature.home.ui.data.model.HomeUiData.Movie
+import com.tmdb.feature.home.ui.data.model.Movie
+import com.tmdb.feature.home.ui.data.model.MovieGroup
 import com.tmdb.ui.core.compose.theme.TmdbTheme
-import com.tmdb.ui.core.compose.ui.ScrollableColumn
-import com.tmdb.ui.core.data.UiState
 import kotlinx.datetime.LocalDate
 
 @Preview(showBackground = false, showSystemUi = false)
 @Composable
-fun HomeAllSectionsLoadingPreview() {
+private fun HomeAllSectionsLoadingPreview() {
     TmdbTheme {
         HomeScreenUi(
-            HomeUiData.INITIAL,
+            HomeUiData(
+                movieGroups = listOf(
+                    MovieGroup(
+                        title = R.string.popular,
+                        type = HomeMovieSectionType.POPULAR,
+                        movies = emptyList(),
+                        isLoading = true,
+                        error = null
+                    ),
+                    MovieGroup(
+                        title = R.string.top_rated,
+                        type = HomeMovieSectionType.TOP_RATED,
+                        movies = emptyList(),
+                        isLoading = true,
+                        error = null
+                    ),
+                    MovieGroup(
+                        title = R.string.now_playing,
+                        type = HomeMovieSectionType.NOW_PLAYING,
+                        movies = emptyList(),
+                        isLoading = true,
+                        error = null
+                    ),
+                    MovieGroup(
+                        title = R.string.upcoming,
+                        type = HomeMovieSectionType.UPCOMING,
+                        movies = emptyList(),
+                        isLoading = true,
+                        error = null
+                    )
+                )
+            ),
             onEvent = { }
         )
     }
@@ -38,14 +75,39 @@ fun HomeAllSectionsLoadingPreview() {
 
 @Preview(showBackground = false, showSystemUi = false)
 @Composable
-fun HomeAllSectionsErrorPreview() {
+private fun HomeAllSectionsErrorPreview() {
     TmdbTheme {
         val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.Error(),
-                NOW_POPULAR to UiState.Error(),
-                TOP_RATED to UiState.Error(),
-                UPCOMING to UiState.Error()
+            isFullReload = false,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                )
             )
         )
         HomeScreenUi(
@@ -57,14 +119,107 @@ fun HomeAllSectionsErrorPreview() {
 
 @Preview(showBackground = false, showSystemUi = false)
 @Composable
-fun HomeAllSectionsNetworkErrorPreview() {
+private fun HomeAllSectionsNetworkErrorPreview() {
     TmdbTheme {
         val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.NetworkError(),
-                NOW_POPULAR to UiState.NetworkError(),
-                TOP_RATED to UiState.NetworkError(),
-                UPCOMING to UiState.NetworkError()
+            isFullReload = false,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.NetworkError
+                )
+            )
+        )
+        HomeScreenUi(
+            data,
+            onEvent = { }
+        )
+    }
+}
+
+private val moviesPreview = listOf(
+    Movie(
+        id = 1,
+        title = "Movie 1",
+        averageVote = 70.7,
+        releaseDate = LocalDate.parse("2022-01-01"),
+        posterUrl = null
+    ),
+    Movie(
+        id = 2,
+        title = "Movie 2",
+        averageVote = 20.7,
+        releaseDate = LocalDate.parse("2020-01-01"),
+        posterUrl = null
+    ),
+    Movie(
+        id = 3,
+        title = "Movie 3",
+        averageVote = 95.7,
+        releaseDate = LocalDate.parse("2021-01-01"),
+        posterUrl = null
+    )
+)
+
+@Preview(showBackground = false, showSystemUi = false)
+@Composable
+private fun HomeStateSuccessPreview() {
+    TmdbTheme {
+        val data = HomeUiData(
+            isFullReload = false,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                )
             )
         )
         HomeScreenUi(
@@ -76,37 +231,39 @@ fun HomeAllSectionsNetworkErrorPreview() {
 
 @Preview(showBackground = false, showSystemUi = false)
 @Composable
-fun HomeStateSuccessPreview() {
+private fun HomeMixedStatesPreview() {
     TmdbTheme {
-        val movies = listOf(
-            Movie(
-                id = 1,
-                title = "Movie 1",
-                averageVote = 70.7,
-                releaseDate = LocalDate.parse("2022-01-01"),
-                posterUrl = null
-            ),
-            Movie(
-                id = 2,
-                title = "Movie 2",
-                averageVote = 20.7,
-                releaseDate = LocalDate.parse("2020-01-01"),
-                posterUrl = null
-            ),
-            Movie(
-                id = 3,
-                title = "Movie 3",
-                averageVote = 95.7,
-                releaseDate = LocalDate.parse("2021-01-01"),
-                posterUrl = null
-            )
-        )
         val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.Success(movies),
-                NOW_POPULAR to UiState.Success(movies),
-                TOP_RATED to UiState.Success(movies),
-                UPCOMING to UiState.Success(movies)
+            isFullReload = false,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.NetworkError
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = emptyList(),
+                    isLoading = false,
+                    error = MovieGroup.Error.OtherError
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = emptyList(),
+                    isLoading = true,
+                    error = null
+                )
             )
         )
         HomeScreenUi(
@@ -118,37 +275,39 @@ fun HomeStateSuccessPreview() {
 
 @Preview(showBackground = false, showSystemUi = false)
 @Composable
-fun HomeMixedStatesPreview() {
+private fun HomeFullReloadPreview() {
     TmdbTheme {
-        val movies = listOf(
-            Movie(
-                id = 1,
-                title = "Movie 1",
-                averageVote = 70.7,
-                releaseDate = LocalDate.parse("2022-01-01"),
-                posterUrl = null
-            ),
-            Movie(
-                id = 2,
-                title = "Movie 2",
-                averageVote = 20.7,
-                releaseDate = LocalDate.parse("2020-01-01"),
-                posterUrl = null
-            ),
-            Movie(
-                id = 3,
-                title = "Movie 3",
-                averageVote = 95.7,
-                releaseDate = LocalDate.parse("2021-01-01"),
-                posterUrl = null
-            )
-        )
         val data = HomeUiData(
-            mapOf(
-                NOW_PLAYING to UiState.Success(movies),
-                NOW_POPULAR to UiState.NetworkError(),
-                TOP_RATED to UiState.Error(),
-                UPCOMING to UiState.Loading()
+            isFullReload = true,
+            listOf(
+                MovieGroup(
+                    title = R.string.popular,
+                    type = HomeMovieSectionType.POPULAR,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.top_rated,
+                    type = HomeMovieSectionType.TOP_RATED,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.now_playing,
+                    type = HomeMovieSectionType.NOW_PLAYING,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                ),
+                MovieGroup(
+                    title = R.string.upcoming,
+                    type = HomeMovieSectionType.UPCOMING,
+                    movies = moviesPreview,
+                    isLoading = false,
+                    error = null
+                )
             )
         )
         HomeScreenUi(
@@ -159,51 +318,70 @@ fun HomeMixedStatesPreview() {
 }
 
 @Composable
-fun HomeScreenUi(
+internal fun HomeScreenUi(
     data: HomeUiData,
     onEvent: (HomeUiEvent) -> Unit
 ) {
     Home(
         data,
-        onReloadSection = { section -> onEvent(ReloadMovieSection(section)) },
-        onMovieClick = { movieId -> onEvent(OpenMovie(movieId)) }
+        onReloadAll = { onEvent(HomeUiEvent.ReloadAll) },
+        onReloadSection = { section -> onEvent(HomeUiEvent.ReloadMovieSection(section)) },
+        onMovieClick = { movieId -> onEvent(HomeUiEvent.OpenMovie(movieId)) }
     )
 }
 
 @Composable
-fun Home(
+internal fun Home(
     data: HomeUiData,
-    onReloadSection: (HomeMovieSection) -> Unit,
+    onReloadAll: () -> Unit,
+    onReloadSection: (HomeMovieSectionType) -> Unit,
     onMovieClick: (movieId: Int) -> Unit
 ) {
     Scaffold(
         modifier = Modifier.testTag(HomeScreenTestTags.TAG_HOME_CONTENT),
         content = {
             Box(modifier = Modifier.padding(it)) {
-                HomeContent(data, onReloadSection, onMovieClick)
+                HomeContent(
+                    data,
+                    onReloadAll = onReloadAll,
+                    onReloadSection = onReloadSection,
+                    onMovieClick = onMovieClick
+                )
             }
         }
     )
 }
 
 @Composable
-fun HomeContent(
+internal fun HomeContent(
     data: HomeUiData,
-    onReloadSection: (HomeMovieSection) -> Unit,
+    onReloadAll: () -> Unit,
+    onReloadSection: (HomeMovieSectionType) -> Unit,
     onMovieClick: (movieId: Int) -> Unit
 ) {
-    ScrollableColumn(
-        Modifier.padding(horizontal = 16.dp, vertical = 32.dp)
-    ) {
-        data.movieSections.forEach { (section, sectionState) ->
-            MovieSection(
-                title = stringResource(id = section.labelRes),
-                sectionState = sectionState,
-                onReloadSection = { onReloadSection(section) },
-                onMovieClick = onMovieClick
-            )
+    var isRefreshing by remember { mutableStateOf(false) }
+    isRefreshing = data.isFullReload
 
-            Spacer(modifier = Modifier.height(16.dp))
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isRefreshing,
+        onRefresh = {
+            onReloadAll.invoke()
         }
+    )
+
+    Box(Modifier.pullRefresh(pullRefreshState)) {
+        LazyColumn {
+            items(data.movieGroups, key = { it.type }) { group ->
+                MovieSection(
+                    group,
+                    onReloadSection = { onReloadSection(group.type) },
+                    onMovieClick = onMovieClick
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+
+        PullRefreshIndicator(refreshing = isRefreshing, state = pullRefreshState, Modifier.align(Alignment.TopCenter))
     }
 }

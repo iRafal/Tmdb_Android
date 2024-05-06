@@ -28,10 +28,54 @@ class HomeFeatureEffects(private val dispatcher: CoroutineDispatcher) {
 
             HomeAction.MovieSectionsLoaded(
                 nowPlayingMovies = nowPlayingMovies,
-                nowPopularMovies = nowPopularMovies,
+                popularMovies = nowPopularMovies,
                 topRatedMovies = topRatedMovies,
                 upcomingMovies = upcomingMovies
             )
+        }
+    }
+
+    fun loadNowPlayingMovies() = mainEffect {
+        withContext(dispatcher) {
+            val nowPlayingMovies = async { env.network.movieSource.nowPlayingMovies() }.await()
+
+            nowPlayingMovies.getDataIfSuccessOrDefault().let {
+                if (it.isNotEmpty()) env.database.movieSource.insertAll(it)
+            }
+            HomeAction.NowPlayingMoviesLoaded(nowPlayingMovies)
+        }
+    }
+
+    fun loadPopularMovies() = mainEffect {
+        withContext(dispatcher) {
+            val popularMovies = async { env.network.movieSource.nowPopularMovies() }.await()
+
+            popularMovies.getDataIfSuccessOrDefault().let {
+                if (it.isNotEmpty()) env.database.movieSource.insertAll(it)
+            }
+            HomeAction.PopularMoviesLoaded(popularMovies)
+        }
+    }
+
+    fun loadTopRatedMovies() = mainEffect {
+        withContext(dispatcher) {
+            val topRatedMovies = async { env.network.movieSource.topRatedMovies() }.await()
+
+            topRatedMovies.getDataIfSuccessOrDefault().let {
+                if (it.isNotEmpty()) env.database.movieSource.insertAll(it)
+            }
+            HomeAction.TopRatedMoviesLoaded(topRatedMovies)
+        }
+    }
+
+    fun loadUpcomingMovies() = mainEffect {
+        withContext(dispatcher) {
+            val upcomingMovies = async { env.network.movieSource.upcomingMovies() }.await()
+
+            upcomingMovies.getDataIfSuccessOrDefault().let {
+                if (it.isNotEmpty()) env.database.movieSource.insertAll(it)
+            }
+            HomeAction.UpcomingMoviesLoaded(upcomingMovies)
         }
     }
 
