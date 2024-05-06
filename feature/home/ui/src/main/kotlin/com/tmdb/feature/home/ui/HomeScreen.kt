@@ -31,8 +31,8 @@ fun HomeScreen(
                     MovieDetails.getRouteNameWithArguments(event.id.toString())
                 )
             }
-            is HomeUiEvent.ReloadMovieSection -> viewModel.onReloadMovieGroup(event.movieSection)
-            HomeUiEvent.ReloadAll -> viewModel.onReloadAll()
+            is HomeUiEvent.ReloadMovieSection -> viewModel.reloadMovieGroup(event.movieSection)
+            HomeUiEvent.ReloadAll -> viewModel.reloadAllMovies()
         }
     }
     HomeScreenUi(data, onEvent)

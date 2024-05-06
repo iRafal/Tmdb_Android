@@ -2,6 +2,7 @@ package com.tmdb.feature.home.ui
 
 import com.tmdb.feature.home.ui.data.mapping.HomeFeatureStateToUiStateMapper
 import com.tmdb.feature.home.ui.data.mapping.HomeMovieGroupToActionMapper
+import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType.NOW_PLAYING
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.store.AppStore
 import com.tmdb.store.state.AppState
@@ -26,6 +27,7 @@ class HomeViewModelTest {
     private val homeMovieGroupToActionMapper = mock<HomeMovieGroupToActionMapper>()
     private val viewModel = HomeViewModel(
         appStore,
+        dispatcher,
         homeFeatureStateToUiStateMapper,
         homeMovieGroupToActionMapper
     )
@@ -47,9 +49,9 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun onReloadMovieSection() {
+    fun `ReloadMovieGroup test`() {
         whenever(appStore.state).thenReturn(AppState.INITIAL)
-        viewModel.onReloadMovieGroup
+        viewModel.reloadMovieGroup(NOW_PLAYING)
         // TODO
         /*
          whenever(appStore.state).thenReturn(AppState.Initial)

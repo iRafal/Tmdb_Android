@@ -10,8 +10,9 @@ import com.tmdb.store.AppStore
 import com.tmdb.store.action.HomeAction
 import com.tmdb.store.feature.HomeFeature
 import com.tmdb.store.state.AppState
+import com.tmdb.util.di.qualifiers.DispatcherIo
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.stateIn
 
 class HomeViewModel @Inject constructor(
     private val store: AppStore,
+    @DispatcherIo private val dispatcherIo: CoroutineDispatcher,
     private val homeFeatureStateToUiStateMapper: HomeFeatureStateToUiStateMapper,
     private val homeMovieGroupToActionMapper: HomeMovieGroupToActionMapper
 ) : ViewModel() {
@@ -31,14 +33,14 @@ class HomeViewModel @Inject constructor(
 
     val uiStateFlow: StateFlow<HomeUiData> = state
         .map { appState -> homeFeatureStateToUiStateMapper.map(appState.homeState) }
-        .flowOn(Dispatchers.IO)
+        .flowOn(dispatcherIo)
         .stateIn(viewModelScope, SharingStarted.Eagerly, HomeUiData.INITIAL)
 
-    val onReloadMovieGroup: (HomeMovieSectionType) -> Unit = { movieSection ->
+    fun reloadMovieGroup(movieSection: HomeMovieSectionType) {
         store.dispatch(homeMovieGroupToActionMapper.map(movieSection))
     }
 
-    val onReloadAll: () -> Unit = {
+    fun reloadAllMovies() {
         store.dispatch(HomeAction.ReloadAllMovies)
     }
 

@@ -1,6 +1,5 @@
 package com.tmdb.util.di.modules
 
-import com.tmdb.util.di.qualifiers.ApplicationScope
 import com.tmdb.util.di.qualifiers.DispatcherDefault
 import com.tmdb.util.di.qualifiers.DispatcherIo
 import com.tmdb.util.di.qualifiers.DispatcherMain
@@ -14,15 +13,15 @@ import kotlinx.coroutines.Dispatchers
 @Module
 object DispatchersModule {
 
-    @[DispatcherIo Provides ApplicationScope]
+    @[DispatcherIo Provides]
     fun ioDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @[DispatcherMain Provides ApplicationScope]
+    @[DispatcherMain Provides]
     fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
-    @[DispatcherDefault Provides ApplicationScope]
+    @[DispatcherDefault Provides]
     fun defaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
-    @[DispatcherUnconfined Provides ApplicationScope]
+    @[DispatcherUnconfined Provides]
     fun unconfinedDispatcher(): CoroutineDispatcher = Dispatchers.Unconfined
 }
