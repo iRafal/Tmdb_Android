@@ -62,4 +62,5 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":store:app-store"))
 
     implementation(libs.dagger)
+    implementation(libs.compose.material)
 }

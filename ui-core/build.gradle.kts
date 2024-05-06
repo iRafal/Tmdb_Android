@@ -74,8 +74,8 @@ fun DependencyHandlerScope.apiDependencies() {
     api(libs.compose.constraintLayout)
     api(libs.compose.navigation)
     api(libs.compose.ui)
-    api(libs.compose.material.iconsExtended)
     api(libs.compose.ui.preview)
+    api(libs.compose.material.iconsExtended)
     api(libs.compose.material3)
 
     api(libs.coil)
