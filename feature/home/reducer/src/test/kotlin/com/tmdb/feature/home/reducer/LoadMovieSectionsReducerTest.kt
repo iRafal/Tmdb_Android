@@ -27,7 +27,7 @@ class LoadMovieSectionsReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
@@ -76,7 +76,7 @@ class LoadMovieSectionsReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
@@ -125,7 +125,7 @@ class LoadMovieSectionsReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)
@@ -173,7 +173,7 @@ class LoadMovieSectionsReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.LoadMovieSections)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.LoadMovieSections)
 
         with(homeFeatureState) {
             assertTrue(nowPlayingMovies.isLoading)

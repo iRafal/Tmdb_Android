@@ -28,7 +28,7 @@ class ReloadNowPlayingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadNowPlayingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadNowPlayingMovies)
 
         assertTrue(homeFeatureState.nowPlayingMovies.isLoading)
 
@@ -62,7 +62,7 @@ class ReloadNowPlayingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadNowPlayingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadNowPlayingMovies)
 
         assertTrue(homeFeatureState.nowPlayingMovies.isLoading)
 
@@ -96,7 +96,7 @@ class ReloadNowPlayingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadNowPlayingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadNowPlayingMovies)
 
         assertTrue(homeFeatureState.nowPlayingMovies.isLoading)
 
@@ -128,7 +128,7 @@ class ReloadNowPlayingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadNowPlayingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadNowPlayingMovies)
 
         assertTrue(homeFeatureState.nowPlayingMovies.isLoading)
 

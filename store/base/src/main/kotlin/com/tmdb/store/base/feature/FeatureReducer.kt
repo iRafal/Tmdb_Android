@@ -8,5 +8,5 @@ import com.tmdb.store.base.Effect
  * returns feature state
  */
 fun interface FeatureReducer<G, Env, F> {
-    fun map(globalState: G, action: Action): Pair<F, Effect<Env>?>
+    fun reduce(globalState: G, action: Action): Pair<F, Effect<Env>?>
 }

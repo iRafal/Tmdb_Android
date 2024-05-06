@@ -49,7 +49,7 @@ class HomeViewModelTest {
     @Test
     fun onReloadMovieSection() {
         whenever(appStore.state).thenReturn(AppState.INITIAL)
-        viewModel.onReloadMovieSection
+        viewModel.onReloadMovieGroup
         // TODO
         /*
          whenever(appStore.state).thenReturn(AppState.Initial)

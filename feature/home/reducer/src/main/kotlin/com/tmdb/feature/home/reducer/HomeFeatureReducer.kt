@@ -13,7 +13,7 @@ import com.tmdb.store.state.HomeFeatureState
 class HomeFeatureReducer(
     private val homeFeatureEffects: HomeFeatureEffects
 ) : FeatureReducer<AppState, AppEnv, HomeFeatureState> {
-    override fun map(globalState: AppState, action: Action): Pair<HomeFeatureState, Effect<AppEnv>?> {
+    override fun reduce(globalState: AppState, action: Action): Pair<HomeFeatureState, Effect<AppEnv>?> {
         return when (action) {
             is HomeAction -> globalState.reduce(action, homeFeatureEffects)
             else -> globalState.homeState to Effects.empty()
@@ -41,6 +41,8 @@ class HomeFeatureReducer(
             is HomeAction.MovieSectionsLoaded -> homeState.reduceMovieSectionsLoaded(action)
 
             is HomeAction.ReloadAllMovies -> homeState.reduceReloadMovies(homeFeatureEffects)
+
+            is HomeAction.ResetState -> homeState.reduceHomeResetState()
         }
     }
 }

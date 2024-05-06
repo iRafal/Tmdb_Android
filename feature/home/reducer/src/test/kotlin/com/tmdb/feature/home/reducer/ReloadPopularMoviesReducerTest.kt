@@ -28,7 +28,7 @@ class ReloadPopularMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadPopularMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadPopularMovies)
 
         assertTrue(homeFeatureState.popularMovies.isLoading)
 
@@ -62,7 +62,7 @@ class ReloadPopularMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadPopularMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadPopularMovies)
 
         assertTrue(homeFeatureState.popularMovies.isLoading)
 
@@ -96,7 +96,7 @@ class ReloadPopularMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadPopularMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadPopularMovies)
 
         assertTrue(homeFeatureState.popularMovies.isLoading)
 
@@ -128,7 +128,7 @@ class ReloadPopularMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadPopularMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadPopularMovies)
 
         assertTrue(homeFeatureState.popularMovies.isLoading)
 

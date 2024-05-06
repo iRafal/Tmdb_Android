@@ -22,4 +22,5 @@ sealed interface HomeAction : Action {
     data class TopRatedMoviesLoaded(val topRatedMovies: DataState<List<MovieDataModel>>) : HomeAction
     data class UpcomingMoviesLoaded(val upcomingMovies: DataState<List<MovieDataModel>>) : HomeAction
     data object ReloadAllMovies : HomeAction
+    data object ResetState : HomeAction
 }

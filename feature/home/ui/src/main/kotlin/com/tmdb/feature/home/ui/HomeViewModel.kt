@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.Eagerly, HomeUiData.INITIAL)
 
-    val onReloadMovieSection: (HomeMovieSectionType) -> Unit = { movieSection ->
+    val onReloadMovieGroup: (HomeMovieSectionType) -> Unit = { movieSection ->
         store.dispatch(homeMovieGroupToActionMapper.map(movieSection))
     }
 
@@ -49,5 +49,6 @@ class HomeViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
+        store.dispatch(HomeAction.ResetState)
     }
 }

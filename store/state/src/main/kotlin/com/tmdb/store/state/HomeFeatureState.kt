@@ -21,6 +21,9 @@ data class HomeFeatureState(
     val copyAsFullReload: HomeFeatureState
         get() = this.copy(isFullReload = true)
 
+    val isInitial: Boolean
+        get() = this == INITIAL
+
     data class MoviesGroup(
         val isLoading: Boolean = false,
         val movies: DataState<List<MovieDataModel>>? = null

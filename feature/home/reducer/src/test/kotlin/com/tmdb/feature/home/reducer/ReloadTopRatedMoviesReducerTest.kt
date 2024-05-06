@@ -28,7 +28,7 @@ class ReloadTopRatedMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadTopRatedMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadTopRatedMovies)
 
         assertTrue(homeFeatureState.topRatedMovies.isLoading)
 
@@ -62,7 +62,7 @@ class ReloadTopRatedMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadTopRatedMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadTopRatedMovies)
 
         assertTrue(homeFeatureState.topRatedMovies.isLoading)
 
@@ -96,7 +96,7 @@ class ReloadTopRatedMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadTopRatedMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadTopRatedMovies)
 
         assertTrue(homeFeatureState.topRatedMovies.isLoading)
 
@@ -128,7 +128,7 @@ class ReloadTopRatedMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadTopRatedMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadTopRatedMovies)
 
         assertTrue(homeFeatureState.topRatedMovies.isLoading)
 

@@ -28,7 +28,7 @@ class ReloadUpcomingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadUpcomingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadUpcomingMovies)
 
         assertTrue(homeFeatureState.upcomingMovies.isLoading)
 
@@ -62,7 +62,7 @@ class ReloadUpcomingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadUpcomingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadUpcomingMovies)
 
         assertTrue(homeFeatureState.upcomingMovies.isLoading)
 
@@ -96,7 +96,7 @@ class ReloadUpcomingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadUpcomingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadUpcomingMovies)
 
         assertTrue(homeFeatureState.upcomingMovies.isLoading)
 
@@ -128,7 +128,7 @@ class ReloadUpcomingMoviesReducerTest {
         val homeFeatureEffects = HomeFeatureEffects(testDispatcher)
         val homeFeatureReducer = HomeFeatureReducer(homeFeatureEffects)
         val appState = AppState.INITIAL
-        val (homeFeatureState, effect) = homeFeatureReducer.map(appState, HomeAction.ReloadUpcomingMovies)
+        val (homeFeatureState, effect) = homeFeatureReducer.reduce(appState, HomeAction.ReloadUpcomingMovies)
 
         assertTrue(homeFeatureState.upcomingMovies.isLoading)
 
