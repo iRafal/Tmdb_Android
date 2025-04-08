@@ -27,13 +27,13 @@ abstract class MovieDb : RoomDatabase() {
     companion object {
         private const val DB_NAME = "Movie.db"
         fun getDbBuilder(context: Context, dbName: String): Builder<MovieDb> {
-            return Room.databaseBuilder(context.applicationContext, MovieDb::class.java, dbName)
+            return Room.databaseBuilder<MovieDb>(context.applicationContext, dbName)
         }
 
         fun getInstance(context: Context): MovieDb = getDbBuilder(context, DB_NAME).build()
 
         fun getInMemoryDbBuilder(context: Context): Builder<MovieDb> =
-            Room.inMemoryDatabaseBuilder(context, MovieDb::class.java).addMigrations(MIGRATION_1_2)
+            Room.inMemoryDatabaseBuilder<MovieDb>(context).addMigrations(MIGRATION_1_2)
 
         fun getInMemoryDb(context: Context): MovieDb = getInMemoryDbBuilder(context).build()
     }

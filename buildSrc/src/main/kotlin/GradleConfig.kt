@@ -24,9 +24,8 @@ object GradleConfig {
     val javaVersionAsString = javaVersion.toString()
 
     object Plugins {
-
+        const val KOTLIN_KAPT = "kotlin-kapt"
         const val JAVA_LIBRARY = "java-library"
-        const val HILT = "dagger.hilt.android.plugin"
         const val KOTLINX_SERIALIZATION = "kotlinx-serialization"
         const val KOTLINX_SERIALIZATION_EXTENDED_NAME = "org.jetbrains.kotlin.plugin.serialization"
         const val REALM = "realm-android"

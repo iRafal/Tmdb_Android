@@ -66,7 +66,7 @@ compose-navigation = "2.8.9" # https://developer.android.com/jetpack/androidx/re
 compose-constraintLayout = "1.1.1"
 
 #STORAGE
-room = "2.6.1" # https://developer.android.com/jetpack/androidx/releases/room
+room = "2.7.0-rc03" # https://developer.android.com/jetpack/androidx/releases/room
 
 #NETWORK
 ktor = "2.3.10" # https://github.com/ktorio/ktor
