@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -39,12 +42,16 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            allWarningsAsErrors = false
+        }
+    }
     buildFeatures {
         compose = true
         buildConfig = true
     }
-    composeOptions.kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
     packaging.resources {
         this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
     }

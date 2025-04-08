@@ -1,7 +1,9 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -30,13 +32,18 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            allWarningsAsErrors = false
+        }
+    }
 }
 
 dependencies {
     apiDependencies()
     implementationDependencies()
-    kapt(libs.dagger.compiler)
+    ksp(libs.dagger.compiler)
     testImplementation(libs.bundles.data.source.local.impl.test)
 }
 

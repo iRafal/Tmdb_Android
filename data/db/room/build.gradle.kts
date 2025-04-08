@@ -1,7 +1,9 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -37,7 +39,12 @@ android {
             targetCompatibility = GradleConfig.javaVersion
         }
     }
-    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            allWarningsAsErrors = false
+        }
+    }
     sourceSets {
         getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
@@ -50,8 +57,8 @@ android {
 
 dependencies {
     implementationDependencies()
-    kaptDependencies()
-    kaptAndroidTest(libs.room.compiler)
+    kspDependencies()
+    kspAndroidTest(libs.room.compiler)
     testImplementationDependencies()
     androidTestImplementationDependencies()
 }
@@ -70,9 +77,9 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlinx.dateTime)
 }
 
-fun DependencyHandlerScope.kaptDependencies() {
-    kapt(libs.room.compiler)
-    kapt(libs.dagger.compiler)
+fun DependencyHandlerScope.kspDependencies() {
+    ksp(libs.room.compiler)
+    ksp(libs.dagger.compiler)
 }
 
 fun DependencyHandlerScope.testImplementationDependencies() {
@@ -94,8 +101,6 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(libs.kotlinx.dateTime)
 }
 
-kapt {
-    arguments {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }

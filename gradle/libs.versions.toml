@@ -19,14 +19,18 @@ objectBox = "4.2.0" # https://github.com/objectbox/objectbox-java
 realm-plugin = "10.19.0" # https://github.com/realm/realm-java
 
 # https://github.com/google/dagger/releases
-dagger = "2.51.1"
+dagger = "2.55"
+
+# https://github.com/google/ksp/releases
+# https://mvnrepository.com/artifact/com.google.devtools.ksp/com.google.devtools.ksp.gradle.plugin?repo=central
+ksp = "2.1.0-1.0.29"
 
 #KOTLIN
-kotlin = "1.9.23" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin-test = "1.9.23"
+kotlin = "2.1.0" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+kotlin-test = "2.1.0"
 kotlin-compiler-extension = "1.5.12" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin-coroutines = "1.8.0" # https://github.com/kotlin/kotlinx.coroutines
-kotlin-serialization-json = "1.6.3" # https://github.com/Kotlin/kotlinx.serialization
+kotlin-coroutines = "1.10.2" # https://github.com/kotlin/kotlinx.coroutines
+kotlin-serialization-json = "1.8.1" # https://github.com/Kotlin/kotlinx.serialization
 
 #ANDROIDX
 androidx-core = "1.15.0" # https://developer.android.com/jetpack/androidx/releases/core
@@ -198,6 +202,8 @@ android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
 

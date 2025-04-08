@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.ksp)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
     id(GradleConfig.Plugins.REALM)
 }
@@ -32,7 +35,12 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            allWarningsAsErrors = false
+        }
+    }
     packaging {
         resources {
             this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
@@ -42,16 +50,16 @@ android {
 
 dependencies {
     implementationDependencies()
-    kaptDependencies()
-    kaptAndroidTest(libs.dagger.compiler)
+    kspDependencies()
+    kspAndroidTest(libs.dagger.compiler)
 
     testImplementationDependencies()
 
     androidTestImplementationDependencies()
 }
 
-fun DependencyHandlerScope.kaptDependencies() {
-    kapt(libs.dagger.compiler)
+fun DependencyHandlerScope.kspDependencies() {
+    ksp(libs.dagger.compiler)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {

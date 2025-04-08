@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 val signingConfigRelease = "release"
@@ -76,12 +79,10 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
     buildFeatures {
         compose = true
         buildConfig = true
     }
-    composeOptions.kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
 
     packaging.resources {
         excludes.addAll(GradleConfig.Android.excludePackagingResources)
@@ -90,14 +91,20 @@ android {
         // https://developer.android.com/studio/write/lint
         baseline = file("lint-baseline.xml")
     }
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            allWarningsAsErrors = false
+        }
+    }
 }
 
 dependencies {
     implementationDependencies()
-    kaptDependencies()
+    kspDependencies()
     debugImplementationDependencies()
     testImplementationDependencies()
-    kaptAndroidTest(libs.dagger.compiler)
+    kspAndroidTest(libs.dagger.compiler)
     androidTestImplementationDependencies()
 }
 
@@ -126,8 +133,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.androidx.metrics.performance)
 }
 
-fun DependencyHandlerScope.kaptDependencies() {
-    kapt(libs.dagger.compiler)
+fun DependencyHandlerScope.kspDependencies() {
+    ksp(libs.dagger.compiler)
 }
 
 fun DependencyHandlerScope.debugImplementationDependencies() {

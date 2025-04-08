@@ -1,9 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    id(GradleConfig.Plugins.KOTLIN_KAPT)
+    alias(libs.plugins.ksp)
 }
 
 val apiProperties = Properties().apply { load(rootProject.file("api.properties").reader()) }
@@ -45,13 +46,18 @@ android {
         sourceCompatibility = GradleConfig.javaVersion
         targetCompatibility = GradleConfig.javaVersion
     }
-    kotlinOptions.jvmTarget = GradleConfig.javaVersionAsString
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            allWarningsAsErrors = false
+        }
+    }
     buildFeatures.buildConfig = true
 }
 
 dependencies {
     implementationDependencies()
-    kaptDependencies()
+    kspDependencies()
     testImplementationDependencies()
 }
 
@@ -64,6 +70,6 @@ fun DependencyHandlerScope.testImplementationDependencies() {
     testImplementation(libs.kotlin.test)
 }
 
-fun DependencyHandlerScope.kaptDependencies() {
-    kapt(libs.dagger.compiler)
+fun DependencyHandlerScope.kspDependencies() {
+    ksp(libs.dagger.compiler)
 }
