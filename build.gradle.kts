@@ -27,7 +27,9 @@ allprojects {
      * ./gradlew detekt
      * ./gradlew detektBaseline - prefer using this one
      */
-    apply(plugin = "io.gitlab.arturbosch.detekt")
+    apply {
+        plugin(rootProject.libs.plugins.detekt.get().pluginId)
+    }
 }
 
 /**
@@ -60,7 +62,9 @@ allprojects {
  */
 
 subprojects {
-    apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
+    apply {
+        plugin(rootProject.libs.plugins.ktlint.get().pluginId) // Version should be inherited from parent
+    }
 
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)

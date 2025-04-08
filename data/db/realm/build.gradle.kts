@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
-    id(GradleConfig.Plugins.REALM)
+    id(libs.plugins.realm.android.get().pluginId)
 }
 
 android {

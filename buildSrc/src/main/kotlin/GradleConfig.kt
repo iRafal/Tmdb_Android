@@ -25,8 +25,6 @@ object GradleConfig {
 
     object Plugins {
         const val KOTLIN_KAPT = "kotlin-kapt"
-        const val REALM = "realm-android"
-        const val OBJECTBOX = "io.objectbox"
     }
 
     object Flavor {
