@@ -1,6 +1,6 @@
 [versions]
 # https://developer.android.com/studio/releases/gradle-plugin
-gradle = "8.3.2"
+gradle = "8.9.1"
 
 # https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration-with-groovy
 # https://github.com/jlleitschuh/ktlint-gradle
