@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
-    id(GradleConfig.Plugins.KOTLINX_SERIALIZATION)
+    id(libs.plugins.kotlin.serialization.get().pluginId)
 }
 
 android {

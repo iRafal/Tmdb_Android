@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    id(GradleConfig.Plugins.JAVA_LIBRARY)
+    id(libs.plugins.java.library.get().pluginId)
 }
 
 dependencies {

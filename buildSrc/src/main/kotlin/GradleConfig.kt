@@ -25,23 +25,11 @@ object GradleConfig {
 
     object Plugins {
         const val KOTLIN_KAPT = "kotlin-kapt"
-        const val JAVA_LIBRARY = "java-library"
-        const val KOTLINX_SERIALIZATION = "kotlinx-serialization"
-        const val KOTLINX_SERIALIZATION_EXTENDED_NAME = "org.jetbrains.kotlin.plugin.serialization"
         const val REALM = "realm-android"
         const val OBJECTBOX = "io.objectbox"
     }
 
     object Flavor {
-        object API {
-            const val NAME = "api"
-            object Options {
-                const val PROD = "prod"
-                const val PROD_QA = "prodQa"
-                const val STAGING_TEST = "stagingTest"
-                const val QA_TCP = "qaTcp"
-            }
-        }
         object Data {
             object Source {
                 const val NAME = "data_source"

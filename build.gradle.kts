@@ -3,9 +3,7 @@ plugins {
     alias(libs.plugins.android.kotlin) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.android.library) apply false
-
-    val kotlinVersion = libs.versions.kotlin.asProvider().get()
-    id(GradleConfig.Plugins.KOTLINX_SERIALIZATION_EXTENDED_NAME) version kotlinVersion apply false
+    alias(libs.plugins.kotlin.serialization) apply false
 }
 
 buildscript {

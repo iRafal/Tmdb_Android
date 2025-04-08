@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    id(GradleConfig.Plugins.JAVA_LIBRARY)
-    id(GradleConfig.Plugins.KOTLINX_SERIALIZATION)
+    id(libs.plugins.java.library.get().pluginId)
+    id(libs.plugins.kotlin.serialization.get().pluginId)
 }
 
 dependencies {
