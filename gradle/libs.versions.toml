@@ -4,15 +4,15 @@ gradle = "8.9.1"
 
 # https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration-with-groovy
 # https://github.com/jlleitschuh/ktlint-gradle
-ktlint-plugin = "12.1.0"
+ktlint-plugin = "12.2.0"
 
 # https://github.com/pinterest/ktlint
 # https://github.com/jlleitschuh/ktlint-gradle
-ktlint = "1.2.1"
+ktlint = "1.5.0"
 
 # https://detekt.dev/docs/intro
 # https://github.com/detekt/detekt
-detekt = "1.23.6"
+detekt = "1.23.8"
 
 objectBox = "3.7.1" # https://github.com/objectbox/objectbox-java
 
