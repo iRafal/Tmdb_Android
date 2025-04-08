@@ -28,7 +28,6 @@ ksp = "2.1.0-1.0.29"
 #KOTLIN
 kotlin = "2.1.0" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
 kotlin-test = "2.1.0"
-kotlin-compiler-extension = "1.5.12" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
 kotlin-coroutines = "1.10.2" # https://github.com/kotlin/kotlinx.coroutines
 kotlin-serialization-json = "1.8.1" # https://github.com/Kotlin/kotlinx.serialization
 
