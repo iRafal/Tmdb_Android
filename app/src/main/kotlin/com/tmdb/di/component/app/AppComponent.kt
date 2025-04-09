@@ -7,6 +7,7 @@ import com.tmdb.di.component.app.module.AppModule
 import com.tmdb.ui.core.di.base.HasAppContext
 import com.tmdb.ui.core.di.base.HasAppStore
 import com.tmdb.MainActivity
+import com.tmdb.ui.core.di.module.ImageLoadingModule
 import com.tmdb.util.di.qualifiers.ApplicationContext
 import com.tmdb.util.di.qualifiers.ApplicationScope
 import dagger.Component
@@ -16,6 +17,7 @@ import dagger.Component
 interface AppComponent: HasAppContext {
 
     @get:ApplicationScope
+    @get:ImageLoadingModule.CoilOkHttpImageLoader
     val imageLoader: ImageLoader
 
     fun inject(inject: MovieApp)

@@ -25,21 +25,24 @@ object ImageLoadingModule {
     fun coilLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply { level = BODY }
 
     @[Qualifier Retention(AnnotationRetention.BINARY)]
-    annotation class OkHttpClientCoil
+    annotation class CoilOkHttpClient
 
-    @[OkHttpClientCoil Provides ApplicationScope]
+    @[CoilOkHttpClient Provides ApplicationScope]
     fun coilOkkHttpClient(@InterceptorCoil coilLoggingInterceptor: Interceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(coilLoggingInterceptor)
             .build()
 
     @[Provides ApplicationScope]
-    fun coilLogger(): Logger = createCoilLogger()
+    fun coilLogger(): Logger? = if (BuildConfig.DEBUG) DebugLogger() else null
 
-    @[Provides ApplicationScope]
+    @[Qualifier Retention(AnnotationRetention.BINARY)]
+    annotation class CoilOkHttpImageLoader
+
+    @[Provides CoilOkHttpImageLoader ApplicationScope]
     fun coilImageLoader(
         @ApplicationContext context: Context,
-        @OkHttpClientCoil coilOkkHttpClient: OkHttpClient,
+        @CoilOkHttpClient coilOkkHttpClient: OkHttpClient,
         coilLogger: Logger
     ): ImageLoader = ImageLoader.Builder(context)
         .logger(coilLogger)

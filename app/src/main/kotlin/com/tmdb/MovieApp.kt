@@ -8,6 +8,7 @@ import coil3.SingletonImageLoader
 import com.tmdb.di.component.app.AppComponent
 import com.tmdb.di.component.app.AppComponentStore
 import com.tmdb.di.component.store.AppStoreComponent
+import com.tmdb.ui.core.di.module.ImageLoadingModule
 import com.tmdb.ui.core.util.logging.android.AndroidLogging
 import com.tmdb.util.di.qualifiers.ApplicationScope
 import javax.inject.Inject
@@ -20,6 +21,7 @@ class MovieApp : Application() /*, Configuration.Provider*/ {
 
     @Inject
     @ApplicationScope
+    @ImageLoadingModule.CoilOkHttpImageLoader
     lateinit var coilImageLoader: ImageLoader
 
     private val appComponentStore: AppComponentStore by lazy { AppComponentStore() }
@@ -50,9 +52,7 @@ class MovieApp : Application() /*, Configuration.Provider*/ {
 //            .build()
 
     private fun initCoil() {
-        SingletonImageLoader.setSafe {
-            coilImageLoader
-        }
+        SingletonImageLoader.setSafe { coilImageLoader }
     }
 
     private fun initIoStrictPolicy() {
