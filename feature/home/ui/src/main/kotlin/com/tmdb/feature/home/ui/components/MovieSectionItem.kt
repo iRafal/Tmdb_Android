@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.tmdb.feature.home.ui.HomeScreenTestTags
 import com.tmdb.feature.home.ui.data.model.Movie
 import com.tmdb.ui.core.compose.theme.TmdbTheme

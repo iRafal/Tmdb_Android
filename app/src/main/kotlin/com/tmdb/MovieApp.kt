@@ -3,8 +3,8 @@ package com.tmdb
 import android.app.Application
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
-import coil.Coil
-import coil.ImageLoader
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
 import com.tmdb.di.component.app.AppComponent
 import com.tmdb.di.component.app.AppComponentStore
 import com.tmdb.di.component.store.AppStoreComponent
@@ -50,7 +50,9 @@ class MovieApp : Application() /*, Configuration.Provider*/ {
 //            .build()
 
     private fun initCoil() {
-        Coil.setImageLoader(coilImageLoader)
+        SingletonImageLoader.setSafe {
+            coilImageLoader
+        }
     }
 
     private fun initIoStrictPolicy() {
@@ -73,11 +75,6 @@ class MovieApp : Application() /*, Configuration.Provider*/ {
 
     override fun onTerminate() {
         super.onTerminate()
-        cleanComponents()
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
         cleanComponents()
     }
 

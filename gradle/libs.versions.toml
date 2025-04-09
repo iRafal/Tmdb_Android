@@ -43,7 +43,7 @@ androidx-metrics-performance = "1.0.0-beta02" # https://developer.android.com/je
 material-components-android = "1.12.0" # https://github.com/material-components/material-components-android
 
 #COIL
-coil = "2.6.0" # https://github.com/coil-kt/coil
+coil = "3.1.0" # https://github.com/coil-kt/coil
 
 #COMPOSE
 compose-animation = "1.7.8" # https://developer.android.com/jetpack/androidx/releases/compose-animation
@@ -122,8 +122,9 @@ androidx-metrics-performance = { module = "androidx.metrics:metrics-performance"
 material-components-android = { module = "com.google.android.material:material", version.ref = "material-components-android" }
 
 #UI
-coil = { module = "io.coil-kt:coil", version.ref = "coil" }
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 
 #COMPOSE
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-ui" }

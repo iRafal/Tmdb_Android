@@ -1,7 +1,7 @@
 package com.tmdb.di.component.app
 
 import android.content.Context
-import coil.ImageLoader
+import coil3.ImageLoader
 import com.tmdb.MovieApp
 import com.tmdb.di.component.app.module.AppModule
 import com.tmdb.ui.core.di.base.HasAppContext
