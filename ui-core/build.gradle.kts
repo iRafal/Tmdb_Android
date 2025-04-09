@@ -87,7 +87,8 @@ fun DependencyHandlerScope.apiDependencies() {
 
     api(libs.coil)
     api(libs.coil.compose)
-    api(libs.coil.network)
+    api(libs.coil.network.okHttp)
+    api(libs.coil.network.ktor)
     api(libs.okHttp3.loggingInterceptor)
 
     api(libs.kotlinx.dateTime)
