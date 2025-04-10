@@ -1,6 +1,3 @@
-import com.android.build.gradle.internal.packaging.defaultMerges
-import kotlinx.coroutines.flow.merge
-
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.kotlin) apply false
