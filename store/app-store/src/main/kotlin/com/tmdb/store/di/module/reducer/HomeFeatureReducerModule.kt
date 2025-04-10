@@ -1,9 +1,8 @@
 package com.tmdb.store.di.module.reducer
 
-import com.tmdb.feature.home.reducer.effects.HomeFeatureEffects
 import com.tmdb.feature.home.reducer.HomeFeatureReducer
+import com.tmdb.feature.home.reducer.effects.HomeFeatureEffects
 import com.tmdb.util.di.modules.DispatchersModule
-import com.tmdb.util.di.qualifiers.ApplicationScope
 import com.tmdb.util.di.qualifiers.DispatcherIo
 import dagger.Module
 import dagger.Provides
@@ -20,6 +19,6 @@ object HomeFeatureReducerModule {
         homeFeatureEffects: HomeFeatureEffects
     ) = HomeFeatureReducer(homeFeatureEffects)
 
-    @[Provides ApplicationScope]
+    @Provides
     fun homeFeatureEffects(@DispatcherIo dispatcher: CoroutineDispatcher) = HomeFeatureEffects(dispatcher)
 }

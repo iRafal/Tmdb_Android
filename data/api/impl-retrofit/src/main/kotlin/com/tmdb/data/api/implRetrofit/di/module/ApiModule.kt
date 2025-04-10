@@ -11,7 +11,6 @@ import com.tmdb.data.api.implRetrofit.discover.DiscoverApi
 import com.tmdb.data.api.implRetrofit.genre.GenreApi
 import com.tmdb.data.api.implRetrofit.movie.MovieApi
 import com.tmdb.data.api.implRetrofit.person.PersonApi
-import com.tmdb.util.di.qualifiers.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -28,7 +27,7 @@ import retrofit2.Converter
     ]
 )
 object ApiModule {
-    @[Provides ApplicationScope]
+    @Provides
     fun discoverApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
@@ -44,7 +43,7 @@ object ApiModule {
         apiClass = DiscoverApi::class.java
     )
 
-    @[Provides ApplicationScope]
+    @Provides
     fun genreApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
@@ -60,7 +59,7 @@ object ApiModule {
         apiClass = GenreApi::class.java
     )
 
-    @[Provides ApplicationScope]
+    @Provides
     fun movieApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,
@@ -76,7 +75,7 @@ object ApiModule {
         apiClass = MovieApi::class.java
     )
 
-    @[Provides ApplicationScope]
+    @Provides
     fun personApi(
         baseUrlProvider: BaseUrlProvider,
         @OkHttpClientRetrofit client: OkHttpClient,

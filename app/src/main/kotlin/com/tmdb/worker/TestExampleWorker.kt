@@ -6,9 +6,9 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.tmdb.store.AppStore
 import com.tmdb.ui.core.util.worker.WorkerCreator
-import com.tmdb.util.di.qualifiers.ApplicationContext
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Provider
 

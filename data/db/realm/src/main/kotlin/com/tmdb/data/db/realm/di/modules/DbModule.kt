@@ -4,9 +4,9 @@ import android.content.Context
 import com.tmdb.data.db.realm.di.MoviesRealmDbConfig
 import com.tmdb.data.db.realm.movie.dao.MovieDao
 import com.tmdb.data.db.realm.movie.dao.MovieDaoImpl
-import com.tmdb.util.di.qualifiers.ApplicationContext
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.realm.Realm
 import io.realm.RealmConfiguration
 

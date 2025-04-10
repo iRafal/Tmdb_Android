@@ -6,7 +6,6 @@ import com.tmdb.store.di.module.env.AppEnvModule
 import com.tmdb.store.di.module.reducer.AppReducerModule
 import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.util.di.modules.DispatchersModule
-import com.tmdb.util.di.qualifiers.ApplicationScope
 import com.tmdb.util.di.qualifiers.DispatcherIo
 import dagger.Module
 import dagger.Provides
@@ -17,7 +16,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 @InstallIn(SingletonComponent::class)
 @Module(includes = [AppEnvModule::class, AppReducerModule::class, DispatchersModule::class])
 object AppStoreModule {
-    @[Provides ApplicationScope]
+    @Provides
     fun appStore(
         appEnv: AppEnv,
         appReducer: AppReducer,

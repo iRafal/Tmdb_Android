@@ -10,7 +10,6 @@ import coil3.ImageLoader
 import coil3.SingletonImageLoader
 import com.tmdb.ui.core.di.module.ImageLoadingModule
 import com.tmdb.ui.core.util.logging.android.AndroidLogging
-import com.tmdb.util.di.qualifiers.ApplicationScope
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -27,7 +26,6 @@ class MovieApp : Application() , Configuration.Provider {
             .build()
 
     @Inject
-    @ApplicationScope
     @ImageLoadingModule.CoilOkHttpImageLoader
     lateinit var coilImageLoader: ImageLoader
 

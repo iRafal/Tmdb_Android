@@ -9,7 +9,6 @@ import com.tmdb.data.api.implKtor.movie.MovieApi
 import com.tmdb.data.api.implKtor.movie.MovieApiImpl
 import com.tmdb.data.api.implKtor.person.PersonApi
 import com.tmdb.data.api.implKtor.person.PersonApiImpl
-import com.tmdb.util.di.qualifiers.ApplicationScope
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,16 +17,15 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 @Module(includes = [ApiUtilModule::class, ApiConfigModule::class])
 interface ApiModule {
-
-    @[Binds ApplicationScope]
+    @Binds
     fun discoverApi(impl: DiscoverApiImpl): DiscoverApi
 
-    @[Binds ApplicationScope]
+    @Binds
     fun genreApi(impl: GenreApiImpl): GenreApi
 
-    @[Binds ApplicationScope]
+    @Binds
     fun movieApi(impl: MovieApiImpl): MovieApi
 
-    @[Binds ApplicationScope]
+    @Binds
     fun personApi(impl: PersonApiImpl): PersonApi
 }

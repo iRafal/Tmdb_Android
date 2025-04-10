@@ -5,9 +5,9 @@ import com.tmdb.data.db.objectBox.di.ObjectBoxConfig
 import com.tmdb.data.db.objectBox.movie.MovieEntity
 import com.tmdb.data.db.objectBox.movie.dao.MovieDao
 import com.tmdb.data.db.objectBox.movie.dao.MovieDaoImpl
-import com.tmdb.util.di.qualifiers.ApplicationContext
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.objectbox.Box
 import io.objectbox.BoxStore
 

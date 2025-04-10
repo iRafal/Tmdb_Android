@@ -3,10 +3,10 @@ package com.tmdb.data.db.room.module
 import android.content.Context
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.movie.MovieDao
-import com.tmdb.util.di.qualifiers.ApplicationContext
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 @InstallIn(SingletonComponent::class)
