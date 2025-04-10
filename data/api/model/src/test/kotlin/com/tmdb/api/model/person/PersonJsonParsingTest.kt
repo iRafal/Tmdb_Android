@@ -35,7 +35,7 @@ class PersonJsonParsingTest {
                 "แบรด พิตต์"
             ],
             "gender": 2,
-            "biography": "William Bradley \"Brad\" Pitt (born December 18, 1963) is an American actor and film",
+            "biography": "William Bradley \"Brad\" Pitt (born December 18, 1963)",
             "popularity": 10.647,
             "place_of_birth": "Shawnee, Oklahoma, USA",
             "profile_path": "/kU3B75TyRiCgE270EyZnHjfivoq.jpg",

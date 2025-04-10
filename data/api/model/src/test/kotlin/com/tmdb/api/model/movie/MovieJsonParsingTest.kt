@@ -34,7 +34,7 @@ class MovieJsonParsingTest {
               "imdb_id": "tt0137523",
               "original_language": "en",
               "original_title": "Fight Club",
-              "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression",
+              "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into",
               "popularity": 0.5,
               "poster_path": null,
               "production_companies": [

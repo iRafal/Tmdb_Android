@@ -76,7 +76,7 @@ object ModelUtil {
             "แบรด พิตต์"
         ),
         gender = MALE,
-        biography = "William Bradley \"Brad\" Pitt (born December 18, 1963) is an American actor and film producer.",
+        biography = "William Bradley \"Brad\" Pitt (born December 18, 1963)",
         popularity = 10.647,
         placeOfBirth = "Shawnee, Oklahoma, USA",
         profilePath = "/kU3B75TyRiCgE270EyZnHjfivoq.jpg",
