@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tmdb.data.db.realm.MoviesRealmDbMigrations
 import com.tmdb.data.db.realm.di.MoviesRealmDbConfig
 import com.tmdb.data.db.realm.di.module.DispatchersTestModule
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -20,6 +21,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
+import org.junit.Rule
 import org.junit.runner.RunWith
 
 @HiltAndroidTest
@@ -34,8 +36,12 @@ class RealmDbMigrationTest {
     @InstrumentationContext
     lateinit var context: Context
 
+    @get:Rule
+    val hiltRule = HiltAndroidRule(this)
+
     @BeforeTest
     fun setup() {
+        hiltRule.inject()
         Realm.init(context)
         Dispatchers.setMain(dispatcher)
     }

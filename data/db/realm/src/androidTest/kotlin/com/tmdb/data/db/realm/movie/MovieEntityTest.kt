@@ -4,6 +4,7 @@ import com.tmdb.data.db.realm.di.module.DispatchersTestModule
 import com.tmdb.data.db.realm.movie.dao.MovieDao
 import com.tmdb.data.db.realm.util.ModelUtil
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import io.realm.Realm
 import java.io.IOException
 import javax.inject.Inject
@@ -23,9 +24,13 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 
+@UninstallModules(RealmDbModule::class, DispatchersModule::class)
 @HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieEntityTest {
+
+    @get:Rule
+    val hiltRule = HiltAndroidRule(this)
 
     @Inject
     lateinit var movieDao: MovieDao
@@ -42,6 +47,7 @@ class MovieEntityTest {
 
     @BeforeTest
     fun setup() {
+        hiltRule.inject()
         Dispatchers.setMain(dispatcher)
     }
 

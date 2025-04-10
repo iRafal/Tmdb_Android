@@ -1,8 +1,11 @@
 package com.tmdb.data.db.realm.di.module
 
+import com.tmdb.util.di.modules.DispatchersModule
 import com.tmdb.util.di.qualifiers.DispatcherDefault
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import javax.inject.Qualifier
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +16,10 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Module
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [DispatchersModule::class]
+)
 object DispatchersTestModule {
 
     @[Qualifier Retention(AnnotationRetention.BINARY)]
