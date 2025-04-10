@@ -129,7 +129,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
     implementation(libs.dagger)
-    implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.metrics.performance)
 }
 

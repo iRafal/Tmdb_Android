@@ -73,6 +73,8 @@ fun DependencyHandlerScope.apiDependencies() {
     api(libs.androidx.core)
     api(libs.androidx.material3.window.size)
 
+    api(libs.androidx.work.runtime)
+
     api(libs.compose.animation)
     api(libs.compose.compiler)
     api(libs.compose.foundation)
