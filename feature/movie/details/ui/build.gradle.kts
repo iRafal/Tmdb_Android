@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "$nameSpace.runner.DaggerTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
@@ -58,6 +58,7 @@ dependencies {
     testImplementation(libs.bundles.feature.ui.impl.test)
 
     androidTestImplementation(libs.bundles.ui.test.android)
+    androidTestImplementation(libs.hilt.test.android)
 }
 
 fun DependencyHandlerScope.kspDependencies() {

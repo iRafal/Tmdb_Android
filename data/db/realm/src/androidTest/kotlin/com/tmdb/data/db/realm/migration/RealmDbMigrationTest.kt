@@ -5,9 +5,8 @@ import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tmdb.data.db.realm.MoviesRealmDbMigrations
 import com.tmdb.data.db.realm.di.MoviesRealmDbConfig
-import com.tmdb.data.db.realm.di.component.app.TestAppComponentStore
-import com.tmdb.data.db.realm.di.component.db.TestDbComponent
 import com.tmdb.data.db.realm.di.module.DispatchersTestModule
+import dagger.hilt.android.testing.HiltAndroidTest
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.exceptions.RealmMigrationNeededException
@@ -23,7 +22,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.runner.RunWith
 
-
+@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
 class RealmDbMigrationTest {
@@ -35,12 +34,8 @@ class RealmDbMigrationTest {
     @InstrumentationContext
     lateinit var context: Context
 
-    private lateinit var testDbComponent: TestDbComponent
-
     @BeforeTest
     fun setup() {
-        testDbComponent = TestAppComponentStore.component.testDbComponentBuilder.build()
-        testDbComponent.inject(this)
         Realm.init(context)
         Dispatchers.setMain(dispatcher)
     }

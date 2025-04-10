@@ -1,4 +1,4 @@
-package com.tmdb.di
+package com.tmdb.di.module
 
 import android.app.Instrumentation
 import android.content.Context
@@ -7,9 +7,10 @@ import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.platform.app.InstrumentationRegistry
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
-@Module
+@[Module InstallIn(SingletonComponent::class)]
 class TestAppModule {
 
     @get:Provides

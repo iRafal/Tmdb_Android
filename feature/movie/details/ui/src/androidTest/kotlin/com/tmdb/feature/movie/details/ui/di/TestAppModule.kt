@@ -7,8 +7,10 @@ import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.platform.app.InstrumentationRegistry
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 class TestAppModule {
 

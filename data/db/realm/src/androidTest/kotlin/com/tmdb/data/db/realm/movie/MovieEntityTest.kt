@@ -1,10 +1,9 @@
 package com.tmdb.data.db.realm.movie
 
-import com.tmdb.data.db.realm.di.component.app.TestAppComponentStore
-import com.tmdb.data.db.realm.di.component.db.TestDbComponent
 import com.tmdb.data.db.realm.di.module.DispatchersTestModule
 import com.tmdb.data.db.realm.movie.dao.MovieDao
 import com.tmdb.data.db.realm.util.ModelUtil
+import dagger.hilt.android.testing.HiltAndroidTest
 import io.realm.Realm
 import java.io.IOException
 import javax.inject.Inject
@@ -24,6 +23,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 
+@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieEntityTest {
 
@@ -40,12 +40,8 @@ class MovieEntityTest {
     private val movieEntity = ModelUtil.movieEntity
     private val movieId = ModelUtil.movieId
 
-    private lateinit var testDbComponent: TestDbComponent
-
     @BeforeTest
     fun setup() {
-        testDbComponent = TestAppComponentStore.component.testDbComponentBuilder.build()
-        testDbComponent.inject(this)
         Dispatchers.setMain(dispatcher)
     }
 

@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.room.runner.DaggerTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {
@@ -102,6 +102,7 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(libs.kotlin.test)
     androidTestImplementation(libs.kotlin.coroutines.test)
     androidTestImplementation(libs.kotlinx.dateTime)
+    androidTestImplementation(libs.hilt.test.android)
 }
 
 ksp {

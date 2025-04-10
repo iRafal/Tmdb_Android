@@ -7,7 +7,6 @@ import com.tmdb.data.db.room.movie.MovieDao
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 object TestDbModule {
 

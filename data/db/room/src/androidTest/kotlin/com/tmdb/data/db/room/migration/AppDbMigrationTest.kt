@@ -8,11 +8,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.MovieDbMigrations
-import com.tmdb.data.db.room.di.component.app.TestAppComponentStore
-import com.tmdb.data.db.room.di.component.db.TestDbComponent
 import com.tmdb.data.db.room.di.module.DispatchersTestModule
 import com.tmdb.data.db.room.movie.MovieEntity
 import com.tmdb.data.db.room.util.ModelUtil
+import dagger.hilt.android.testing.HiltAndroidTest
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.test.AfterTest
@@ -28,6 +27,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.Rule
 import org.junit.runner.RunWith
 
+@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
 class AppDbMigrationTest {
@@ -47,12 +47,8 @@ class AppDbMigrationTest {
         FrameworkSQLiteOpenHelperFactory()
     )
 
-   private lateinit var testDbComponent: TestDbComponent
-
     @BeforeTest
     fun setup() {
-        testDbComponent = TestAppComponentStore.component.testDbComponentBuilder.build()
-        testDbComponent.inject(this)
         Dispatchers.setMain(dispatcher)
     }
 

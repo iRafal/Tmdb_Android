@@ -11,7 +11,6 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 
-
 @OptIn(ExperimentalCoroutinesApi::class)
 @Module
 object DispatchersTestModule {

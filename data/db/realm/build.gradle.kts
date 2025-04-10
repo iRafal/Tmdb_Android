@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.realm.runner.DaggerTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -91,4 +91,5 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(libs.kotlin.coroutines.test)
     androidTestImplementation(libs.kotlinx.dateTime)
     androidTestImplementation(libs.realm.plugin)
+    androidTestImplementation(libs.hilt.test.android)
 }

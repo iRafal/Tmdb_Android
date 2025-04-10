@@ -1,10 +1,9 @@
 package com.tmdb.data.db.room.movie
 
 import com.tmdb.data.db.room.MovieDb
-import com.tmdb.data.db.room.di.component.app.TestAppComponentStore
-import com.tmdb.data.db.room.di.component.db.TestDbComponent
 import com.tmdb.data.db.room.di.module.DispatchersTestModule
 import com.tmdb.data.db.room.util.ModelUtil
+import dagger.hilt.android.testing.HiltAndroidTest
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.test.AfterTest
@@ -23,6 +22,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 
+@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieEntityTest {
 
@@ -39,12 +39,8 @@ class MovieEntityTest {
     private val movieEntity = ModelUtil.movieEntity
     private val movieId = ModelUtil.movieId
 
-    private lateinit var testDbComponent: TestDbComponent
-
     @BeforeTest
     fun setup() {
-        testDbComponent = TestAppComponentStore.component.testDbComponentBuilder.build()
-        testDbComponent.inject(this)
         Dispatchers.setMain(dispatcher)
     }
 

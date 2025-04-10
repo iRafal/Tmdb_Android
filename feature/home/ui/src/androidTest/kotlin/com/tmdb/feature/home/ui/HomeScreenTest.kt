@@ -22,7 +22,6 @@ import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.data.model.Movie
 import com.tmdb.feature.home.ui.data.model.MovieGroup
 import com.tmdb.feature.home.ui.data.model.MovieGroup.Error.NetworkError
-import com.tmdb.feature.home.ui.di.TestAppComponentStore
 import com.tmdb.ui.core.compose.ComposeTestTags
 import javax.inject.Inject
 import kotlin.test.BeforeTest

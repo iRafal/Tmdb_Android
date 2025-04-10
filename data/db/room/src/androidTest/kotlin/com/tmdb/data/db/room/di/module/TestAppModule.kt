@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.res.Resources
 import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.platform.app.InstrumentationRegistry
-import com.tmdb.data.db.room.di.component.db.TestDbComponent
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
-@Module(subcomponents = [TestDbComponent::class])
+@InstallIn(SingletonComponent::class)
+@Module(includes = [TestDbModule::class, DispatchersTestModule::class])
 object TestAppModule {
     @get:Provides
     val instrumentation: Instrumentation = InstrumentationRegistry.getInstrumentation()
