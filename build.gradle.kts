@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    jacoco
 }
 
 buildscript {
@@ -132,4 +133,121 @@ tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configure
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
+}
+
+tasks.register<JacocoReport>("jacocoReport") {
+    reports {
+        csv.required.set(false)
+        xml.required.set(false)
+        html.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
+    }
+
+    val excludeList = listOf(
+        // Project specific UI exclusions
+        "**/ui/components/*",
+        "**/*UiTags.*",
+        "**/*Screen*.*",
+        "**/*ScreenUi*.*",
+        "**/*ScaffoldContent*.*",
+        "**/*UiPreview*.*",
+        "**/*Ui*Preview*.*",
+        "**/*Event.*",
+        "**/*Module.*",
+        "**/*PreviewData*.*", //`app`, ui-core module(s) classes
+        "**/*UiData*.*", //`app`, ui-core module(s) Ui Data Model classes
+        "**/*DataModel*.*", //`data` module DataModel classes
+//        "**/*ApiModel.*", //`data/api/model` module ApiModel classes
+
+        // Project specific common exclusions
+        "**/RootUtils.kt",
+        "**/*WorkerService.*",
+        "**/di/*",
+
+        // Common exclusions
+        "**/BuildConfig.*",
+        "**/*Test*.*",
+        "**/R.class",
+        "**/R$*.class",
+        "**/*$*",
+        "**/Manifest*.*",
+        "android/**/*.*",
+        "**/*Dagger*.*",
+        "**/Dagger*Component*.*",
+        "**/*_Factory*.*",
+        "**/*_Provide*Factory*.*",
+        "**/*Companion*.*",
+        "**/*MembersInjector*.*",
+        "**/*_MembersInjector.class",
+        "**/*Component*.*",
+        "**/*Extensions*.*",
+        "**/Lambda$*.class",
+        "**/*\$Lambda$*.*",
+        "**/Lambda.class",
+        "**/*Lambda.class",
+        "**/*Lambda*.class",
+        "**/*Module_*Factory.class",
+
+        // Kotlin specific exclusions
+        "**/*\$Properties*", // Kotlin properties
+        "**/*\$Companion*",
+        "**/BuildConfig*",
+        "**/*\$Initializer*",
+        "**/*\$Creator*" // Parcelable creators
+    )
+
+    fun Project.isJavaModule(): Boolean = plugins.hasPlugin("java")
+    fun Project.isAndroidLibrary(): Boolean = plugins.hasPlugin("com.android.library")
+    fun Project.isAndroidApp(): Boolean = plugins.hasPlugin("com.android.application")
+
+    val javaModules = subprojects.filter { it.isJavaModule() }
+    val androidModules = subprojects.filter { it.isAndroidLibrary() || it.isAndroidApp() }
+
+    dependsOn(javaModules.map { it.tasks.named("test") })
+    dependsOn(androidModules.map { it.tasks.named("testDebugUnitTest") })
+
+    sourceDirectories.setFrom(
+        files(
+            javaModules.map { it.fileTree("src/main/java") },
+            javaModules.map { it.fileTree("src/main/kotlin") },
+            androidModules.map { it.fileTree("src/main/java") },
+            androidModules.map { it.fileTree("src/main/kotlin") }
+        )
+    )
+
+    classDirectories.setFrom(
+        files(
+            javaModules.map { module ->
+                module.fileTree("build/classes/java/main") {
+                    exclude(excludeList)
+                }
+                module.fileTree("build/classes/kotlin/main") {
+                    exclude(excludeList)
+                }
+            },
+            androidModules.map { module ->
+                module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/apiDebug") {
+                    exclude(excludeList)
+                }
+//                module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/apiRelease") {
+//                    exclude(excludeList)
+//                }
+            }
+        )
+    )
+
+    executionData.setFrom(
+        files(
+            javaModules.map { "${it.layout.buildDirectory.get()}/jacoco/test.exec" },
+            androidModules.map {
+                // 'app' module
+                "${it.layout.buildDirectory.get()}/jacoco/testDebugUnitTest.exec"
+//                "${it.layout.buildDirectory.get()}/jacoco/testApiReleaseUnitTest.exec"
+
+                // 'ui-core' module
+                "${it.layout.buildDirectory.get()}/jacoco/testDebugUnitTest.exec"
+//                "${it.layout.buildDirectory.get()}/jacoco/testReleaseUnitTest.exec"
+            }
+        )
+    )
 }

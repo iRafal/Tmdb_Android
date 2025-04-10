@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
+    jacoco
 }
 
 android {
@@ -60,4 +61,11 @@ fun DependencyHandlerScope.apiDependencies() {
     api(libs.kotlin.coroutines.core)
     api(libs.kotlin.coroutines.android)
     api(project(":util-logging"))
+}
+
+tasks.withType<Test> {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*")
+    }
 }

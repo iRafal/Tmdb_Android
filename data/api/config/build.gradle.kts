@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
+    jacoco
 }
 
 val apiProperties = Properties().apply { load(rootProject.file("api.properties").reader()) }

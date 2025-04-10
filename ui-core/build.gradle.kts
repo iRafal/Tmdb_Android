@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+    jacoco
 }
 
 android {
@@ -121,4 +122,11 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(libs.compose.ui.test.manifest.debug)
     androidTestImplementation(libs.compose.ui.test.junit)
     androidTestImplementation(libs.compose.navigation.test)
+}
+
+tasks.withType<Test> {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*")
+    }
 }

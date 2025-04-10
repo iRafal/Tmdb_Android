@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     id(libs.plugins.java.library.get().pluginId)
     id(libs.plugins.kotlin.serialization.get().pluginId)
+    jacoco
 }
 
 dependencies {
