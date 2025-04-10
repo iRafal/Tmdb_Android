@@ -1,6 +1,5 @@
 package com.tmdb.data.api.config.di.module
 
-import com.tmdb.data.api.config.di.module.BaseUrlProviderModule
 import com.tmdb.data.api.config.url.provider.base.BaseUrlProvider
 import com.tmdb.data.api.config.url.provider.discover.DiscoverUrlProvider
 import com.tmdb.data.api.config.url.provider.discover.DiscoverUrlProviderImpl

@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.core.net.toUri
 
 @Suppress("SwallowedException")
 fun Context.startEmailIntent(
@@ -13,13 +14,9 @@ fun Context.startEmailIntent(
     subject: String? = null,
     body: String? = null
 ) {
-    val uri = if (email.isNullOrBlank()) {
-        "mailto:"
-    } else {
-        "mailto:${email}"
-    }
+    val uri = if (email.isNullOrBlank()) "mailto:" else "mailto:${email}"
 
-    val intent = Intent(Intent.ACTION_SENDTO, Uri.parse(uri))
+    val intent = Intent(Intent.ACTION_SENDTO, uri.toUri())
     if (!subject.isNullOrBlank()) {
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
     }

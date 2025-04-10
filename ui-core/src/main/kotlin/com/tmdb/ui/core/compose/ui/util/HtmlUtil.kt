@@ -1,4 +1,4 @@
-package com.cspace.android.ui.core.compose.ui.util
+package com.tmdb.ui.core.compose.ui.util
 
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
