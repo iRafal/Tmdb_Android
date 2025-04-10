@@ -45,7 +45,6 @@ android {
 
 dependencies {
     apiDependencies()
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
     implementationDependencies()
     testImplementationDependencies()
@@ -56,7 +55,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
     implementation(libs.kotlinx.dateTime)
-    implementation(libs.dagger) //
     implementation(libs.hilt)
     implementation(project(":data:api:impl-ktor"))
     implementation(project(":data:api:config"))

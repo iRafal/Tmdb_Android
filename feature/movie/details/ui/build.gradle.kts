@@ -53,7 +53,6 @@ dependencies {
     implementationDependencies()
 
     kspDependencies()
-    kspAndroidTest(libs.dagger.compiler) //
     kspAndroidTest(libs.hilt.compiler)
 
     testImplementation(libs.bundles.feature.ui.impl.test)
@@ -62,7 +61,6 @@ dependencies {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
 }
 
@@ -71,6 +69,5 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
     implementation(project(":store:app-store"))
 
-    implementation(libs.dagger) //
     implementation(libs.hilt)
 }

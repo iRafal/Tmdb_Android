@@ -45,7 +45,6 @@ android {
 
 dependencies {
     apiDependencies()
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
     implementationDependencies()
     testImplementationDependencies()
@@ -71,7 +70,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.ktor.client.logging)
     implementation(libs.logging)
 
-    implementation(libs.dagger) //
     implementation(libs.hilt)
 }
 

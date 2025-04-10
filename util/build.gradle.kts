@@ -49,14 +49,12 @@ dependencies {
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(libs.dagger) //
     implementation(libs.hilt)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
 }
 

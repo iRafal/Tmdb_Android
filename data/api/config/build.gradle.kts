@@ -66,7 +66,6 @@ dependencies {
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
-    implementation(libs.dagger) //
     implementation(libs.hilt)
 }
 
@@ -75,6 +74,5 @@ fun DependencyHandlerScope.testImplementationDependencies() {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
 }

@@ -46,7 +46,6 @@ android {
 dependencies {
     apiDependencies()
     implementationDependencies()
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
     testImplementation(libs.bundles.data.source.local.impl.test)
 }
@@ -56,7 +55,6 @@ fun DependencyHandlerScope.apiDependencies() {
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(libs.dagger) //
     implementation(libs.hilt)
     implementation(project(":data:db:room"))
     implementation(project(":util"))

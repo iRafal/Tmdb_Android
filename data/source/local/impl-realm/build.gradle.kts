@@ -46,7 +46,6 @@ android {
 dependencies {
     implementationDependencies()
     apiDependencies()
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
     testImplementation(libs.bundles.data.source.local.impl.test)
 }

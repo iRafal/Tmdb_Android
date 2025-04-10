@@ -57,7 +57,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
-    implementation(libs.dagger) //
     implementation(libs.hilt)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
@@ -72,6 +71,5 @@ fun DependencyHandlerScope.testImplementationDependencies() {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
 }

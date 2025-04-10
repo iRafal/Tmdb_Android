@@ -46,7 +46,6 @@ android {
 
 dependencies {
     implementationDependencies()
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
     api(project(":data:source:local:contract"))
     testImplementation(libs.bundles.data.source.local.impl.test)

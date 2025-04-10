@@ -73,7 +73,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
 
-    implementation(libs.dagger) //
     implementation(libs.hilt)
 
     implementation(libs.room.runtime)
@@ -83,7 +82,6 @@ fun DependencyHandlerScope.implementationDependencies() {
 
 fun DependencyHandlerScope.kspDependencies() {
     ksp(libs.room.compiler)
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
 }
 

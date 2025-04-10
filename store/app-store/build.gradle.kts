@@ -52,13 +52,11 @@ dependencies {
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
     implementation(libs.kotlin.coroutines.core)
-    implementation(libs.dagger) //
     implementation(libs.hilt)
     implementation(project(":util"))
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
 }
 

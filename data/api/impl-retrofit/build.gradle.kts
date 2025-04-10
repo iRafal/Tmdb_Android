@@ -46,10 +46,8 @@ android {
 dependencies {
     apiDependencies()
     implementationDependencies()
-    ksp(libs.dagger.compiler) //
     ksp(libs.hilt.compiler)
     testImplementationDependencies()
-    implementation(libs.dagger.compiler)
 }
 
 fun DependencyHandlerScope.apiDependencies() {
@@ -69,7 +67,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.retrofit2.serializationConverter)
     implementation(libs.okHttp3.loggingInterceptor)
 
-    implementation(libs.dagger) //
     implementation(libs.hilt)
 }
 
