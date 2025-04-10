@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -72,7 +73,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
 
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
@@ -81,7 +83,8 @@ fun DependencyHandlerScope.implementationDependencies() {
 
 fun DependencyHandlerScope.kspDependencies() {
     ksp(libs.room.compiler)
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.testImplementationDependencies() {

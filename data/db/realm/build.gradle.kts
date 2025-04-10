@@ -7,6 +7,7 @@ plugins {
     id(GradleConfig.Plugins.KOTLIN_KAPT)
     id(libs.plugins.realm.android.get().pluginId)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -53,7 +54,8 @@ android {
 dependencies {
     implementationDependencies()
     kspDependencies()
-    kspAndroidTest(libs.dagger.compiler)
+    kspAndroidTest(libs.dagger.compiler) //
+    kspAndroidTest(libs.hilt.compiler)
 
     testImplementationDependencies()
 
@@ -61,13 +63,15 @@ dependencies {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
 
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
 
     implementation(libs.realm.plugin)
     implementation(libs.kotlinx.dateTime)

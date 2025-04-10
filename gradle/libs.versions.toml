@@ -20,6 +20,15 @@ objectBox = "4.2.0" # https://github.com/objectbox/objectbox-java
 
 realm-plugin = "10.19.0" # https://github.com/realm/realm-java
 
+# https://developer.android.com/training/dependency-injection/hilt-android
+hilt = "2.56.1"
+
+# https://mvnrepository.com/artifact/androidx.hilt/hilt-work
+hilt-work = "1.2.0"
+
+# https://mvnrepository.com/artifact/androidx.hilt/hilt-navigation-compose
+hilt-navigation-compose = "1.2.0"
+
 # https://github.com/google/dagger/releases
 dagger = "2.56.1"
 
@@ -120,7 +129,7 @@ androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtim
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
-androidx-metrics-performance = { module = "androidx.metrics:metrics-performance", version.ref = "androidx-metrics-performance"  }
+androidx-metrics-performance = { module = "androidx.metrics:metrics-performance", version.ref = "androidx-metrics-performance" }
 
 material-components-android = { module = "com.google.android.material:material", version.ref = "material-components-android" }
 
@@ -194,6 +203,12 @@ play-services-base = { group = "com.google.android.gms", name = "play-services-b
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-test-android = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+
 
 #PLUGINS
 ktlint-plugin = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint-plugin" }
@@ -208,13 +223,14 @@ android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-java-library = { id = "java-library"}
+java-library = { id = "java-library" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 objectbox = { id = "io.objectbox" }
 realm-android = { id = "realm-android" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [bundles]
 
@@ -224,6 +240,7 @@ data-source-local-impl = [
     "kotlin-coroutines-android",
     #
     "dagger",
+    "hilt",
     #
     "kotlinx-dateTime"
 ]

@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -52,7 +53,8 @@ dependencies {
     implementationDependencies()
 
     kspDependencies()
-    kspAndroidTest(libs.dagger.compiler)
+    kspAndroidTest(libs.dagger.compiler) //
+    kspAndroidTest(libs.hilt.compiler)
 
     testImplementation(libs.bundles.feature.ui.impl.test)
 
@@ -60,7 +62,8 @@ dependencies {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
@@ -68,5 +71,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
     implementation(project(":store:app-store"))
 
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
 }

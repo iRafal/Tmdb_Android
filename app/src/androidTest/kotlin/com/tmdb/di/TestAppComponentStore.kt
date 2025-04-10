@@ -1,7 +1,5 @@
 package com.tmdb.di
 
-import com.tmdb.di.component.store.AppStoreComponentStore
-
 
 object TestAppComponentStore {
     private var _component: TestAppComponent? = null

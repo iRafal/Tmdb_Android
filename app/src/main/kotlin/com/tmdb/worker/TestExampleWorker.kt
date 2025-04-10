@@ -1,17 +1,21 @@
 package com.tmdb.worker
 
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.tmdb.store.AppStore
 import com.tmdb.ui.core.util.worker.WorkerCreator
 import com.tmdb.util.di.qualifiers.ApplicationContext
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import javax.inject.Inject
 import javax.inject.Provider
 
-class TestExampleWorker(
-    appContext: Context,
-    params: WorkerParameters,
+@HiltWorker
+class TestExampleWorker @AssistedInject constructor(
+    @Assisted appContext: Context,
+    @Assisted params: WorkerParameters,
     private val store: AppStore
 ) : CoroutineWorker(appContext, params) {
 

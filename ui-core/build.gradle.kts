@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -59,7 +60,8 @@ dependencies {
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
     implementation(project(":store:app-store"))
@@ -67,7 +69,8 @@ fun DependencyHandlerScope.implementationDependencies() {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.apiDependencies() {

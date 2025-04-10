@@ -14,23 +14,18 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.metrics.performance.JankStats
-import com.tmdb.feature.home.ui.di.HomeFeatureDi
-import com.tmdb.feature.movie.details.ui.di.MovieDetailsFeatureDi
 import com.tmdb.splash.CustomSplashActivity
-import com.tmdb.store.AppStore
 import com.tmdb.ui.core.compose.theme.TmdbTheme
 import com.tmdb.ui.core.util.disableScreenshots
 import com.tmdb.ui.navigation.AppNavigation
 import com.tmdb.util.RootUtils
-import com.tmdb.util.appComponent
-import com.tmdb.util.appStoreComponent
 import com.tmdb.util.isGooglePlayServicesAvailable
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivity : ComponentActivity(),
-    HomeFeatureDi.Component.Dependencies,
-    MovieDetailsFeatureDi.Component.Dependencies {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
 
     private var janksStats: JankStats? = null
 
@@ -39,13 +34,9 @@ class MainActivity : ComponentActivity(),
 
     private var keepShowingSplash: Boolean by mutableStateOf(true)
 
-    override val appStore: AppStore
-        get() = appStoreComponent.appStore
-
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        appComponent.inject(this)
         splashScreen.initSplash()
         disableScreenshots()
         checkIllegalDeviceConfig()

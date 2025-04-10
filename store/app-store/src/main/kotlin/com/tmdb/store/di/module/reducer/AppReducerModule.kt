@@ -6,7 +6,6 @@ import com.tmdb.store.AppReducerImpl
 import dagger.Module
 import dagger.Provides
 
-
 @Module(includes = [HomeFeatureReducerModule::class])
 object AppReducerModule {
 

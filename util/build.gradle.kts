@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -48,13 +49,15 @@ dependencies {
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.apiDependencies() {

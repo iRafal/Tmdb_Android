@@ -10,8 +10,10 @@ import com.tmdb.data.source.remote.implRetrofit.movie.MovieRemoteDataSourceImpl
 import com.tmdb.data.source.remote.implRetrofit.person.PersonRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module(includes = [MovieMappingModule::class, PersonMappingModule::class, GenreMappingModule::class])
 interface RemoteDataSourceModule {
     @Binds

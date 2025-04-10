@@ -1,5 +1,6 @@
 package com.tmdb.data.api.implKtor.di.module
 
+import com.tmdb.data.api.config.di.module.ApiConfigModule
 import com.tmdb.data.api.implKtor.discover.DiscoverApi
 import com.tmdb.data.api.implKtor.discover.DiscoverApiImpl
 import com.tmdb.data.api.implKtor.genre.GenreApi
@@ -13,7 +14,7 @@ import dagger.Binds
 import dagger.Module
 
 
-@Module(includes = [ApiUtilModule::class])
+@Module(includes = [ApiUtilModule::class, ApiConfigModule::class])
 interface ApiModule {
 
     @[Binds ApplicationScope]

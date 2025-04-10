@@ -6,9 +6,10 @@ import com.tmdb.util.di.qualifiers.DispatcherMain
 import com.tmdb.util.di.qualifiers.DispatcherUnconfined
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-
 
 @Module
 object DispatchersModule {

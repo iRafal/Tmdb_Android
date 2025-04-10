@@ -12,7 +12,6 @@ import com.tmdb.data.api.config.url.provider.person.PersonUrlProviderImpl
 import dagger.Module
 import dagger.Provides
 
-
 @Module(includes = [BaseUrlProviderModule::class])
 object UrlProviderModule {
 

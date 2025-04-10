@@ -7,7 +7,6 @@ import com.tmdb.data.local.impl.objectBox.mapping.MovieEntityToDataModelMapperIm
 import dagger.Binds
 import dagger.Module
 
-
 @Module
 interface LocalDataSourceDataMappingModule {
     @Binds

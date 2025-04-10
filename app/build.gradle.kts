@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -106,7 +107,8 @@ dependencies {
     kspDependencies()
     debugImplementationDependencies()
     testImplementationDependencies()
-    kspAndroidTest(libs.dagger.compiler)
+    kspAndroidTest(libs.dagger.compiler) //
+    kspAndroidTest(libs.hilt.compiler)
     androidTestImplementationDependencies()
 }
 
@@ -130,12 +132,15 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.play.services.base)
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
+    implementation(libs.hilt.work)
     implementation(libs.androidx.metrics.performance)
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.debugImplementationDependencies() {
@@ -156,6 +161,8 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
 
     androidTestImplementation(libs.kotlin.test)
     androidTestImplementation(libs.kotlin.coroutines.test)
+
+    androidTestImplementation(libs.hilt.test.android)
 
     androidTestImplementation(libs.compose.ui.test.manifest.debug)
     androidTestImplementation(libs.compose.ui.test.junit)

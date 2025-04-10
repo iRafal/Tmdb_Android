@@ -12,7 +12,6 @@ import io.ktor.client.plugins.logging.LogLevel.BODY
 import io.ktor.client.plugins.logging.Logger
 import kotlinx.serialization.json.Json
 
-
 @Module
 object ApiUtilModule {
 

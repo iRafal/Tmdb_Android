@@ -11,6 +11,7 @@ import com.tmdb.store.action.HomeAction
 import com.tmdb.store.feature.HomeFeature
 import com.tmdb.store.state.AppState
 import com.tmdb.util.di.qualifiers.DispatcherIo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
+@HiltViewModel
 class HomeViewModel @Inject constructor(
     private val store: AppStore,
     @DispatcherIo private val dispatcherIo: CoroutineDispatcher,

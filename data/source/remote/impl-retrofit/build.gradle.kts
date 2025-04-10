@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -44,7 +45,8 @@ android {
 
 dependencies {
     implementationDependencies()
-    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.compiler) //
+    ksp(libs.hilt.compiler)
     apiDependencies()
     testImplementationDependencies()
 }
@@ -54,7 +56,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
     implementation(libs.kotlinx.dateTime)
-    implementation(libs.dagger)
+    implementation(libs.dagger) //
+    implementation(libs.hilt)
     implementation(project(":data:api:impl-retrofit"))
     implementation(project(":data:api:config"))
     implementation(project(":util"))

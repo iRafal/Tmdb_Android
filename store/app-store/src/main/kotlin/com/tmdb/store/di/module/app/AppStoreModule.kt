@@ -12,7 +12,6 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
 
-
 @Module(includes = [AppEnvModule::class, AppReducerModule::class, DispatchersModule::class])
 object AppStoreModule {
     @[Provides ApplicationScope]

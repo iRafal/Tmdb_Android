@@ -9,7 +9,6 @@ import com.tmdb.data.source.remote.implKtor.mapping.GenreListApiModelToDataState
 import dagger.Binds
 import dagger.Module
 
-
 @Module
 interface GenreMappingModule {
     @Binds

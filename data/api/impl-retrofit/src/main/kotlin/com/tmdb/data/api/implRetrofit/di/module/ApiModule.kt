@@ -1,5 +1,6 @@
 package com.tmdb.data.api.implRetrofit.di.module
 
+import com.tmdb.data.api.config.di.module.ApiConfigModule
 import com.tmdb.data.api.config.di.module.UrlProviderModule
 import com.tmdb.data.api.config.url.provider.base.BaseUrlProvider
 import com.tmdb.data.api.implRetrofit.di.ApiDependenciesProvider
@@ -22,7 +23,8 @@ import retrofit2.Converter
         ApiFactoriesModule::class,
         ApiHttpClientModule::class,
         ApiJsonModule::class,
-        UrlProviderModule::class
+        UrlProviderModule::class,
+        ApiConfigModule::class,
     ]
 )
 object ApiModule {
