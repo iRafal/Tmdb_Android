@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,11 +27,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     private var janksStats: JankStats? = null
 
-    @Inject
-    lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<MainViewModel>()
 
     private var keepShowingSplash: Boolean by mutableStateOf(true)
 
