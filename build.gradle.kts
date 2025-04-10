@@ -226,12 +226,12 @@ tasks.register<JacocoReport>("jacocoReport") {
                 }
             },
             androidModules.map { module ->
-                module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/apiDebug") {
+                module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
                     exclude(excludeList)
                 }
-//                module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/apiRelease") {
-//                    exclude(excludeList)
-//                }
+                module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/release") {
+                    exclude(excludeList)
+                }
             }
         )
     )
@@ -242,7 +242,7 @@ tasks.register<JacocoReport>("jacocoReport") {
             androidModules.map {
                 // 'app' module
                 "${it.layout.buildDirectory.get()}/jacoco/testDebugUnitTest.exec"
-//                "${it.layout.buildDirectory.get()}/jacoco/testApiReleaseUnitTest.exec"
+//                "${it.layout.buildDirectory.get()}/jacoco/testReleaseUnitTest.exec"
 
                 // 'ui-core' module
                 "${it.layout.buildDirectory.get()}/jacoco/testDebugUnitTest.exec"
