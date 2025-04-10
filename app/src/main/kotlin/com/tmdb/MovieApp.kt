@@ -3,6 +3,8 @@ package com.tmdb
 import android.app.Application
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
+import android.util.Log
+import androidx.work.Configuration
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
 import com.tmdb.di.component.app.AppComponent
@@ -13,11 +15,13 @@ import com.tmdb.ui.core.util.logging.android.AndroidLogging
 import com.tmdb.util.di.qualifiers.ApplicationScope
 import javax.inject.Inject
 
-class MovieApp : Application() /*, Configuration.Provider*/ {
+class MovieApp : Application() , Configuration.Provider {
 
-    //TODO
-//    @Inject
-//    lateinit var workerFactory: HiltWorkerFactory
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setMinimumLoggingLevel(if (BuildConfig.DEBUG) Log.DEBUG else Log.ERROR)
+            .setWorkerFactory(appComponent.workerFactory)
+            .build()
 
     @Inject
     @ApplicationScope

@@ -1,6 +1,7 @@
 package com.tmdb.di.component.app
 
 import android.content.Context
+import androidx.work.WorkerFactory
 import coil3.ImageLoader
 import com.tmdb.MovieApp
 import com.tmdb.di.component.app.module.AppModule
@@ -19,6 +20,8 @@ interface AppComponent: HasAppContext {
     @get:ApplicationScope
     @get:ImageLoadingModule.CoilOkHttpImageLoader
     val imageLoader: ImageLoader
+
+    val workerFactory: WorkerFactory
 
     fun inject(inject: MovieApp)
     fun inject(inject: MainActivity)
