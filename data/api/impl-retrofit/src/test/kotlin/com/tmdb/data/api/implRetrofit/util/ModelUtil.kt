@@ -20,7 +20,7 @@ object ModelUtil {
         imdbId = "tt0137523",
         originalLanguage = "en",
         originalTitle = "Fight Club",
-        overview = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into.",
+        overview = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into",
         popularity = 0.5,
         posterPath = null,
         productionCompanies = listOf(
