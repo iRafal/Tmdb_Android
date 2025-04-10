@@ -8,8 +8,10 @@ import com.tmdb.store.env.contract.AppEnv.Network
 import com.tmdb.store.env.impl.createAppNetworkEnvImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 object AppNetworkModule {
     @Provides

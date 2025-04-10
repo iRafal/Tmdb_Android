@@ -5,7 +5,10 @@ import com.tmdb.store.AppReducer
 import com.tmdb.store.AppReducerImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module(includes = [HomeFeatureReducerModule::class])
 object AppReducerModule {
 

@@ -7,8 +7,11 @@ import com.tmdb.util.di.qualifiers.ApplicationScope
 import com.tmdb.util.di.qualifiers.DispatcherIo
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 
+@InstallIn(SingletonComponent::class)
 @Module(includes = [DispatchersModule::class])
 object HomeFeatureReducerModule {
 

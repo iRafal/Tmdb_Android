@@ -6,8 +6,10 @@ import com.tmdb.data.db.room.movie.MovieDao
 import com.tmdb.util.di.qualifiers.ApplicationContext
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 object DbModule {
 

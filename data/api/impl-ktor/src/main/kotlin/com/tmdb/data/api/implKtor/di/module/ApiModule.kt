@@ -12,8 +12,10 @@ import com.tmdb.data.api.implKtor.person.PersonApiImpl
 import com.tmdb.util.di.qualifiers.ApplicationScope
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module(includes = [ApiUtilModule::class, ApiConfigModule::class])
 interface ApiModule {
 

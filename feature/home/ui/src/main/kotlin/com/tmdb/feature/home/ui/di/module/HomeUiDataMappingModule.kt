@@ -8,7 +8,10 @@ import com.tmdb.feature.home.ui.data.mapping.MovieDataToHomeModelMapper
 import com.tmdb.feature.home.ui.data.mapping.MovieDataToHomeModelMapperImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 interface HomeUiDataMappingModule {
     @Binds

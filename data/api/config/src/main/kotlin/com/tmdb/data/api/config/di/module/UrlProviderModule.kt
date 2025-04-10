@@ -11,10 +11,12 @@ import com.tmdb.data.api.config.url.provider.person.PersonUrlProvider
 import com.tmdb.data.api.config.url.provider.person.PersonUrlProviderImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module(includes = [BaseUrlProviderModule::class])
 object UrlProviderModule {
-
     @Provides
     fun discoverUrlProvider(baseUrlProvider: BaseUrlProvider): DiscoverUrlProvider =
         DiscoverUrlProviderImpl(baseUrlProvider.discoverApiUrl)

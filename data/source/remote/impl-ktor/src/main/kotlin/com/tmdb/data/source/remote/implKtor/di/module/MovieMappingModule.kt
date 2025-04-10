@@ -8,7 +8,10 @@ import com.tmdb.data.source.remote.implKtor.mapping.MoviesListApiModelToDataStat
 import com.tmdb.data.source.remote.implKtor.mapping.MoviesListApiModelToDataStateModelMapperImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 interface MovieMappingModule {
     @Binds

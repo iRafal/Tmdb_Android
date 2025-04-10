@@ -7,11 +7,14 @@ import com.tmdb.data.api.implKtor.util.ApiErrorMapperImpl
 import com.tmdb.data.api.implKtor.util.KtorLogger
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.logging.LogLevel.BODY
 import io.ktor.client.plugins.logging.Logger
 import kotlinx.serialization.json.Json
 
+@InstallIn(SingletonComponent::class)
 @Module
 object ApiUtilModule {
 

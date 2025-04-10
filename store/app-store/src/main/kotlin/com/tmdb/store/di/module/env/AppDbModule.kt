@@ -5,8 +5,10 @@ import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.store.env.impl.createAppDbEnvImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 object AppDbModule {
 
