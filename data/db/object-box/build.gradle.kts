@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.ksp)
     id(libs.plugins.objectbox.get().pluginId)
+    alias(libs.plugins.kotlinx.kover)
     jacoco
 }
 

@@ -1,10 +1,117 @@
+import com.android.build.gradle.internal.packaging.defaultMerges
+import kotlinx.coroutines.flow.merge
+
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.kotlin) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.kotlinx.kover)
     jacoco
+}
+
+dependencies {
+    kover(project(":app"))
+    kover(project(":util-logging"))
+    kover(project(":util"))
+    kover(project(":ui-core"))
+    kover(project(":data:model"))
+    kover(project(":data:api:config"))
+    kover(project(":data:api:model"))
+    kover(project(":data:api:impl-ktor"))
+    kover(project(":data:api:impl-retrofit"))
+    kover(project(":data:db:room"))
+    kover(project(":data:source:local:impl-room"))
+    kover(project(":data:source:remote:impl-ktor"))
+    kover(project(":data:source:remote:impl-retrofit"))
+    kover(project(":data:db:object-box"))
+    kover(project(":data:db:realm"))
+    kover(project(":data:source:local:impl-objectBox"))
+    kover(project(":data:source:local:impl-realm"))
+    kover(project(":store:action"))
+    kover(project(":store:feature"))
+    kover(project(":store:state"))
+    kover(project(":store:env"))
+    kover(project(":store:base"))
+    kover(project(":store:app-store"))
+    kover(project(":feature:home:reducer"))
+    kover(project(":feature:movie:details:reducer"))
+    kover(project(":feature:home:ui"))
+    kover(project(":feature:movie:details:ui"))
+    kover(project(":feature:common"))
+}
+
+val codeCoverageExcludeList = listOf(
+    // Project specific UI exclusions
+    "**/ui/components/*",
+    "**/*UiTags.*",
+    "**/*Screen*.*",
+    "**/*ScreenUi*.*",
+    "**/*ScaffoldContent*.*",
+    "**/*UiPreview*.*",
+    "**/*Ui*Preview*.*",
+    "**/*Event.*",
+    "**/*Module.*",
+    "**/*PreviewData*.*", //`app`, ui-core module(s) classes
+    "**/*UiData*.*", //`app`, ui-core module(s) Ui Data Model classes
+    "**/*DataModel*.*", //`data` module DataModel classes
+//        "**/*ApiModel.*", //`data/api/model` module ApiModel classes
+
+    // Project specific common exclusions
+    "**/RootUtils.kt",
+    "**/*WorkerService.*",
+    "**/di/*",
+
+    // Common exclusions
+    "**/BuildConfig.*",
+    "**/*Test*.*",
+    "**/R.class",
+    "**/R$*.class",
+    "**/*$*",
+    "**/Manifest*.*",
+    "android/**/*.*",
+    "**/*Dagger*.*",
+    "**/Dagger*Component*.*",
+    "**/*_Factory*.*",
+    "**/*_Provide*Factory*.*",
+    "**/*Companion*.*",
+    "**/*MembersInjector*.*",
+    "**/*_MembersInjector.class",
+    "**/*Component*.*",
+    "**/*Extensions*.*",
+    "**/Lambda$*.class",
+    "**/*\$Lambda$*.*",
+    "**/Lambda.class",
+    "**/*Lambda.class",
+    "**/*Lambda*.class",
+    "**/*Module_*Factory.class",
+
+    // Kotlin specific exclusions
+    "**/*\$Properties*", // Kotlin properties
+    "**/*\$Companion*",
+    "**/BuildConfig*",
+    "**/*\$Initializer*",
+    "**/*\$Creator*" // Parcelable creators
+)
+
+kover {
+    reports {
+        total {
+            xml {
+                onCheck = false
+            }
+            html {
+                onCheck = true
+            }
+        }
+        filters {
+            excludes {
+                androidGeneratedClasses()
+                classes(codeCoverageExcludeList)
+            }
+        }
+    }
 }
 
 buildscript {
@@ -143,59 +250,6 @@ tasks.register<JacocoReport>("jacocoReport") {
         html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
     }
 
-    val excludeList = listOf(
-        // Project specific UI exclusions
-        "**/ui/components/*",
-        "**/*UiTags.*",
-        "**/*Screen*.*",
-        "**/*ScreenUi*.*",
-        "**/*ScaffoldContent*.*",
-        "**/*UiPreview*.*",
-        "**/*Ui*Preview*.*",
-        "**/*Event.*",
-        "**/*Module.*",
-        "**/*PreviewData*.*", //`app`, ui-core module(s) classes
-        "**/*UiData*.*", //`app`, ui-core module(s) Ui Data Model classes
-        "**/*DataModel*.*", //`data` module DataModel classes
-//        "**/*ApiModel.*", //`data/api/model` module ApiModel classes
-
-        // Project specific common exclusions
-        "**/RootUtils.kt",
-        "**/*WorkerService.*",
-        "**/di/*",
-
-        // Common exclusions
-        "**/BuildConfig.*",
-        "**/*Test*.*",
-        "**/R.class",
-        "**/R$*.class",
-        "**/*$*",
-        "**/Manifest*.*",
-        "android/**/*.*",
-        "**/*Dagger*.*",
-        "**/Dagger*Component*.*",
-        "**/*_Factory*.*",
-        "**/*_Provide*Factory*.*",
-        "**/*Companion*.*",
-        "**/*MembersInjector*.*",
-        "**/*_MembersInjector.class",
-        "**/*Component*.*",
-        "**/*Extensions*.*",
-        "**/Lambda$*.class",
-        "**/*\$Lambda$*.*",
-        "**/Lambda.class",
-        "**/*Lambda.class",
-        "**/*Lambda*.class",
-        "**/*Module_*Factory.class",
-
-        // Kotlin specific exclusions
-        "**/*\$Properties*", // Kotlin properties
-        "**/*\$Companion*",
-        "**/BuildConfig*",
-        "**/*\$Initializer*",
-        "**/*\$Creator*" // Parcelable creators
-    )
-
     fun Project.isJavaModule(): Boolean = plugins.hasPlugin("java")
     fun Project.isAndroidLibrary(): Boolean = plugins.hasPlugin("com.android.library")
     fun Project.isAndroidApp(): Boolean = plugins.hasPlugin("com.android.application")
@@ -219,18 +273,18 @@ tasks.register<JacocoReport>("jacocoReport") {
         files(
             javaModules.map { module ->
                 module.fileTree("build/classes/java/main") {
-                    exclude(excludeList)
+                    exclude(codeCoverageExcludeList)
                 }
                 module.fileTree("build/classes/kotlin/main") {
-                    exclude(excludeList)
+                    exclude(codeCoverageExcludeList)
                 }
             },
             androidModules.map { module ->
                 module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
-                    exclude(excludeList)
+                    exclude(codeCoverageExcludeList)
                 }
                 module.fileTree("${module.layout.buildDirectory.get()}/tmp/kotlin-classes/release") {
-                    exclude(excludeList)
+                    exclude(codeCoverageExcludeList)
                 }
             }
         )

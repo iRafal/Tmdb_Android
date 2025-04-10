@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp)
     id(GradleConfig.Plugins.KOTLIN_KAPT)
     id(libs.plugins.realm.android.get().pluginId)
+    alias(libs.plugins.kotlinx.kover)
     jacoco
 }
 
