@@ -23,24 +23,30 @@ import com.tmdb.feature.home.ui.data.model.Movie
 import com.tmdb.feature.home.ui.data.model.MovieGroup
 import com.tmdb.feature.home.ui.data.model.MovieGroup.Error.NetworkError
 import com.tmdb.ui.core.compose.ComposeTestTags
-import javax.inject.Inject
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertTrue
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
+import org.junit.Before
 import org.junit.Rule
+import javax.inject.Inject
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
+@HiltAndroidTest
 class HomeScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    @get:Rule
+    val hiltRule = HiltAndroidRule(this)
+
     @Inject
     lateinit var resources: Resources
 
-    @BeforeTest
+    @Before
     fun init() {
-        TestAppComponentStore.component.inject(this)
+        hiltRule.inject()
     }
 
     @Test

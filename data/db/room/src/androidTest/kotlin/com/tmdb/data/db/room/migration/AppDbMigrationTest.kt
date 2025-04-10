@@ -11,6 +11,7 @@ import com.tmdb.data.db.room.MovieDbMigrations
 import com.tmdb.data.db.room.di.module.DispatchersTestModule
 import com.tmdb.data.db.room.movie.MovieEntity
 import com.tmdb.data.db.room.util.ModelUtil
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import java.io.IOException
 import javax.inject.Inject
@@ -31,7 +32,6 @@ import org.junit.runner.RunWith
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
 class AppDbMigrationTest {
-
     @Inject
     @DispatchersTestModule.DispatcherTestUnconfined
     lateinit var dispatcher: TestDispatcher
@@ -39,6 +39,9 @@ class AppDbMigrationTest {
     @Inject
     @InstrumentationContext
     lateinit var context: Context
+
+    @get:Rule
+    val hiltRule = HiltAndroidRule(this)
 
     @get:Rule
     val helper: MigrationTestHelper = MigrationTestHelper(
@@ -49,6 +52,7 @@ class AppDbMigrationTest {
 
     @BeforeTest
     fun setup() {
+        hiltRule.inject()
         Dispatchers.setMain(dispatcher)
     }
 

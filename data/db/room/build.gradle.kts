@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.HiltTestRunner"
+        testInstrumentationRunner = "$namespace.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {

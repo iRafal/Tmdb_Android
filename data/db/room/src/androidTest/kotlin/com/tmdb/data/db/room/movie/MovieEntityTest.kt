@@ -3,6 +3,7 @@ package com.tmdb.data.db.room.movie
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.di.module.DispatchersTestModule
 import com.tmdb.data.db.room.util.ModelUtil
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import java.io.IOException
 import javax.inject.Inject
@@ -21,10 +22,13 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.junit.Rule
 
 @HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieEntityTest {
+    @get:Rule
+    val hiltRule = HiltAndroidRule(this)
 
     @Inject
     lateinit var movieDao: MovieDao
@@ -41,6 +45,7 @@ class MovieEntityTest {
 
     @BeforeTest
     fun setup() {
+        hiltRule.inject()
         Dispatchers.setMain(dispatcher)
     }
 

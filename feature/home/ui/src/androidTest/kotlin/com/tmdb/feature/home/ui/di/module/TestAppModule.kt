@@ -10,8 +10,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-@InstallIn(SingletonComponent::class)
-@Module
+@[Module InstallIn(SingletonComponent::class)]
 class TestAppModule {
 
     @get:Provides

@@ -270,6 +270,8 @@ ui-test-android = [
     "kotlin-test",
     "kotlin-coroutines-test",
     #
+    "hilt-test-android",
+    #
     "compose-ui-test-manifest-debug",
     "compose-ui-test-junit"
 ]
