@@ -11,7 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @[InstallIn(SingletonComponent::class)]
-@Module(includes = [DispatchersTestModule::class])
+@Module(includes = [DispatchersTestModule::class, TestDbModule::class])
 object TestAppModule {
 
     @get:Provides

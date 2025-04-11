@@ -1,8 +1,11 @@
 package com.tmdb.data.db.realm.movie
 
 import com.tmdb.data.db.realm.di.module.DispatchersTestModule
+import com.tmdb.data.db.realm.di.modules.DbModule
 import com.tmdb.data.db.realm.movie.dao.MovieDao
 import com.tmdb.data.db.realm.util.ModelUtil
+import com.tmdb.util.di.modules.DispatchersModule
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import io.realm.Realm
@@ -23,8 +26,9 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.junit.Rule
 
-@UninstallModules(RealmDbModule::class, DispatchersModule::class)
+@UninstallModules(DbModule::class, DispatchersModule::class)
 @HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieEntityTest {

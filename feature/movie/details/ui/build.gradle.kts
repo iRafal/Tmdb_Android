@@ -11,13 +11,12 @@ plugins {
 }
 
 android {
-    val nameSpace = "${GradleConfig.Android.applicationId}.feature.movie.details.ui"
-    namespace = nameSpace
+    namespace = "${GradleConfig.Android.applicationId}.feature.movie.details.ui"
     compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "$nameSpace}.runner.HiltTestRunner"
+        testInstrumentationRunner = "$namespace.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true

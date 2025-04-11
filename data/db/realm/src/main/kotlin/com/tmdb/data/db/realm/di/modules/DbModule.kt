@@ -6,11 +6,13 @@ import com.tmdb.data.db.realm.movie.dao.MovieDao
 import com.tmdb.data.db.realm.movie.dao.MovieDaoImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 object DbModule {
 
