@@ -10,8 +10,7 @@ plugins {
 }
 
 android {
-    val nameSpace = "${GradleConfig.Android.applicationId}.store"
-    namespace = nameSpace
+    namespace = "${GradleConfig.Android.applicationId}.store"
     compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
