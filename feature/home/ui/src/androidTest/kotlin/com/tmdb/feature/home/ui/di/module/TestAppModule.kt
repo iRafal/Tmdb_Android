@@ -8,8 +8,10 @@ import androidx.test.platform.app.InstrumentationRegistry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.testing.UninstallModules
 import dagger.hilt.components.SingletonComponent
 
+@UninstallModules(HomeFeatureModule::class)
 @[Module InstallIn(SingletonComponent::class)]
 class TestAppModule {
 
