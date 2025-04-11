@@ -8,8 +8,10 @@ import com.tmdb.data.source.remote.implRetrofit.mapping.GenreListApiModelToDataS
 import com.tmdb.data.source.remote.implRetrofit.mapping.GenreListApiModelToDataStateModelMapperImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 interface GenreMappingModule {
     @Binds

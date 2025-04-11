@@ -7,10 +7,13 @@ import com.tmdb.data.db.objectBox.movie.dao.MovieDao
 import com.tmdb.data.db.objectBox.movie.dao.MovieDaoImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import io.objectbox.Box
 import io.objectbox.BoxStore
 
+@InstallIn(SingletonComponent::class)
 @Module
 class DbModule {
 

@@ -6,8 +6,10 @@ import com.tmdb.data.source.local.impl.realm.mapping.MovieEntityToDataModelMappe
 import com.tmdb.data.source.local.impl.realm.mapping.MovieEntityToDataModelMapperImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 interface LocalDataSourceDataMappingModule {
     @Binds

@@ -5,6 +5,8 @@ import com.tmdb.data.api.implRetrofit.di.ApiDependenciesProvider
 import com.tmdb.data.api.implRetrofit.util.ApiResponseInterceptor
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -12,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 object ApiHttpClientModule {
 

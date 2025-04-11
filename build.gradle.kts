@@ -152,6 +152,7 @@ allprojects {
  * https://developer.android.com/studio/test/command-line
  *
  * ./gradlew test
+ * ./gradlew testDebugUnitTest
  *
  * ./gradlew connectedAndroidTest
  * ./gradlew cAT

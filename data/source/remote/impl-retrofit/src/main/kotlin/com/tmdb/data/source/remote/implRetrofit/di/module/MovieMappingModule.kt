@@ -1,6 +1,5 @@
 package com.tmdb.data.source.remote.implRetrofit.di.module
 
-
 import com.tmdb.data.source.remote.implRetrofit.mapping.MovieApiModelToDataModelMapper
 import com.tmdb.data.source.remote.implRetrofit.mapping.MovieApiModelToDataModelMapperImpl
 import com.tmdb.data.source.remote.implRetrofit.mapping.MovieApiModelToDataStateModelMapper
@@ -9,7 +8,10 @@ import com.tmdb.data.source.remote.implRetrofit.mapping.MoviesListApiModelToData
 import com.tmdb.data.source.remote.implRetrofit.mapping.MoviesListApiModelToDataStateModelMapperImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 interface MovieMappingModule {
     @Binds

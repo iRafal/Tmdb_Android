@@ -6,7 +6,10 @@ import com.tmdb.data.local.impl.objectBox.mapping.MovieEntityToDataModelMapper
 import com.tmdb.data.local.impl.objectBox.mapping.MovieEntityToDataModelMapperImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 interface LocalDataSourceDataMappingModule {
     @Binds

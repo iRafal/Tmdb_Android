@@ -13,10 +13,13 @@ import com.tmdb.data.api.implRetrofit.movie.MovieApi
 import com.tmdb.data.api.implRetrofit.person.PersonApi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Converter
 
+@InstallIn(SingletonComponent::class)
 @Module(
     includes = [
         ApiFactoriesModule::class,

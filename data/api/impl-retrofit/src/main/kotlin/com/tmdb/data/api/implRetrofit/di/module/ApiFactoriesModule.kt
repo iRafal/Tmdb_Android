@@ -4,6 +4,8 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.tmdb.data.api.implRetrofit.util.NetworkResponseAdapterFactory
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -12,7 +14,7 @@ import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-
+@InstallIn(SingletonComponent::class)
 @Module
 object ApiFactoriesModule {
 
