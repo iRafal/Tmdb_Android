@@ -1,6 +1,6 @@
 [versions]
 # https://developer.android.com/studio/releases/gradle-plugin
-gradle = "8.9.1"
+gradle = "8.9.2"
 
 # https://github.com/jlleitschuh/ktlint-gradle
 ktlint-plugin = "12.2.0"
@@ -21,7 +21,7 @@ objectBox = "4.2.0" # https://github.com/objectbox/objectbox-java
 realm-plugin = "10.19.0" # https://github.com/realm/realm-java
 
 # https://github.com/google/dagger/releases
-dagger = "2.56.1"
+dagger = "2.56.2"
 
 # https://github.com/google/ksp/releases
 # https://mvnrepository.com/artifact/com.google.devtools.ksp/com.google.devtools.ksp.gradle.plugin?repo=central
