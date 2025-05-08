@@ -59,10 +59,10 @@ compose-ui = "1.7.8" # https://developer.android.com/jetpack/androidx/releases/c
 
 # https://developer.android.com/jetpack/androidx/releases/compose-ui
 # https://mvnrepository.com/artifact/androidx.compose.ui/ui-viewbinding
-compose-viewBinding = "1.7.8"
+compose-viewBinding = "1.8.1"
 
 compose-activity = "1.10.1" # https://developer.android.com/jetpack/androidx/releases/activity
-compose-navigation = "2.8.9" # https://developer.android.com/jetpack/androidx/releases/navigation
+compose-navigation = "2.9.0" # https://developer.android.com/jetpack/androidx/releases/navigation
 
 # https://developer.android.com/jetpack/compose/layouts/constraintlayout
 # https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose?repo=google
