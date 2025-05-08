@@ -97,10 +97,9 @@ mockito-kotlin = "5.4.0" # https://github.com/mockito/mockito-kotlin
 leakcanary = "2.14" # https://square.github.io/leakcanary/getting_started/
 logging = "0.1" # https://github.com/square/logcat
 kotlinx-dateTime = "0.6.2" # https://github.com/Kotlin/kotlinx-datetime
-google-phoneNumber = "9.0.2" # https://github.com/google/libphonenumber
-playServicesBase = "18.6.0"
-appcompat = "1.7.0" # https://mvnrepository.com/artifact/com.google.android.gms/play-services-base
-
+google-phoneNumber = "9.0.5" # https://github.com/google/libphonenumber
+playServicesBase = "18.6.0" # https://mvnrepository.com/artifact/com.google.android.gms/play-services-base
+appcompat = "1.7.0"
 [libraries]
 
 #KOTLIN
