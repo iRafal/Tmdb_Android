@@ -10,44 +10,19 @@ import com.tmdb.util.di.qualifiers.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import javax.inject.Qualifier
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 
 @Module
 object ImageLoadingModule {
-
-    @[Qualifier Retention(AnnotationRetention.BINARY)]
-    annotation class InterceptorCoil
-
-    @[Provides InterceptorCoil ApplicationScope]
-    fun coilLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply { level = BODY }
-
-    @[Qualifier Retention(AnnotationRetention.BINARY)]
-    annotation class CoilOkHttpClient
-
-    @[CoilOkHttpClient Provides ApplicationScope]
-    fun coilOkkHttpClient(@InterceptorCoil coilLoggingInterceptor: Interceptor): OkHttpClient =
-        OkHttpClient.Builder()
-            .addInterceptor(coilLoggingInterceptor)
-            .build()
-
     @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class CoilOkHttpImageLoader
 
     @[Provides CoilOkHttpImageLoader ApplicationScope]
     fun coilImageLoader(
         @ApplicationContext context: Context,
-        @CoilOkHttpClient coilOkkHttpClient: OkHttpClient,
     ): ImageLoader = ImageLoader.Builder(context)
         .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
         .components {
-            add(
-                OkHttpNetworkFetcherFactory(
-                    callFactory = { coilOkkHttpClient },
-                )
-            )
+            add(OkHttpNetworkFetcherFactory())
         }
         .build()
 
