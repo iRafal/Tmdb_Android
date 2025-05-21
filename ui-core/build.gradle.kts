@@ -1,8 +1,6 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
@@ -26,26 +24,16 @@ android {
             isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = GradleConfig.javaVersion
-        targetCompatibility = GradleConfig.javaVersion
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            allWarningsAsErrors = false
+            consumerProguardFiles("consumer-rules.pro")
         }
     }
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+    lint {
+        // https://developer.android.com/studio/write/lint
+        baseline = file("lint-baseline.xml")
     }
 }
 
@@ -77,21 +65,23 @@ fun DependencyHandlerScope.apiDependencies() {
 
     api(libs.androidx.work.runtime)
 
+    api(platform(libs.compose.bom))
     api(libs.compose.animation)
-    api(libs.compose.compiler)
     api(libs.compose.foundation)
     api(libs.compose.runtime)
     api(libs.compose.activity)
     api(libs.compose.constraintLayout)
     api(libs.compose.navigation)
     api(libs.compose.ui)
-    api(libs.compose.ui.preview)
     api(libs.compose.material.iconsExtended)
+    api(libs.compose.ui.preview)
     api(libs.compose.material3)
+    api(libs.accompanist.permissions.compose)
+    api(libs.compose.viewBinding)
 
     api(libs.coil)
     api(libs.coil.compose)
-    api(libs.coil.network.okHttp)
+    api(libs.coil.network.okhttp)
 //    api(libs.coil.network.ktor)
     api(libs.okHttp3.loggingInterceptor)
 //    api(libs.ktor.client.core)

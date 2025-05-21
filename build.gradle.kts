@@ -1,9 +1,19 @@
+import com.android.build.gradle.BaseExtension
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.kotlin) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.google.protobuf) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.kotlinx.kover)
     jacoco
 }
@@ -119,11 +129,8 @@ buildscript {
     }
 
     dependencies {
-        classpath(libs.ktlint.plugin)
-        classpath(libs.detekt)
         classpath(libs.objectBox)
         classpath(libs.realm.plugin)
-
     }
 }
 
@@ -169,6 +176,24 @@ allprojects {
 subprojects {
     apply {
         plugin(rootProject.libs.plugins.ktlint.get().pluginId) // Version should be inherited from parent
+    }
+
+    plugins.withType<org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper> {
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_17)
+                allWarningsAsErrors = false
+            }
+        }
+    }
+
+    plugins.withType<com.android.build.gradle.BasePlugin> {
+        extensions.configure<BaseExtension> {
+            compileOptions {
+                sourceCompatibility = GradleConfig.javaVersion
+                targetCompatibility = GradleConfig.javaVersion
+            }
+        }
     }
 
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
@@ -239,6 +264,16 @@ tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
 
+//tasks.withType<JacocoCoverageVerification> {
+//    violationRules {
+//        rule {
+//            limit {
+//                minimum = BigDecimal(0.6) //TODO set
+//            }
+//        }
+//    }
+//}
+
 tasks.register<JacocoReport>("jacocoReport") {
     reports {
         csv.required.set(false)
@@ -255,7 +290,7 @@ tasks.register<JacocoReport>("jacocoReport") {
     val androidModules = subprojects.filter { it.isAndroidLibrary() || it.isAndroidApp() }
 
     dependsOn(javaModules.map { it.tasks.named("test") })
-    dependsOn(androidModules.map { it.tasks.named("testDebugUnitTest") })
+    dependsOn(androidModules.map { it.tasks.named("test") })
 
     sourceDirectories.setFrom(
         files(

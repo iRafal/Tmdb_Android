@@ -1,11 +1,10 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.google.services)
     jacoco
 }
 
@@ -77,10 +76,6 @@ android {
 //            signingConfig = signingConfigs.getByName(signingConfigRelease)
         }
     }
-    compileOptions {
-        sourceCompatibility = GradleConfig.javaVersion
-        targetCompatibility = GradleConfig.javaVersion
-    }
     buildFeatures {
         compose = true
         buildConfig = true
@@ -93,15 +88,10 @@ android {
         // https://developer.android.com/studio/write/lint
         baseline = file("lint-baseline.xml")
     }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            allWarningsAsErrors = false
-        }
-    }
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.android.tools.desugaring)
     implementationDependencies()
     kspDependencies()
     debugImplementationDependencies()
@@ -131,7 +121,7 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
     implementation(libs.dagger)
-    implementation(libs.androidx.metrics.performance)
+    implementation(libs.androidx.metrics)
 }
 
 fun DependencyHandlerScope.kspDependencies() {

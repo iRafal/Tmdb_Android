@@ -10,6 +10,12 @@ dependencies {
     testImplementationDependencies()
 }
 
+java {
+    sourceCompatibility = GradleConfig.javaVersion
+    targetCompatibility = GradleConfig.javaVersion
+}
+
+
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":feature:common"))
 
