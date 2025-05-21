@@ -79,6 +79,7 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+
     }
 
     packaging.resources {
@@ -87,6 +88,9 @@ android {
     lint {
         // https://developer.android.com/studio/write/lint
         baseline = file("lint-baseline.xml")
+    }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
     }
 }
 
@@ -117,7 +121,7 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":feature:home:ui"))
     implementation(project(":feature:movie:details:ui"))
 
-    implementation(libs.play.services.base)
+//    implementation(libs.play.services.base)
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
     implementation(libs.dagger)
