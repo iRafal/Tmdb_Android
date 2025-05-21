@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
-//    alias(libs.plugins.google.services)
+    alias(libs.plugins.google.services)
     jacoco
 }
 
@@ -121,7 +121,7 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":feature:home:ui"))
     implementation(project(":feature:movie:details:ui"))
 
-//    implementation(libs.play.services.base)
+    implementation(libs.play.services.base)
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
     implementation(libs.dagger)
