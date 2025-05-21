@@ -3,6 +3,11 @@ plugins {
     id(libs.plugins.java.library.get().pluginId)
 }
 
+java {
+    sourceCompatibility = GradleConfig.javaVersion
+    targetCompatibility = GradleConfig.javaVersion
+}
+
 dependencies {
     apiDependencies()
     implementationDependencies()

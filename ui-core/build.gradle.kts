@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -11,13 +9,14 @@ plugins {
 }
 
 android {
-    namespace = "${GradleConfig.Android.applicationId}.ui.core"
+    val packageName = "${GradleConfig.Android.applicationId}.ui.core"
+    namespace = packageName
     compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "$namespace.runner.HiltTestRunner"
+        testInstrumentationRunner = "$packageName.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -26,26 +25,16 @@ android {
             isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = GradleConfig.javaVersion
-        targetCompatibility = GradleConfig.javaVersion
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            allWarningsAsErrors = false
+            consumerProguardFiles("consumer-rules.pro")
         }
     }
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+    lint {
+        // https://developer.android.com/studio/write/lint
+        baseline = file("lint-baseline.xml")
     }
 }
 

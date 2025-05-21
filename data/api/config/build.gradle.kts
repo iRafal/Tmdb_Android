@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
 
 plugins {
@@ -36,26 +35,14 @@ android {
             isDefault = true
         }
         release {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
             consumerProguardFiles("consumer-rules.pro")
         }
     }
-
-    compileOptions {
-        sourceCompatibility = GradleConfig.javaVersion
-        targetCompatibility = GradleConfig.javaVersion
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            allWarningsAsErrors = false
-        }
-    }
     buildFeatures.buildConfig = true
+    lint {
+        // https://developer.android.com/studio/write/lint
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 dependencies {

@@ -174,6 +174,24 @@ subprojects {
         plugin(rootProject.libs.plugins.ktlint.get().pluginId) // Version should be inherited from parent
     }
 
+    plugins.withType<org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper> {
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_17)
+                allWarningsAsErrors = false
+            }
+        }
+    }
+
+    plugins.withType<com.android.build.gradle.BasePlugin> {
+        extensions.configure<BaseExtension> {
+            compileOptions {
+                sourceCompatibility = GradleConfig.javaVersion
+                targetCompatibility = GradleConfig.javaVersion
+            }
+        }
+    }
+
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)
         verbose.set(true)

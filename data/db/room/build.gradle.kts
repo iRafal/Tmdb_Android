@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -15,7 +13,7 @@ android {
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "$namespace.runner.HiltTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.room.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {
@@ -28,25 +26,12 @@ android {
             isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
         }
         release {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
             consumerProguardFiles("consumer-rules.pro")
         }
     }
-    compileOptions {
-        compileOptions {
-            sourceCompatibility = GradleConfig.javaVersion
-            targetCompatibility = GradleConfig.javaVersion
-        }
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            allWarningsAsErrors = false
-        }
+    lint {
+        // https://developer.android.com/studio/write/lint
+        baseline = file("lint-baseline.xml")
     }
     sourceSets {
         getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))

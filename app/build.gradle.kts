@@ -78,15 +78,10 @@ android {
 //            signingConfig = signingConfigs.getByName(signingConfigRelease)
         }
     }
-    compileOptions {
-        sourceCompatibility = GradleConfig.javaVersion
-        targetCompatibility = GradleConfig.javaVersion
-    }
     buildFeatures {
         compose = true
         buildConfig = true
     }
-
     packaging.resources {
         excludes.addAll(GradleConfig.Android.excludePackagingResources)
     }

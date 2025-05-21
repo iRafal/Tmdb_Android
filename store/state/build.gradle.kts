@@ -5,6 +5,11 @@ plugins {
     jacoco
 }
 
+java {
+    sourceCompatibility = GradleConfig.javaVersion
+    targetCompatibility = GradleConfig.javaVersion
+}
+
 dependencies {
     implementation(project(":data:model"))
     implementation(libs.kotlin.stdLib)
