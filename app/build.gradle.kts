@@ -1,8 +1,6 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
@@ -38,7 +36,7 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        testInstrumentationRunner = "$namespace.runner.HiltTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.HiltTestRunner"
 
         bundle.language.enableSplit = false
     }
@@ -89,15 +87,13 @@ android {
         // https://developer.android.com/studio/write/lint
         baseline = file("lint-baseline.xml")
     }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            allWarningsAsErrors = false
-        }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
     }
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.android.tools.desugaring)
     implementationDependencies()
     kspDependencies()
     debugImplementationDependencies()
@@ -128,7 +124,7 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.material.components.android)
     implementation(libs.hilt)
     implementation(libs.hilt.work)
-    implementation(libs.androidx.metrics.performance)
+    implementation(libs.androidx.metrics)
 }
 
 fun DependencyHandlerScope.kspDependencies() {

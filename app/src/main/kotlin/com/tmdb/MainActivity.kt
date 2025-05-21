@@ -23,7 +23,6 @@ import com.tmdb.util.RootUtils
 import com.tmdb.util.isGooglePlayServicesAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
