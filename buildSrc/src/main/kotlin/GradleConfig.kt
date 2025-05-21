@@ -20,7 +20,7 @@ object GradleConfig {
         )
     }
 
-    val javaVersion = JavaVersion.VERSION_21
+    val javaVersion = JavaVersion.VERSION_17
     val javaVersionAsString = javaVersion.toString()
 
     object Plugins {
