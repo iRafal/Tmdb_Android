@@ -19,37 +19,16 @@ import javax.inject.Qualifier
 @InstallIn(SingletonComponent::class)
 @Module
 object ImageLoadingModule {
-
-    @[Qualifier Retention(AnnotationRetention.BINARY)]
-    annotation class InterceptorCoil
-
-    @[Provides InterceptorCoil]
-    fun coilLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply { level = BODY }
-
-    @[Qualifier Retention(AnnotationRetention.BINARY)]
-    annotation class CoilOkHttpClient
-
-    @[CoilOkHttpClient Provides]
-    fun coilOkkHttpClient(@InterceptorCoil coilLoggingInterceptor: Interceptor): OkHttpClient =
-        OkHttpClient.Builder()
-            .addInterceptor(coilLoggingInterceptor)
-            .build()
-
     @[Qualifier Retention(AnnotationRetention.BINARY)]
     annotation class CoilOkHttpImageLoader
 
     @[Provides CoilOkHttpImageLoader]
     fun coilImageLoader(
         @ApplicationContext context: Context,
-        @CoilOkHttpClient coilOkkHttpClient: OkHttpClient,
     ): ImageLoader = ImageLoader.Builder(context)
         .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
         .components {
-            add(
-                OkHttpNetworkFetcherFactory(
-                    callFactory = { coilOkkHttpClient },
-                )
-            )
+            add(OkHttpNetworkFetcherFactory())
         }
         .build()
 
