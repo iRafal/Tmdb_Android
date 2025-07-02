@@ -2,7 +2,7 @@
 #region BUILD TOOLS
 # https://developer.android.com/studio/releases/gradle-plugin
 # https://developer.android.com/build/releases/past-releases
-gradle = "8.10.0"
+gradle = "8.11.0"
 #endregion BUILD TOOLS
 
 #region KOTLIN
