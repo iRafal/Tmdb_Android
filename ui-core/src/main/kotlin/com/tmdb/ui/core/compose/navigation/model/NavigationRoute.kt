@@ -1,6 +1,7 @@
 package com.tmdb.ui.core.compose.navigation.model
 
 import androidx.annotation.Keep
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Keep
@@ -12,5 +13,5 @@ sealed interface NavigationRoute {
 
     @Keep
     @Serializable
-    data class MovieDetails(val movieId: String)
+    data class MovieDetails(@SerialName("movieId") val movieId: String)
 }

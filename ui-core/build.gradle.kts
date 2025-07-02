@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
     jacoco
 }
 
