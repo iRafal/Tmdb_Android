@@ -9,7 +9,6 @@ import androidx.navigation.NavController
 import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.di.HomeFeatureDi
-import com.tmdb.ui.core.compose.navigation.model.NavigationRoute.Close
 import com.tmdb.ui.core.compose.navigation.model.NavigationRoute.MovieDetails
 import com.tmdb.ui.core.di.daggerViewModel
 
@@ -25,10 +24,10 @@ fun HomeScreen(
 
     val onEvent: (HomeUiEvent) -> Unit = { event ->
         when (event) {
-            HomeUiEvent.NavigateBack -> navController.navigate(Close.route)
+            HomeUiEvent.NavigateBack -> navController.popBackStack()
             is OpenMovie -> {
                 navController.navigate(
-                    MovieDetails.getRouteNameWithArguments(event.id.toString())
+                    MovieDetails(event.id.toString())
                 )
             }
             is HomeUiEvent.ReloadMovieSection -> viewModel.reloadMovieGroup(event.movieSection)

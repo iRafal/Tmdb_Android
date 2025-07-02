@@ -15,8 +15,7 @@ object MovieDetailsFeatureDi {
         dependencies = [Component.Dependencies::class]
     )
     interface Component {
-
-        val movieDetailsViewModel: MovieDetailsViewModel
+        val movieDetailsViewModelCreator: MovieDetailsViewModel.Creator
 
         @dagger.Component.Factory
         interface Factory {

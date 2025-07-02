@@ -83,7 +83,7 @@ class MainActivity : ComponentActivity(),
 
     @Composable
     private fun SetContent() {
-        TmdbTheme { AppNavigation(onClose = { finish() }) }
+        TmdbTheme { AppNavigation() }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
