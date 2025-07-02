@@ -97,7 +97,8 @@ internal class AndroidReleaseLogcatLogger(
             ) -> Unit
         ) {
             if (!LogcatLogger.isInstalled && !application.isDebuggableApp) {
-                LogcatLogger.install(AndroidReleaseLogcatLogger(minPriority, onErrorLog))
+                LogcatLogger.install()
+                LogcatLogger.loggers += AndroidReleaseLogcatLogger(minPriority, onErrorLog)
             }
         }
     }

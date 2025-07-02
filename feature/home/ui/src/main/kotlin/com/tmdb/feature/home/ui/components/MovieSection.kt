@@ -29,12 +29,14 @@ import com.tmdb.feature.home.ui.data.model.MovieGroup.Error.OtherError
 import com.tmdb.ui.core.compose.ComposeTestTags
 import com.tmdb.ui.core.compose.theme.TmdbTheme
 import com.tmdb.ui.core.compose.units.Spacing
-import kotlinx.datetime.Clock
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 private val previewDateToday = Clock.System.now().toLocalDateTime(TimeZone.UTC).date
 
 private val moviesPreview = listOf(

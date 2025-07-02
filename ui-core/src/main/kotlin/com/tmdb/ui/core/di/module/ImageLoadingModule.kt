@@ -21,9 +21,7 @@ object ImageLoadingModule {
         @ApplicationContext context: Context,
     ): ImageLoader = ImageLoader.Builder(context)
         .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
-        .components {
-            add(OkHttpNetworkFetcherFactory())
-        }
+        .components { add(OkHttpNetworkFetcherFactory()) }
         .build()
 
 //    @[Qualifier Retention(AnnotationRetention.BINARY)]
