@@ -3,7 +3,7 @@ package com.tmdb.feature.home.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
 import com.tmdb.feature.home.ui.data.model.HomeUiData
@@ -12,7 +12,7 @@ import com.tmdb.ui.core.compose.navigation.model.NavigationRoute.MovieDetails
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    val viewModel: HomeViewModel = viewModel()
+    val viewModel: HomeViewModel = hiltViewModel()
 
     val data by viewModel.uiStateFlow.collectAsState(HomeUiData.INITIAL)
 

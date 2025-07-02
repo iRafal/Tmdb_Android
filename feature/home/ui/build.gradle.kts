@@ -61,5 +61,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":store:app-store"))
 
     implementation(libs.hilt)
+    implementation(libs.hilt.navigation.compose)
     implementation(libs.compose.material)
 }

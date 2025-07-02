@@ -1,6 +1,7 @@
 package com.tmdb.feature.movie.details.ui
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.tmdb.feature.movie.details.ui.MovieDetailsUiEvent.NavigateBack
@@ -12,7 +13,7 @@ fun MovieDetailsScreen(
     navController: NavController,
     movieId: Int,
 ) {
-    val movieDetailsViewModel: MovieDetailsViewModel = viewModel()
+    val movieDetailsViewModel: MovieDetailsViewModel = hiltViewModel()
     val state = Loading
 //        val state by movieDetailsViewModel.state.collectAsState(MovieDetailsState.Idle)
     val onEvent: (MovieDetailsUiEvent) -> Unit = { event ->
