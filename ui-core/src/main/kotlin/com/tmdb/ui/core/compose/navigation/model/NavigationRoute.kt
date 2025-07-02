@@ -13,5 +13,5 @@ sealed interface NavigationRoute {
 
     @Keep
     @Serializable
-    data class MovieDetails(@SerialName("movieId") val movieId: String)
+    data class MovieDetails(@SerialName("movieId") val movieId: String): NavigationRoute
 }
