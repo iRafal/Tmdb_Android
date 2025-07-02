@@ -11,14 +11,13 @@ import com.tmdb.ui.core.compose.navigation.model.NavigationRoute
 @Composable
 fun MovieDetailsScreen(
     navController: NavController,
-    movieId: Int,
+    viewModel: MovieDetailsViewModel = hiltViewModel(),
 ) {
-    val movieDetailsViewModel: MovieDetailsViewModel = hiltViewModel()
     val state = Loading
-//        val state by movieDetailsViewModel.state.collectAsState(MovieDetailsState.Idle)
+//        val state by viewModel.state.collectAsState(MovieDetailsState.Idle)
     val onEvent: (MovieDetailsUiEvent) -> Unit = { event ->
         when (event) {
-            NavigateBack -> navController.navigate(NavigationRoute.Close.route)
+            NavigateBack -> navController.popBackStack()
         }
     }
     MovieDetailsScreenUi(state, onEvent)
