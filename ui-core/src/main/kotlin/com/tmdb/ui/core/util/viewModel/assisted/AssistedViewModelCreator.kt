@@ -30,6 +30,10 @@ interface AssistedViewModelCreator<out T : ViewModel> {
     fun create(handle: SavedStateHandle): T
 }
 
+interface AssistedViewModelGenericCreator<in I, out T : ViewModel> {
+    fun create(input: I): T
+}
+
 /**
  * Convenience function to use with `by viewModels` that creates an instance of
  * [AbstractSavedStateViewModelFactory] that enables us to pass [SavedStateHandle]

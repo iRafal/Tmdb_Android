@@ -2,11 +2,13 @@ package com.tmdb.ui.core.di
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.savedstate.compose.LocalSavedStateRegistryOwner
 import com.tmdb.ui.core.util.viewModel.assisted.AssistedViewModelCreator
+import com.tmdb.ui.core.util.viewModel.assisted.AssistedViewModelGenericCreator
 import com.tmdb.ui.core.util.viewModel.assisted.withFactory
 
 /**
@@ -78,3 +80,17 @@ inline fun <reified T : ViewModel> daggerAssistedViewModel(
     key = key,
     factory = LocalSavedStateRegistryOwner.current.withFactory(assistedViewModelCreator, defaultArgs = defaultArgs)
 )
+
+@Composable
+inline fun <I, reified T : ViewModel> daggerAssistedViewModelGeneric(
+    key: String? = null,
+    creator: AssistedViewModelGenericCreator<I, T>,
+    input: I,
+): T = viewModel(
+    modelClass = T::class.java,
+    key = key,
+    factory = viewModelFactory {
+        this.addInitializer(T::class, { creator.create(input) })
+    }
+)
+

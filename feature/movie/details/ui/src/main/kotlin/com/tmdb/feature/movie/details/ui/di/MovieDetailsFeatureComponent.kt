@@ -2,10 +2,10 @@ package com.tmdb.feature.movie.details.ui.di
 
 import android.content.Context
 import com.tmdb.feature.movie.details.ui.MovieDetailsViewModel
+import com.tmdb.feature.movie.details.ui.MovieDetailsViewModelNav3
 import com.tmdb.ui.core.di.base.HasAppStore
 import com.tmdb.ui.core.di.base.provideDependencies
 import com.tmdb.ui.core.di.qualifiers.FeatureScope
-
 
 object MovieDetailsFeatureDi {
 
@@ -16,6 +16,7 @@ object MovieDetailsFeatureDi {
     )
     interface Component {
         val movieDetailsViewModelCreator: MovieDetailsViewModel.Creator
+        val movieDetailsViewModelCreatorNav3: MovieDetailsViewModelNav3.Creator
 
         @dagger.Component.Factory
         interface Factory {

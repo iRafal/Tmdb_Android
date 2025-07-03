@@ -21,6 +21,7 @@ import com.tmdb.store.AppStore
 import com.tmdb.ui.core.compose.theme.TmdbTheme
 import com.tmdb.ui.core.util.disableScreenshots
 import com.tmdb.ui.navigation.AppNavigation
+import com.tmdb.ui.navigation.nav3.AppNavigation3
 import com.tmdb.util.RootUtils
 import com.tmdb.util.appComponent
 import com.tmdb.util.appStoreComponent
@@ -83,7 +84,10 @@ class MainActivity : ComponentActivity(),
 
     @Composable
     private fun SetContent() {
-        TmdbTheme { AppNavigation() }
+        TmdbTheme {
+            //AppNavigation()
+            AppNavigation3()
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
