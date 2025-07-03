@@ -81,6 +81,9 @@ fun DependencyHandlerScope.apiDependencies() {
     api(libs.accompanist.permissions.compose)
     api(libs.compose.viewBinding)
 
+    api(libs.compose.navigation3.runtime)
+    api(libs.compose.navigation3.ui)
+
     api(libs.coil)
     api(libs.coil.compose)
     api(libs.coil.network.okhttp)
