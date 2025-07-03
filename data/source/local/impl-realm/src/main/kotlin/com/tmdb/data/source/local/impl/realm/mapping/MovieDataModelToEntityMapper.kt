@@ -2,13 +2,12 @@ package com.tmdb.data.source.local.impl.realm.mapping
 
 import com.tmdb.data.db.realm.movie.MovieEntity
 import com.tmdb.data.model.MovieDataModel
-import javax.inject.Inject
 
-interface MovieDataModelToEntityMapper {
+fun interface MovieDataModelToEntityMapper {
     fun map(input: MovieDataModel): MovieEntity
 }
 
-class MovieDataModelToEntityMapperImpl @Inject constructor() : MovieDataModelToEntityMapper {
+class MovieDataModelToEntityMapperImpl : MovieDataModelToEntityMapper {
     override fun map(input: MovieDataModel): MovieEntity {
         return MovieEntity(
             id = input.id,

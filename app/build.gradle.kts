@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -95,10 +94,8 @@ android {
 dependencies {
     coreLibraryDesugaring(libs.android.tools.desugaring)
     implementationDependencies()
-    kspDependencies()
     debugImplementationDependencies()
     testImplementationDependencies()
-    kspAndroidTest(libs.hilt.compiler)
     androidTestImplementationDependencies()
 }
 
@@ -122,9 +119,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.play.services.base)
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
-    
-    implementation(libs.hilt)
-    implementation(libs.hilt.work)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -133,10 +127,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.koin.android.worker)
 
     implementation(libs.androidx.metrics)
-}
-
-fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
 }
 
 fun DependencyHandlerScope.debugImplementationDependencies() {
@@ -157,8 +147,6 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
 
     androidTestImplementation(libs.kotlin.test)
     androidTestImplementation(libs.kotlin.coroutines.test)
-
-    androidTestImplementation(libs.hilt.test.android)
 
     androidTestImplementation(libs.compose.ui.test.manifest.debug)
     androidTestImplementation(libs.compose.ui.test.junit)

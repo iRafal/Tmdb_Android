@@ -9,9 +9,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import javax.inject.Inject
 
-class GenreApiImpl @Inject constructor(
+class GenreApiImpl(
     private val client: HttpClient,
     private val urlProvider: GenreUrlProvider
 ) : GenreApi {

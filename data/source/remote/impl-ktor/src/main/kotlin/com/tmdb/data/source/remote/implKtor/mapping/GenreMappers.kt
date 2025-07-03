@@ -6,13 +6,12 @@ import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.api.model.util.NetworkErrorModel
 import com.tmdb.data.model.GenreDataModel
 import com.tmdb.data.model.state.DataState
-import javax.inject.Inject
 
-interface GenreApiModelToDataStateModelMapper {
+fun interface GenreApiModelToDataStateModelMapper {
     fun map(input: ApiResponse<Genre, NetworkErrorModel>): DataState<GenreDataModel>
 }
 
-class GenreApiModelToDataStateModelMapperImpl @Inject constructor(
+class GenreApiModelToDataStateModelMapperImpl(
     private val genreApiModelToDataModelMapper: GenreApiModelToDataModelMapper
 ) : GenreApiModelToDataStateModelMapper {
     override fun map(input: ApiResponse<Genre, NetworkErrorModel>): DataState<GenreDataModel> {
@@ -24,7 +23,7 @@ interface GenreListApiModelToDataStateModelMapper {
     fun map(input: ApiResponse<GenresList, NetworkErrorModel>): DataState<List<GenreDataModel>>
 }
 
-class GenreListApiModelToDataStateModelMapperImpl @Inject constructor(
+class GenreListApiModelToDataStateModelMapperImpl(
     private val genreApiModelToDataModelMapper: GenreApiModelToDataModelMapper
 ) : GenreListApiModelToDataStateModelMapper {
     override fun map(input: ApiResponse<GenresList, NetworkErrorModel>): DataState<List<GenreDataModel>> {
@@ -41,11 +40,11 @@ internal fun genreListToDataStateMapperImpl(
     input.mapApiStateToDataState(dataMapper)
 }
 
-interface GenreApiModelToDataModelMapper {
+fun interface GenreApiModelToDataModelMapper {
     fun map(input: Genre): GenreDataModel
 }
 
-class GenreApiModelToDataModelMapperImpl @Inject constructor() : GenreApiModelToDataModelMapper {
+class GenreApiModelToDataModelMapperImpl : GenreApiModelToDataModelMapper {
     override fun map(input: Genre): GenreDataModel {
         //TODO
         return GenreDataModel()

@@ -4,37 +4,27 @@ import android.app.Application
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
 import android.util.Log
-import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
 import com.tmdb.di.module.appModule
-import com.tmdb.ui.core.di.module.ImageLoadingModule
 import com.tmdb.ui.core.util.logging.android.AndroidLogging
-import dagger.hilt.android.HiltAndroidApp
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.workmanager.factory.KoinWorkerFactory
+import org.koin.androidx.workmanager.koin.workManagerFactory
+import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
-import javax.inject.Inject
 
-@HiltAndroidApp
-class MovieApp : Application() , Configuration.Provider {
-
-    @Inject
-    lateinit var workerFactory: HiltWorkerFactory
-
+class MovieApp : Application(), Configuration.Provider, KoinComponent {
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
             .setMinimumLoggingLevel(if (BuildConfig.DEBUG) Log.DEBUG else Log.ERROR)
-            .setWorkerFactory(workerFactory)
+            .setWorkerFactory(KoinWorkerFactory())
             .build()
 
-    @Inject
-    @ImageLoadingModule.CoilOkHttpImageLoader
-    lateinit var coilImageLoader: ImageLoader
-
-    val coilImageLoader2 : ImageLoader by inject(named("CoilOkHttpImageLoader"))
+    private val coilImageLoader : ImageLoader by inject(named("CoilOkHttpImageLoader"))
 
     override fun onCreate() {
         super.onCreate()
@@ -48,6 +38,7 @@ class MovieApp : Application() , Configuration.Provider {
         startKoin {
             androidContext(this@MovieApp)
             appModule()
+            workManagerFactory()
         }
     }
 

@@ -1,13 +1,12 @@
 package com.tmdb.util.logging.impl
 
 import com.tmdb.util.logging.AppLogger
-import javax.inject.Inject
 import logcat.LogPriority
 import logcat.asLog
 import logcat.logcat
 
 @Suppress("TooManyFunctions")
-class AppLoggerImpl @Inject constructor(): AppLogger {
+class AppLoggerImpl: AppLogger {
     override fun logVerbose(tag: String?, message: () -> String) {
         logcat(LogPriority.VERBOSE, tag, message)
     }

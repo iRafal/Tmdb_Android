@@ -1,15 +1,10 @@
 package com.tmdb.feature.movie.details.ui.di.module
 
-import com.tmdb.store.env.contract.AppEnv
-import com.tmdb.store.env.impl.createAppDbEnvImpl
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import androidx.lifecycle.SavedStateHandle
+import com.tmdb.feature.movie.details.ui.MovieDetailsViewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
-@InstallIn(SingletonComponent::class)
-@Module
-interface MovieDetailsFeatureModule
-
 fun movieDetailsFeatureModule() = module {
+    viewModel { (handle: SavedStateHandle) ->  MovieDetailsViewModel(get(), handle) }
 }

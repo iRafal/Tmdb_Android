@@ -5,9 +5,8 @@ import com.tmdb.data.model.GenreDataModel
 import com.tmdb.data.model.state.DataState
 import com.tmdb.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb.data.source.remote.implRetrofit.mapping.GenreListApiModelToDataStateModelMapper
-import javax.inject.Inject
 
-class GenreRemoteDataSourceImpl @Inject constructor(
+class GenreRemoteDataSourceImpl(
     private val api: GenreApi,
     private val genreListApiModelToDataStateModelMapper: GenreListApiModelToDataStateModelMapper,
 ) : GenreRemoteDataSource {

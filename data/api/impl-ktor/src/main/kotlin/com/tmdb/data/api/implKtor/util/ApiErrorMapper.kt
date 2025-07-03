@@ -5,13 +5,12 @@ import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import kotlinx.io.IOException
-import javax.inject.Inject
 
 fun interface ApiErrorMapper {
     suspend fun map(cause: Throwable): ApiException
 }
 
-class ApiErrorMapperImpl @Inject constructor(): ApiErrorMapper {
+class ApiErrorMapperImpl: ApiErrorMapper {
     override suspend fun map(cause: Throwable): ApiException {
         return when (cause) {
             is IOException -> ApiException.NetworkError(cause)

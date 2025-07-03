@@ -6,9 +6,8 @@ import com.tmdb.data.model.state.DataState
 import com.tmdb.data.source.remote.contract.movie.MovieRemoteDataSource
 import com.tmdb.data.source.remote.implRetrofit.mapping.MovieApiModelToDataStateModelMapper
 import com.tmdb.data.source.remote.implRetrofit.mapping.MoviesListApiModelToDataStateModelMapper
-import javax.inject.Inject
 
-class MovieRemoteDataSourceImpl @Inject constructor(
+class MovieRemoteDataSourceImpl(
     private val api: MovieApi,
     private val movieApiModelToDataStateModelMapper: MovieApiModelToDataStateModelMapper,
     private val moviesListApiModelToDataStateModelMapper: MoviesListApiModelToDataStateModelMapper,

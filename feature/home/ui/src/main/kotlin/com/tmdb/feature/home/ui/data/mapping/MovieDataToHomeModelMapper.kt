@@ -2,13 +2,12 @@ package com.tmdb.feature.home.ui.data.mapping
 
 import com.tmdb.data.model.MovieDataModel
 import com.tmdb.feature.home.ui.data.model.Movie
-import javax.inject.Inject
 
-interface MovieDataToHomeModelMapper {
+fun interface MovieDataToHomeModelMapper {
     fun map(input: MovieDataModel): Movie
 }
 
-class MovieDataToHomeModelMapperImpl @Inject constructor() : MovieDataToHomeModelMapper {
+class MovieDataToHomeModelMapperImpl : MovieDataToHomeModelMapper {
     override fun map(input: MovieDataModel): Movie {
         return Movie(
             id = checkNotNull(input.id),

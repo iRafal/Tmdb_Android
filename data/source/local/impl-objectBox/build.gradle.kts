@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -32,7 +31,6 @@ android {
 
 dependencies {
     implementationDependencies()
-    ksp(libs.hilt.compiler)//
     api(project(":data:source:local:contract"))
     testImplementation(libs.bundles.data.source.local.impl.test)
 }

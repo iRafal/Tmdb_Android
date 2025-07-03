@@ -8,15 +8,12 @@ import com.tmdb.store.AppStore
 import com.tmdb.store.feature.MovieDetailsFeature
 import com.tmdb.store.state.MovieDetailsFeatureState
 import com.tmdb.ui.core.compose.navigation.model.NavigationRoute
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
-@HiltViewModel
-class MovieDetailsViewModel @Inject constructor(
+class MovieDetailsViewModel(
     store: AppStore,
     private val handle: SavedStateHandle,
 ) : ViewModel() {

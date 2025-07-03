@@ -6,31 +6,10 @@ import com.tmdb.data.source.remote.contract.movie.MovieRemoteDataSource
 import com.tmdb.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb.store.env.contract.AppEnv.Network
 import com.tmdb.store.env.impl.createAppNetworkEnvImpl
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import org.koin.dsl.module
 
-@InstallIn(SingletonComponent::class)
-@Module
-object AppNetworkModule {
-    @Provides
-    fun appNetwork(
-        discoverSource: DiscoverRemoteDataSource,
-        genreSource: GenreRemoteDataSource,
-        movieSource: MovieRemoteDataSource,
-        personSource: PersonRemoteDataSource
-    ): Network = createAppNetworkEnvImpl(
-        discoverSource,
-        genreSource,
-        movieSource,
-        personSource
-    )
-}
-
 fun appNetworkModule() = module {
-    factory<Network>() {
+    factory<Network> {
         createAppNetworkEnvImpl(
             get<DiscoverRemoteDataSource>(),
             get<GenreRemoteDataSource>(),

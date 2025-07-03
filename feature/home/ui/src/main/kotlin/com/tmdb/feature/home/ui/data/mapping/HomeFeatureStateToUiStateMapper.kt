@@ -14,13 +14,12 @@ import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.data.model.Movie
 import com.tmdb.feature.home.ui.data.model.MovieGroup
 import com.tmdb.store.state.HomeFeatureState
-import javax.inject.Inject
 
 interface HomeFeatureStateToUiStateMapper {
     fun map(featureState: HomeFeatureState): HomeUiData
 }
 
-class HomeFeatureStateToUiStateMapperImpl @Inject constructor(
+class HomeFeatureStateToUiStateMapperImpl(
     private val movieDataToHomeModelMapper: MovieDataToHomeModelMapper
 ) : HomeFeatureStateToUiStateMapper {
     override fun map(featureState: HomeFeatureState): HomeUiData {

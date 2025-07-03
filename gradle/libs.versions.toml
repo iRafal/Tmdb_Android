@@ -145,12 +145,6 @@ firebase-crashlytics-plugin = "3.0.4"
 # https://developer.android.com/training/dependency-injection/hilt-android
 hilt = "2.56.2"
 
-# https://mvnrepository.com/artifact/androidx.hilt/hilt-work
-hilt-work = "1.2.0"
-
-# https://mvnrepository.com/artifact/androidx.hilt/hilt-navigation-compose
-hilt-navigation-compose = "1.2.0"
-
 # https://github.com/InsertKoinIO/koin/tags
 # https://insert-koin.io/docs/reference/koin-mp/kmp
 koin = "4.1.0"
@@ -276,12 +270,6 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 #endregion ANALYTICS
 
 #region DI
-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-test-android = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
-
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-compose-viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
@@ -314,15 +302,12 @@ google-services = { id = "com.google.gms.google-services", version.ref = "google
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }
 objectbox = { id = "io.objectbox" }
 realm-android = { id = "realm-android" }
-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [bundles]
 data-source-local-impl = [
     "kotlin-stdLib",
     "kotlin-coroutines-core",
     "kotlin-coroutines-android",
-    #
-    "hilt",
     #
     "kotlinx-dateTime"
 ]
@@ -355,8 +340,6 @@ ui-test-android = [
     #
     "kotlin-test",
     "kotlin-coroutines-test",
-    #
-    "hilt-test-android",
     #
     "compose-ui-test-manifest-debug",
     "compose-ui-test-junit"

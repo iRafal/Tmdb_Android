@@ -5,9 +5,8 @@ import com.tmdb.data.model.PersonDataModel
 import com.tmdb.data.model.state.DataState
 import com.tmdb.data.source.remote.contract.person.PersonRemoteDataSource
 import com.tmdb.data.source.remote.implRetrofit.mapping.PersonApiModelToDataStateModelMapper
-import javax.inject.Inject
 
-class PersonRemoteDataSourceImpl @Inject constructor(
+class PersonRemoteDataSourceImpl(
     private val api: PersonApi,
     private val personApiModelToDataStateModelMapper: PersonApiModelToDataStateModelMapper
 ) : PersonRemoteDataSource {

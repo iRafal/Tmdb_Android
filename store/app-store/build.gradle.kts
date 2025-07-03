@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -33,19 +32,13 @@ android {
 dependencies {
     implementationDependencies()
     apiDependencies()
-    kspDependencies()
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
     implementation(libs.kotlin.coroutines.core)
-    implementation(libs.hilt)//
     implementation(libs.koin.core)
     implementation(project(":util"))
-}
-
-fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)//
 }
 
 fun DependencyHandlerScope.apiDependencies() {

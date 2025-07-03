@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.ksp)
     id(libs.plugins.objectbox.get().pluginId)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -35,7 +34,6 @@ android {
 
 dependencies {
     implementationDependencies()
-    kspDependencies()
     testImplementationDependencies()
 }
 
@@ -44,7 +42,6 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
-    implementation(libs.hilt)
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.kotlinx.dateTime)
@@ -57,8 +54,4 @@ fun DependencyHandlerScope.testImplementationDependencies() {
     testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.kotlinx.dateTime)
-}
-
-fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
 }

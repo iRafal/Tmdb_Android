@@ -5,7 +5,6 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
 import io.realm.kotlin.executeTransactionAwait
-import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 @Suppress("TooManyFunctions")
-class MovieDaoImpl @Inject constructor(
+class MovieDaoImpl(
     private val realmConfiguration: RealmConfiguration
 ) : MovieDao {
     private val realm: Realm

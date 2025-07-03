@@ -10,9 +10,6 @@ import com.tmdb.store.AppStore
 import com.tmdb.store.action.HomeAction
 import com.tmdb.store.feature.HomeFeature
 import com.tmdb.store.state.AppState
-import com.tmdb.util.di.qualifiers.DispatcherIo
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -20,14 +17,12 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
+class HomeViewModel(
     private val store: AppStore,
-    @DispatcherIo private val dispatcherIo: CoroutineDispatcher,
+    dispatcherIo: CoroutineDispatcher,
     private val homeFeatureStateToUiStateMapper: HomeFeatureStateToUiStateMapper,
     private val homeMovieGroupToActionMapper: HomeMovieGroupToActionMapper
 ) : ViewModel() {
-
     val uiState: HomeUiData
         get() = uiStateFlow.value
 
@@ -47,8 +42,10 @@ class HomeViewModel @Inject constructor(
     }
 
     init {
-        store.setFeatureScope(HomeFeature, viewModelScope)
-        store.dispatch(HomeAction.LoadMovieSections)
+        with(store) {
+            setFeatureScope(HomeFeature, viewModelScope)
+            dispatch(HomeAction.LoadMovieSections)
+        }
     }
 
     override fun onCleared() {

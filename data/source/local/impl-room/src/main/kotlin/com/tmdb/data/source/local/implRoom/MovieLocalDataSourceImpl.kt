@@ -6,12 +6,11 @@ import com.tmdb.data.model.MovieDataModel
 import com.tmdb.data.source.local.contract.MovieLocalDataSource
 import com.tmdb.data.source.local.implRoom.mapping.MovieDataModelToEntityMapper
 import com.tmdb.data.source.local.implRoom.mapping.MovieEntityToDataModelMapper
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 @Suppress("TooManyFunctions")
-class MovieLocalDataSourceImpl @Inject constructor(
+class MovieLocalDataSourceImpl(
     private val movieDao: MovieDao,
     private val movieEntityToDataModelMapper: MovieEntityToDataModelMapper,
     private val movieDataModelToEntityMapper: MovieDataModelToEntityMapper

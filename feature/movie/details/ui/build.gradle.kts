@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.hilt)
     jacoco
 }
 
@@ -38,18 +37,8 @@ android {
 
 dependencies {
     implementationDependencies()
-
-    kspDependencies()
-    kspAndroidTest(libs.hilt.compiler)//
-
     testImplementation(libs.bundles.feature.ui.impl.test)
-
     androidTestImplementation(libs.bundles.ui.test.android)
-    androidTestImplementation(libs.hilt.test.android)//
-}
-
-fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)//
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
@@ -59,6 +48,6 @@ fun DependencyHandlerScope.implementationDependencies() {
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
-    implementation(libs.hilt)//
-    implementation(libs.hilt.navigation.compose)//
+    implementation(libs.koin.compose)
+    implementation(libs.koin.compose.viewModel)
 }

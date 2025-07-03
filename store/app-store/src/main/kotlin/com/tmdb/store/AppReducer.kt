@@ -8,11 +8,10 @@ import com.tmdb.store.base.ReducedResult
 import com.tmdb.store.base.Reducer
 import com.tmdb.store.env.contract.AppEnv
 import com.tmdb.store.state.AppState
-import javax.inject.Inject
 
 fun interface AppReducer: Reducer<AppState, AppEnv>
 
-class AppReducerImpl @Inject constructor(
+class AppReducerImpl(
     private val homeFeatureReducer: HomeFeatureReducer,
     private val movieDetailsFeatureSlice: MovieDetailsFeatureSlice
 ): AppReducer {

@@ -3,14 +3,14 @@ package com.tmdb.feature.home.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.tmdb.feature.home.ui.HomeUiEvent.OpenMovie
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.ui.core.compose.navigation.model.NavigationRoute.MovieDetails
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koinViewModel()) {
     val data by viewModel.uiStateFlow.collectAsState(HomeUiData.INITIAL)
 
     val onEvent: (HomeUiEvent) -> Unit = { event ->
