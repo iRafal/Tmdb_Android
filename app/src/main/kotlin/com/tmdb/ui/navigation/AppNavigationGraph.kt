@@ -19,10 +19,10 @@ fun NavGraphBuilder.appNavigationGraph(navController: NavController) {
     composable<NavigationRoute.MovieDetails> {
         val context = LocalContext.current
         val component = remember { MovieDetailsFeatureDi.fromContext(context) }
-        val movieDetailsViewModel: MovieDetailsViewModel = daggerAssistedViewModel(
+        val viewModel: MovieDetailsViewModel = daggerAssistedViewModel(
             assistedViewModelCreator = component.movieDetailsViewModelCreator,
             defaultArgs = it.arguments,
         )
-        MovieDetailsScreen(navController, movieDetailsViewModel)
+        MovieDetailsScreen(navController, viewModel)
     }
 }

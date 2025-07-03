@@ -79,9 +79,7 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
-
     }
-
     packaging.resources {
         excludes.addAll(GradleConfig.Android.excludePackagingResources)
     }

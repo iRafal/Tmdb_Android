@@ -7,10 +7,7 @@ import com.tmdb.feature.movie.details.ui.MovieDetailsUiState.Loading
 import com.tmdb.ui.core.compose.navigation.model.NavigationRoute
 
 @Composable
-fun MovieDetailsScreen(
-    navController: NavController,
-    movieDetailsViewModel: MovieDetailsViewModel,
-) {
+fun MovieDetailsScreen(navController: NavController, viewModel: MovieDetailsViewModel) {
     val state = Loading
 //        val state by movieDetailsViewModel.state.collectAsState(MovieDetailsState.Idle)
     val onEvent: (MovieDetailsUiEvent) -> Unit = { event ->

@@ -7,7 +7,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 
-
 /**
  * @see <a href="https://medium.com/wriketechclub/how-to-inject-viewmodel-with-dagger-what-might-go-wrong-7954372a7fb9">Inspired by</a>
  */

@@ -73,6 +73,8 @@ fun DependencyHandlerScope.apiDependencies() {
     api(libs.compose.activity)
     api(libs.compose.constraintLayout)
     api(libs.compose.navigation)
+    api(libs.compose.navigation3.runtime)
+    api(libs.compose.navigation3.ui)
     api(libs.compose.ui)
     api(libs.compose.material.iconsExtended)
     api(libs.compose.ui.preview)
