@@ -37,7 +37,7 @@ class MovieApp : Application(), Configuration.Provider, KoinComponent {
     private fun initDi() {
         startKoin {
             androidContext(this@MovieApp)
-            appModule()
+            modules(appModule())
             workManagerFactory()
         }
     }
