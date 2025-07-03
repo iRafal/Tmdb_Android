@@ -1,5 +1,6 @@
 package com.tmdb.data.source.remote.implRetrofit.di.module
 
+import com.tmdb.data.api.implRetrofit.di.module.apiModule
 import com.tmdb.data.source.remote.contract.discover.DiscoverRemoteDataSource
 import com.tmdb.data.source.remote.contract.genre.GenreRemoteDataSource
 import com.tmdb.data.source.remote.contract.movie.MovieRemoteDataSource
@@ -14,7 +15,8 @@ fun remoteDataSourceModule() = module {
     includes(
         movieMappingModule(),
         personMappingModule(),
-        genreMappingModule()
+        genreMappingModule(),
+        apiModule(),
     )
 
     factory<DiscoverRemoteDataSource> { DiscoverRemoteDataSourceImpl(get(), get()) }

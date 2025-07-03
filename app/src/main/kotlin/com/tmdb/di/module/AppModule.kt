@@ -6,6 +6,7 @@ import com.tmdb.data.source.remote.implKtor.di.module.remoteDataSourceModule
 import com.tmdb.feature.home.ui.di.module.homeFeatureModule
 import com.tmdb.feature.movie.details.ui.di.module.movieDetailsFeatureModule
 import com.tmdb.store.di.module.app.appStoreModule
+import com.tmdb.store.di.module.env.appNetworkModule
 import com.tmdb.util.di.modules.loggingModule
 import com.tmdb.worker.TestExampleWorker
 import org.koin.androidx.workmanager.dsl.worker
