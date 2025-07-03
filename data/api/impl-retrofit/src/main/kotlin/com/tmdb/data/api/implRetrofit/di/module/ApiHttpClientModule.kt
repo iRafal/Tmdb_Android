@@ -7,12 +7,15 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import javax.inject.Qualifier
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -61,5 +64,25 @@ object ApiHttpClientModule {
             .addInterceptor(apiResponseInterceptor)
             .retryOnConnectionFailure(true)
             .build()
+    }
+
+    fun apiHttpClientModule() = module {
+        factory<Interceptor>(named("InterceptorResponse")) { ApiResponseInterceptor() }
+        factory<Interceptor>(named("InterceptorLogging")) { loggingInterceptor(BODY) }
+        factory<Interceptor>(named("InterceptorRequest")) {
+            ApiDependenciesProvider.requestInterceptor(
+                apiKey = ApiDependenciesProvider.API_KEY,
+                apiKeyValue = BuildConfig.API_KEY
+            )
+        }
+        factory<OkHttpClient>(named("OkHttpClientRetrofit")) {
+            OkHttpClient()
+                .newBuilder()
+                .addInterceptor(get<Interceptor>(named("InterceptorResponse")))
+                .addInterceptor(get<Interceptor>(named("InterceptorLogging")))
+                .addInterceptor(get<Interceptor>(named("InterceptorRequest")))
+                .retryOnConnectionFailure(true)
+                .build()
+        }
     }
 }

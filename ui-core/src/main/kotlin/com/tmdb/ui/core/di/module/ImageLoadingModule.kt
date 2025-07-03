@@ -10,6 +10,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 import javax.inject.Qualifier
 
 @InstallIn(SingletonComponent::class)
@@ -42,4 +44,13 @@ object ImageLoadingModule {
 //            )
 //        }
 //        .build()
+}
+
+fun imageLoadingModule() = module {
+    factory<ImageLoader>(named("CoilOkHttpImageLoader")) {
+        ImageLoader.Builder(get<Context>())
+            .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
+            .components { add(OkHttpNetworkFetcherFactory()) }
+            .build()
+    }
 }

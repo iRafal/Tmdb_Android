@@ -39,12 +39,13 @@ dependencies {
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
     implementation(libs.kotlin.coroutines.core)
-    implementation(libs.hilt)
+    implementation(libs.hilt)//
+    implementation(libs.koin.core)
     implementation(project(":util"))
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
 }
 
 fun DependencyHandlerScope.apiDependencies() {

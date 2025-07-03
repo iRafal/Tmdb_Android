@@ -32,13 +32,14 @@ android {
 
 dependencies {
     implementationDependencies()
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
     api(project(":data:source:local:contract"))
     testImplementation(libs.bundles.data.source.local.impl.test)
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.bundles.data.source.local.impl)
+    implementation(libs.koin.core)
     implementation(project(":util"))
     implementation(project(":data:db:object-box"))
 }

@@ -49,7 +49,8 @@ dependencies {
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(libs.hilt)
+    implementation(libs.hilt)//
+    implementation(libs.koin.core)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
     implementation(project(":store:app-store"))
@@ -57,7 +58,7 @@ fun DependencyHandlerScope.implementationDependencies() {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
 }
 
 fun DependencyHandlerScope.apiDependencies() {
@@ -119,7 +120,7 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(libs.compose.ui.test.junit)
     androidTestImplementation(libs.compose.navigation.test)
 
-    androidTestImplementation(libs.hilt.test.android)
+    androidTestImplementation(libs.hilt.test.android)//
 }
 
 tasks.withType<Test> {

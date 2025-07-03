@@ -53,7 +53,8 @@ dependencies {
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.stdLib)
-    implementation(libs.hilt)
+    implementation(libs.hilt)//
+    implementation(libs.koin.core)
 }
 
 fun DependencyHandlerScope.testImplementationDependencies() {
@@ -61,5 +62,5 @@ fun DependencyHandlerScope.testImplementationDependencies() {
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
 }

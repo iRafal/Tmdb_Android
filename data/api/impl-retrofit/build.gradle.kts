@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     id(libs.plugins.kotlin.serialization.get().pluginId)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.hilt)//
     jacoco
 }
 
@@ -33,7 +33,7 @@ android {
 dependencies {
     apiDependencies()
     implementationDependencies()
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
     testImplementationDependencies()
 }
 
@@ -54,7 +54,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.retrofit2.serializationConverter)
     implementation(libs.okHttp3.loggingInterceptor)
 
-    implementation(libs.hilt)
+    implementation(libs.hilt)//
+    implementation(libs.koin.core)
 }
 
 fun DependencyHandlerScope.testImplementationDependencies() {

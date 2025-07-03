@@ -45,6 +45,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.coroutines.android)
     implementation(libs.hilt)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
 }

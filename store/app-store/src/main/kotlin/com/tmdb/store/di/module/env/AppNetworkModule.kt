@@ -10,6 +10,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.koin.dsl.module
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -26,4 +27,15 @@ object AppNetworkModule {
         movieSource,
         personSource
     )
+}
+
+fun appNetworkModule() = module {
+    factory<Network>() {
+        createAppNetworkEnvImpl(
+            get<DiscoverRemoteDataSource>(),
+            get<GenreRemoteDataSource>(),
+            get<MovieRemoteDataSource>(),
+            get<PersonRemoteDataSource>(),
+        )
+    }
 }

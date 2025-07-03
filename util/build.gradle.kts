@@ -37,13 +37,15 @@ dependencies {
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
-    implementation(libs.hilt)
+    implementation(libs.hilt)//
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
     implementation(libs.kotlinx.dateTime)
     implementation(libs.logging)
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
 }
 
 fun DependencyHandlerScope.apiDependencies() {

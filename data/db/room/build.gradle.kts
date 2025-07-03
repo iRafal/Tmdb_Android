@@ -59,6 +59,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.kotlin.coroutines.android)
 
     implementation(libs.hilt)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)

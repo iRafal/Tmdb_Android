@@ -43,6 +43,7 @@ fun DependencyHandlerScope.apiDependencies() {
 
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.hilt)
+    implementation(libs.koin.core)
     implementation(project(":data:db:room"))
     implementation(project(":util"))
     implementation(libs.bundles.data.source.local.impl)

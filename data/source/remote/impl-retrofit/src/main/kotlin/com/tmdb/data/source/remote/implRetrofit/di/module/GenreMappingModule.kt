@@ -10,6 +10,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.koin.dsl.module
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -28,4 +29,10 @@ interface GenreMappingModule {
     fun genreListApiModelToDataStateModelMapper(
         impl: GenreListApiModelToDataStateModelMapperImpl
     ): GenreListApiModelToDataStateModelMapper
+}
+
+fun genreMappingModule() = module {
+    factory<GenreApiModelToDataModelMapper> { GenreApiModelToDataModelMapperImpl() }
+    factory<GenreApiModelToDataStateModelMapper> { GenreApiModelToDataStateModelMapperImpl(get()) }
+    factory<GenreListApiModelToDataStateModelMapper> { GenreListApiModelToDataStateModelMapperImpl(get()) }
 }

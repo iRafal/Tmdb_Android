@@ -56,6 +56,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
 
     implementation(libs.hilt)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
     implementation(libs.realm.plugin)
     implementation(libs.kotlinx.dateTime)

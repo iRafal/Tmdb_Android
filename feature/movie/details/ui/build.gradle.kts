@@ -40,16 +40,16 @@ dependencies {
     implementationDependencies()
 
     kspDependencies()
-    kspAndroidTest(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)//
 
     testImplementation(libs.bundles.feature.ui.impl.test)
 
     androidTestImplementation(libs.bundles.ui.test.android)
-    androidTestImplementation(libs.hilt.test.android)
+    androidTestImplementation(libs.hilt.test.android)//
 }
 
 fun DependencyHandlerScope.kspDependencies() {
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
@@ -57,6 +57,8 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
     implementation(project(":store:app-store"))
 
-    implementation(libs.hilt)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.hilt)//
+    implementation(libs.hilt.navigation.compose)//
 }

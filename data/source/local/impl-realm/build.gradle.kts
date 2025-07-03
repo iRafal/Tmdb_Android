@@ -33,7 +33,7 @@ android {
 dependencies {
     implementationDependencies()
     apiDependencies()
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)//
     testImplementation(libs.bundles.data.source.local.impl.test)
 }
 
@@ -41,6 +41,7 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":util"))
     implementation(project(":data:db:realm"))
     implementation(libs.bundles.data.source.local.impl)
+    implementation(libs.koin.core)
 }
 
 fun DependencyHandlerScope.apiDependencies() {

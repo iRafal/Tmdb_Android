@@ -11,11 +11,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import org.koin.dsl.module
 
 @InstallIn(SingletonComponent::class)
 @Module
 object DbModule {
-
     @Provides
     fun providesRealmConfig(
         @ApplicationContext applicationContext: Context
@@ -29,4 +29,13 @@ object DbModule {
 
     @Provides
     fun movieDao(impl: MovieDaoImpl): MovieDao = impl
+}
+
+fun dbModule() = module {
+    factory<RealmConfiguration> {
+        MoviesRealmDbConfig.initRealm(get<Context>())
+        MoviesRealmDbConfig.realmConfig()
+    }
+    factory<Realm> { Realm.getInstance(get<RealmConfiguration>()) }
+    factory<MovieDao> { MovieDaoImpl(get<RealmConfiguration>()) }
 }

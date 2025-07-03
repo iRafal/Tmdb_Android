@@ -122,8 +122,16 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.play.services.base)
     implementation(libs.androidx.splashscreen)
     implementation(libs.material.components.android)
+    
     implementation(libs.hilt)
     implementation(libs.hilt.work)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compose)
+    implementation(libs.koin.compose.viewModel)
+    implementation(libs.koin.android.worker)
+
     implementation(libs.androidx.metrics)
 }
 

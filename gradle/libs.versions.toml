@@ -150,6 +150,10 @@ hilt-work = "1.2.0"
 
 # https://mvnrepository.com/artifact/androidx.hilt/hilt-navigation-compose
 hilt-navigation-compose = "1.2.0"
+
+# https://github.com/InsertKoinIO/koin/tags
+# https://insert-koin.io/docs/reference/koin-mp/kmp
+koin = "4.1.0"
 #endregion DI
 
 [libraries]
@@ -277,6 +281,14 @@ hilt-test-android = { module = "com.google.dagger:hilt-android-testing", version
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose-viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-android-worker = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
 #endregion DI
 
 #region PLUGINS

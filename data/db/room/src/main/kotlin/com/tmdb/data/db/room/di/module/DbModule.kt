@@ -1,4 +1,4 @@
-package com.tmdb.data.db.room.module
+package com.tmdb.data.db.room.di.module
 
 import android.content.Context
 import com.tmdb.data.db.room.MovieDb
@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import org.koin.dsl.module
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -18,4 +19,9 @@ object DbModule {
 
     @Provides
     fun movieDao(database: MovieDb): MovieDao = database.movieDao()
+}
+
+fun dbModule() = module {
+    factory<MovieDb> { MovieDb.getInstance(get<Context>()) }
+    factory<MovieDao> { get<MovieDb>().movieDao() }
 }
