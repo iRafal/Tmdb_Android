@@ -13,9 +13,7 @@ import com.tmdb.ui.core.compose.navigation.model.NavigationRoute.MovieDetails
 import com.tmdb.ui.core.di.daggerViewModel
 
 @Composable
-fun HomeScreen(
-    navController: NavController,
-) {
+fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
     val component = remember { HomeFeatureDi.fromContext(context) }
     val viewModel: HomeViewModel = daggerViewModel { component.homeViewModel }
@@ -25,11 +23,7 @@ fun HomeScreen(
     val onEvent: (HomeUiEvent) -> Unit = { event ->
         when (event) {
             HomeUiEvent.NavigateBack -> navController.popBackStack()
-            is OpenMovie -> {
-                navController.navigate(
-                    MovieDetails(event.id.toString())
-                )
-            }
+            is OpenMovie -> navController.navigate(MovieDetails(event.id.toString()))
             is HomeUiEvent.ReloadMovieSection -> viewModel.reloadMovieGroup(event.movieSection)
             HomeUiEvent.ReloadAll -> viewModel.reloadAllMovies()
         }
