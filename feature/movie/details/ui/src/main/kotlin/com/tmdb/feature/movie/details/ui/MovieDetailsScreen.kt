@@ -2,11 +2,9 @@ package com.tmdb.feature.movie.details.ui
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.tmdb.feature.movie.details.ui.MovieDetailsUiEvent.NavigateBack
 import com.tmdb.feature.movie.details.ui.MovieDetailsUiState.Loading
-import com.tmdb.ui.core.compose.navigation.model.NavigationRoute
 
 @Composable
 fun MovieDetailsScreen(
