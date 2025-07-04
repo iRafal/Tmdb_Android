@@ -8,15 +8,22 @@ import android.R.style
 import android.content.Context
 import android.text.style.TextAppearanceSpan
 import androidx.core.content.ContextCompat
-import androidx.test.core.app.ApplicationProvider
+import com.tmdb.ui.core.KoinAndroidTestRule
 import com.tmdb.ui.core.R
+import com.tmdb.ui.core.di.module.testAppModule
+import org.junit.Rule
+import org.koin.test.KoinTest
+import org.koin.test.inject
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class ResourceManagerTest {
-    private val context = ApplicationProvider.getApplicationContext<Context>()
-    private val resourceManager = ResourceManagerImpl(context)
+class ResourceManagerTest: KoinTest {
+    private val context: Context by inject()
+    private val resourceManager: ResourceManager by inject()
+
+    @get:Rule
+    val rule = KoinAndroidTestRule()
 
     @Test
     fun getString_returnsExpectedValue() {
