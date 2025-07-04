@@ -5,7 +5,6 @@ import com.tmdb.data.db.room.movie.MovieDao
 import org.koin.dsl.module
 
 fun testDbModule() = module {
-    includes(testAppModule())
     factory<MovieDb> { MovieDb.getInMemoryDb(get()) }
     factory<MovieDao> { get<MovieDb>().movieDao() }
 }

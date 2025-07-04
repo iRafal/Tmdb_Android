@@ -8,8 +8,6 @@ import io.realm.RealmConfiguration
 import org.koin.dsl.module
 
 fun testDbModule() = module {
-    includes(testAppModule())
-
     factory<RealmConfiguration> {
         MoviesRealmDbConfig.initRealm(get())
         MoviesRealmDbConfig.realmTestConfig()
