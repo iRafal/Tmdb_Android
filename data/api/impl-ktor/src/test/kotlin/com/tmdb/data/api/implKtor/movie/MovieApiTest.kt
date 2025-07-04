@@ -4,7 +4,6 @@ import com.tmdb.api.model.util.ApiException
 import com.tmdb.api.model.util.ApiResponse
 import com.tmdb.data.api.config.url.provider.movie.MovieUrlProvider
 import com.tmdb.data.api.config.url.provider.movie.MovieUrlProviderImpl
-import com.tmdb.data.api.implKtor.di.module.ApiUtilModule
 import com.tmdb.data.api.implKtor.util.ApiErrorMapper
 import com.tmdb.data.api.implKtor.util.ApiErrorMapperImpl
 import com.tmdb.data.api.implKtor.util.ModelUtil
@@ -20,12 +19,12 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
-import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.json.Json
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlinx.coroutines.test.runTest
 
 class MovieApiTest {
     private val movieModel = ModelUtil.movieModel
@@ -123,7 +122,10 @@ class MovieApiTest {
                 addHandler(mockRequestHandler)
             }
             install(ContentNegotiation) {
-                json(ApiUtilModule.json())
+                Json {
+                    ignoreUnknownKeys = true
+                    prettyPrint = true
+                }
             }
             HttpResponseValidator {
                 handleResponseExceptionWithRequest { cause, _ ->
