@@ -10,6 +10,8 @@ import androidx.navigation3.ui.NavDisplay
 import com.tmdb.feature.home.ui.HomeScreenNav3
 import com.tmdb.feature.movie.details.ui.MovieDetailsScreenNav3
 import com.tmdb.ui.core.compose.navigation.model.NavigationRouteNew
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun AppNavigation3() {
@@ -28,7 +30,10 @@ fun AppNavigation3() {
                 )
             }
             entry<NavigationRouteNew.MovieDetails> {
-                MovieDetailsScreenNav3(back = back)
+                MovieDetailsScreenNav3(
+                    back = back,
+                    viewModel = koinViewModel(parameters = { parametersOf(it.movieId) }),
+                )
             }
         }
     )
