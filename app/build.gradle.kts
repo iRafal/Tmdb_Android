@@ -35,7 +35,7 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.HiltTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.TestRunner"
 
         bundle.language.enableSplit = false
     }

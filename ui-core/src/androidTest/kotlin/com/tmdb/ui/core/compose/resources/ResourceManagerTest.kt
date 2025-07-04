@@ -10,12 +10,10 @@ import android.text.style.TextAppearanceSpan
 import androidx.core.content.ContextCompat
 import androidx.test.core.app.ApplicationProvider
 import com.tmdb.ui.core.R
-import dagger.hilt.android.testing.HiltAndroidTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-@HiltAndroidTest
 class ResourceManagerTest {
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val resourceManager = ResourceManagerImpl(context)

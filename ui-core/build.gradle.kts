@@ -16,7 +16,7 @@ android {
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "$packageName.runner.HiltTestRunner"
+        testInstrumentationRunner = "$packageName.runner.TestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 

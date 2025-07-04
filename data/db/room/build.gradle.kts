@@ -6,13 +6,14 @@ plugins {
     jacoco
 }
 
+val packageName = "${GradleConfig.Android.applicationId}.data.db.room"
 android {
-    namespace = "${GradleConfig.Android.applicationId}.data.db.room"
+    namespace = packageName
     compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.room.runner.HiltTestRunner"
+        testInstrumentationRunner = "$packageName.runner.TestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
             annotationProcessorOptions {

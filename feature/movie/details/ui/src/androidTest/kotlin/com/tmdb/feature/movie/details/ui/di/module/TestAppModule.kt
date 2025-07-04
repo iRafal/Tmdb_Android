@@ -1,4 +1,4 @@
-package com.tmdb.di.module
+package com.tmdb.feature.movie.details.ui.di.module
 
 import android.app.Instrumentation
 import android.content.Context

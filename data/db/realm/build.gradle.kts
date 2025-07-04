@@ -8,13 +8,14 @@ plugins {
     jacoco
 }
 
+val packageName = "${GradleConfig.Android.applicationId}.data.db.realm"
 android {
-    namespace = "${GradleConfig.Android.applicationId}.data.db.realm"
+    namespace = packageName
     compileSdk = GradleConfig.Android.compileSdk
 
     defaultConfig {
         minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.realm.runner.HiltTestRunner"
+        testInstrumentationRunner = "$packageName.runner.TestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
