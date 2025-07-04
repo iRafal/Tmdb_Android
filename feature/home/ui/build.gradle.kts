@@ -45,7 +45,7 @@ android {
 dependencies {
     implementationDependencies()
     testImplementation(libs.bundles.feature.ui.impl.test)
-    androidTestImplementation(libs.bundles.ui.test.android)
+    androidTestImplementationDependencies()
 }
 
 fun DependencyHandlerScope.implementationDependencies() {
@@ -58,4 +58,9 @@ fun DependencyHandlerScope.implementationDependencies() {
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewModel)
     implementation(libs.compose.material)
+}
+
+fun DependencyHandlerScope.androidTestImplementationDependencies() {
+    androidTestImplementation(libs.bundles.ui.test.android)
+    androidTestImplementation(libs.koin.test.junit4)
 }

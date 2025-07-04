@@ -65,6 +65,7 @@ fun DependencyHandlerScope.testImplementationDependencies() {
 fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(project(":util"))
 
+    androidTestImplementation(libs.koin.test.junit4)
     androidTestImplementation(libs.junit.android.ext)
     androidTestImplementation(libs.espresso)
     androidTestImplementation(libs.kotlin.test)

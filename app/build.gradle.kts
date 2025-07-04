@@ -145,6 +145,8 @@ fun DependencyHandlerScope.androidTestImplementationDependencies() {
     androidTestImplementation(libs.junit.android.ext)
     androidTestImplementation(libs.espresso)
 
+    androidTestImplementation(libs.koin.test.junit4)
+
     androidTestImplementation(libs.kotlin.test)
     androidTestImplementation(libs.kotlin.coroutines.test)
 
