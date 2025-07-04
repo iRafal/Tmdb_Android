@@ -1,18 +1,10 @@
 package com.tmdb.data.db.room.movie
 
+import com.tmdb.data.db.room.KoinAndroidTestRule
 import com.tmdb.data.db.room.MovieDb
-import com.tmdb.data.db.room.di.module.DispatchersTestModule
+import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_STANDARD
+import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_UNCONFINED
 import com.tmdb.data.db.room.util.ModelUtil
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import java.io.IOException
-import javax.inject.Inject
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.firstOrNull
@@ -23,29 +15,32 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Rule
+import org.koin.core.qualifier.named
+import org.koin.test.KoinTest
+import org.koin.test.inject
+import java.io.IOException
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
-@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
-class MovieEntityTest {
+class MovieEntityTest: KoinTest {
     @get:Rule
-    val hiltRule = HiltAndroidRule(this)
+    val rule = KoinAndroidTestRule()
 
-    @Inject
-    lateinit var movieDao: MovieDao
+    private val dispatcher: TestDispatcher by inject(named(DISPATCHER_TEST_STANDARD))
+    private val movieDao: MovieDao by inject()
 
-    @Inject
-    lateinit var db: MovieDb
-
-    @Inject
-    @DispatchersTestModule.DispatcherTestStandard
-    lateinit var dispatcher: TestDispatcher
+    private val db: MovieDb by inject()
 
     private val movieEntity = ModelUtil.movieEntity
     private val movieId = ModelUtil.movieId
 
     @BeforeTest
     fun setup() {
-        hiltRule.inject()
         Dispatchers.setMain(dispatcher)
     }
 

@@ -3,22 +3,15 @@ package com.tmdb.data.db.room.migration
 import android.content.Context
 import androidx.room.testing.MigrationTestHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
-import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.tmdb.data.db.room.KoinAndroidTestRule
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.MovieDbMigrations
-import com.tmdb.data.db.room.di.module.DispatchersTestModule
+import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_STANDARD
+import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_UNCONFINED
 import com.tmdb.data.db.room.movie.MovieEntity
 import com.tmdb.data.db.room.util.ModelUtil
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import java.io.IOException
-import javax.inject.Inject
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
@@ -27,21 +20,23 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Rule
 import org.junit.runner.RunWith
+import org.koin.core.qualifier.named
+import org.koin.test.KoinTest
+import org.koin.test.inject
+import java.io.IOException
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
-@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class AppDbMigrationTest {
-    @Inject
-    @DispatchersTestModule.DispatcherTestUnconfined
-    lateinit var dispatcher: TestDispatcher
-
-    @Inject
-    @InstrumentationContext
-    lateinit var context: Context
+class AppDbMigrationTest: KoinTest {
+    private val dispatcher: TestDispatcher by inject(named(DISPATCHER_TEST_STANDARD))
+    private val context: Context by inject()
 
     @get:Rule
-    val hiltRule = HiltAndroidRule(this)
+    val rule = KoinAndroidTestRule()
 
     @get:Rule
     val helper: MigrationTestHelper = MigrationTestHelper(
@@ -52,7 +47,6 @@ class AppDbMigrationTest {
 
     @BeforeTest
     fun setup() {
-        hiltRule.inject()
         Dispatchers.setMain(dispatcher)
     }
 
