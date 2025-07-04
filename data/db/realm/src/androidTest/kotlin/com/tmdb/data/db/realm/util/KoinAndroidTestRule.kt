@@ -1,4 +1,4 @@
-package com.tmdb.data.db.room
+package com.tmdb.data.db.realm.util
 
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description

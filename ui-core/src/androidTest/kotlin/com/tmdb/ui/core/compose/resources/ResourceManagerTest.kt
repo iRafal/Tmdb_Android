@@ -8,7 +8,7 @@ import android.R.style
 import android.content.Context
 import android.text.style.TextAppearanceSpan
 import androidx.core.content.ContextCompat
-import com.tmdb.ui.core.KoinAndroidTestRule
+import com.tmdb.ui.core.util.KoinAndroidTestRule
 import com.tmdb.ui.core.R
 import org.junit.Rule
 import org.koin.test.KoinTest

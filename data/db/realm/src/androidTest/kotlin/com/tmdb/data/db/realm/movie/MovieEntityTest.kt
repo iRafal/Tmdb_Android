@@ -1,22 +1,9 @@
 package com.tmdb.data.db.realm.movie
 
-import com.tmdb.data.db.realm.di.module.DispatchersTestModule
-import com.tmdb.data.db.realm.di.modules.DbModule
+import com.tmdb.data.db.realm.di.module.DISPATCHER_TEST_STANDARD
 import com.tmdb.data.db.realm.movie.dao.MovieDao
 import com.tmdb.data.db.realm.util.ModelUtil
-import com.tmdb.util.di.modules.DispatchersModule
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import io.realm.Realm
-import java.io.IOException
-import javax.inject.Inject
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.firstOrNull
@@ -26,32 +13,29 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.Rule
+import org.koin.core.qualifier.named
+import org.koin.test.KoinTest
+import org.koin.test.inject
+import java.io.IOException
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
-@UninstallModules(DbModule::class, DispatchersModule::class)
-@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
-class MovieEntityTest {
+class MovieEntityTest : KoinTest {
 
-    @get:Rule
-    val hiltRule = HiltAndroidRule(this)
-
-    @Inject
-    lateinit var movieDao: MovieDao
-
-    @Inject
-    lateinit var realm: Realm
-
-    @Inject
-    @DispatchersTestModule.DispatcherTestStandard
-    lateinit var dispatcher: TestDispatcher
+    private val dispatcher: TestDispatcher by inject(named(DISPATCHER_TEST_STANDARD))
+    private val movieDao: MovieDao by inject()
+    private val realm: Realm by inject()
 
     private val movieEntity = ModelUtil.movieEntity
     private val movieId = ModelUtil.movieId
 
     @BeforeTest
     fun setup() {
-        hiltRule.inject()
         Dispatchers.setMain(dispatcher)
     }
 
@@ -68,7 +52,8 @@ class MovieEntityTest {
     fun write_GetMovieById() = runTest {
         movieDao.insert(movieEntity)
         movieDao.getById(movieId).run {
-        assertEquals(expected = movieEntity, actual = this) }
+            assertEquals(expected = movieEntity, actual = this)
+        }
     }
 
     @Test

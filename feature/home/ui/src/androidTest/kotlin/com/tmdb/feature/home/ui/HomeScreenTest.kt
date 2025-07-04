@@ -21,6 +21,7 @@ import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.data.model.Movie
 import com.tmdb.feature.home.ui.data.model.MovieGroup
+import com.tmdb.feature.home.ui.util.KoinAndroidTestRule
 import com.tmdb.ui.core.compose.ComposeTestTags
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate

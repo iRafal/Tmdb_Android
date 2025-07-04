@@ -1,47 +1,35 @@
 package com.tmdb.data.db.realm.migration
 
 import android.content.Context
-import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tmdb.data.db.realm.MoviesRealmDbMigrations
 import com.tmdb.data.db.realm.di.MoviesRealmDbConfig
-import com.tmdb.data.db.realm.di.module.DispatchersTestModule
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
+import com.tmdb.data.db.realm.di.module.DISPATCHER_TEST_STANDARD
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.exceptions.RealmMigrationNeededException
-import java.io.IOException
-import javax.inject.Inject
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.Rule
 import org.junit.runner.RunWith
+import org.koin.core.qualifier.named
+import org.koin.test.KoinTest
+import org.koin.test.inject
+import java.io.IOException
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
-@HiltAndroidTest
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class RealmDbMigrationTest {
-    @Inject
-    @DispatchersTestModule.DispatcherTestUnconfined
-    lateinit var dispatcher: TestDispatcher
-
-    @Inject
-    @InstrumentationContext
-    lateinit var context: Context
-
-    @get:Rule
-    val hiltRule = HiltAndroidRule(this)
+class RealmDbMigrationTest : KoinTest {
+    private val dispatcher: TestDispatcher by inject(named(DISPATCHER_TEST_STANDARD))
+    private val context: Context by inject()
 
     @BeforeTest
     fun setup() {
-        hiltRule.inject()
         Realm.init(context)
         Dispatchers.setMain(dispatcher)
     }

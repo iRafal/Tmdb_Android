@@ -1,9 +1,8 @@
 package com.tmdb.data.db.room.movie
 
-import com.tmdb.data.db.room.KoinAndroidTestRule
+import com.tmdb.data.db.room.util.KoinAndroidTestRule
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_STANDARD
-import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_UNCONFINED
 import com.tmdb.data.db.room.util.ModelUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -33,7 +32,6 @@ class MovieEntityTest: KoinTest {
 
     private val dispatcher: TestDispatcher by inject(named(DISPATCHER_TEST_STANDARD))
     private val movieDao: MovieDao by inject()
-
     private val db: MovieDb by inject()
 
     private val movieEntity = ModelUtil.movieEntity

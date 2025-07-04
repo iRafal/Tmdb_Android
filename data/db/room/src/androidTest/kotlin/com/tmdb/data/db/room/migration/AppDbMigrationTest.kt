@@ -5,11 +5,10 @@ import androidx.room.testing.MigrationTestHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.tmdb.data.db.room.KoinAndroidTestRule
+import com.tmdb.data.db.room.util.KoinAndroidTestRule
 import com.tmdb.data.db.room.MovieDb
 import com.tmdb.data.db.room.MovieDbMigrations
 import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_STANDARD
-import com.tmdb.data.db.room.di.module.DISPATCHER_TEST_UNCONFINED
 import com.tmdb.data.db.room.movie.MovieEntity
 import com.tmdb.data.db.room.util.ModelUtil
 import kotlinx.coroutines.Dispatchers
