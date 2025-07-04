@@ -5,5 +5,6 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 fun movieDetailsFeatureModule() = module {
+//    viewModelOf(::MovieDetailsViewModel)
     viewModel { (movieId: String) ->  MovieDetailsViewModel(get(), movieId) }
 }
