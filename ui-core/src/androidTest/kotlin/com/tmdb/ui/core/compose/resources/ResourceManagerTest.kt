@@ -10,7 +10,6 @@ import android.text.style.TextAppearanceSpan
 import androidx.core.content.ContextCompat
 import com.tmdb.ui.core.KoinAndroidTestRule
 import com.tmdb.ui.core.R
-import com.tmdb.ui.core.di.module.testAppModule
 import org.junit.Rule
 import org.koin.test.KoinTest
 import org.koin.test.inject

@@ -21,33 +21,23 @@ import com.tmdb.feature.home.ui.data.model.HomeMovieSectionType
 import com.tmdb.feature.home.ui.data.model.HomeUiData
 import com.tmdb.feature.home.ui.data.model.Movie
 import com.tmdb.feature.home.ui.data.model.MovieGroup
-import com.tmdb.feature.home.ui.data.model.MovieGroup.Error.NetworkError
 import com.tmdb.ui.core.compose.ComposeTestTags
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
-import org.junit.Before
 import org.junit.Rule
-import javax.inject.Inject
+import org.koin.test.KoinTest
+import org.koin.test.inject
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-@HiltAndroidTest
-class HomeScreenTest {
+class HomeScreenTest: KoinTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @get:Rule
-    val hiltRule = HiltAndroidRule(this)
+    val rule = KoinAndroidTestRule()
 
-    @Inject
-    lateinit var resources: Resources
-
-    @Before
-    fun init() {
-        hiltRule.inject()
-    }
+    private val resources: Resources by inject()
 
     @Test
     fun homeScreenLoadingState(): Unit = with(composeTestRule) {
@@ -73,37 +63,29 @@ class HomeScreenTest {
 
     @Test
     fun homeScreenErrorState(): Unit = with(composeTestRule) {
+        val group =  MovieGroup(
+            title = R.string.popular,
+            type = HomeMovieSectionType.POPULAR,
+            movies = emptyList(),
+            isLoading = false,
+            error = MovieGroup.Error.OtherError
+        )
         val data = HomeUiData(
             isFullReload = false,
             listOf(
-                MovieGroup(
-                    title = R.string.popular,
-                    type = HomeMovieSectionType.POPULAR,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = MovieGroup.Error.OtherError
-                ),
-                MovieGroup(
+                group,
+                group.copy(
                     title = R.string.top_rated,
                     type = HomeMovieSectionType.TOP_RATED,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = MovieGroup.Error.OtherError
                 ),
-                MovieGroup(
+                group.copy(
                     title = R.string.now_playing,
                     type = HomeMovieSectionType.NOW_PLAYING,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = MovieGroup.Error.OtherError
                 ),
-                MovieGroup(
+                group.copy(
                     title = R.string.upcoming,
                     type = HomeMovieSectionType.UPCOMING,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = MovieGroup.Error.OtherError
-                )
+                ),
             )
         )
 
@@ -128,37 +110,29 @@ class HomeScreenTest {
 
     @Test
     fun homeScreenNetworkErrorState(): Unit = with(composeTestRule) {
+        val group =  MovieGroup(
+            title = R.string.popular,
+            type = HomeMovieSectionType.POPULAR,
+            movies = emptyList(),
+            isLoading = false,
+            error = MovieGroup.Error.NetworkError
+        )
         val data = HomeUiData(
             isFullReload = false,
             listOf(
-                MovieGroup(
-                    title = R.string.popular,
-                    type = HomeMovieSectionType.POPULAR,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = NetworkError
-                ),
-                MovieGroup(
+                group,
+                group.copy(
                     title = R.string.top_rated,
                     type = HomeMovieSectionType.TOP_RATED,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = NetworkError
                 ),
-                MovieGroup(
+                group.copy(
                     title = R.string.now_playing,
                     type = HomeMovieSectionType.NOW_PLAYING,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = NetworkError
                 ),
-                MovieGroup(
+                group.copy(
                     title = R.string.upcoming,
                     type = HomeMovieSectionType.UPCOMING,
-                    movies = emptyList(),
-                    isLoading = false,
-                    error = NetworkError
-                )
+                ),
             )
         )
 
@@ -207,37 +181,29 @@ class HomeScreenTest {
                     posterUrl = null
                 )
             )
+            val group =  MovieGroup(
+                title = R.string.popular,
+                type = HomeMovieSectionType.POPULAR,
+                movies = emptyList(),
+                isLoading = false,
+                error = null,
+            )
             val data = HomeUiData(
                 isFullReload = false,
                 listOf(
-                    MovieGroup(
-                        title = R.string.popular,
-                        type = HomeMovieSectionType.POPULAR,
-                        movies = movies,
-                        isLoading = false,
-                        error = null
-                    ),
-                    MovieGroup(
+                    group,
+                    group.copy(
                         title = R.string.top_rated,
                         type = HomeMovieSectionType.TOP_RATED,
-                        movies = movies,
-                        isLoading = false,
-                        error = null
                     ),
-                    MovieGroup(
+                    group.copy(
                         title = R.string.now_playing,
                         type = HomeMovieSectionType.NOW_PLAYING,
-                        movies = movies,
-                        isLoading = false,
-                        error = null
                     ),
-                    MovieGroup(
+                    group.copy(
                         title = R.string.upcoming,
                         type = HomeMovieSectionType.UPCOMING,
-                        movies = movies,
-                        isLoading = false,
-                        error = null
-                    )
+                    ),
                 )
             )
 
