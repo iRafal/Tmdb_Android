@@ -43,8 +43,7 @@ class AppDbMigrationTest {
     @get:Rule
     val helper: MigrationTestHelper = MigrationTestHelper(
         InstrumentationRegistry.getInstrumentation(),
-        MovieDb::class.java.canonicalName,
-        FrameworkSQLiteOpenHelperFactory()
+        MovieDb::class.java,
     )
 
    private lateinit var testDbComponent: TestDbComponent

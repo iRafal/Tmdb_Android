@@ -15,7 +15,6 @@ java {
     targetCompatibility = GradleConfig.javaVersion
 }
 
-
 fun DependencyHandlerScope.implementationDependencies() {
     implementation(project(":feature:common"))
 
