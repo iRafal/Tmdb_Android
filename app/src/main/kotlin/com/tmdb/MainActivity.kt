@@ -18,7 +18,6 @@ import androidx.metrics.performance.JankStats
 import com.tmdb.splash.CustomSplashActivity
 import com.tmdb.ui.core.compose.theme.TmdbTheme
 import com.tmdb.ui.core.util.disableScreenshots
-import com.tmdb.ui.navigation.AppNavigation
 import com.tmdb.ui.navigation.nav3.AppNavigation3
 import com.tmdb.util.RootUtils
 import com.tmdb.util.isGooglePlayServicesAvailable
