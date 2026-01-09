@@ -9,25 +9,25 @@ gradle = "8.13.2"
 #https://kotlinlang.org/docs/jvm-test-using-junit.html#add-the-code-to-test-it
 #https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test
 kotlin-test = "2.1.20" # Update together with marked dependencies
-kotlin = "2.1.20" # https://mvnrepository.com/artifact/org.jetbrains.kotlin.plugin.compose/org.jetbrains.kotlin.plugin.compose.gradle.plugin
+kotlin = "2.2.0" # https://mvnrepository.com/artifact/org.jetbrains.kotlin.plugin.compose/org.jetbrains.kotlin.plugin.compose.gradle.plugin
 kotlin-coroutines = "1.10.2" # https://github.com/kotlin/kotlinx.coroutines
 kotlin-serialization-json = "1.9.0" # https://github.com/Kotlin/kotlinx.serialization
 
 # https://github.com/google/ksp/releases
 # https://mvnrepository.com/artifact/com.google.devtools.ksp/com.google.devtools.ksp.gradle.plugin?repo=central
-ksp = "2.1.20-2.0.1"
+ksp = "2.2.20-2.0.4"
 #endregion KOTLIN
 
 #region ANDROIDX
-androidx-core = "1.16.0" # https://developer.android.com/jetpack/androidx/releases/core
-androidx-splashscreen = "1.1.0-rc01" # https://mvnrepository.com/artifact/androidx.core/core-splashscreen?repo=google
-androidx-lifecycle = "2.9.1" # https://developer.android.com/jetpack/androidx/releases/lifecycle
-androidx-lifecycle-compose = "2.9.1" # https://developer.android.com/jetpack/androidx/releases/lifecycle
-androidx-work = "2.10.2" # https://developer.android.com/jetpack/androidx/releases/work
-androidx-window-core = "1.4.0" # https://developer.android.com/jetpack/androidx/releases/window
-androidx-material3-window-size = "1.3.2" # https://developer.android.com/jetpack/androidx/releases/compose-material3
-androidx-metrics = "1.0.0-beta02" # https://developer.android.com/jetpack/androidx/releases/metrics
-androidx-media3 = "1.7.1" # //https://developer.android.com/jetpack/androidx/releases/media3
+androidx-core = "1.17.0" # https://developer.android.com/jetpack/androidx/releases/core
+androidx-splashscreen = "1.2.0" # https://mvnrepository.com/artifact/androidx.core/core-splashscreen?repo=google
+androidx-lifecycle = "2.10.0" # https://developer.android.com/jetpack/androidx/releases/lifecycle
+androidx-lifecycle-compose = "2.10.0" # https://developer.android.com/jetpack/androidx/releases/lifecycle
+androidx-work = "2.11.0" # https://developer.android.com/jetpack/androidx/releases/work
+androidx-window-core = "1.5.1" # https://developer.android.com/jetpack/androidx/releases/window
+androidx-material3-window-size = "1.4.0" # https://developer.android.com/jetpack/androidx/releases/compose-material3
+androidx-metrics = "1.0.0" # https://developer.android.com/jetpack/androidx/releases/metrics
+androidx-media3 = "1.9.0" # //https://developer.android.com/jetpack/androidx/releases/media3
 androidx-biometrics = "1.1.0" # https://mvnrepository.com/artifact/androidx.biometric/biometric
 androidx-biometrics-ktx = "1.4.0-alpha02" # https://mvnrepository.com/artifact/androidx.biometric/biometric-ktx
 androidx-credentials = "1.5.0" # https://mvnrepository.com/artifact/androidx.credentials/credentials
@@ -35,16 +35,16 @@ androidx-credentials-play-auth = "1.5.0" # https://mvnrepository.com/artifact/an
 #endregion ANDROIDX
 
 #region UI
-coil = "3.2.0" # https://github.com/coil-kt/coil
+coil = "3.3.0" # https://github.com/coil-kt/coil
 coil-ktor = "3.0.0-alpha08" # https://github.com/coil-kt/coil
-material-components-android = "1.12.0" # https://github.com/material-components/material-components-android
+material-components-android = "1.13.0" # https://github.com/material-components/material-components-android
 #endregion UI
 
 #region COMPOSE
-compose-bom = "2025.06.01" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-compose-activity = "1.10.1" # https://developer.android.com/jetpack/androidx/releases/activity
-compose-navigation = "2.9.1" # https://developer.android.com/jetpack/androidx/releases/navigation
-compose-navigation3 = "1.0.0-alpha05" # https://developer.android.com/jetpack/androidx/releases/navigation3
+compose-bom = "2025.12.01" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
+compose-activity = "1.12.2" # https://developer.android.com/jetpack/androidx/releases/activity
+compose-navigation = "2.9.6" # https://developer.android.com/jetpack/androidx/releases/navigation
+compose-navigation3 = "1.0.0" # https://developer.android.com/jetpack/androidx/releases/navigation3
 
 # https://developer.android.com/jetpack/compose/layouts/constraintlayout
 # https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose?repo=google
