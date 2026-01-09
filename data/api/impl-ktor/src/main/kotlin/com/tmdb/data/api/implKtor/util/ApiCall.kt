@@ -13,7 +13,7 @@ suspend fun <T : Any, U : Any> runApiCall(apiCall: suspend () -> T): ApiResponse
             is ApiException.Unauthorized -> ApiResponse.ApiError(cause = e)
             is ApiException.InternalServerError -> ApiResponse.ApiError(cause = e)
             is ApiException.NetworkError -> ApiResponse.NetworkError(e)
-            else -> ApiResponse.UnknownError(e)
+            else -> ApiResponse.UnknownError(ApiException.UnknownError(e))
         }
     }
 }
