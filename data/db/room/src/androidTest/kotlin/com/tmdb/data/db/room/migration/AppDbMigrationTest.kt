@@ -40,8 +40,7 @@ class AppDbMigrationTest: KoinTest {
     @get:Rule
     val helper: MigrationTestHelper = MigrationTestHelper(
         InstrumentationRegistry.getInstrumentation(),
-        MovieDb::class.java.canonicalName,
-        FrameworkSQLiteOpenHelperFactory()
+        MovieDb::class.java,
     )
 
     @BeforeTest
@@ -72,7 +71,7 @@ class AppDbMigrationTest: KoinTest {
         val isUpcoming = ModelUtil.isUpcoming
 
         val tableName = MovieEntity.MOVIE_TABLE_NAME
-        val columId = MovieEntity.MOVIE_TABLE_COLUMN_ID
+        val columnId = MovieEntity.MOVIE_TABLE_COLUMN_ID
         val columnTitle = MovieEntity.MOVIE_TABLE_COLUMN_TITLE
         val columnVoteAverage = MovieEntity.MOVIE_TABLE_COLUMN_VOTE_AVERAGE
         val columnReleaseDate = MovieEntity.MOVIE_TABLE_COLUMN_RELEASE_DATE
@@ -83,7 +82,7 @@ class AppDbMigrationTest: KoinTest {
             //INFO: You cannot use DAO classes because they expect the latest schema.
             execSQL(
                 "INSERT INTO $tableName " +
-                        "($columId, $columnTitle, $columnVoteAverage, $columnReleaseDate, $columnPosterUrl) " +
+                        "($columnId, $columnTitle, $columnVoteAverage, $columnReleaseDate, $columnPosterUrl) " +
                         "VALUES ('$movieId', '$title', '$voteAverage', '$releaseDate', '$posterUrl')"
             )
 
