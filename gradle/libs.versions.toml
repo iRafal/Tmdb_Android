@@ -147,7 +147,7 @@ hilt = "2.56.2"
 
 # https://github.com/InsertKoinIO/koin/tags
 # https://insert-koin.io/docs/reference/koin-mp/kmp
-koin = "4.1.0"
+koin = "4.1.1"
 #endregion DI
 
 [libraries]
