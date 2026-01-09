@@ -4,6 +4,7 @@ import com.tmdb.data.db.objectBox.movie.MovieEntity
 import io.objectbox.Box
 import io.objectbox.kotlin.awaitCallInTx
 import io.objectbox.kotlin.flow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
 @Suppress("TooManyFunctions")
@@ -91,6 +92,7 @@ class MovieDaoImpl(private val box: Box<MovieEntity>) : MovieDao {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun observeAll(): Flow<List<MovieEntity>> = box.query().build().flow()
 
     override suspend fun delete(movie: MovieEntity) {
