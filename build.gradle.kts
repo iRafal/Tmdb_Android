@@ -33,9 +33,7 @@ dependencies {
     kover(project(":data:source:remote:impl-ktor"))
     kover(project(":data:source:remote:impl-retrofit"))
     kover(project(":data:db:object-box"))
-    kover(project(":data:db:realm"))
     kover(project(":data:source:local:impl-objectBox"))
-    kover(project(":data:source:local:impl-realm"))
     kover(project(":store:action"))
     kover(project(":store:feature"))
     kover(project(":store:state"))
@@ -130,7 +128,6 @@ buildscript {
 
     dependencies {
         classpath(libs.objectBox)
-        classpath(libs.realm.plugin)
     }
 }
 
