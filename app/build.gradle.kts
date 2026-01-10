@@ -113,7 +113,6 @@ fun DependencyHandlerScope.implementationDependencies() {
 
     implementation(project(":data:source:local:impl-room"))
 //    implementation(project(":data:source:local:impl-objectBox"))
-//    implementation(project(":data:source:local:impl-realm"))
 
     implementation(project(":data:api:impl-ktor"))
 //    implementation(project(":data:api:impl-retrofit"))

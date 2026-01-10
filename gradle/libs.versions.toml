@@ -70,8 +70,6 @@ google-protobuf-javalite = "4.33.2"
 androidx-datastore = "1.2.0"
 
 objectBox = "5.0.1" # https://github.com/objectbox/objectbox-java
-
-realm-plugin = "10.19.0" # https://github.com/realm/realm-java
 #endregion STORAGE
 
 #region NETWORK
@@ -280,7 +278,6 @@ hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", ve
 
 #region PLUGINS
 objectBox = { group = "io.objectbox", name = "objectbox-gradle-plugin", version.ref = "objectBox" }
-realm-plugin = { group = "io.realm", name = "realm-gradle-plugin", version.ref = "realm-plugin" }
 #endregion PLUGINS
 
 [plugins]
@@ -300,7 +297,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }
 objectbox = { id = "io.objectbox" }
-realm-android = { id = "realm-android" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [bundles]
