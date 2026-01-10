@@ -97,7 +97,7 @@ mockito-kotlin = "6.1.0" # https://github.com/mockito/mockito-kotlin
 
 #region TOOLS
 leakcanary = "2.14" # https://square.github.io/leakcanary/getting_started/
-logging = "0.2.3" # https://github.com/square/logcat
+logging = "0.4" # https://github.com/square/logcat
 kotlinx-dateTime = "0.7.1" # https://github.com/Kotlin/kotlinx-datetime
 kotlinx-collections-immutable = "0.4.0" # https://github.com/Kotlin/kotlinx.collections.immutable
 google-phoneNumber = "9.0.21" # https://github.com/google/libphonenumber
