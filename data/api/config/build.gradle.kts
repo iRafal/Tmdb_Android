@@ -16,11 +16,11 @@ val apiUrlImage = apiProperties["api.url.image"].toString()
 val buildConfigApiBaseUrl = "API_BASE_URL"
 
 android {
-    namespace = "${GradleConfig.Android.applicationId}.api.config"
-    compileSdk = GradleConfig.Android.compileSdk
+    namespace = "${GradleConfig.Android.NAMESPACE}.api.config"
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
+        minSdk = libs.versions.android.sdk.min.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField("String", "API_KEY", apiKey)
@@ -29,10 +29,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-            isDefault = true
-        }
         release {
             consumerProguardFiles("consumer-rules.pro")
         }

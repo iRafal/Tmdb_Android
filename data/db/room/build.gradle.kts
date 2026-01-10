@@ -6,13 +6,13 @@ plugins {
     jacoco
 }
 
-val packageName = "${GradleConfig.Android.applicationId}.data.db.room"
+val packageName = "${GradleConfig.Android.NAMESPACE}.data.db.room"
 android {
     namespace = packageName
-    compileSdk = GradleConfig.Android.compileSdk
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
+        minSdk = libs.versions.android.sdk.min.get().toInt()
         testInstrumentationRunner = "$packageName.runner.TestRunner"
         consumerProguardFiles("consumer-rules.pro")
         javaCompileOptions {
@@ -22,9 +22,6 @@ android {
         }
     }
     buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-        }
         release {
             consumerProguardFiles("consumer-rules.pro")
         }
@@ -38,7 +35,7 @@ android {
     }
     packaging {
         resources {
-            this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
+            this.excludes.addAll(GradleConfig.excludePackagingResources)
         }
     }
 }

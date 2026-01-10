@@ -23,44 +23,4 @@ class MovieApp : Application(), Configuration.Provider, KoinComponent {
             .setMinimumLoggingLevel(if (BuildConfig.DEBUG) Log.DEBUG else Log.ERROR)
             .setWorkerFactory(KoinWorkerFactory())
             .build()
-
-    private val coilImageLoader : ImageLoader by inject(named("CoilOkHttpImageLoader"))
-
-    override fun onCreate() {
-        super.onCreate()
-        initDi()
-        AndroidLogging.init(this)
-//        initIoStrictPolicy()
-        initCoil()
-    }
-
-    private fun initDi() {
-        startKoin {
-            androidContext(this@MovieApp)
-            modules(appModule())
-            workManagerFactory()
-        }
-    }
-
-    private fun initCoil() {
-        SingletonImageLoader.setSafe { coilImageLoader }
-    }
-
-    private fun initIoStrictPolicy() {
-        StrictMode.setThreadPolicy(
-            StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectAll()
-                .penaltyLog()
-                .build()
-        )
-        StrictMode.setVmPolicy(
-            VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .detectLeakedClosableObjects()
-                .penaltyLog()
-                .build()
-        )
-    }
 }

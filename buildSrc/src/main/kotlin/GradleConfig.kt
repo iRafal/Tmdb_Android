@@ -3,21 +3,18 @@ import org.gradle.api.JavaVersion
 object GradleConfig {
 
     object Android {
-        const val compileSdk = 36
-        const val applicationId = "com.tmdb"
-        const val minSdk = 26
-        const val targetSdk = 36
+        const val NAMESPACE = "com.tmdb"
+    }
 
-        const val isMinifyEnabledDebug = false
-        const val isMinifyEnabledRelease = true
+    val excludePackagingResources = arrayOf(
+        "/META-INF/{AL2.0,LGPL2.1}",
+        "/META-INF/gradle/incremental.annotation.processors"
+    )
 
-        const val isShrinkResourcesDebug = false
-        const val isShrinkResourcesRelease = true
-
-        val excludePackagingResources = arrayOf(
-            "/META-INF/{AL2.0,LGPL2.1}",
-            "/META-INF/gradle/incremental.annotation.processors"
-        )
+    object App {
+        const val ID = "com.tmdb"
+        val version = Version(major = 1, minor = 0, patch = 0)
+        const val VERSION_CODE = 61
     }
 
     val javaVersion = JavaVersion.VERSION_17
@@ -25,17 +22,5 @@ object GradleConfig {
 
     object Plugins {
         const val KOTLIN_KAPT = "kotlin-kapt"
-    }
-
-    object Flavor {
-        object Data {
-            object Source {
-                const val NAME = "data_source"
-                object Options {
-                    const val API = "api"
-                    const val MOCK = "mock"
-                }
-            }
-        }
     }
 }

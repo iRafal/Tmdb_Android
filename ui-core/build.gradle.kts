@@ -9,21 +9,18 @@ plugins {
 }
 
 android {
-    val packageName = "${GradleConfig.Android.applicationId}.ui.core"
+    val packageName = "${GradleConfig.Android.NAMESPACE}.ui.core"
     namespace = packageName
-    compileSdk = GradleConfig.Android.compileSdk
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
+        minSdk = libs.versions.android.sdk.min.get().toInt()
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "$packageName.runner.TestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-        }
         release {
             consumerProguardFiles("consumer-rules.pro")
         }
