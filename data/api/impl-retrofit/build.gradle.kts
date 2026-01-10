@@ -9,17 +9,14 @@ plugins {
 }
 
 android {
-    namespace = "${GradleConfig.Android.applicationId}.data.api.implRetrofit"
-    compileSdk = GradleConfig.Android.compileSdk
+    namespace = "${GradleConfig.Android.NAMESPACE}.data.api.implRetrofit"
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
+        minSdk = libs.versions.android.sdk.min.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-        }
         release {
             consumerProguardFiles("consumer-rules.pro")
         }

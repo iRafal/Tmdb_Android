@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    val nameSpace = "${GradleConfig.Android.applicationId}.feature.movie.details.ui"
+    val nameSpace = "${GradleConfig.Android.NAMESPACE}.feature.movie.details.ui"
     namespace = nameSpace
-    compileSdk = GradleConfig.Android.compileSdk
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
+        minSdk = libs.versions.android.sdk.min.get().toInt()
         testInstrumentationRunner = "$nameSpace.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
@@ -22,9 +22,6 @@ android {
         }
     }
     buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-        }
         release {
             consumerProguardFiles("consumer-rules.pro")
         }

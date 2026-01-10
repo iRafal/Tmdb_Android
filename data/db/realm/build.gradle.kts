@@ -9,20 +9,18 @@ plugins {
     jacoco
 }
 
+val packageName = "${GradleConfig.Android.NAMESPACE}.data.db.realm"
 android {
-    namespace = "${GradleConfig.Android.applicationId}.data.db.realm"
-    compileSdk = GradleConfig.Android.compileSdk
+    namespace = packageName
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = GradleConfig.Android.minSdk
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.data.db.realm.runner.HiltTestRunner"
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+        testInstrumentationRunner = "$packageName.runner.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-        }
         release {
             consumerProguardFiles("consumer-rules.pro")
         }
@@ -33,7 +31,7 @@ android {
     }
     packaging {
         resources {
-            this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
+            this.excludes.addAll(GradleConfig.excludePackagingResources)
         }
     }
 }
