@@ -16,7 +16,6 @@ import com.tmdb.util.di.qualifiers.ApplicationScope
 import javax.inject.Inject
 
 class MovieApp : Application() , Configuration.Provider {
-
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
             .setMinimumLoggingLevel(if (BuildConfig.DEBUG) Log.DEBUG else Log.ERROR)
@@ -48,12 +47,6 @@ class MovieApp : Application() , Configuration.Provider {
         appComponentStore.init(this)
         appComponentStore.component.inject(this)
     }
-
-    //TODO
-//    override fun getWorkManagerConfiguration(): Configuration =
-//        Configuration.Builder()
-//            .setWorkerFactory(workerFactory)
-//            .build()
 
     private fun initCoil() {
         SingletonImageLoader.setSafe { coilImageLoader }
