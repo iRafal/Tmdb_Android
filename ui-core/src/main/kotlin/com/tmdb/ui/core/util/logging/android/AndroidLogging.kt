@@ -1,7 +1,6 @@
 package com.tmdb.ui.core.util.logging.android
 
 import android.app.Application
-import com.tmdb.ui.core.util.logging.android.AndroidReleaseLogcatLogger.Companion
 import com.tmdb.ui.core.BuildConfig
 import com.tmdb.util.logging.impl.AppLoggerImpl
 import com.tmdb.util.logging.AppLogger
@@ -16,7 +15,7 @@ object AndroidLogging {
         if (BuildConfig.DEBUG) {
             AndroidLogcatLogger.installOnDebuggableApp(application)
         } else {
-            Companion.installOnReleaseApp(
+            AndroidReleaseLogcatLogger.installOnReleaseApp(
                 application,
                 onErrorLog = { _, _, _ -> /* TODO pass logic */ }
             )

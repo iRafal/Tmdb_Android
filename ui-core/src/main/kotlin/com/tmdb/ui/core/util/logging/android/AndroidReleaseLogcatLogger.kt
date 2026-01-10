@@ -35,6 +35,10 @@ internal class AndroidReleaseLogcatLogger(
 
     private val minPriorityInt: Int = minPriority.priorityInt
 
+    @Deprecated(
+        "Override the method that takes priority and tag instead",
+        replaceWith = ReplaceWith("isLoggable(priority, tag)")
+    )
     override fun isLoggable(priority: LogPriority): Boolean =
         priority.priorityInt >= minPriorityInt
 
@@ -50,7 +54,7 @@ internal class AndroidReleaseLogcatLogger(
             if (tag.length <= MAX_TAG_LENGTH) {
                 tag
             } else {
-                tag.substring(0, MAX_TAG_LENGTH)
+                tag.take(MAX_TAG_LENGTH)
             }
 
         if (message.length < MAX_LOG_LENGTH) {
