@@ -23,20 +23,20 @@ android {
     // More details: https://developer.android.com/guide/topics/resources/app-languages
 //    androidResources.generateLocaleConfig = true
 
-    namespace = GradleConfig.Android.applicationId
-    compileSdk = GradleConfig.Android.compileSdk
+    namespace = GradleConfig.Android.NAMESPACE
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
-        applicationId = GradleConfig.Android.applicationId
-        minSdk = GradleConfig.Android.minSdk
-        targetSdk = GradleConfig.Android.targetSdk
+        applicationId = GradleConfig.App.ID
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+        targetSdk = libs.versions.android.sdk.target.get().toInt()
 
-        versionCode = 1
-        versionName = Version(major = 0, minor = 1, patch = 0).name
+        versionCode = GradleConfig.App.VERSION_CODE
+        versionName = GradleConfig.App.version.name
 
         vectorDrawables.useSupportLibrary = true
 
-        testInstrumentationRunner = "${GradleConfig.Android.applicationId}.runner.DaggerTestRunner"
+        testInstrumentationRunner = "${GradleConfig.Android.NAMESPACE}.runner.DaggerTestRunner"
 
         bundle.language.enableSplit = false
     }
@@ -46,19 +46,21 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
-            isShrinkResources = GradleConfig.Android.isShrinkResourcesDebug
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
+            isShrinkResources = false
+            isMinifyEnabled = false
+
+            enableUnitTestCoverage = true
 
             resValue("string", "app_name", "Tmdb-Debug")
             resValue(
                 type = "string",
                 name = "file_provider_authority",
-                value = "${GradleConfig.Android.applicationId}$applicationIdSuffix.fileProvider"
+                value = "${GradleConfig.Android.NAMESPACE}.$applicationIdSuffix.fileProvider"
             )
         }
         release {
-            isShrinkResources = GradleConfig.Android.isShrinkResourcesRelease
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledRelease
+            isShrinkResources = true
+            isMinifyEnabled = true
 
             // https://stackoverflow.com/questions/60861929/what-is-the-difference-between-consumer-rules-pro-and-proguard-rules-pro-in-andr
             proguardFiles(
@@ -70,7 +72,7 @@ android {
             resValue(
                 type = "string",
                 name = "file_provider_authority",
-                value = "${GradleConfig.Android.applicationId}.fileProvider"
+                value = "${GradleConfig.App.ID}.fileProvider"
             )
 
 //            signingConfig = signingConfigs.getByName(signingConfigRelease)
@@ -81,7 +83,7 @@ android {
         buildConfig = true
     }
     packaging.resources {
-        excludes.addAll(GradleConfig.Android.excludePackagingResources)
+        excludes.addAll(GradleConfig.excludePackagingResources)
     }
     lint {
         // https://developer.android.com/studio/write/lint

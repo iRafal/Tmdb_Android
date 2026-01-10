@@ -51,6 +51,19 @@
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
                 tools:node="remove" />
+
+            <meta-data
+                android:name="com.tmdb.app.init.AppLogInitializer"
+                android:value="androidx.startup" />
+
+            <meta-data
+                android:name="com.tmdb.app.init.AppCoilInitializer"
+                android:value="androidx.startup" />
+
+            <meta-data
+                android:name="com.tmdb.app.init.AppStrictPolicyInitializer"
+                android:value="androidx.startup" />
+
         </provider>
     </application>
 </manifest>

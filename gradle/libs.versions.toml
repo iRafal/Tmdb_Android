@@ -1,4 +1,10 @@
 [versions]
+#region ANDROID APP
+android-sdk-compile = "36"
+android-sdk-min = "31"
+android-sdk-target = "36"
+#endregion ANDROID APP
+
 #region BUILD TOOLS
 # https://developer.android.com/studio/releases/gradle-plugin
 gradle = "8.13.2"
@@ -7,7 +13,6 @@ gradle = "8.13.2"
 #region KOTLIN
 #https://kotlinlang.org/docs/jvm-test-using-junit.html#add-the-code-to-test-it
 #https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test
-kotlin-test = "2.2.21" # Update together with marked dependencies
 kotlin = "2.2.21" # https://mvnrepository.com/artifact/org.jetbrains.kotlin.plugin.compose/org.jetbrains.kotlin.plugin.compose.gradle.plugin
 kotlin-coroutines = "1.10.2" # https://github.com/kotlin/kotlinx.coroutines
 kotlin-serialization-json = "1.10.0-RC" # https://github.com/Kotlin/kotlinx.serialization
@@ -237,7 +242,7 @@ junit-android-ext = { module = "androidx.test.ext:junit", version.ref = "junit-a
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin-test" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 #endregion TEST
 
 #region TOOLS

@@ -10,12 +10,12 @@ plugins {
 android {
     val packageName = "com.tmdb.ui.gallery"
     namespace = packageName
-    compileSdk = GradleConfig.Android.compileSdk
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
         applicationId = packageName
-        minSdk = GradleConfig.Android.minSdk
-        targetSdk = GradleConfig.Android.targetSdk
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+        targetSdk = libs.versions.android.sdk.target.get().toInt()
 
 
         versionCode = 1
@@ -31,9 +31,6 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
-            isShrinkResources = GradleConfig.Android.isShrinkResourcesDebug
-            isMinifyEnabled = GradleConfig.Android.isMinifyEnabledDebug
-
             resValue("string", "app_name", "Tmdb-Ui-Gallery-Debug")
         }
     }
@@ -42,7 +39,7 @@ android {
         buildConfig = true
     }
     packaging.resources {
-        this.excludes.addAll(GradleConfig.Android.excludePackagingResources)
+        this.excludes.addAll(GradleConfig.excludePackagingResources)
     }
     lint {
         // https://developer.android.com/studio/write/lint
