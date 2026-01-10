@@ -216,6 +216,12 @@ subprojects {
             include("**/kotlin/**")
         }
     }
+
+    plugins.withId("com.google.devtools.ksp") {
+        configure<com.google.devtools.ksp.gradle.KspExtension> {
+            arg("KOIN_CONFIG_CHECK", "true")
+        }
+    }
 }
 
 // https://detekt.dev/docs/gettingstarted/gradle#kotlin-dsl-3
