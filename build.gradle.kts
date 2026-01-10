@@ -128,7 +128,6 @@ buildscript {
 
     dependencies {
         classpath(libs.objectBox)
-        classpath(libs.realm.plugin)
     }
 }
 
